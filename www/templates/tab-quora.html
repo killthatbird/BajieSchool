@@ -1,28 +1,28 @@
+<ion-header-bar align-title="left" class="bar-positive">
+  <h1 class="title">八戒上学</h1>
+  <a class="button button-icon icon ion-ios-search-strong"></a>
+</ion-header-bar>
+
 <ion-view>
-  <ion-content>
-    <div class="list card">
+  <ion-content style="top: 0;">
 
-      <div class="item item-avatar">
-        <img src="mcfly.jpg">
-        <h2>Marty McFly</h2>
-        <p>November 05, 1955</p>
-      </div>
+    <ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
 
-      <div class="item item-body">
-        <img class="full-image" src="delorean.jpg">
-        <p>
-          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-          the content is from a card-body consisting of an image and paragraph text. The footer
-          consists of tabs, icons aligned left, within the card-footer.
-        </p>
-        <p>
-          <a href="#" class="subdued">1 Like</a>
-          <a href="#" class="subdued">5 Comments</a>
-        </p>
-      </div>
+      <ion-tab title="问答列表" href="#/quora/list">
+        <ion-nav-view name="quora-list"></ion-nav-view>
+        <ion-refresher
+          pulling-text="松开手会有惊喜哦"
+          on-refresh="doRefresh()">
+        </ion-refresher>
+      </ion-tab>
 
-    </div>
-
+      <ion-tab title="我的问答" href="#/quora/mine">
+        <ion-nav-view name="quora-mine"></ion-nav-view>
+        <ion-refresher
+          pulling-text="松开手会有惊喜哦"
+          on-refresh="doRefresh()">
+        </ion-refresher>
+      </ion-tab>
 
   </ion-content>
 </ion-view>

@@ -3013,7 +3013,7 @@ IonicModule
          * @name $ionicPlatform#on
          * @description
          * Add Cordova event listeners, such as `pause`, `resume`, `volumedownbutton`, `batterylow`,
-         * `offline`, etc. More information about available event types can be found in
+         * `offline`, etc. More information mine available event types can be found in
          * [Cordova's event documentation](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
          * @param {string} type Cordova [event type](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
          * @param {function} callback Called when the Cordova event is fired.

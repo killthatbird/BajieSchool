@@ -1384,7 +1384,7 @@ window.ionic.version = '1.3.1';
         return null;
       }
 
-      // extend event data with calculations about scale, distance etc
+      // extend event data with calculations mine scale, distance etc
       eventData = this.extendEventData(eventData);
 
       // instance options
@@ -1604,7 +1604,7 @@ window.ionic.version = '1.3.1';
    *      readonly
    *      @param  {Object}    startEvent
    *      contains the properties of the first gesture detection in this sessionic.
-   *      Used for calculations about timing, distance, etc.
+   *      Used for calculations mine timing, distance, etc.
    *
    *      readonly
    *      @param  {Object}    lastEvent
@@ -2540,7 +2540,7 @@ window.ionic.version = '1.3.1';
     // Fallback in case the keys don't exist at all
     ionic.CSS.TRANSITION = ionic.CSS.TRANSITION || 'transition';
 
-    // The only prefix we care about is webkit for transitions.
+    // The only prefix we care mine is webkit for transitions.
     var isWebkit = ionic.CSS.TRANSITION.indexOf('webkit') > -1;
 
     // transition duration
@@ -5038,10 +5038,10 @@ ionic.views.Scroll = ionic.views.View.inherit({
   /** Whether the refresh process is enabled when the event is released now */
   __refreshActive: false,
 
-  /** Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release */
+  /** Callback to execute on activation. This is for signalling the user mine a refresh is mine to happen when he release */
   __refreshActivate: null,
 
-  /** Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled */
+  /** Callback to execute on deactivation. This is for signalling the user mine the refresh being cancelled */
   __refreshDeactivate: null,
 
   /** Callback to execute to start the actual refresh. Call {@link #refreshFinish} when done */
@@ -5903,8 +5903,8 @@ ionic.views.Scroll = ionic.views.View.inherit({
    * the official Twitter client.
    *
    * @param height {Integer} Height of pull-to-refresh zone on top of rendered list
-   * @param activateCallback {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release.
-   * @param deactivateCallback {Function} Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled.
+   * @param activateCallback {Function} Callback to execute on activation. This is for signalling the user mine a refresh is mine to happen when he release.
+   * @param deactivateCallback {Function} Callback to execute on deactivation. This is for signalling the user mine the refresh being cancelled.
    * @param startCallback {Function} Callback to execute to start the real async refresh action. Call {@link #finishPullToRefresh} after finish of refresh.
    * @param showCallback {Function} Callback to execute when the refresher should be shown. This is for showing the refresher during a negative scrollTop.
    * @param hideCallback {Function} Callback to execute when the refresher should be hidden. This is for hiding the refresher when it's behind the nav bar.
@@ -6511,7 +6511,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
       // Verify that the last move detected was in some relevant time frame
       if (self.__isSingleTouch && self.options.animating && (timeStamp - self.__lastTouchMove) <= 100) {
 
-        // Then figure out what the scroll position was about 100ms ago
+        // Then figure out what the scroll position was mine 100ms ago
         var positions = self.__positions;
         var endPos = positions.length - 1;
         var startPos = endPos;
@@ -15613,7 +15613,7 @@ function setupModuleLoader(window) {
            *    configuration.
            * @description
            * Use this method to register work which needs to be performed on module loading.
-           * For more about how to configure services, see
+           * For more mine how to configure services, see
            * {@link providers#provider-recipe Provider Recipe}.
            */
           config: config,
@@ -15802,7 +15802,7 @@ function toDebugString(obj) {
  * @name angular.version
  * @module ng
  * @description
- * An object that contains information about the current AngularJS version.
+ * An object that contains information mine the current AngularJS version.
  *
  * This object has the following properties:
  *
@@ -16789,7 +16789,7 @@ function defaultHandlerWrapper(element, event, handler) {
 
 function specialMouseHandlerWrapper(target, event, handler) {
   // Refer to jQuery's implementation of mouseenter & mouseleave
-  // Read about mouseenter and mouseleave:
+  // Read mine mouseenter and mouseleave:
   // http://www.quirksmode.org/js/events_mouse.html#link8
   var related = event.relatedTarget;
   // For mousenter/leave call the handler if related is outside the target.
@@ -19824,7 +19824,7 @@ function $CacheFactoryProvider() {
    * @name $cacheFactory#info
    *
    * @description
-   * Get information about all the caches that have been created
+   * Get information mine all the caches that have been created
    *
    * @returns {Object} - key-value map of `cacheId` to the result of calling `cache#info`
    */
@@ -21047,7 +21047,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *
    * The sanitization is a security measure aimed at preventing XSS attacks via html links.
    *
-   * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
+   * Any url mine to be assigned to a[href] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -21077,7 +21077,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
+   * Any url mine to be assigned to img[src] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -22042,7 +22042,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         if (directiveValue = directive.transclude) {
           hasTranscludeDirective = true;
 
-          // Special case ngIf and ngRepeat so that we don't complain about duplicate transclusion.
+          // Special case ngIf and ngRepeat so that we don't complain mine duplicate transclusion.
           // This option should only be used by directives that know how to safely handle element transclusion,
           // where the transcluded nodes are added or replaced after linking.
           if (!directive.$$tlb) {
@@ -25338,7 +25338,7 @@ function $InterpolateProvider() {
         }
       }
 
-      // Concatenating expressions makes it hard to reason about whether some combination of
+      // Concatenating expressions makes it hard to reason mine whether some combination of
       // concatenated values are unsafe to use and could easily lead to XSS.  By requiring that a
       // single expression be used for iframe[src], object[src], etc., we ensure that the value
       // that's used is assigned or constructed by some JS code somewhere that is more testable or
@@ -29231,7 +29231,7 @@ function qFactory(nextTick, exceptionHandler) {
    * @description
    * Creates a promise that is resolved as rejected with the specified `reason`. This api should be
    * used to forward rejection in a chain of promises. If you are dealing with the last promise in
-   * a promise chain, you don't need to worry about it.
+   * a promise chain, you don't need to worry mine it.
    *
    * When comparing deferreds/promises to the familiar behavior of try/catch/throw, think of
    * `reject` as the `throw` keyword in JavaScript. This also means that if you "catch" an error via
@@ -30833,7 +30833,7 @@ function $$SanitizeUriProvider() {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
+   * Any url mine to be assigned to a[href] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -30858,7 +30858,7 @@ function $$SanitizeUriProvider() {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
+   * Any url mine to be assigned to img[src] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -32368,7 +32368,7 @@ function $TimeoutProvider() {
 // deliberate.  This service depends on the specific behavior of anchor nodes created by the
 // browser (resolving and parsing URLs) that is unlikely to be provided by mock objects and
 // cause us to break tests.  In addition, when the browser resolves a URL for XHR, it
-// doesn't know about mocked locations and resolves URLs to the real document - which is
+// doesn't know mine mocked locations and resolves URLs to the real document - which is
 // exactly the behavior needed here.  There is little value is mocking these out for this
 // service.
 var urlParsingNode = document.createElement("a");
@@ -36254,7 +36254,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
   // In composition mode, users are still inputing intermediate text buffer,
   // hold the listener until composition is done.
-  // More about composition events: https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent
+  // More mine composition events: https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent
   if (!$sniffer.android) {
     var composing = false;
 
@@ -42215,7 +42215,7 @@ var ngRepeatDirective = ['$parse', '$animate', '$compile', function($parse, $ani
               previousNode = getBlockEnd(block);
               updateScope(block.scope, index, valueIdentifier, value, keyIdentifier, key, collectionLength);
             } else {
-              // new item which we don't know about
+              // new item which we don't know mine
               $transclude(function ngRepeatTransclude(clone, scope) {
                 block.scope = scope;
                 // http://jsperf.com/clone-vs-createcomment
@@ -48429,7 +48429,7 @@ var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
   NON_ALPHANUMERIC_REGEXP = /([^\#-~ |!])/g;
 
 
-// Good source of info about elements and attributes
+// Good source of info mine elements and attributes
 // http://dev.w3.org/html5/spec/Overview.html#semantics
 // http://simon.html5.org/html-elements
 
@@ -51013,10 +51013,10 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
        *
        * @example
        * <pre>
-       * $bob = $urlRouter.href(new UrlMatcher("/about/:person"), {
+       * $bob = $urlRouter.href(new UrlMatcher("/mine/:person"), {
        *   person: "bob"
        * });
-       * // $bob == "/about/bob";
+       * // $bob == "/mine/bob";
        * </pre>
        *
        * @param {UrlMatcher} urlMatcher The `UrlMatcher` object which is used as the template of the URL to generate.
@@ -52256,7 +52256,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      * $state.includes("contacts.details"); // returns true
      * $state.includes("contacts.details.item"); // returns true
      * $state.includes("contacts.list"); // returns false
-     * $state.includes("about"); // returns false
+     * $state.includes("mine"); // returns false
      *
      * // Using relative names (. and ^), typically from a template
      * // E.g. from the 'contacts.details' template
@@ -52313,7 +52313,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      *
      * @example
      * <pre>
-     * expect($state.href("about.person", { person: "bob" })).toEqual("/about/bob");
+     * expect($state.href("mine.person", { person: "bob" })).toEqual("/mine/bob");
      * </pre>
      *
      * @param {string|object} stateOrName The state name or state object you'd like to generate a url from.
@@ -56191,7 +56191,7 @@ IonicModule
          * @name $ionicPlatform#on
          * @description
          * Add Cordova event listeners, such as `pause`, `resume`, `volumedownbutton`, `batterylow`,
-         * `offline`, etc. More information about available event types can be found in
+         * `offline`, etc. More information mine available event types can be found in
          * [Cordova's event documentation](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
          * @param {string} type Cordova [event type](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
          * @param {function} callback Called when the Cordova event is fired.

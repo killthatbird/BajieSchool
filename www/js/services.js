@@ -30,7 +30,7 @@ angular.module('starter.services', [])
     lastText: 'This is wicked good ice cream.',
     face: 'img/mike.png'
   }];
-
+  
   return {
     all: function() {
       return chats;

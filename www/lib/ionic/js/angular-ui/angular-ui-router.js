@@ -2074,10 +2074,10 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
        *
        * @example
        * <pre>
-       * $bob = $urlRouter.href(new UrlMatcher("/about/:person"), {
+       * $bob = $urlRouter.href(new UrlMatcher("/mine/:person"), {
        *   person: "bob"
        * });
-       * // $bob == "/about/bob";
+       * // $bob == "/mine/bob";
        * </pre>
        *
        * @param {UrlMatcher} urlMatcher The `UrlMatcher` object which is used as the template of the URL to generate.
@@ -3317,7 +3317,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      * $state.includes("contacts.details"); // returns true
      * $state.includes("contacts.details.item"); // returns true
      * $state.includes("contacts.list"); // returns false
-     * $state.includes("about"); // returns false
+     * $state.includes("mine"); // returns false
      *
      * // Using relative names (. and ^), typically from a template
      * // E.g. from the 'contacts.details' template
@@ -3374,7 +3374,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      *
      * @example
      * <pre>
-     * expect($state.href("about.person", { person: "bob" })).toEqual("/about/bob");
+     * expect($state.href("mine.person", { person: "bob" })).toEqual("/mine/bob");
      * </pre>
      *
      * @param {string|object} stateOrName The state name or state object you'd like to generate a url from.

@@ -1,0 +1,26 @@
+<style>
+  #splash3 {
+    position: absolute;
+    bottom: 130px;
+  }
+</style>
+
+<ion-view title="Welcome" class="tour">
+  <ion-nav-buttons side="left">
+  </ion-nav-buttons>
+  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+    <ion-slide>
+      <img src="../../img/splash-1.jpg"/>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="../../img/splash-2.jpeg"/>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="../../img/splash-3.jpg"/>
+      <button class="button button-full button-positive" ng-click="login()" id="splash3">开启校园之旅</button>
+    </ion-slide>
+
+  </ion-slide-box>
+</ion-view>

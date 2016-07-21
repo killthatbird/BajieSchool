@@ -1,29 +1,49 @@
+<ion-header-bar align-title="left" class="bar-positive">
+  <h1 class="title">八戒上学</h1>
+  <a class="button button-icon icon ion-ios-search-strong"></a>
+</ion-header-bar>
+
+<!--<ion-view>
+  <ion-content style="top: 0">
+
+    <div class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
+      <div class="tabs">
+        <a class="tab-item active" href="#">
+          活动列表
+        </a>
+        <a class="tab-item" href="#">
+          我的活动
+        </a>
+      </div>
+    </div>
+
+    <ion-refresher
+      pulling-text="松开手会有惊喜哦"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+  </ion-content>
+</ion-view>-->
+
 <ion-view>
-  <ion-content>
-    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-      <div class="tabs">
-        <a class="tab-item active" href="#">
-          <i class="icon ion-home"></i>
-          Test
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-star"></i>
-          Favorites
-        </a>
-      </div>
-    </div>
-    <div class="tabs-striped tabs-color-assertive">
-      <div class="tabs">
-        <a class="tab-item active" href="#">
-          <i class="icon ion-home"></i>
-          Test
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-star"></i>
-          Favorites
-        </a>
-      </div>
-    </div>
+  <ion-content style="top: 0px">
+    <ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
+
+      <ion-tab title="活动列表" href="#/activity/list">
+        <ion-nav-view name="activity-list"></ion-nav-view>
+        <ion-refresher
+          pulling-text="松开手会有惊喜哦"
+          on-refresh="doRefresh()">
+        </ion-refresher>
+      </ion-tab>
+
+      <ion-tab title="我的活动" href="#/activity/mine">
+        <ion-nav-view name="activity-mine"></ion-nav-view>
+        <ion-refresher
+          pulling-text="松开手会有惊喜哦"
+          on-refresh="doRefresh()">
+        </ion-refresher>
+      </ion-tab>
 
   </ion-content>
 </ion-view>

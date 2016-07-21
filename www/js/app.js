@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic.animationFrameThrottle'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -31,7 +31,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-    // setup an abstract state for the tabs directive
+      .state('tour', {
+        url: '/tour',
+        templateUrl: 'templates/tour/tour.html',
+        controller: 'TourCtrl'
+      })
+
+      // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
         abstract: true,
@@ -39,13 +45,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
 
       // Each tab has its own nav history stack:
-
       .state('tab.activity', {
         url: '/activity',
         views: {
-          'tab-dash': {
+          'tab-activity': {
             templateUrl: 'templates/tab-activity.html',
             controller: 'ActivityCtrl'
+          }
+        }
+      })
+
+      .state('activity', {
+        url: '/activity',
+        abstract: true,
+        templateUrl: 'templates/tab-activity.html'
+      })
+
+      .state('activity.list', {
+        url: '/activity/list',
+        views: {
+          'activity-list': {
+            templateUrl: 'templates/activity/activity-list.html'
+          }
+        }
+      })
+
+      .state('activity.mine', {
+        url: '/activity/mine',
+        views: {
+          'activity-mine': {
+            templateUrl: 'templates/activity/activity-mine.html'
           }
         }
       })
@@ -59,6 +88,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
         }
       })
+
       .state('tab.chat-detail', {
         url: '/chats/:chatId',
         views: {
@@ -69,13 +99,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       })
 
-
       .state('tab.study', {
         url: '/study',
         views: {
           'tab-study': {
             templateUrl: 'templates/tab-study.html',
             controller: 'StudyCtrl'
+          }
+        }
+      })
+
+      .state('tab.quora', {
+        url: '/quora',
+        views: {
+          'tab-quora': {
+            templateUrl: 'templates/tab-quora.html',
+            controller: 'QuoraCtrl'
+          }
+        }
+      })
+
+      .state('quora', {
+        url: '/quora',
+        abstract: true,
+        templateUrl: 'templates/tab-quora.html'
+      })
+
+      .state('quora.list', {
+        url: '/quora/list',
+        views: {
+          'quora-list': {
+            templateUrl: 'templates/quora/quora-list.html'
+          }
+        }
+      })
+
+      .state('quora.mine', {
+        url: '/quora/mine',
+        views: {
+          'quora-mine': {
+            templateUrl: 'templates/quora/quora-mine.html'
           }
         }
       })
@@ -88,9 +151,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             controller: 'MineCtrl'
           }
         }
+      })
+
+      .state('setting', {
+        url: '/mine/setting',
+        templateUrl: 'templates/mine/setting.html'
+      })
+
+      .state('about', {
+        url: '/mine/about',
+        templateUrl: 'templates/mine/about.html'
       });
 
-    // if none of the above states are matched, use this as the fallback
+// if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/activity');
 
   });
