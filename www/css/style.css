@@ -1,1 +1,123 @@
 /* Empty. Add your own CSS if you like */
+/*活动*/
+/*活动列表*/
+/*=====================*/
+/*广告轮播*/
+.y_slider {
+  padding: 10px 16px 0px;
+  width: 100%;
+}
+
+.y_slider img {
+  width: 100%;
+  height: 170px;
+}
+
+.df-slider .slider-pager span i {
+  color: #9E9E9E !important;
+  font-size: xx-small !important
+}
+
+.df-slider .slider-pager {
+  bottom: 30px;
+}
+
+.y-front-size {
+  padding: 4px 0px;
+  width: 100%;
+}
+
+.y-front-size span i {
+  padding-right: 5px
+}
+
+.y-front-size .y-p-col {
+  width: 34%;
+  display: inline-block
+}
+
+.y-p-col-right {
+  float: right
+}
+
+.item-thumbnail-left {
+  position: relative
+}
+
+.y-lasttime-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ccc;
+  font-size: 12px
+}
+
+/*
+学习*/
+.df-study .col img {
+  width: 100%;
+  height: 100%
+}
+
+.df-study .df-col img {
+  width: 100%;
+  height: 100%
+}
+
+.df-study .df-col {
+  position: relative;
+  margin: 5px;
+  padding: 0px !important
+}
+
+.y-total {
+  position: absolute;
+  color: #fff;
+  padding: 5px
+}
+
+.y-total span {
+  width: 40px;
+  display: inline-block;
+}
+
+.y-total span i {
+  padding-right: 5px
+}
+
+.y-absolute {
+  position: absolute;
+  display: inline-flex;
+  width: 100%;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  padding: 5px;
+  font-weight: bold
+}
+
+.y-absolute .y-df-left, .y-absolute .y-df-right {
+  position: absolute
+}
+
+.y-card {
+  margin: 10px !important;
+}
+
+.y-df-top {
+  top: 0px;
+  left: 0px
+}
+
+.y-df-bot {
+  bottom: -10px
+}
+
+.y-df-right {
+  right: 10px
+}
+
+.y-df-left {
+  left: 10px
+}

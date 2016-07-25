@@ -1,5 +1,39 @@
-angular.module('starter.services', [])
+angular.module('services', [])
+//定义设置全局关键字/获取关键字/移除关键字
+  .factory('LocalStorage', function ($window) {
+    return {
+      set: function (keys, value) {
+        $window.localStorage[keys] = value
+      },
+      get: function (keys, defaultvalue) {
+        return $window.localStorage[keys] || defaultvalue
+      },
+      remove: function (keys) {
+        return $window.localStorage.removeItem(keys)
+      },
+      removeAll: function () {
+        return $window.localStorage.clear()
+      }
+    }
+  })
 
+  .factory('IP', function () {
+    //var ip = 'http://121.40.193.122';
+    var ip = 'http://192.168.1.192:8080';
+    return {
+      url: function () {
+        return ip
+      }
+    };
+  })
+
+  .factory('User', function () {
+    return {
+      info: function () {
+        return JSON.parse(localStorage.getItem('member'));
+      }
+    };
+  })
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
@@ -30,7 +64,7 @@ angular.module('starter.services', [])
     lastText: 'This is wicked good ice cream.',
     face: 'img/mike.png'
   }];
-  
+
   return {
     all: function() {
       return chats;

@@ -1,5 +1,6 @@
-angular.module('starter.controllers', [])
-
+angular.module('controllers', [])
+  .controller('Allconfig', function ($scope, $state, LocalStorage) {
+  })
   .controller('ActivityCtrl', function ($scope, $http) {
     $scope.items = [1, 2, 3];
     $scope.doRefresh = function () {

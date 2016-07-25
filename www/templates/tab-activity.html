@@ -25,25 +25,83 @@
   </ion-content>
 </ion-view>-->
 
-<ion-view>
-  <ion-content style="top: 0px">
     <ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
 
       <ion-tab title="活动列表" href="#/activity/list">
-        <ion-nav-view name="activity-list"></ion-nav-view>
-        <ion-refresher
-          pulling-text="松开手会有惊喜哦"
-          on-refresh="doRefresh()">
-        </ion-refresher>
+        <ion-nav-view name="activity-list">
+          <ion-view>
+            <ion-content>
+              <ion-refresher
+                pulling-text="松开手会有惊喜哦"
+                on-refresh="doRefresh()">
+              </ion-refresher>
+              <ion-slide-box class="df-slider" on-slide-changed="slideHasChanged($index)" auto-play="true"
+                             does-continue="true"
+                             slide-interval=0
+                             show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex"
+                             delegate-handle="delegateHandler">
+                <ion-slide class="y_slider">
+                  <img src="img/activity/ad/2.jpg">
+                </ion-slide>
+                <ion-slide class="y_slider">
+                  <img src="img/activity/ad/3.jpg">
+                </ion-slide>
+                <ion-slide class="y_slider">
+                  <img src="img/activity/ad/4.jpg">
+                </ion-slide>
+              </ion-slide-box>
+              <div class="y-list">
+                <div class="card y-card">
+                  <a class="item item-thumbnail-left">
+                    <img src="img/activity/act/1.jpg">
+                    <h2>唱歌比赛</h2>
+                    <span class="y-lasttime-right">2小时前</span>
+                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                    <p class="y-front-size">
+                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                    </p>
+                  </a>
+                </div>
+                <div class="card y-card">
+                  <a class="item item-thumbnail-left">
+                    <img src="img/activity/act/2.jpg">
+                    <h2>唱歌比赛</h2>
+                    <span class="y-lasttime-right">2小时前</span>
+                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                    <p class="y-front-size">
+                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                    </p>
+                  </a>
+                </div>
+                <div class="card y-card">
+                  <a class="item item-thumbnail-left">
+                    <img src="img/activity/act/3.jpg">
+                    <h2>唱歌比赛</h2>
+                    <span class="y-lasttime-right">2小时前</span>
+                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                    <p class="y-front-size">
+                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </ion-content>
+          </ion-view>
+        </ion-nav-view>
+
       </ion-tab>
 
       <ion-tab title="我的活动" href="#/activity/mine">
-        <ion-nav-view name="activity-mine"></ion-nav-view>
-        <ion-refresher
-          pulling-text="松开手会有惊喜哦"
-          on-refresh="doRefresh()">
-        </ion-refresher>
+        <ion-nav-view name="activity-mine">
+          <!-- <ion-refresher
+             pulling-text="松开手会有惊喜哦"
+             on-refresh="doRefresh()">
+           </ion-refresher>-->
+        </ion-nav-view>
       </ion-tab>
-
-  </ion-content>
-</ion-view>
