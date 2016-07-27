@@ -1,45 +1,95 @@
-<ion-header-bar align-title="left" class="bar-positive">
-  <h1 class="title">八戒上学</h1>
-  <a class="button button-icon icon ion-ios-search-strong"></a>
+<ion-header-bar class="bar-positive">
+  <h1 class="title">我的</h1>
+  <div class="buttons">
+    <button class="button no-animation button-icon icon  ion-gear-b">
+    </button>
+  </div>
 </ion-header-bar>
 
 <ion-view>
-  <ion-content style="top: 44px;">
-    <ion-list>
-      <ion-item>
-        <div class="list">
-
-          <a class="item item-avatar" href="#/mine/account">
-            <img src="../img/ionic.png">
-            <h2>LucasX</h2>
-            <p>这个人很懒，什么也没说...</p>
-          </a>
-
-          <a class="item item-icon-left" href="#/mine/notification">
-            <i class="icon ion-ios-bell-outline"></i>
-            通知
-            <span class="badge badge-assertive">5</span>
-          </a>
-
-          <a class="item item-icon-left" href="#/mine/agenda">
-            <i class="icon ion-ios-clock-outline"></i>
-            日程
-          </a>
+  <ion-content class="has-header" style="background: #eee">
+    <div style="background: #fff;padding-top:15px">
+      <div class="row mine-row">
+        <div class="col-25  y_box">
+          <div class="content-box-pic">
+            <img class="bc-house" src="img/icon/8.png"/>
+            <p>收藏：0</p>
+          </div>
         </div>
-      </ion-item>
-
-      <ion-item>
-        <a class="item item-icon-left" href="#/mine/setting">
-          <i class="icon ion-ios-gear-outline"></i>
-          设置
+        <div class="col-50  y_box">
+          <div class="content-box-pic">
+            <img class="bc-fam" src="img/perry.png"/>
+            <p>用户名</p>
+          </div>
+        </div>
+        <div class="col-25  y_box">
+          <div class="content-box-pic">
+            <img class="bc-peo" src="img/icon/9.png"/>
+            <p>积分：0</p>
+          </div>
+        </div>
+      </div>
+      <p class="gxqm">个性签名：文字文字文字文字文字文字文字文字...</p>
+    </div>
+    <div class="my-set">
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-bottom">
+        <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
+          <img src="img/icon/mine/8.png">
+          <h2 class="ng-binding">我的计划</h2>
+          <p class="ng-binding">已设置两条计划</p>
         </a>
-
-        <a class="item item-icon-left" href="#/mine/about">
-          <i class="icon ion-ios-information-outline"></i>
-          关于
+      </div>
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-bottom">
+        <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
+          <img src="img/icon/mine/9.png">
+          <h2 class="ng-binding">心情日记</h2>
+          <p class="ng-binding">已发表6条心情</p>
         </a>
-
-      </ion-item>
-    </ion-list>
+      </div>
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-top">
+        <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
+          <img src="img/icon/mine/10.png">
+          <h2 class="ng-binding">我的计划</h2>
+          <p class="ng-binding">已设置两条计划</p>
+        </a>
+      </div>
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-top">
+        <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
+          <img src="img/icon/mine/11.png">
+          <h2 class="ng-binding">心情日记</h2>
+          <p class="ng-binding">已发表6条心情</p>
+        </a>
+      </div>
+    </div>
+    <!-- <ion-list>
+       <ion-item>
+         <div class="list">
+           <a class="item item-avatar" href="#/mine/account">
+             <img src="img/ionic.png">
+             <h2>LucasX</h2>
+             <p>这个人很懒，什么也没说...</p>
+           </a>
+           <a class="item item-icon-left" href="#/mine/notification">
+             <i class="icon ion-ios-bell-outline"></i>
+             通知
+             <span class="badge badge-assertive">5</span>
+           </a>
+           <a class="item item-icon-left" href="#/mine/agenda">
+             <i class="icon ion-ios-clock-outline"></i>
+             日程
+           </a>
+         </div>
+       </ion-item>
+       <ion-item>
+         <a class="item item-icon-left" href="#/mine/setting">
+           <i class="icon ion-ios-gear-outline"></i>
+           设置
+         </a>
+         <a class="item item-icon-left" href="#/mine/about">
+           <i class="icon ion-ios-information-outline"></i>
+           关于
+         </a>
+       </ion-item>
+     </ion-list>-->
   </ion-content>
 </ion-view>

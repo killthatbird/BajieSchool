@@ -1,9 +1,10 @@
-angular.module('starter').controller('TourCtrl', function ($scope, $location, $ionicPopup) {
+angular.module('TourCtrl', [])
+  .controller('ToursCtrl', function ($scope, $state, $location, LocalStorage) {
+    $scope.login = function () {
+      // Login with code
+      $state.go("tab.activity");
+      /*LocalStorage.setItem('firstVisit', '1');
+       $location.url('/');*/
+    }
 
-  $scope.login = function () {
-    // Login with code
-    localStorage.setItem('firstVisit', '1');
-    $location.url('/');
-  }
-
-});
+  });

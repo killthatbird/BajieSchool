@@ -1,26 +1,11 @@
 /* Empty. Add your own CSS if you like */
+/*启动页*/
+.y-tour-bottom {
+  position: absolute;
+  bottom: 130px
+}
 /*活动*/
 /*活动列表*/
-/*=====================*/
-/*广告轮播*/
-.y_slider {
-  padding: 10px 16px 0px;
-  width: 100%;
-}
-
-.y_slider img {
-  width: 100%;
-  height: 170px;
-}
-
-.df-slider .slider-pager span i {
-  color: #9E9E9E !important;
-  font-size: xx-small !important
-}
-
-.df-slider .slider-pager {
-  bottom: 30px;
-}
 
 .y-front-size {
   padding: 4px 0px;
@@ -32,7 +17,7 @@
 }
 
 .y-front-size .y-p-col {
-  width: 34%;
+  width: 44%;
   display: inline-block
 }
 
@@ -52,14 +37,30 @@
   font-size: 12px
 }
 
-/*
-学习*/
-.df-study .col img {
+/*=====================*/
+/*广告轮播*/
+.y_slider {
+  padding: 10px 16px 0px;
   width: 100%;
-  height: 100%
 }
 
-.df-study .df-col img {
+.y_slider img {
+  width: 100%;
+  height: 170px;
+}
+
+.df-slider .slider-pager span i {
+  color: #9E9E9E !important;
+  font-size: xx-small !important
+}
+
+.df-slider .slider-pager {
+  bottom: 18px;
+}
+
+/*
+学习*/
+.df-study .col img, .df-study .df-col img {
   width: 100%;
   height: 100%
 }
@@ -90,7 +91,7 @@
   display: inline-flex;
   width: 100%;
   height: 46px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
   color: #fff;
   padding: 5px;
@@ -120,4 +121,82 @@
 
 .y-df-left {
   left: 10px
+}
+
+/*
+我的*/
+.mine-row .col-25 .content-box-pic img {
+  width: 35%
+}
+
+.mine-row .col-25 {
+  margin: auto;
+  display: initial;
+  text-align: center;
+  font-size: 0.7em !important;
+}
+
+.y_box p {
+  text-align: center
+}
+
+.mine-row .col-50 .content-box-pic img {
+  border-radius: 50%;
+  width: 100%
+}
+
+.mine-row .col-50 .content-box-pic {
+  margin: 0 auto;
+  width: 40%;
+  font-size: 1em !important;
+  font-weight: bold;
+  color: #444 !important;
+}
+
+.gxqm {
+  text-align: center;
+  position: relative;
+  height: 36px;
+  font-size: 0.6rem
+}
+
+.my-set {
+  margin-top: 10px;
+}
+
+.my-set .aui-col-xs-6 {
+  padding: 10px;
+  background: #fff
+}
+
+.my-set .aui-col-xs-6 img {
+  width: 20%;
+  float: left;
+  margin-right: 10px
+}
+
+.my-set h2 {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #444
+}
+
+.my-set p {
+  font-size: 0.6rem
+}
+
+.df-border-right {
+  border-right: 1px solid #eee
+}
+
+.df-border-left {
+  border-left: 1px solid #eee
+}
+
+.df-border-bottom {
+  border-bottom: 1px solid #eee
+}
+
+.df-border-top {
+  border-top: 1px solid #eee
 }

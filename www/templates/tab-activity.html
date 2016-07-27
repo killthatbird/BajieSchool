@@ -1,11 +1,16 @@
-<ion-header-bar align-title="left" class="bar-positive">
+<ion-header-bar align-title="center" class="bar-positive">
   <h1 class="title">八戒上学</h1>
-  <a class="button button-icon icon ion-ios-search-strong"></a>
 </ion-header-bar>
 
-<!--<ion-view>
-  <ion-content style="top: 0">
-
+<!--
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="button-bar bar-light" >
+    <a class="button active" >浏览活动</a>
+    <a class="button">我的活动</a>
+  </div>
+</ion-header-bar>
+<ion-view>
+  <ion-content class="has-header has-tabs">
     <div class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
       <div class="tabs">
         <a class="tab-item active" href="#">
@@ -16,92 +21,105 @@
         </a>
       </div>
     </div>
-
     <ion-refresher
       pulling-text="松开手会有惊喜哦"
       on-refresh="doRefresh()">
     </ion-refresher>
-
+    <div ng-include="'templates/activity/activity-list.html'"></div>
   </ion-content>
 </ion-view>-->
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
-
-      <ion-tab title="活动列表" href="#/activity/list">
-        <ion-nav-view name="activity-list">
-          <ion-view>
-            <ion-content>
-              <ion-refresher
-                pulling-text="松开手会有惊喜哦"
-                on-refresh="doRefresh()">
-              </ion-refresher>
-              <ion-slide-box class="df-slider" on-slide-changed="slideHasChanged($index)" auto-play="true"
-                             does-continue="true"
-                             slide-interval=0
-                             show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex"
-                             delegate-handle="delegateHandler">
-                <ion-slide class="y_slider">
-                  <img src="img/activity/ad/2.jpg">
-                </ion-slide>
-                <ion-slide class="y_slider">
-                  <img src="img/activity/ad/3.jpg">
-                </ion-slide>
-                <ion-slide class="y_slider">
-                  <img src="img/activity/ad/4.jpg">
-                </ion-slide>
-              </ion-slide-box>
-              <div class="y-list">
-                <div class="card y-card">
-                  <a class="item item-thumbnail-left">
-                    <img src="img/activity/act/1.jpg">
-                    <h2>唱歌比赛</h2>
-                    <span class="y-lasttime-right">2小时前</span>
-                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
-                    <p class="y-front-size">
-                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
-                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
-                    </p>
-                  </a>
-                </div>
-                <div class="card y-card">
-                  <a class="item item-thumbnail-left">
-                    <img src="img/activity/act/2.jpg">
-                    <h2>唱歌比赛</h2>
-                    <span class="y-lasttime-right">2小时前</span>
-                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
-                    <p class="y-front-size">
-                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
-                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
-                    </p>
-                  </a>
-                </div>
-                <div class="card y-card">
-                  <a class="item item-thumbnail-left">
-                    <img src="img/activity/act/3.jpg">
-                    <h2>唱歌比赛</h2>
-                    <span class="y-lasttime-right">2小时前</span>
-                    <p class="y-front-size">第十三届“青春杯”文字文字</p>
-                    <p class="y-front-size">
-                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                      <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
-                      <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
-                    </p>
-                  </a>
-                </div>
-              </div>
-            </ion-content>
-          </ion-view>
-        </ion-nav-view>
-
-      </ion-tab>
-
-      <ion-tab title="我的活动" href="#/activity/mine">
-        <ion-nav-view name="activity-mine">
-          <!-- <ion-refresher
-             pulling-text="松开手会有惊喜哦"
-             on-refresh="doRefresh()">
-           </ion-refresher>-->
-        </ion-nav-view>
-      </ion-tab>
+<ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
+  <!--<ion-tab title="活动列表" href="#/activity/list">-->
+  <ion-tab title="活动列表">
+    <ion-nav-view name="activity-list">
+      <ion-view>
+        <ion-content>
+          <ion-refresher
+            pulling-text="松开手会有惊喜哦"
+            on-refresh="doRefresh()">
+          </ion-refresher>
+          <div class="aui-tab">
+            <div class="aui-tab-item" ng-repeat="tab in tabs" ng-class="{'aui-active':isActivetab('{{tab.title}}')}"
+                 ng-click="onClickTab(tab)">{{tab.title}}
+            </div>
+            <!--<div class="aui-tab-item" ng-class="a1" ng-click="goactab(1)">体育</div>
+            <div class="aui-tab-item" ng-class="a2" ng-click="goactab(2)">旅游</div>
+            <div class="aui-tab-item" ng-class="a3" ng-click="goactab(3)">音乐</div>
+            <div class="aui-tab-item" ng-class="a4" ng-click="goactab(4)">舞蹈</div>
+            <div class="aui-tab-item" ng-class="a5" ng-click="goactab(5)">联谊</div>
+            <div class="aui-tab-item" ng-class="a6" ng-click="goactab(6)">学习</div>-->
+          </div>
+          <ion-slide-box class="df-slider" on-slide-changed="slideHasChanged($index)" auto-play="true"
+                         does-continue="true"
+                         slide-interval=0
+                         show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex"
+                         delegate-handle="delegateHandler">
+            <ion-slide class="y_slider">
+              <img src="img/activity/ad/4.jpg">
+            </ion-slide>
+            <ion-slide class="y_slider">
+              <img src="img/activity/ad/3.jpg">
+            </ion-slide>
+            <ion-slide class="y_slider">
+              <img src="img/activity/ad/1.jpg">
+            </ion-slide>
+          </ion-slide-box>
+          <div class="y-list">
+            <div class="card y-card">
+              <a class="item item-thumbnail-left">
+                <img src="img/activity/act/1.jpg">
+                <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
+                <span class="y-lasttime-right">2小时前</span>
+                <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                <p class="y-front-size">
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                  <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                  <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                </p>
+              </a>
+            </div>
+            <div class="card y-card">
+              <a class="item item-thumbnail-left">
+                <img src="img/activity/act/2.jpg">
+                <h2>唱歌比赛</h2>
+                <span class="y-lasttime-right">2小时前</span>
+                <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                <p class="y-front-size">
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                  <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                  <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                </p>
+              </a>
+            </div>
+            <div class="card y-card">
+              <a class="item item-thumbnail-left">
+                <img src="img/activity/act/3.jpg">
+                <h2>唱歌比赛</h2>
+                <span class="y-lasttime-right">2小时前</span>
+                <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                <p class="y-front-size">
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
+                  <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span>
+                  <span class="y-p-col-right"><i class="ion-chatbubbles"></i></span>
+                </p>
+              </a>
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </ion-nav-view>
+  </ion-tab>
+  <!--<ion-tab title="我的活动" href="#/activity/mine">-->
+  <ion-tab title="我的活动">
+    <ion-nav-view name="activity-mine">
+      <ion-view>
+        <ion-content>
+          <ion-refresher
+            pulling-text="松开手会有惊喜哦"
+            on-refresh="doRefresh()">
+          </ion-refresher>
+        </ion-content>
+      </ion-view>
+    </ion-nav-view>
+  </ion-tab>

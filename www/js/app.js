@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationFrameThrottle'])
+angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'ActCtrl', 'TourCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationF
       .state('tour', {
         url: '/tour',
         templateUrl: 'templates/tour/tour.html',
-        controller: 'TourCtrl'
+        controller: 'ToursCtrl'
       })
 
       // setup an abstract state for the tabs directive
@@ -54,15 +54,24 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationF
           }
         }
       })
+      /*     .state('list', {
+       url: '/list',
+       templateUrl: 'templates/activity/activity-list.html'
+       })
+       .state('mine', {
+       url: '/mine',
+       templateUrl: 'templates/activity/activity-mine.html'
+       })*/
 
       .state('activity', {
         url: '/activity',
         abstract: true,
-        templateUrl: 'templates/tab-activity.html'
+        templateUrl: 'templates/tab-activity.html',
+        controller: 'ActivityCtrl'
       })
 
       .state('activity.list', {
-        url: '/activity/list',
+        url: '/list',
         views: {
           'activity-list': {
             templateUrl: 'templates/activity/activity-list.html'
@@ -71,7 +80,7 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationF
       })
 
       .state('activity.mine', {
-        url: '/activity/mine',
+        url: '/mine',
         views: {
           'activity-mine': {
             templateUrl: 'templates/activity/activity-mine.html'
@@ -104,7 +113,7 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationF
         views: {
           'tab-study': {
             templateUrl: 'templates/tab-study.html',
-            controller: 'StudyCtrl'
+            controller: 'StudysCtrl'
           }
         }
       })
@@ -165,5 +174,5 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic.animationF
 
 // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/activity');
-
+    /*$urlRouterProvider.otherwise('/tour');*/
   });
