@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'ActCtrl', 'TourCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyCtrl', 'ActCtrl', 'TourCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -165,6 +165,10 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'Act
       .state('setting', {
         url: '/mine/setting',
         templateUrl: 'templates/mine/setting.html'
+      })
+      .state('pinfo', {
+        url: '/mine/pinfo',
+        templateUrl: 'templates/mine/pinfo.html'
       })
 
       .state('about', {

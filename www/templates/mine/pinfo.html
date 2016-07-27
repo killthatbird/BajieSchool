@@ -1,0 +1,47 @@
+<ion-header-bar align-title="center" class="bar-positive">
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+    </button>
+  </div>
+  <h1 class="title">个人资料</h1>
+</ion-header-bar>
+
+<ion-view>
+
+  <ion-content class="has-header ionic-pseudo" style="background: #eee">
+    <form class="list list-pinfo" style="bottom:-5px;" ng-submit="queryDetil()">
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/02.png">
+        <span class="input-label">昵称</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/03.png">
+        <span class="input-label">性别</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/04.png">
+        <span class="input-label">签名</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/05.png">
+        <span class="input-label">学校</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/06.png">
+        <span class="input-label">学号</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+      <label class="item item-input">
+        <img class="list-left-img" src="img/icon/pinfo/07.png">
+        <span class="input-label">设置</span>
+        <input type="text" name="name" ng-model="pormData.name">
+      </label>
+    </form>
+  </ion-content>
+
+</ion-view>
