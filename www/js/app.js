@@ -161,7 +161,19 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
           }
         }
       })
-
+      .state('myplan', {
+        url: '/mine/myplan',
+        templateUrl: 'templates/mine/my_plan.html',
+        params: {
+          barTitle: null
+        },
+        controller: 'myplanCtrl'
+      })
+      .state('newplan', {
+        url: '/mine/newplan',
+        templateUrl: 'templates/mine/new_plan.html',
+        controller: 'newplanCtrl'
+      })
       .state('setting', {
         url: '/mine/setting',
         templateUrl: 'templates/mine/setting.html'

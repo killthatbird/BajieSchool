@@ -1,0 +1,62 @@
+<ion-header-bar align-title="center" class="bar-positive">
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear ion-ios-close-empty">
+    </button>
+  </div>
+  <h1 class="title">新建日程</h1>
+  <div class="buttons">
+    <button ng-click="newplan()" class="button no-animation button-icon icon ion-ios-checkmark-empty">
+    </button>
+  </div>
+</ion-header-bar>
+
+<ion-view>
+  <ion-content class="has-header">
+    <label class="item item-input newplan">
+      <input type="text" name="name" ng-model="pormData.name" placeholder="事件名称">
+    </label>
+    <label class="item item-input newplan">
+      <img class="list-left-img" src="img/icon/plan/3.png">
+      <span class="input-label">时间</span>
+      <input type="text" name="name" ng-model="pormData.name" value="湖北工业大学">
+    </label>
+    <label class="item item-input newplan">
+      <img class="list-left-img" src="img/icon/plan/4.png">
+      <span class="input-label">备注</span>
+      <input type="text" name="name" ng-model="pormData.name">
+    </label>
+    <label class="item item-input newplan">
+      <i class="icon ion-ios-plus-outline" style="font-size: 25px;margin-right: 8px;"></i>
+      <span class="input-label">添加提醒</span>
+    </label>
+    <label class="item item-input newplan">
+      <img class="list-left-img" src="img/icon/plan/5.png">
+      <span class="input-label">提醒</span>
+      <select name="name" ng-model="pormData.name" style="width: 65%;">
+        <option value="" selected="selected">--请选择--</option>
+        <option value="0">0分钟</option>
+        <option value="1">1分钟</option>
+        <option value="2">5分钟</option>
+        <option value="3">10分钟</option>
+        <option value="4">15分钟</option>
+        <option value="5">20分钟</option>
+        <option value="6">25分钟</option>
+        <option value="7">30分钟</option>
+        <option value="8">45分钟</option>
+        <option value="9">1小时</option>
+        <option value="10">2小时</option>
+        <option value="11">3小时</option>
+        <option value="12">12小时</option>
+        <option value="13">2小时</option>
+        <option value="14">3小时</option>
+        <option value="15">12小时</option>
+        <option value="16">24小时</option>
+        <option value="17">2天</option>
+        <option value="18">1周</option>
+      </select>
+      <i class="icon ion-ios-minus-outline"></i>
+    </label>
+  </ion-content>
+
+</ion-view>

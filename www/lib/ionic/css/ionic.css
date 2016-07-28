@@ -3050,7 +3050,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-family: sans-serif;
+  font-family: Microsoft Yahei;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -3335,7 +3335,6 @@ body,
   color: #000;
   word-wrap: break-word;
   font-size: 14px;
-  font-family: -apple-system;
   font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
@@ -4009,6 +4008,7 @@ a.subdued {
     height: 43px;
     text-align: center;
     text-overflow: ellipsis;
+    font-family: Microsoft Yahei;
     white-space: nowrap;
     font-size: 17px;
     font-weight: 500;

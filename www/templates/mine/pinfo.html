@@ -10,37 +10,46 @@
 <ion-view>
 
   <ion-content class="has-header ionic-pseudo" style="background: #eee">
-    <form class="list list-pinfo" style="bottom:-5px;" ng-submit="queryDetil()">
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/02.png">
-        <span class="input-label">昵称</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/03.png">
-        <span class="input-label">性别</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/04.png">
-        <span class="input-label">签名</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/05.png">
-        <span class="input-label">学校</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/06.png">
-        <span class="input-label">学号</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
-      <label class="item item-input">
-        <img class="list-left-img" src="img/icon/pinfo/07.png">
-        <span class="input-label">设置</span>
-        <input type="text" name="name" ng-model="pormData.name">
-      </label>
+    <form class="list list-pinfo" ng-submit="queryDetil()">
+      <a class="item item-icon-left" style="padding:21px 16px 21px 54px">
+        <img class="l_img" style="top:18px" src="img/icon/pinfo/01.png">头像
+        <img class="r_img" src="img/max.png">
+      </a>
+      <a class="item item-icon-left df-divider">
+        <img class="l_img" src="img/icon/pinfo/02.png">
+        昵称
+        <span class="item-note">
+            Grammy
+          </span>
+      </a>
+      <a class="item item-icon-left">
+        <img class="l_img" src="img/icon/pinfo/03.png">性别
+        <span class="item-note">
+            女
+          </span>
+      </a>
+      <a class="item item-icon-left">
+        <img class="l_img" src="img/icon/pinfo/04.png">签名
+        <span class="item-note">
+           文字文字文字文字文字文字文字
+          </span>
+      </a>
+      <a class="item item-icon-left df-divider">
+        <img class="l_img" src="img/icon/pinfo/05.png">学校
+        <span class="item-note">
+           湖北工业大学
+      </span>
+      </a>
+      <a class="item item-icon-left">
+        <img class="l_img" src="img/icon/pinfo/06.png">学号
+        <span class="item-note">
+          201234527485526
+      </span>
+      </a>
+      <a class="item item-icon-left  item-icon-right df-divider">
+        <img class="l_img" src="img/icon/pinfo/07.png">设置
+        <i class="icon ion-ios-arrow-forward" style="color:dimgrey"></i>
+      </a>
     </form>
   </ion-content>
 
