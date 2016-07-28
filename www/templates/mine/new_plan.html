@@ -26,14 +26,15 @@
       <span class="input-label">备注</span>
       <input type="text" name="name" ng-model="pormData.name">
     </label>
-    <label class="item item-input newplan">
+    <label class="item item-input newplan" ng-disabled="$scope.sets.length>5" ng-click="add()">
       <i class="icon ion-ios-plus-outline" style="font-size: 25px;margin-right: 8px;color:#e6b200"></i>
       <span class="input-label">添加提醒</span>
     </label>
-    <label class="item item-input newplan">
+
+    <label class="item item-input newplan" ng-repeat="set in sets">
       <img class="list-left-img" src="img/icon/plan/5.png">
       <span class="input-label">提醒</span>
-      <select name="name" ng-model="pormData.name" style="width: 65%;">
+      <select name="name" ng-model="set.time" style="width:65%">
         <option value="" selected="selected">--请选择--</option>
         <option value="0">0分钟</option>
         <option value="1">1分钟</option>
@@ -55,7 +56,9 @@
         <option value="17">2天</option>
         <option value="18">1周</option>
       </select>
+      <div ng-click="del($index)" style="position: absolute">
       <i class="icon ion-ios-minus" style="font-size: 29px;margin-left: 10px;color: #ef473a;"></i>
+      </div>
     </label>
   </ion-content>
 
