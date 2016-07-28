@@ -19,14 +19,18 @@ angular.module('MyCtrl', [])
 
   .controller('newplanCtrl', function ($scope, $state) {
     $scope.sets = [];
+    $scope.disabled = false;
     $scope.add = function () {
       if ($scope.sets.length < 5) {
         var obj = {time: "7"};
         $scope.sets.push(obj);
+      } else {
+        $scope.disabled = true;
       }
     }
 
     $scope.del = function (idx) {
+      console.log(idx)
       $scope.sets.splice(idx, 1);
       /*$scope.sets.splice($scope.sets.indexOf(idx),1);*/
     }

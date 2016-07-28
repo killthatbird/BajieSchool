@@ -319,6 +319,9 @@
 
 /*
 新建日程*/
+.df_grey {
+  color: darkgrey !important;
+}
 .list-left-img {
   width: 25px;
   margin-right: 16px
