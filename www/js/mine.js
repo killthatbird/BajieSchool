@@ -10,6 +10,7 @@ angular.module('MyCtrl', [])
       $state.go("myplan", {barTitle: A})
     }
   })
+  
   .controller('myplanCtrl', function ($scope, $stateParams, $state) {
     $scope.title = $stateParams.barTitle
     $scope.newplan = function () {

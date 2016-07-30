@@ -98,16 +98,6 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
         }
       })
 
-      .state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl'
-          }
-        }
-      })
-
       .state('tab.study', {
         url: '/study',
         views: {

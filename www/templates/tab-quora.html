@@ -3,56 +3,64 @@
   <a class="button button-icon icon ion-ios-search-strong"></a>
 </ion-header-bar>
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
+<ion-tabs class="tabs-striped tabs-top tabs-color-positive tabs-color-light">
 
-      <ion-tab title="问答列表" href="#/quora/list">
-        <ion-nav-view name="quora-list">
-          <ion-view>
-            <ion-content>
-              <ion-refresher
-                pulling-text="松开手会有惊喜哦"
-                on-refresh="doRefresh()">
-              </ion-refresher>
-              <ion-segment [(ngModel)]="pet">
-                <ion-segment-button value="kittens">
-                  Kittens
-                </ion-segment-button>
-                <ion-segment-button value="puppies">
-                  Puppies
-                </ion-segment-button>
-              </ion-segment>
-              </div>
+  <ion-tab title="问答列表" href="#/quora/list">
+    <ion-nav-view name="quora-list">
+      <ion-view>
+        <ion-content>
+          <ion-refresher
+            pulling-text="松开手会有惊喜哦"
+            on-refresh="doRefresh()">
+          </ion-refresher>
 
-              <div [ngSwitch]="pet">
-                <ion-list *ngSwitchCase="'puppies'">
-                  <ion-item>
-                    <ion-thumbnail item-left>
-                      <img src="img/thumbnail-puppy-1.jpg">
-                    </ion-thumbnail>
-                    <h2>Ruby</h2>
-                  </ion-item>
-                  ...
-                </ion-list>
+          <div class="list card">
+            <div class="item item-avatar">
+              <img src="../img/ionic.png">
+              <h2>LucasX</h2>
+            </div>
+            <div class="item item-body">
+              <img class="full-image" src="../img/activity/ad/2.jpg">
+              <p>
+                如何规划自己的大学生涯？
+              </p>
+              <p>
+                <a href="#" class="subdued">1 赞</a>
+                <a href="#" class="subdued">5 评论</a>
+              </p>
+            </div>
+          </div>
 
-                <ion-list *ngSwitchCase="'kittens'">
-                  <ion-item>
-                    <ion-thumbnail item-left>
-                      <img src="img/thumbnail-kitten-1.jpg">
-                    </ion-thumbnail>
-                    <h2>Luna</h2>
-                  </ion-item>
-                  ...
-                </ion-list>
-            </ion-content>
-          </ion-view>
-        </ion-nav-view>
+          <div class="list card">
+            <div class="item item-avatar">
+              <img src="../img/adam.jpg">
+              <h2>LucasX</h2>
+            </div>
+            <div class="item item-body">
+              <img class="full-image" src="../img/activity/ad/1.jpg">
+              <p>
+                如何入门机器学习？
+              </p>
+              <p>
+                <a href="#" class="subdued">5 赞</a>
+                <a href="#" class="subdued">13 评论</a>
+              </p>
+            </div>
+          </div>
 
-      </ion-tab>
+        </ion-content>
+      </ion-view>
+    </ion-nav-view>
 
-      <ion-tab title="我的问答" href="#/quora/mine">
-        <ion-nav-view name="quora-mine"></ion-nav-view>
-        <!--   <ion-refresher
-             pulling-text="松开手会有惊喜哦"
-             on-refresh="doRefresh()">
-           </ion-refresher>-->
-      </ion-tab>
+  </ion-tab>
+
+  <ion-tab title="我的问答" href="#/quora/mine">
+    <ion-nav-view name="quora-mine">
+
+
+    </ion-nav-view>
+    <!--   <ion-refresher
+         pulling-text="松开手会有惊喜哦"
+         on-refresh="doRefresh()">
+       </ion-refresher>-->
+  </ion-tab>

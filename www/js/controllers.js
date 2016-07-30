@@ -48,10 +48,6 @@ angular.module('controllers', [])
     };
   })
 
-  .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
-  })
-
   .controller('MineCtrl', function ($scope, $state) {
     /*$scope.redirectTo = function () {
      $state.go("setting");
