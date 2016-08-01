@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyCtrl', 'ActCtrl', 'TourCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyCtrl', 'ActCtrl', 'TourCtrl', 'qoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -66,8 +66,7 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
       .state('activity', {
         url: '/activity',
         abstract: true,
-        templateUrl: 'templates/tab-activity.html',
-        controller: 'ActivityCtrl'
+        templateUrl: 'templates/tab-activity.html'
       })
 
       .state('activity.list', {
@@ -113,6 +112,9 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
         views: {
           'tab-quora': {
             templateUrl: 'templates/tab-quora.html',
+            params: {
+              index: null
+            },
             controller: 'QuoraCtrl'
           }
         }
@@ -121,27 +123,28 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
       .state('quora', {
         url: '/quora',
         abstract: true,
-        templateUrl: 'templates/tab-quora.html'
+        templateUrl: 'templates/tab-quora.html',
+        params: {
+          index: null
+        },
+        controller: 'QuoraCtrl'
       })
 
       .state('quora.list', {
         url: '/quora/list',
-        views: {
-          'quora-list': {
-            templateUrl: 'templates/quora/quora-list.html'
-          }
-        }
+        templateUrl: 'templates/quora/quora-list.html'
       })
 
-      .state('quora.mine', {
+      .state('qmine', {
         url: '/quora/mine',
-        views: {
-          'quora-mine': {
-            templateUrl: 'templates/quora/quora-mine.html'
-          }
-        }
+        templateUrl: 'templates/quora/quora-mine.html',
+        controller: 'qmineCtrl'
       })
-
+      /*      .state('nque', {
+       url: '/quora/new',
+       templateUrl: 'templates/quora/new-que.html',
+       controller: 'nqueCtrl'
+       })*/
       .state('tab.mine', {
         url: '/mine',
         views: {

@@ -10,7 +10,7 @@ angular.module('MyCtrl', [])
       $state.go("myplan", {barTitle: A})
     }
   })
-  
+
   .controller('myplanCtrl', function ($scope, $stateParams, $state) {
     $scope.title = $stateParams.barTitle
     $scope.newplan = function () {
@@ -23,6 +23,7 @@ angular.module('MyCtrl', [])
     $scope.disabled = false;
     $scope.add = function () {
       if ($scope.sets.length < 5) {
+        $scope.disabled = false;
         var obj = {time: "7"};
         $scope.sets.push(obj);
       } else {
@@ -31,6 +32,9 @@ angular.module('MyCtrl', [])
     }
 
     $scope.del = function (idx) {
+      if ($scope.sets.length < 6) {
+        $scope.disabled = false;
+      }
       console.log(idx)
       $scope.sets.splice(idx, 1);
       /*$scope.sets.splice($scope.sets.indexOf(idx),1);*/

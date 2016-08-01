@@ -5,41 +5,45 @@
 <!--</button>-->
 <!--</div>-->
 <!--</ion-header-bar>-->
-
 <ion-tabs class="tabs-top tabs-background-positive tabs-color-positive tabs-color-light df-tabs">
   <!--<ion-tab title="活动列表" href="#/activity/list">-->
   <ion-tab title="活动列表" class="tab-left">
     <ion-nav-view name="activity-list">
       <ion-view>
-        <ion-content>
+        <ion-content ng-controller="ActivityCtrl">
           <ion-refresher
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefresh()">
           </ion-refresher>
-          <div class="bar bar-header item-input-inset" style="margin-top: 6px;">
-            <label class="item-input-wrapper">
-              <i class="icon ion-ios-search placeholder-icon"></i>
-              <input type="search" placeholder="Search">
-            </label>
-            <button class="button button-clear" style="color: #4b8bf4">
-              取消
-            </button>
+          <!--    <div class="item-input-inset" style="margin: 0px 10px;padding: 0px;min-height: 47px">
+                <label class="item-input-wrapper">
+                  <i class="icon ion-ios-search placeholder-icon" style="font-size: 20px;"></i>
+                  <input type="search" placeholder="请输入搜索内容..." ng-model="searchContent" style="min-height:initial">
+                </label>
+                <button class="button button-clear" ng-click="reset()" ng-hide="!searchContent || searchContent === ''" style="color: #59ADC9">
+                  取消
+                </button>
+              </div>-->
+          <div class="item-input-inset" style="background: #efefef;">
+            <div class="aui-searchbar-input aui-border-radius" tapmode ng-click="doSearch()">
+              <i class="aui-iconfont aui-icon-search"></i>
+              <form action="javascript:search();">
+                <input id="search" type="search" placeholder="&nbsp;&nbsp;&nbsp;请输入搜索内容..." style="text-indent: 1em"
+                       ng-model="searchContent" value="searchContent">
+              </form>
+            </div>
+            <div class="aui-searchbar-cancel" style="min-width:42px;color: #59ADC9" ng-click="reset()"
+                 ng-hide="!searchContent || searchContent === ''">取消
+            </div>
           </div>
           <div class="aui-tab">
             <div class="aui-tab-item" ng-repeat="tab in tabs" ng-class="{'aui-active':isActivetab('{{tab.title}}')}"
                  ng-click="onClickTab(tab)">{{tab.title}}
             </div>
-            <!--<div class="aui-tab-item" ng-class="a1" ng-click="goactab(1)">体育</div>
-            <div class="aui-tab-item" ng-class="a2" ng-click="goactab(2)">旅游</div>
-            <div class="aui-tab-item" ng-class="a3" ng-click="goactab(3)">音乐</div>
-            <div class="aui-tab-item" ng-class="a4" ng-click="goactab(4)">舞蹈</div>
-            <div class="aui-tab-item" ng-class="a5" ng-click="goactab(5)">联谊</div>
-            <div class="aui-tab-item" ng-class="a6" ng-click="goactab(6)">学习</div>-->
           </div>
           <ion-slide-box class="df-slider" on-slide-changed="slideHasChanged($index)" auto-play="true"
-                         does-continue="true"
-                         slide-interval=0
-                         show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex"
+                         does-continue="true" slide-interval=0 show-pager="true" pager-click="pageClick(index)"
+                         active-slide="model.activeIndex"
                          delegate-handle="delegateHandler">
             <ion-slide class="y_slider">
               <img src="img/activity/ad/4.jpg">
@@ -54,7 +58,7 @@
               <img src="img/activity/ad/1.jpg">
             </ion-slide>
           </ion-slide-box>
-          <div class="y-list">
+          <div class="y-list" ng-click="reset()">
             <div class="card y-card">
               <a class="item item-thumbnail-left">
                 <img src="img/activity/act/1.jpg">
@@ -100,25 +104,173 @@
   <ion-tab title="我的活动" class="tab-right">
     <ion-nav-view name="activity-mine">
       <ion-view>
-        <ion-content>
+        <ion-content style="background: #ebebeb" ng-controller="myActCtrl">
           <ion-refresher
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefresh()">
           </ion-refresher>
-
-          <ion-list>
-            <ion-item>
-              <ul class="list">
-                <li class="item">
-                  参加的活动
-                </li>
-                <li class="item">
-                  关注的活动
-                </li>
-              </ul>
-            </ion-item>
-          </ion-list>
+          <div class="row" style="padding: 0px">
+            <ul class="slide-tab">
+              <li ng-class="slideIndex == 0 ? 'current':''"><a ng-click="activeSlide(0)">发起活动</a></li>
+              <li ng-class="slideIndex == 1 ? 'current':''"><a ng-click="activeSlide(1)">已发布的活动</a></li>
+              <li ng-class="slideIndex == 2 ? 'current':''"><a ng-click="activeSlide(2)">已参加的活动</a></li>
+            </ul>
+          </div>
+          <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
+            <ion-slide ng-controller="newactCtrl">
+              <form class="list" class="aui-input-group">
+                <input type="hidden" name="id" ng-model="formData.id">
+                <div class="list" style="position: relative;">
+                  <label class="item item-input">
+                    <span class="input-label">主题：</span>
+                    <input type="text" name="actnum" placeholder="填写活动主题" ng-model="formData.actnum">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">类别：</span>
+                    <select style="width: 70%;" type="text" placeholder="选择活动类别" name="acttitle"
+                            ng-model="formData.acttitle">
+                      <option>类别1</option>
+                      <option>类别2</option>
+                      <option>类别3</option>
+                      <option>类别4</option>
+                    </select>
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">时间</span>
+                    <input id="ddate" class="form-control" type="date" name="acttime" placeholder="选择活动时间"
+                           style="border:none;" ng-model="formData.acttime1">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">地点：</span>
+                    <input type="text" name="actplace" placeholder="填写活动地点" ng-model="formData.actplace">
+                  </label>
+                  <label class="item item-input" ng-click="choosePicMenuf()">
+                    <span class="input-label">照片：</span>
+                    <input type="text" name="actplace" placeholder="上传照片" ng-model="formData.actplace">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">报名人数：</span>
+                    <input type="text" name="actplace" placeholder="报名人数" ng-model="formData.actplace">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">设置权限：</span>
+                    <input type="text" name="actplace" placeholder="设置权限" ng-model="formData.actplace">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">主要内容：</span>
+                    <input type="text" name="actplace" placeholder="填写主要内容" ng-model="formData.actplace">
+                  </label>
+                </div>
+                <p style="text-align:center;padding-top:20px;">
+                  <button type="reset" class="button button-grey" type="reset"
+                          style="margin-right:30px;font-size:18px;width: 85px;">重&nbsp;&nbsp;置
+                  </button>
+                  <button ng-click="save()" class="button button-positive" type="submit"
+                          style="font-size:18px;width: 85px;">保&nbsp;&nbsp;存
+                  </button>
+                </p>
+              </form>
+            </ion-slide>
+            <ion-slide ng-controller="puactCtrl">
+              <div class="y-list">
+                <div class="act-warp">
+                  <div class="card q-card">
+                    <a class="item item-thumbnail-left">
+                      <img src="img/ionic.png">
+                      <p>如何规划自己的大学生涯</p>
+                      <span class="y-lasttime-right">2小时前</span>
+                      <div class="aui-card-list-footer df-aui-padding">
+                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!--======-->
+                <div class="act-warp">
+                  <div class="card q-card">
+                    <a class="item item-thumbnail-left">
+                      <img src="img/adam.jpg">
+                      <h2>如何入门机器学习？</h2>
+                      <p>1235348976594</p>
+                      <span class="y-lasttime-right">2小时前</span>
+                      <div class="aui-card-list-footer df-aui-padding">
+                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- =====-->
+                <div class="act-warp">
+                  <div class="card q-card">
+                    <a class="item item-thumbnail-left">
+                      <img src="img/ionic.png">
+                      <p>如何规划自己的大学生涯</p>
+                      <span class="y-lasttime-right">2小时前</span>
+                      <div class="aui-card-list-footer df-aui-padding">
+                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                      </div>
+                      <img class="act-timeout" src="img/icon/15.png">
+                    </a>
+                  </div>
+                </div>
+                <!--======-->
+                <div class="act-warp">
+                  <div class="card q-card">
+                    <a class="item item-thumbnail-left">
+                      <img src="img/adam.jpg">
+                      <h2>如何入门机器学习？</h2>
+                      <p>1235348976594</p>
+                      <span class="y-lasttime-right">2小时前</span>
+                      <div class="aui-card-list-footer df-aui-padding">
+                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                      </div>
+                      <img class="act-timeout" src="img/icon/15.png">
+                    </a>
+                  </div>
+                </div>
+                <!--======-->
+              </div>
+            </ion-slide>
+            <ion-slide ng-controller="attactCtrl">
+              <div class="y-list">
+                <div class="act-warp">
+                  <div class="card q-card">
+                    <a class="item item-thumbnail-left">
+                      <img src="img/ionic.png">
+                      <p>如何规划自己的大学生涯</p>
+                      <span class="y-lasttime-right">2小时前</span>
+                      <div class="aui-card-list-footer df-aui-padding">
+                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="act-warp">
+                    <div class="card q-card">
+                      <a class="item item-thumbnail-left">
+                        <img src="img/adam.jpg">
+                        <p>如何入门机器学习？</p>
+                        <span class="y-lasttime-right">2小时前</span>
+                        <div class="aui-card-list-footer df-aui-padding">
+                          <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
+                          <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
+                          <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-slide>
+          </ion-slide-box>
         </ion-content>
       </ion-view>
-    </ion-nav-view>
-  </ion-tab>
