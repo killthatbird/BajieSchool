@@ -2,7 +2,10 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('ActCtrl', [])
-  .controller('ActivityCtrl', function ($scope, $location, $ionicPopup) {
+  .controller('ActivityCtrl', function ($scope, $state) {
+    $scope.actdetial = function () {
+      $state.go("actdetial")
+    }
     $scope.tabs = [{
       title: '推荐',
       url: 'one.tpl.html'
@@ -35,6 +38,17 @@ angular.module('ActCtrl', [])
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
+    }
+  })
+  /*活动详情*/
+  .controller('actdetialCtrl', function ($scope) {
+    $scope.showComment = false;
+    $scope.showcom = false;
+    $scope.seecom = function () {
+      $scope.showComment = true;
+    }
+    $scope.seecom1 = function () {
+      $scope.showcom = true;
     }
   })
   .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate) {
@@ -89,8 +103,14 @@ angular.module('ActCtrl', [])
 
   })
   /*已发布的活动*/
-  .controller('puactCtrl', function ($scope) {
-
+  .controller('puactCtrl', function ($scope, $state) {
+    $scope.viewmore = false;
+    $scope.gopuact = function () {
+      $scope.viewmore = true
+    }
+    $scope.gopulist = function () {
+      $scope.viewmore = false
+    }
   })
   /*已参加的活动*/
   .controller('attactCtrl', function ($scope) {

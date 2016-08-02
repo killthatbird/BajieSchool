@@ -5,12 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyCtrl', 'ActCtrl', 'TourCtrl', 'qoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'controllers', 'directives','services', 'StudyCtrl', 'MyCtrl','MessageCtrl', 'ActCtrl', 'TourCtrl', 'qoraCtrl', 'ngAnimate'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $http, messageService, dateService) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
+      var url = "";
+      if (ionic.Platform.isAndroid()) {
+        url = "/android_asset/www/";
+      }
+      $http.get(url + "data/json/messages.json").then(function(response) {
+        // localStorageService.update("messages", response.data.messages);
+        messageService.init(response.data.messages);
+      });
+      $http.get(url + "data/json/friends.json").then(function(response){
+       // console.log(response.data.results);
+      });
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -23,8 +34,8 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
-
+  .config(function ($stateProvider,$ionicConfigProvider, $urlRouterProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
@@ -49,8 +60,7 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
         url: '/activity',
         views: {
           'tab-activity': {
-            templateUrl: 'templates/tab-activity.html',
-            controller: 'ActivityCtrl'
+            templateUrl: 'templates/tab-activity.html'
           }
         }
       })
@@ -86,7 +96,16 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
           }
         }
       })
-
+      .state('actdetial', {
+        url: '/activity/actdetial',
+        templateUrl: 'templates/activity/act-detial.html',
+        controller: 'actdetialCtrl'
+      })
+      .state('published', {
+        url: '/activity/published',
+        templateUrl: 'templates/activity/published-act.html',
+        controller: 'puactCtrl'
+      })
       .state('tab.chats', {
         url: '/chats',
         views: {
@@ -96,7 +115,11 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
           }
         }
       })
-
+      .state('messageDetail', {
+        url: '/messageDetail/:messageId',
+        templateUrl: "templates/message/message-detail.html",
+        controller: "messageDetailCtrl"
+      })
       .state('tab.study', {
         url: '/study',
         views: {
@@ -179,9 +202,16 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'StudyCtrl', 'MyC
       .state('about', {
         url: '/mine/about',
         templateUrl: 'templates/mine/about.html'
-      });
+      })
 
-// if none of the above states are matched, use this as the fallback
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+      })
+    ;
+
+ /*   $urlRouterProvider.otherwise('/login');*/
     $urlRouterProvider.otherwise('/tab/activity');
     /*$urlRouterProvider.otherwise('/tour');*/
   });

@@ -1,10 +1,3 @@
-<!--<ion-header-bar class="bar-positive">-->
-<!--<h1 class="title">八戒上学</h1>-->
-<!--<div class="buttons">-->
-<!--<button class="button button-icon icon ion-ios-search-strong">-->
-<!--</button>-->
-<!--</div>-->
-<!--</ion-header-bar>-->
 <ion-tabs class="tabs-top tabs-background-positive tabs-color-positive tabs-color-light df-tabs">
   <!--<ion-tab title="活动列表" href="#/activity/list">-->
   <ion-tab title="活动列表" class="tab-left">
@@ -58,8 +51,8 @@
               <img src="img/activity/ad/1.jpg">
             </ion-slide>
           </ion-slide-box>
-          <div class="y-list" ng-click="reset()">
-            <div class="card y-card">
+          <div class="y-list">
+            <div class="card y-card"  ng-click="actdetial()">
               <a class="item item-thumbnail-left">
                 <img src="img/activity/act/1.jpg">
                 <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
@@ -172,8 +165,8 @@
               </form>
             </ion-slide>
             <ion-slide ng-controller="puactCtrl">
-              <div class="y-list">
-                <div class="act-warp">
+              <div class="y-list" ng-hide="viewmore">
+                <div class="act-warp" ng-click="gopuact()">
                   <div class="card q-card">
                     <a class="item item-thumbnail-left">
                       <img src="img/ionic.png">
@@ -188,7 +181,7 @@
                   </div>
                 </div>
                 <!--======-->
-                <div class="act-warp">
+                <div class="act-warp" ng-click="gopuact()">
                   <div class="card q-card">
                     <a class="item item-thumbnail-left">
                       <img src="img/adam.jpg">
@@ -238,6 +231,7 @@
                 </div>
                 <!--======-->
               </div>
+              <div ng-show="viewmore" ng-include="'templates/activity/published-act.html'"></div>
             </ion-slide>
             <ion-slide ng-controller="attactCtrl">
               <div class="y-list">
@@ -274,3 +268,6 @@
           </ion-slide-box>
         </ion-content>
       </ion-view>
+    </ion-nav-view>
+  </ion-tab>
+  </ion-tabs>

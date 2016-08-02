@@ -1,25 +1,22 @@
 <ion-header-bar align-title="left" class="bar-positive">
-  <h1 class="title">八戒上学</h1>
-  <a class="button button-icon icon ion-ios-search-strong"></a>
+  <div class="h1 title">交友</div>
+  <div class="buttons">
+    <button class="button no-animation button-icon icon ion-android-search">
+    </button>
+    <button class="button no-animation button-icon icon ion-android-add">
+    </button>
+  </div>
 </ion-header-bar>
-
 <ion-view>
-  <ion-content style="top: 44px">
-
-
-    <!--<ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap"
-                href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          删除
-        </ion-option-button>
+  <ion-content>
+    <ion-list rj-close-back-drop>
+      <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)" rj-hold-active ng-repeat="message in messages | orderBy:['isTop', 'lastMessage.timeFrome1970']:true" ng-click="messageDetils(message)">
+        <img ng-src="{{message.pic}}">
+        <span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
+        <h2 ng-bind="message.name"></h2>
+        <p class="rj-list-p" ng-bind="message.lastMessage.content"></p>
+        <span class="rj-push-right" ng-bind="message.lastMessage.time"></span>
       </ion-item>
-    </ion-list>-->
-
+    </ion-list>
   </ion-content>
 </ion-view>
