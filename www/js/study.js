@@ -2,17 +2,12 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state, $stateParams, LocalStorage) {
+  .controller('StudysCtrl', function ($scope, $state,$timeout, LocalStorage) {
     $scope.valueh = $(".aui-col-xs-3")[0].offsetWidth;
+    LocalStorage.set("stuh", $scope.valueh)
     $scope.myheight = $scope.valueh + 'px';
     $scope.sth = $scope.valueh * 0.7 + 'px';
     $scope.remove = false;
-    /*$scope.stype.push({
-     title:'123467',
-     bg: '#eee'
-     });*/
-    /* var text = $(".stu-warp").val();
-     text = text.replace(/\r?\n/g, '< br /> ');*/
     $scope.stype = [{
       id: 1,
       title: '考研',
@@ -43,27 +38,37 @@ angular.module('StudyCtrl', [])
       bg: '#e26b8b'
     }];
     $scope.gostype = function () {
-      $state.go("stutype", {
-        hdata: $scope.valueh
-      })
+      $state.go("stutype")
     }
+
     $scope.doRefresh = function () {
+      var colorList = ["#e064b7","#5ab770","#ff7d23","#ff0000","#569ce3",
+        "#ff768c","#83ba1f","#56c5ff","#d2b48c","#EE5F5B"];
       $scope.tname = LocalStorage.get("stutype")
-      if ($scope.tname != null && $scope.tname != "undefined") {
-        $scope.stype.push({
-          title: $scope.tname,
-          bg: 'green',
-          id: $scope.stype.length + 1
-        });
-      }
+      $timeout( function() {
+        if ($scope.tname != null && $scope.tname != "undefined") {
+          var colorIndex = Math.floor(Math.random()*colorList.length);
+          var color = colorList[colorIndex];
+          /*  for(var i=0;i<lineList.length;i++){
+           var bgColor = getColorByRandom(colorList);
+           }*/
+          /*colorList.splice(colorIndex,1);*/
+          $scope.stype.push({
+            title: $scope.tname,
+            bg: color,
+            id: $scope.stype.length + 1
+          });
+        }
+        $scope.$broadcast('scroll.refreshComplete');
+      }, 100);
     }
     $scope.delete = function (idx) {
       console.log(idx)
       $scope.stype.splice(idx, 1);
     }
   })
-  .controller('stutypeCtrl', function ($scope, $stateParams, $state, LocalStorage) {
-    $scope.valueh = $stateParams.hdata
+  .controller('stutypeCtrl', function ($scope, $state, LocalStorage) {
+    $scope.valueh = LocalStorage.get("stuh")
     $scope.myheight = $scope.valueh + 'px';
     $scope.sth = $scope.valueh * 0.7 + 'px';
     $scope.stype = [{

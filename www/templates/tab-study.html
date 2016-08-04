@@ -3,9 +3,7 @@
 </ion-header-bar>
 <ion-view>
   <ion-content cache-view="false" ng-controller="StudysCtrl" class="has-header">
-    <ion-refresher
-      pulling-text="松开手会有惊喜哦"
-      on-refresh="doRefresh()">
+    <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!" refreshing-icon="ion-loading-b">
     </ion-refresher>
     <section class="aui-grid">
       <div class="aui-row" style="margin: 0 2%;">
