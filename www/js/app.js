@@ -122,14 +122,24 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
       })
       .state('tab.study', {
         url: '/study',
+        cache: false,
         views: {
           'tab-study': {
             templateUrl: 'templates/tab-study.html',
-            controller: 'StudysCtrl'
+            params:{
+              tname:null
+            }
           }
         }
       })
-
+      .state('stutype', {
+        url: '/study/type',
+        templateUrl: 'templates/study/stu-type.html',
+        params:{
+          hdata:null
+        },
+        controller: 'stutypeCtrl'
+      })
       .state('tab.quora', {
         url: '/quora',
         views: {

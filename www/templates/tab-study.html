@@ -2,41 +2,67 @@
   <h1 class="title">学习天地</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content class="has-header">
-    <div class="row df-study">
-      <div class="df-col col" style="height:180px">
-        <img src="img/study/1.jpg"/>
-        <p class="y-absolute y-df-top"><span class="y-df-left">在线记单词</span></p>
-        <p class="y-total y-df-bot"><span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-          <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span></p>
+  <ion-content cache-view="false" ng-controller="StudysCtrl" class="has-header">
+    <ion-refresher
+      pulling-text="松开手会有惊喜哦"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <section class="aui-grid">
+      <div class="aui-row" style="margin: 0 2%;">
+        <div class="aui-col-xs-3 stu-all" on-hold="remove=true" ng-style="{height:myheight}" ng-repeat="t in stype">
+          <div class="stu-warp" ng-style="{'background-color': t.bg,height:sth,'line-height':sth}"
+               ng-class="{'mlenstyle':t.title.length>=4}">
+            {{t.title}}
+          </div>
+          <i ng-click="delete($index)" ng-show="remove" class="ion-close-circled stu-i"></i>
+        </div>
+        <div class="aui-col-xs-3" ng-click="gostype()" ng-style="{height:myheight}">
+          <div class="stu-warp" ng-style="{height:sth,'line-height':sth}"
+               style="background: #8c8c8c;font-size: 1.1rem;font-weight: bold;">
+            <i class="aui-iconfont aui-icon-plus"></i>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row df-study">
-      <div class="df-col" style="width:43%;height:130px">
-        <img src="img/study/3.jpg"/>
-        <p class="y-absolute y-df-bot"><span>2016年6月四六级<br/>过级神技能+预测+真题</span></p>
-        <p class="y-total y-df-top"><span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-          <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span></p>
+    </section>
+    <div class="y-list">
+      <div class="card y-card" ng-click="actdetial()">
+        <a class="item">
+          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
+          <span class="y-lasttime-right">2小时前</span>
+          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+          <div class="y-front-size">
+            <div style="position: absolute;right:16px;bottom: 8px">
+              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
+              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="df-col" style="width:57%;height:130px">
-        <img src="img/study/2.jpg"/>
-        <p class="y-absolute y-df-bot"><span class="y-df-right">考研</span></p>
-        <p class="y-total y-df-top"><span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-          <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span></p>
+      <div class="card y-card" ng-click="actdetial()">
+        <a class="item">
+          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
+          <span class="y-lasttime-right">2小时前</span>
+          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+          <div class="y-front-size">
+            <div style="position: absolute;right:16px;bottom: 8px">
+              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
+              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
+            </div>
+          </div>
+        </a>
       </div>
-    </div>
-    <div class="row df-study">
-      <div class="df-col" style="width:60%;height:130px">
-        <img src="img/study/5.jpg"/>
-        <p class="y-absolute y-df-bot"><span>在线听写练习<br/>考查学习效果，强化听写能力</span></p>
-        <p class="y-total y-df-top"><span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-          <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span></p>
-      </div>
-      <div class="df-col" style="width:40%;height:130px">
-        <img src="img/study/4.jpg"/>
-        <p class="y-absolute y-df-bot"><span>新托福 110+<br/>TOP1-48 在线模考</span></p>
-        <p class="y-total y-df-top"><span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-          <span class="y-p-col"><i class="ion-chatbubble-working"></i>23</span></p>
+      <div class="card y-card" ng-click="actdetial()">
+        <a class="item">
+          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
+          <span class="y-lasttime-right">2小时前</span>
+          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+          <div class="y-front-size">
+            <div style="position: absolute;right:16px;bottom: 8px">
+              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
+              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </ion-content>
