@@ -10,15 +10,18 @@ angular.module('MyCtrl', [])
     var option = {
       tooltip: {},
       legend: {
+        x: 'left',
+        y: 25,
         data: ['销量']
       },
       xAxis: {
         data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
       },
+      color:['#ff91b5'],
       yAxis: {},
       series: [{
         name: '销量',
-        type: 'bar',
+        type: 'line',
         data: [5, 20, 36, 10, 10, 20]
       }]
     };
