@@ -9,10 +9,6 @@
     <div style="background: #fff;padding-top:15px">
       <div class="row mine-row">
         <div class="col-25  y_box">
-          <div class="content-box-pic">
-            <img class="bc-house" src="img/icon/8.png"/>
-            <p>收藏：0</p>
-          </div>
         </div>
         <div class="col-50  y_box" ng-click="viewinfo()">
           <div class="content-box-pic">
@@ -21,66 +17,40 @@
           </div>
         </div>
         <div class="col-25  y_box">
-          <div class="content-box-pic">
-            <img class="bc-peo" src="img/icon/9.png"/>
-            <p>积分：0</p>
-          </div>
         </div>
       </div>
       <p class="gxqm">这家伙很懒，什么都没留下...</p>
     </div>
     <div class="my-set">
       <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-bottom">
-        <a class="" ng-click="myplan('我的日程')">
+        <a class="" ng-click="myplan('我的计划')">
           <img src="img/icon/mine/8.png">
-          <h2 class="ng-binding">我的积分</h2>
-          <p class="ng-binding">100</p>
+          <h2 class="ng-binding">我的计划</h2>
+          <p class="ng-binding">111</p>
+        </a>
+      </div>
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-bottom">
+        <a class="" ng-click="">
+          <img src="img/icon/mine/9.png">
+          <h2 class="ng-binding">心情日记</h2>
+          <p class="ng-binding">5</p>
         </a>
       </div>
       <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-top">
         <a class="" ng-click="myplan('日程表')">
           <img src="img/icon/mine/10.png">
-          <h2 class="ng-binding">我的日程</h2>
+          <h2 class="ng-binding">日程表</h2>
           <p class="ng-binding">8</p>
         </a>
       </div>
-      <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-top">
-        <a class="" ng-click="myplan('日程表')">
-          <img src="img/icon/mine/10.png">
-          <h2 class="ng-binding">我的关注</h2>
-          <p class="ng-binding">11</p>
+      <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-top">
+        <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
+          <img src="img/icon/mine/11.png">
+          <h2 class="ng-binding">设置提醒</h2>
+          <p class="ng-binding">7</p>
         </a>
       </div>
     </div>
-    <!-- <ion-list>
-       <ion-item>
-         <div class="list">
-           <a class="item item-avatar" href="#/mine/account">
-             <img src="img/ionic.png">
-             <h2>LucasX</h2>
-             <p>这个人很懒，什么也没说...</p>
-           </a>
-           <a class="item item-icon-left" href="#/mine/notification">
-             <i class="icon ion-ios-bell-outline"></i>
-             通知
-             <span class="badge badge-assertive">5</span>
-           </a>
-           <a class="item item-icon-left" href="#/mine/agenda">
-             <i class="icon ion-ios-clock-outline"></i>
-             日程
-           </a>
-         </div>
-       </ion-item>
-       <ion-item>
-         <a class="item item-icon-left" href="#/mine/setting">
-           <i class="icon ion-ios-gear-outline"></i>
-           设置
-         </a>
-         <a class="item item-icon-left" href="#/mine/about">
-           <i class="icon ion-ios-information-outline"></i>
-           关于
-         </a>
-       </ion-item>
-     </ion-list>-->
+    <div id="container" class="mine-hc"></div>
   </ion-content>
 </ion-view>

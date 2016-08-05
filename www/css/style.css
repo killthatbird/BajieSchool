@@ -195,6 +195,9 @@
 
 .my-set {
   margin-top: 10px;
+  display: inline-block;
+  border-bottom: 1px solid #ccc;
+  width:100%
 }
 
 .my-set .aui-col-xs-6 {
@@ -261,7 +264,9 @@
 .df-divider {
   margin-top: 10px
 }
-
+.mine-hc{
+  min-width: 310px; height: 400px; margin: 0 auto;position: relative;bottom: 5px;
+}
 /*
 我的计划*/
 .df-bc-num {

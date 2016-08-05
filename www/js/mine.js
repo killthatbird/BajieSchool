@@ -3,6 +3,44 @@
  */
 angular.module('MyCtrl', [])
   .controller('MineCtrl', function ($scope, $state) {
+ /*   Highcharts.setOptions({
+      lang: {
+        downloadJPEG: "下载JPEG 图片",
+        downloadPDF: "下载PDF文档",
+        downloadPNG: "下载PNG 图片",
+        downloadSVG: "下载SVG 矢量图",
+        exportButtonTitle: "导出图片"
+      }
+    });*/
+    Highcharts.chart('container', {
+      title: {
+        text: 'Temperature Data'
+      },
+        exporting: {
+          enabled: false  //设置导出按钮不可用
+        },
+      credits: {
+        enabled: false
+      },
+    /*credits: {
+     enabled: true,
+     href: 'http://www.highcharts.com',
+     position: null,
+     style: null,
+     text: 'Highcharts.com'
+     },*/
+    xAxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ]
+    }
+    ,
+
+    series: [{
+      data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }]
+  })
+    ;
     $scope.viewinfo = function () {
       $state.go("pinfo")
     }
