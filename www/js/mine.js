@@ -3,44 +3,29 @@
  */
 angular.module('MyCtrl', [])
   .controller('MineCtrl', function ($scope, $state) {
- /*   Highcharts.setOptions({
-      lang: {
-        downloadJPEG: "下载JPEG 图片",
-        downloadPDF: "下载PDF文档",
-        downloadPNG: "下载PNG 图片",
-        downloadSVG: "下载SVG 矢量图",
-        exportButtonTitle: "导出图片"
-      }
-    });*/
-    Highcharts.chart('container', {
-      title: {
-        text: 'Temperature Data'
-      },
-        exporting: {
-          enabled: false  //设置导出按钮不可用
-        },
-      credits: {
-        enabled: false
-      },
-    /*credits: {
-     enabled: true,
-     href: 'http://www.highcharts.com',
-     position: null,
-     style: null,
-     text: 'Highcharts.com'
-     },*/
-    xAxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-      ]
-    }
-    ,
 
-    series: [{
-      data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-    }]
-  })
-    ;
+    var myChart = echarts.init(document.getElementById('main'));
+
+// 指定图表的配置项和数据
+    var option = {
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+      },
+      yAxis: {},
+      series: [{
+        name: '销量',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }]
+    };
+
+// 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
     $scope.viewinfo = function () {
       $state.go("pinfo")
     }
