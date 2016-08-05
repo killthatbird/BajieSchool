@@ -5,26 +5,35 @@ angular.module('MyCtrl', [])
   .controller('MineCtrl', function ($scope, $state) {
 
     var myChart = echarts.init(document.getElementById('main'));
+    myChart.showLoading();
 
-// 指定图表的配置项和数据
-    var option = {
+    myChart.setOption({
       tooltip: {},
-      legend: {
-        data: ['销量']
-      },
       xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        data: []
       },
       yAxis: {},
       series: [{
-        name: '销量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
+        name: '访问量',
+        type: 'line',
+        data: []
       }]
-    };
+    });
 
-// 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    $.get('../data/data.json').done(function (data) {
+      myChart.hideLoading();
+      // 填入数据
+      myChart.setOption({
+        xAxis: {
+          data: data.categories
+        },
+        series: [{
+          // 根据名字对应到相应的系列
+          name: '访问量',
+          data: data.data
+        }]
+      });
+    });
 
     $scope.viewinfo = function () {
       $state.go("pinfo")
