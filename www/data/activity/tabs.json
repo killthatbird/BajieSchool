@@ -1,0 +1,37 @@
+{
+  "status": 0,
+  "tabs": [
+    {
+      "title": "推荐",
+      "url": "one.tpl.html"
+    },
+    {
+      "title": "体育",
+      "url": "two.tpl.html"
+    },
+    {
+      "title": "旅游",
+      "url": "two.tpl.html"
+    },
+    {
+      "title": "音乐",
+      "url": "two.tpl.html"
+    },
+    {
+      "title": "舞蹈",
+      "url": "two.tpl.html"
+    },
+    {
+      "title": "联谊",
+      "url": "two.tpl.html"
+    },
+    {
+      "title": "学习",
+      "url": "three.tpl.html"
+    },
+    {
+      "title": "恋爱",
+      "url": "four.tpl.html"
+    }
+  ]
+}

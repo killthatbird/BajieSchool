@@ -64,15 +64,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
           }
         }
       })
-      /*     .state('list', {
-       url: '/list',
-       templateUrl: 'templates/activity/activity-list.html'
-       })
-       .state('mine', {
-       url: '/mine',
-       templateUrl: 'templates/activity/activity-mine.html'
-       })*/
-
       .state('activity', {
         url: '/activity',
         abstract: true,
@@ -84,15 +75,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         views: {
           'activity-list': {
             templateUrl: 'templates/activity/activity-list.html'
-          }
-        }
-      })
-
-      .state('activity.mine', {
-        url: '/mine',
-        views: {
-          'activity-mine': {
-            templateUrl: 'templates/activity/activity-mine.html'
           }
         }
       })
@@ -219,7 +201,12 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         templateUrl: 'templates/login.html',
         controller: 'loginCtrl'
       })
-    ;
+
+      .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'registerCtrl'
+      });
 
     /*   $urlRouterProvider.otherwise('/login');*/
     // $urlRouterProvider.otherwise('/tab/activity');
