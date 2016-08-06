@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/1.
  */
 angular.module('quoraCtrl', [])
-  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate) {
+  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $http) {
     $scope.slideIndex = 0;
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
@@ -23,34 +23,18 @@ angular.module('quoraCtrl', [])
       $ionicSlideBoxDelegate.slide(index);
     };
 
-    $scope.allquoralist = [
-      {
-        imgSrc: "img/me.png",
-        title: "如何规划自己的大学生活",
-        timestamp: "2小时前",
-        content: "大学生如何正确地规划自己的大学生活呢？好好学习，天天向上！",
-        follownum: 562,
-        commentnum: 520
-      }, {
-        imgSrc: "img/ionic.png",
-        title: "军训那些事",
-        timestamp: "3小时前",
-        content: "太阳大，天气酷暑难耐，如何避免中暑？好好学习，天天向上！好好学习，天天向上！",
-        follownum: 56,
-        commentnum: 40
-      }, {
-        imgSrc: "img/adam.jpg",
-        title: "如何学好高等数学",
-        timestamp: "4小时前",
-        content: "作为基础学科，如何学好高等数学不挂科？好好学习，天天向上！好好学习，天天向上！",
-        follownum: 556,
-        commentnum: 120
-      }
-    ]
+    $http.get("../data/quora/quora.json")
+      .then(function (response) {
+        if (response.data.status == 0 && response.data.category == "1") { //category ====>>>> 1: 全部问题; 2: 我的提问; 3: 我的回答
+          $scope.allquoralist = response.data.quoralist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
 
   })
   /*  我的问题*/
-  .controller('qmineCtrl', function ($scope, $ionicActionSheet) {
+  .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {
     $scope.addqu = false;
     $scope.add = function () {
       $scope.addqu = true
@@ -102,31 +86,17 @@ angular.module('quoraCtrl', [])
       });
     }
   })
-  /*  .controller('nqueCtrl', function ($scope,$state) {
-   $scope.mqlist =function () {
-   /!*$scope.addqu=true*!/
-   $state.go("tab.quora",{index:2});
-   }
-   })*/
 
   /*我的回答*/
-  .controller('amineCtrl', function ($scope) {
-    $scope.myquoralist = [
-      {
-        imgSrc: "img/me.png",
-        title: "如何规划自己的大学生活",
-        timestamp: "2小时前",
-        content: "大学生如何正确地规划自己的大学生活呢？好好学习，天天向上！",
-        follownum: 562,
-        commentnum: 520
-      }, {
-        imgSrc: "img/ionic.png",
-        title: "军训那些事",
-        timestamp: "3小时前",
-        content: "太阳大，天气酷暑难耐，如何避免中暑？好好学习，天天向上！好好学习，天天向上！",
-        follownum: 56,
-        commentnum: 40
-      }
-    ]
+  .controller('amineCtrl', function ($scope, $http) {
+
+    $http.get("../data/quora/quora.json")
+      .then(function (response) {
+        if (response.data.status == 0 && response.data.category == "3") { //category ====>>>> 1: 全部问题; 2: 我的提问; 3: 我的回答
+          $scope.myquoralist = response.data.quoralist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
   })
 ;

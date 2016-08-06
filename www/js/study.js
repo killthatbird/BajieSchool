@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage) {
+  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http) {
     $scope.valueh = $(".aui-col-xs-3")[0].offsetWidth;
     LocalStorage.set("stuh", $scope.valueh)
     $scope.myheight = $scope.valueh + 'px';
@@ -38,29 +38,14 @@ angular.module('StudyCtrl', [])
       bg: '#e26b8b'
     }];
 
-    $scope.studylist = [
-      {
-        title: "考研英语75分学习方法",
-        timestamp: "2小时前",
-        content: "如何在短时间内拿下考研英语",
-        likenum: 75,
-        commentnum: 150
-      },
-      {
-        title: "雅思考试高校学习法",
-        timestamp: "3小时前",
-        content: "雅思考试你必须在知道的那些事儿",
-        likenum: 150,
-        commentnum: 258
-      },
-      {
-        title: "四六级一月内高分通过",
-        timestamp: "5小时前",
-        content: "一个月内教你从零基础到拿下四六级考试",
-        likenum: 49,
-        commentnum: 159
-      }
-    ];
+    $http.get("../data/study/study.json")
+      .then(function (response) {
+        if (response.data.status == 0 && response.data.category == "推荐") {
+          $scope.studylist = response.data.studylist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
 
     $scope.gostype = function () {
       $state.go("stutype")
