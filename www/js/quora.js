@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/8/1.
  */
-angular.module('qoraCtrl', [])
+angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate) {
     $scope.slideIndex = 0;
     // Called each time the slide changes
@@ -22,6 +22,32 @@ angular.module('qoraCtrl', [])
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
     };
+
+    $scope.allquoralist = [
+      {
+        imgSrc: "img/me.png",
+        title: "如何规划自己的大学生活",
+        timestamp: "2小时前",
+        content: "大学生如何正确地规划自己的大学生活呢？好好学习，天天向上！",
+        follownum: 562,
+        commentnum: 520
+      }, {
+        imgSrc: "img/ionic.png",
+        title: "军训那些事",
+        timestamp: "3小时前",
+        content: "太阳大，天气酷暑难耐，如何避免中暑？好好学习，天天向上！好好学习，天天向上！",
+        follownum: 56,
+        commentnum: 40
+      }, {
+        imgSrc: "img/adam.jpg",
+        title: "如何学好高等数学",
+        timestamp: "4小时前",
+        content: "作为基础学科，如何学好高等数学不挂科？好好学习，天天向上！好好学习，天天向上！",
+        follownum: 556,
+        commentnum: 120
+      }
+    ]
+
   })
   /*  我的问题*/
   .controller('qmineCtrl', function ($scope, $ionicActionSheet) {
@@ -85,6 +111,22 @@ angular.module('qoraCtrl', [])
 
   /*我的回答*/
   .controller('amineCtrl', function ($scope) {
-
+    $scope.myquoralist = [
+      {
+        imgSrc: "img/me.png",
+        title: "如何规划自己的大学生活",
+        timestamp: "2小时前",
+        content: "大学生如何正确地规划自己的大学生活呢？好好学习，天天向上！",
+        follownum: 562,
+        commentnum: 520
+      }, {
+        imgSrc: "img/ionic.png",
+        title: "军训那些事",
+        timestamp: "3小时前",
+        content: "太阳大，天气酷暑难耐，如何避免中暑？好好学习，天天向上！好好学习，天天向上！",
+        follownum: 56,
+        commentnum: 40
+      }
+    ]
   })
 ;

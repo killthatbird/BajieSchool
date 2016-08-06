@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'directives','services', 'StudyCtrl', 'MyCtrl','MessageCtrl', 'ActCtrl', 'TourCtrl', 'qoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'controllers', 'directives','services', 'StudyCtrl', 'MyCtrl','MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform, $http, messageService, dateService) {
     $ionicPlatform.ready(function () {

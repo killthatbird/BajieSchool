@@ -12,22 +12,18 @@
     </div>
     <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
       <ion-slide>
-        <div class="y-list">
+        <div class="y-list" ng-controller="QuoraCtrl">
 
-          <div class="card q-card">
+          <div ng-repeat="allquora in allquoralist" class="card y-card">
             <a class="item item-thumbnail-left">
-              <img src="img/ionic.png">
-              <p>tab1 如何规划自己的大学生涯</p>
-              <span class="y-lasttime-right">2小时前</span>
-              <div class="aui-card-list-footer df-aui-padding">
-                <div>
-                  <i class="icon ion-ios-heart-outline"></i>666
-                </div>
-                <div ng-click="count = count + 1" ng-init="count=1">
-                  <i class="icon ion-ios-chatbubble-outline" ng-class="{'df-color':count>0}"></i>{{count}}
-                </div>
-                <div><i class="icon ion-ios-star-outline"></i> 888</div>
-              </div>
+              <img src="{{allquora.imgSrc}}" alt="{{allquora.title}}">
+              <h2>{{allquora.title}}</h2>
+              <span class="y-lasttime-right">{{allquora.timestamp}}</span>
+              <p>{{allquora.content}}</p>
+              <p class="y-front-size">
+                <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{allquora.follownum}}</span>
+                <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{allquora.commentnum}}</span>
+              </p>
             </a>
           </div>
 
@@ -47,21 +43,24 @@
       </ion-slide>
       <ion-slide ng-controller="amineCtrl">
         <div class="y-list">
+
           <div class="a-warp">
-            <div class="card q-card">
+
+            <div ng-repeat="myquora in myquoralist" class="card y-card">
               <a class="item item-thumbnail-left">
-                <img src="img/ionic.png">
-                <p>如何规划自己的大学生涯</p>
-                <span class="y-lasttime-right">2小时前</span>
-                <div class="aui-card-list-footer df-aui-padding">
-                  <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                  <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
-                  <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
-                </div>
+                <img src="{{myquora.imgSrc}}" alt="{{myquora.title}}">
+                <h2>{{myquora.title}}</h2>
+                <span class="y-lasttime-right">{{myquora.timestamp}}</span>
+                <p>{{myquora.content}}</p>
+                <p class="y-front-size">
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{myquora.follownum}}</span>
+                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{myquora.commentnum}}</span>
+                </p>
               </a>
             </div>
+
             <!--评论开始-->
-            <div class="aui-card-list-content">
+            <div class="aui-card-list-content" ng-show="false">
               <ul class="aui-list aui-media-list">
                 <li class="aui-list-item aui-list-item-middle">
                   <div class="aui-media-list-item-inner">
@@ -74,7 +73,7 @@
                         <div class="aui-list-item-right">08:00</div>
                       </div>
                       <div class="aui-list-item-text">
-                        www.auicss.com
+                        BIO
                       </div>
                     </div>
                     <div class="aui-list-item-text aui-a-like">
@@ -88,7 +87,7 @@
                       <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
                     </div>
                     <div class="aui-list-item-inner">
-                      流浪男
+                      Lucy
                     </div>
                     <div class="aui-list-item-text aui-a-like">
                       <i class="ion-android-favorite-outline"></i>&nbsp;3
@@ -97,68 +96,14 @@
                 </li>
               </ul>
             </div>
-            <div class="aui-card-list-footer aui-text-center">
-              查看更多
-            </div>
-            <!--评论结束-->
           </div>
-          <!--     list2     -->
-          <div class="a-warp">
-            <div class="card q-card">
-              <a class="item item-thumbnail-left">
-                <img src="img/adam.jpg">
-                <p>如何入门机器学习？</p>
-                <span class="y-lasttime-right">2小时前</span>
-                <div class="aui-card-list-footer df-aui-padding">
-                  <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                  <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
-                  <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
-                </div>
-              </a>
-            </div>
-            <!--评论开始-->
-            <div class="aui-card-list-content">
-              <ul class="aui-list aui-media-list">
-                <li class="aui-list-item aui-list-item-middle">
-                  <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                      <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
-                    </div>
-                    <div class="aui-list-item-inner">
-                      <div class="aui-list-item-text">
-                        <div class="aui-list-item-title aui-font-size-14">AUI</div>
-                        <div class="aui-list-item-right">08:00</div>
-                      </div>
-                      <div class="aui-list-item-text">
-                        www.auicss.com
-                      </div>
-                    </div>
-                    <div class="aui-list-item-text aui-a-like" ng-click="count = count + 1" ng-init="count=0">
-                      <i class="ion-android-favorite-outline" ng-class="{'df-color':count>0}"></i>&nbsp;{{count}}
-                    </div>
-                  </div>
-                </li>
-                <li class="aui-list-item aui-list-item-middle">
-                  <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                      <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
-                    </div>
-                    <div class="aui-list-item-inner">
-                      流浪男
-                    </div>
-                    <div class="aui-list-item-text aui-a-like">
-                      <i class="ion-android-favorite-outline"></i>&nbsp;3
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="aui-card-list-footer aui-text-center">
-              查看更多
-            </div>
-            <!--评论结束-->
-          </div>
-          <!--     list2 end     -->
+          <!--
+          <div class="aui-card-list-footer aui-text-center">
+                        查看更多
+          </div>-->
+          <!--评论结束-->
+        </div>
+
         </div>
       </ion-slide>
     </ion-slide-box>
