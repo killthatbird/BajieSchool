@@ -3,7 +3,8 @@
 </ion-header-bar>
 <ion-view>
   <ion-content cache-view="false" ng-controller="StudysCtrl" class="has-header">
-    <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!" refreshing-icon="ion-loading-b">
+    <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!"
+                   refreshing-icon="ion-loading-b">
     </ion-refresher>
     <section class="aui-grid">
       <div class="aui-row" style="margin: 0 2%;">
@@ -23,45 +24,21 @@
       </div>
     </section>
     <div class="y-list">
-      <div class="card y-card" ng-click="actdetial()">
+
+      <div class="card y-card" ng-click="actdetial()" ng-repeat="study in studylist">
         <a class="item">
-          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
-          <span class="y-lasttime-right">2小时前</span>
-          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+          <h2>{{study.title}}<span style="color:deepskyblue">{{currentTab}}</span></h2>
+          <span class="y-lasttime-right">{{study.timestamp}}</span>
+          <p class="y-front-size" style="white-space: normal">{{study.content}}</p>
           <div class="y-front-size">
             <div style="position: absolute;right:16px;bottom: 8px">
-              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
-              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
+              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>{{study.likenum}}</span>
+              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-comment"></i>{{study.commentnum}}</span>
             </div>
           </div>
         </a>
       </div>
-      <div class="card y-card" ng-click="actdetial()">
-        <a class="item">
-          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
-          <span class="y-lasttime-right">2小时前</span>
-          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
-          <div class="y-front-size">
-            <div style="position: absolute;right:16px;bottom: 8px">
-              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
-              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="card y-card" ng-click="actdetial()">
-        <a class="item">
-          <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
-          <span class="y-lasttime-right">2小时前</span>
-          <p class="y-front-size" style="white-space: normal">第十三届“青春杯”文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
-          <div class="y-front-size">
-            <div style="position: absolute;right:16px;bottom: 8px">
-              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>10</span>
-              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-note"></i>23</span>
-            </div>
-          </div>
-        </a>
-      </div>
+
     </div>
   </ion-content>
 </ion-view>

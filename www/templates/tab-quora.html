@@ -13,46 +13,28 @@
     <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
       <ion-slide>
         <div class="y-list">
+
           <div class="card q-card">
             <a class="item item-thumbnail-left">
               <img src="img/ionic.png">
               <p>tab1 如何规划自己的大学生涯</p>
               <span class="y-lasttime-right">2小时前</span>
               <div class="aui-card-list-footer df-aui-padding">
-                <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                <div ng-click="count = count + 1" ng-init="count=1"><i class="aui-iconfont aui-icon-laud"
-                                                                       ng-class="{'df-color':count>0}"></i>{{count}}
+                <div>
+                  <i class="icon ion-ios-heart-outline"></i>666
                 </div>
-                <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
+                <div ng-click="count = count + 1" ng-init="count=1">
+                  <i class="icon ion-ios-chatbubble-outline" ng-class="{'df-color':count>0}"></i>{{count}}
+                </div>
+                <div><i class="icon ion-ios-star-outline"></i> 888</div>
               </div>
             </a>
           </div>
-          <div class="card q-card">
-            <a class="item item-thumbnail-left">
-              <img src="img/adam.jpg">
-              <p>如何入门机器学习？</p>
-              <span class="y-lasttime-right">2小时前</span>
-              <div class="aui-card-list-footer df-aui-padding">
-                <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
-                <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
-              </div>
-            </a>
-          </div>
-          <div class="card q-card">
-            <a class="item item-thumbnail-left">
-              <img src="img/max.png">
-              <p>关于高校男球你们是怎么看待的</p>
-              <span class="y-lasttime-right">2小时前</span>
-              <div class="aui-card-list-footer df-aui-padding">
-                <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
-                <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
-              </div>
-            </a>
-          </div>
+
         </div>
+
       </ion-slide>
+
       <ion-slide ng-controller="qmineCtrl">
         <div ng-hide="addqu" class="df-none-qu">
           <h2 style="letter-spacing: 2px">您还没问过任何问题</h2>

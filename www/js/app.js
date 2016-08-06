@@ -222,6 +222,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
     ;
 
  /*   $urlRouterProvider.otherwise('/login');*/
-    $urlRouterProvider.otherwise('/tab/activity');
-    /*$urlRouterProvider.otherwise('/tour');*/
+    // $urlRouterProvider.otherwise('/tab/activity');
+    $urlRouterProvider.otherwise('/tour');
   });

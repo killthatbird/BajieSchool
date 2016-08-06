@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state,$timeout, LocalStorage) {
+  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage) {
     $scope.valueh = $(".aui-col-xs-3")[0].offsetWidth;
     LocalStorage.set("stuh", $scope.valueh)
     $scope.myheight = $scope.valueh + 'px';
@@ -37,17 +37,42 @@ angular.module('StudyCtrl', [])
       title: '考前预习',
       bg: '#e26b8b'
     }];
+
+    $scope.studylist = [
+      {
+        title: "考研英语75分学习方法",
+        timestamp: "2小时前",
+        content: "如何在短时间内拿下考研英语",
+        likenum: 75,
+        commentnum: 150
+      },
+      {
+        title: "雅思考试高校学习法",
+        timestamp: "3小时前",
+        content: "雅思考试你必须在知道的那些事儿",
+        likenum: 150,
+        commentnum: 258
+      },
+      {
+        title: "四六级一月内高分通过",
+        timestamp: "5小时前",
+        content: "一个月内教你从零基础到拿下四六级考试",
+        likenum: 49,
+        commentnum: 159
+      }
+    ];
+
     $scope.gostype = function () {
       $state.go("stutype")
     }
 
     $scope.doRefresh = function () {
-      var colorList = ["#e064b7","#5ab770","#ff7d23","#ff0000","#569ce3",
-        "#ff768c","#83ba1f","#56c5ff","#d2b48c","#EE5F5B"];
+      var colorList = ["#e064b7", "#5ab770", "#ff7d23", "#ff0000", "#569ce3",
+        "#ff768c", "#83ba1f", "#56c5ff", "#d2b48c", "#EE5F5B"];
       $scope.tname = LocalStorage.get("stutype")
-      $timeout( function() {
+      $timeout(function () {
         if ($scope.tname != null && $scope.tname != "undefined") {
-          var colorIndex = Math.floor(Math.random()*colorList.length);
+          var colorIndex = Math.floor(Math.random() * colorList.length);
           var color = colorList[colorIndex];
           /*  for(var i=0;i<lineList.length;i++){
            var bgColor = getColorByRandom(colorList);

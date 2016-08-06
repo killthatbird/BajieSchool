@@ -20,7 +20,7 @@ angular.module('MyCtrl', [])
       }]
     });
 
-    $.get('../data/data.json').done(function (data) {
+    $.get('../data/visitor.json').done(function (data) {
       myChart.hideLoading();
       // 填入数据
       myChart.setOption({
