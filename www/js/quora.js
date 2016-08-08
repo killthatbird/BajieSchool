@@ -25,7 +25,7 @@ angular.module('quoraCtrl', [])
 
     $http.get("../data/quora/quora.json")
       .then(function (response) {
-        if (response.data.status == 0 && response.data.category == "1") { //category ====>>>> 1: 全部问题; 2: 我的提问; 3: 我的回答
+        if (response.data.status == 0 && response.data.flag == 0) { //category ====>>>> 0: 全部问题; 1: 我的提问; 2: 我的回答
           $scope.allquoralist = response.data.quoralist;
         } else {
           console.error('网络连接失败...');
@@ -92,7 +92,7 @@ angular.module('quoraCtrl', [])
 
     $http.get("../data/quora/quora.json")
       .then(function (response) {
-        if (response.data.status == 0 && response.data.category == "3") { //category ====>>>> 1: 全部问题; 2: 我的提问; 3: 我的回答
+        if (response.data.status == 0 && response.data.flag == 2) { //category ====>>>> 0: 全部问题; 1: 我的提问; 2: 我的回答
           $scope.myquoralist = response.data.quoralist;
         } else {
           console.error('网络连接失败...');

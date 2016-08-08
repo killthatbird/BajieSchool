@@ -1,0 +1,10 @@
+{
+  "status": 3,
+  "message": "没有权限",
+  "tabs": [
+    {
+      "title": "推荐",
+      "url": "one.tpl.html"
+    }
+  ]
+}
