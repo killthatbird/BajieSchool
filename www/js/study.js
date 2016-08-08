@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state,$timeout, LocalStorage) {
+  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http) {
     $scope.valueh = $(".aui-col-xs-3")[0].offsetWidth;
     LocalStorage.set("stuh", $scope.valueh)
     $scope.myheight = $scope.valueh + 'px';
@@ -37,17 +37,27 @@ angular.module('StudyCtrl', [])
       title: '考前预习',
       bg: '#e26b8b'
     }];
+
+    $http.get("../data/study/study.json")
+      .then(function (response) {
+        if (response.data.status == 0 && response.data.category == "推荐") {
+          $scope.studylist = response.data.studylist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
     $scope.gostype = function () {
       $state.go("stutype")
     }
 
     $scope.doRefresh = function () {
-      var colorList = ["#e064b7","#5ab770","#ff7d23","#ff0000","#569ce3",
-        "#ff768c","#83ba1f","#56c5ff","#d2b48c","#EE5F5B"];
+      var colorList = ["#e064b7", "#5ab770", "#ff7d23", "#ff0000", "#569ce3",
+        "#ff768c", "#83ba1f", "#56c5ff", "#d2b48c", "#EE5F5B"];
       $scope.tname = LocalStorage.get("stutype")
-      $timeout( function() {
+      $timeout(function () {
         if ($scope.tname != null && $scope.tname != "undefined") {
-          var colorIndex = Math.floor(Math.random()*colorList.length);
+          var colorIndex = Math.floor(Math.random() * colorList.length);
           var color = colorList[colorIndex];
           /*  for(var i=0;i<lineList.length;i++){
            var bgColor = getColorByRandom(colorList);

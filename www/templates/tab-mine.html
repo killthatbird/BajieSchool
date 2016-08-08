@@ -25,33 +25,34 @@
     <div class="my-set">
       <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-bottom">
         <a class="" ng-click="myplan('我的计划')">
-          <img src="img/icon/mine/8.png">
-          <h2 class="ng-binding">我的计划</h2>
-          <p class="ng-binding">111</p>
+          <img src="../img/icon/积分.png"/>
+          <h2 class="ng-binding">我的积分</h2>
+          <p class="ng-binding">520</p>
         </a>
       </div>
       <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-bottom">
         <a class="" ng-click="">
-          <img src="img/icon/mine/9.png">
-          <h2 class="ng-binding">心情日记</h2>
+          <img src="../img/icon/日程.png"/>
+          <h2 class="ng-binding" ng-click="myplan('日程表')">待办日程</h2>
           <p class="ng-binding">5</p>
         </a>
       </div>
       <div class="aui-col-xs-6  aui-list-view-cell df-border-right df-border-top">
-        <a class="" ng-click="myplan('日程表')">
-          <img src="img/icon/mine/10.png">
-          <h2 class="ng-binding">日程表</h2>
+        <a class="" ng-click="">
+          <img src="../img/icon/消息通知.png"/>
+          <h2 class="ng-binding">消息通知</h2>
           <p class="ng-binding">8</p>
         </a>
       </div>
       <div class="aui-col-xs-6  aui-list-view-cell df-border-left df-border-top">
         <a class="" ng-href="#/tab/chats/0" href="#/tab/chats/0">
-          <img src="img/icon/mine/11.png">
-          <h2 class="ng-binding">设置提醒</h2>
+          <img src="../img/icon/收藏.png"/>
+          <h2 class="ng-binding">我的收藏</h2>
           <p class="ng-binding">7</p>
         </a>
       </div>
     </div>
-    <div id="main" class="mine-hc" style="min-width: 400px; min-height: 400px;"></div>
+    <div align="center" style="font-size: small">最近一周访客</div>
+    <div id="main" class="mine-hc"></div>
   </ion-content>
 </ion-view>

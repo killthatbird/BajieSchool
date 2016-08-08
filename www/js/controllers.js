@@ -1,10 +1,10 @@
 angular.module('controllers', [])
-  .controller('Allconfig', function ($scope, $state, LocalStorage) {
-  /*  if (LocalStorage.get("userid",0)==0){
-      $state.go("login")
-    }else {
-      $state.go("/tab/activity")
-    }*/
+  .controller('Allconfig', function ($scope, $state) {
+    if (localStorage.times == 0) {
+      $state.go("tour");
+    } else {
+      $state.go("tab.activity");
+    }
   })
   .controller('ChatsCtrl', function ($scope, Chats) {
     // With the new view caching in Ionic, Controllers are only called

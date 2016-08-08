@@ -8,15 +8,7 @@
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefresh()">
           </ion-refresher>
-          <!--    <div class="item-input-inset" style="margin: 0px 10px;padding: 0px;min-height: 47px">
-                <label class="item-input-wrapper">
-                  <i class="icon ion-ios-search placeholder-icon" style="font-size: 20px;"></i>
-                  <input type="search" placeholder="请输入搜索内容..." ng-model="searchContent" style="min-height:initial">
-                </label>
-                <button class="button button-clear" ng-click="reset()" ng-hide="!searchContent || searchContent === ''" style="color: #59ADC9">
-                  取消
-                </button>
-              </div>-->
+
           <div class="item-input-inset" style="background: #efefef;">
             <div class="aui-searchbar-input aui-border-radius" tapmode ng-click="doSearch()">
               <i class="aui-iconfont aui-icon-search"></i>
@@ -39,52 +31,28 @@
                          active-slide="model.activeIndex"
                          delegate-handle="delegateHandler">
             <ion-slide class="y_slider">
-              <img src="img/activity/ad/4.jpg">
+              <a href="https://www.baidu.com"><img src="img/activity/ad/4.jpg"/></a>
             </ion-slide>
             <ion-slide class="y_slider">
-              <img src="img/activity/ad/3.jpg">
+              <a href="http://www.qq.com/"> <img src="img/activity/ad/3.jpg"/></a>
             </ion-slide>
             <ion-slide class="y_slider">
-              <img src="img/activity/ad/2.jpg">
+              <a href="#"><img src="img/activity/ad/2.jpg"/></a>
             </ion-slide>
             <ion-slide class="y_slider">
-              <img src="img/activity/ad/1.jpg">
+              <a href="#"><img src="img/activity/ad/1.jpg"></a>
             </ion-slide>
           </ion-slide-box>
           <div class="y-list">
-            <div class="card y-card"  ng-click="actdetial()">
+            <div ng-repeat="activity in activitylist" class="card y-card">
               <a class="item item-thumbnail-left">
-                <img src="img/activity/act/1.jpg">
-                <h2>唱歌比赛<span style="color:deepskyblue">{{currentTab}}</span></h2>
-                <span class="y-lasttime-right">2小时前</span>
-                <p class="y-front-size">第十三届“青春杯”文字文字</p>
+                <img src="{{activity.imgSrc}}" alt="{{activity.title}}">
+                <h2>{{activity.title}}</h2>
+                <span class="y-lasttime-right">{{activity.timestamp}}</span>
+                <p>{{activity.content}}</p>
                 <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>23</span>
-                </p>
-              </a>
-            </div>
-            <div class="card y-card">
-              <a class="item item-thumbnail-left">
-                <img src="img/activity/act/2.jpg">
-                <h2>唱歌比赛</h2>
-                <span class="y-lasttime-right">2小时前</span>
-                <p class="y-front-size">第十三届“青春杯”文字文字</p>
-                <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>23</span>
-                </p>
-              </a>
-            </div>
-            <div class="card y-card">
-              <a class="item item-thumbnail-left">
-                <img src="img/activity/act/3.jpg">
-                <h2>唱歌比赛</h2>
-                <span class="y-lasttime-right">2小时前</span>
-                <p class="y-front-size">第十三届“青春杯”文字文字</p>
-                <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>10</span>
-                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>23</span>
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{activity.follownum}}</span>
+                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{activity.commentnum}}</span>
                 </p>
               </a>
             </div>
@@ -121,11 +89,7 @@
                   <label class="item item-input">
                     <span class="input-label">类别：</span>
                     <select style="width: 70%;" type="text" placeholder="选择活动类别" name="acttitle"
-                            ng-model="formData.acttitle">
-                      <option>类别1</option>
-                      <option>类别2</option>
-                      <option>类别3</option>
-                      <option>类别4</option>
+                            ng-model="formData.acttitle" ng-options="class for class in classes">
                     </select>
                   </label>
                   <label class="item item-input">
@@ -165,102 +129,41 @@
               </form>
             </ion-slide>
             <ion-slide ng-controller="puactCtrl">
+
               <div class="y-list" ng-hide="viewmore">
-                <div class="act-warp" ng-click="gopuact()">
-                  <div class="card q-card">
-                    <a class="item item-thumbnail-left">
-                      <img src="img/ionic.png">
-                      <p>如何规划自己的大学生涯</p>
-                      <span class="y-lasttime-right">2小时前</span>
-                      <div class="aui-card-list-footer df-aui-padding">
-                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                      </div>
-                    </a>
-                  </div>
+                <div ng-repeat="publishedactivity in publishedactivitylist" class="card y-card">
+                  <a class="item item-thumbnail-left">
+                    <img src="{{publishedactivity.imgSrc}}" alt="{{publishedactivity.title}}">
+                    <h2>{{publishedactivity.title}}</h2>
+                    <span class="y-lasttime-right">{{publishedactivity.timestamp}}</span>
+                    <p class="y-front-size">{{publishedactivity.content}}</p>
+                    <p class="y-front-size">
+                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{publishedactivity.follownum}}</span>
+                      <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{publishedactivity.commentnum}}</span>
+                    </p>
+                  </a>
                 </div>
-                <!--======-->
-                <div class="act-warp" ng-click="gopuact()">
-                  <div class="card q-card">
-                    <a class="item item-thumbnail-left">
-                      <img src="img/adam.jpg">
-                      <h2>如何入门机器学习？</h2>
-                      <p>1235348976594</p>
-                      <span class="y-lasttime-right">2小时前</span>
-                      <div class="aui-card-list-footer df-aui-padding">
-                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- =====-->
-                <div class="act-warp">
-                  <div class="card q-card">
-                    <a class="item item-thumbnail-left">
-                      <img src="img/ionic.png">
-                      <p>如何规划自己的大学生涯</p>
-                      <span class="y-lasttime-right">2小时前</span>
-                      <div class="aui-card-list-footer df-aui-padding">
-                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                      </div>
-                      <img class="act-timeout" src="img/icon/15.png">
-                    </a>
-                  </div>
-                </div>
-                <!--======-->
-                <div class="act-warp">
-                  <div class="card q-card">
-                    <a class="item item-thumbnail-left">
-                      <img src="img/adam.jpg">
-                      <h2>如何入门机器学习？</h2>
-                      <p>1235348976594</p>
-                      <span class="y-lasttime-right">2小时前</span>
-                      <div class="aui-card-list-footer df-aui-padding">
-                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                      </div>
-                      <img class="act-timeout" src="img/icon/15.png">
-                    </a>
-                  </div>
-                </div>
-                <!--======-->
               </div>
               <div ng-show="viewmore" ng-include="'templates/activity/published-act.html'"></div>
             </ion-slide>
+
+
             <ion-slide ng-controller="attactCtrl">
+
               <div class="y-list">
                 <div class="act-warp">
-                  <div class="card q-card">
+                  <div ng-repeat="joinactivity in joinactivitylist" class="card y-card">
                     <a class="item item-thumbnail-left">
-                      <img src="img/ionic.png">
-                      <p>如何规划自己的大学生涯</p>
-                      <span class="y-lasttime-right">2小时前</span>
-                      <div class="aui-card-list-footer df-aui-padding">
-                        <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                        <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                        <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                      </div>
+                      <img src="{{joinactivity.imgSrc}}" alt="{{joinactivity.title}}">
+                      <h2>{{joinactivity.title}}</h2>
+                      <span class="y-lasttime-right">{{joinactivity.timestamp}}</span>
+                      <p class="y-front-size">{{joinactivity.content}}</p>
+                      <p class="y-front-size">
+                        <span class="y-p-col"><i
+                          class="ion-ios-heart-outline"></i>{{joinactivity.follownum}}</span>
+                        <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{joinactivity.commentnum}}</span>
+                      </p>
                     </a>
-                  </div>
-                  <div class="act-warp">
-                    <div class="card q-card">
-                      <a class="item item-thumbnail-left">
-                        <img src="img/adam.jpg">
-                        <p>如何入门机器学习？</p>
-                        <span class="y-lasttime-right">2小时前</span>
-                        <div class="aui-card-list-footer df-aui-padding">
-                          <div><i class="aui-iconfont aui-icon-like"></i> 666</div>
-                          <div><i class="aui-iconfont aui-icon-comment"></i> 888</div>
-                          <div><i class="aui-iconfont aui-icon-share"></i> 888</div>
-                        </div>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -270,4 +173,4 @@
       </ion-view>
     </ion-nav-view>
   </ion-tab>
-  </ion-tabs>
+</ion-tabs>

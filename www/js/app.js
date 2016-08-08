@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'directives','services', 'StudyCtrl', 'MyCtrl','MessageCtrl', 'ActCtrl', 'TourCtrl', 'qoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform, $http, messageService, dateService) {
     $ionicPlatform.ready(function () {
@@ -15,12 +15,12 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
       if (ionic.Platform.isAndroid()) {
         url = "/android_asset/www/";
       }
-      $http.get(url + "data/json/messages.json").then(function(response) {
+      $http.get(url + "data/json/messages.json").then(function (response) {
         // localStorageService.update("messages", response.data.messages);
         messageService.init(response.data.messages);
       });
-      $http.get(url + "data/json/friends.json").then(function(response){
-       // console.log(response.data.results);
+      $http.get(url + "data/json/friends.json").then(function (response) {
+        // console.log(response.data.results);
       });
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
     });
   })
 
-  .config(function ($stateProvider,$ionicConfigProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -64,15 +64,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
           }
         }
       })
-      /*     .state('list', {
-       url: '/list',
-       templateUrl: 'templates/activity/activity-list.html'
-       })
-       .state('mine', {
-       url: '/mine',
-       templateUrl: 'templates/activity/activity-mine.html'
-       })*/
-
       .state('activity', {
         url: '/activity',
         abstract: true,
@@ -84,15 +75,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
         views: {
           'activity-list': {
             templateUrl: 'templates/activity/activity-list.html'
-          }
-        }
-      })
-
-      .state('activity.mine', {
-        url: '/mine',
-        views: {
-          'activity-mine': {
-            templateUrl: 'templates/activity/activity-mine.html'
           }
         }
       })
@@ -126,8 +108,8 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
         views: {
           'tab-study': {
             templateUrl: 'templates/tab-study.html',
-            params:{
-              tname:null
+            params: {
+              tname: null
             }
           }
         }
@@ -135,8 +117,8 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
       .state('stutype', {
         url: '/study/type',
         templateUrl: 'templates/study/stu-type.html',
-        params:{
-          hdata:null
+        params: {
+          hdata: null
         },
         controller: 'stutypeCtrl'
       })
@@ -219,9 +201,14 @@ angular.module('starter', ['ionic', 'controllers', 'directives','services', 'Stu
         templateUrl: 'templates/login.html',
         controller: 'loginCtrl'
       })
-    ;
 
- /*   $urlRouterProvider.otherwise('/login');*/
-    $urlRouterProvider.otherwise('/tab/activity');
-    /*$urlRouterProvider.otherwise('/tour');*/
+      .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'registerCtrl'
+      });
+
+    /*   $urlRouterProvider.otherwise('/login');*/
+    // $urlRouterProvider.otherwise('/tab/activity');
+    $urlRouterProvider.otherwise('/tour');
   });
