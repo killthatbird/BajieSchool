@@ -84,17 +84,23 @@ angular.module('controllers', [])
     }
   })
   .controller('newpassCtrl', function ($scope,$ionicPopup,$timeout, $state) {
+    $scope.userdata = {};
     $scope.login = function () {
-      var alertPopup = $ionicPopup.alert({
-        title: '消息提示!',
-        template: '修改成功！',
-        okText: '返回'
-      });
-      $timeout(function () {
-        alertPopup.close(); //由于某种原因3秒后关闭弹出
-      }, 3000);
-      $state.go("login")
-    }
+      if($scope.userdata.$invalid){
+       alert("请检查您的信息");
+      }else{
+        var alertPopup = $ionicPopup.alert({
+          title: '消息提示!',
+          template: '修改成功！',
+          okText: '返回'
+        });
+        $timeout(function () {
+          alertPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
+        $state.go("login")
+      }
+      }
+
   })
   .controller('loginCtrl', function ($scope, $state) {
     $scope.login = function () {

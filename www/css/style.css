@@ -790,3 +790,4 @@
 /*找回密码*/
 .flist input{min-height: initial !important;margin:5px 16px !important;border-radius:6px !important;border: 1px solid #ccc !important;}
 .flist .item-input div{margin-right: 16px}
+.error{color:red;padding: 8px 16px}
