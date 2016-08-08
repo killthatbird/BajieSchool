@@ -1,0 +1,20 @@
+<ion-header-bar align-title="center" class="bar-positive">
+  <label class="item-input-wrapper" style="background-color: rgba(0,0,0,0.25);color:#fff">
+    <i class="icon ion-ios-search placeholder-icon" style="font-size: 21px;color: #fff;"></i>
+    <input type="search" placeholder="..." ng-model="searchContent">
+  </label>
+  <div class="buttons" style="position:relative;">
+    <i class="icon ion-ios-close-outline" ng-click="reset()" ng-hide="!searchContent || searchContent === ''"
+       style="font-size: 18px;color: #fff;position:absolute;left:-19px;top:2px"></i>
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear">&nbsp;取消
+    </button>
+  </div>
+</ion-header-bar>
+<ion-view>
+<ion-content scroll="true" class="has-header" padding="true">
+    <ion-item ng-repeat="u in users | filter:searchContent " ng-click="backpre('{{u.name}}')">
+      {{u.name}}
+    </ion-item>
+</ion-content>
+</ion-view>

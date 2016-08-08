@@ -204,10 +204,13 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
 
       .state('register', {
         url: '/register',
-        templateUrl: 'templates/register.html',
-        controller: 'registerCtrl'
-      });
-
+        templateUrl: 'templates/register.html'
+      })
+    .state('selsch', {
+      url: '/register/step1',
+      templateUrl: 'templates/sel-school.html',
+      controller: 'selSchCtrl'
+    });
     /*   $urlRouterProvider.otherwise('/login');*/
     // $urlRouterProvider.otherwise('/tab/activity');
     $urlRouterProvider.otherwise('/tour');
