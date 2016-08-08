@@ -1,6 +1,9 @@
 {
   "status": 0,
   "category": "推荐",
+  "flag": 0,
+  "pagesize": 15,
+  "pagenum": 1,
   "activitylist": [
     {
       "title": "周杰伦演唱会",

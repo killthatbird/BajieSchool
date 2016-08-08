@@ -1,6 +1,8 @@
 {
   "status": 0,
-  "category": "1",
+  "flag": 0,
+  "pagesize": 15,
+  "pagenum": 1,
   "quoralist": [
     {
       "imgSrc": "img/whu.png",

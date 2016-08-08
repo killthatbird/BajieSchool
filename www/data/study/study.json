@@ -1,6 +1,8 @@
 {
   "status": 0,
   "category": "推荐",
+  "pagesize": 15,
+  "pagenum": 1,
   "studylist": [
     {
       "title": "考研英语75分学习方法",
