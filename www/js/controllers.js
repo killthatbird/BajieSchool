@@ -7,14 +7,6 @@ angular.module('controllers', [])
     }
   })
   .controller('ChatsCtrl', function ($scope, Chats) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
     $scope.chats = Chats.all();
     $scope.remove = function (chat) {
       Chats.remove(chat);
@@ -30,6 +22,36 @@ angular.module('controllers', [])
     }
     $scope.login = function () {
       $state.go("login")
+    }
+  })
+  .controller('findCtrl', function ($scope, $state, $interval) {
+    $scope.paracont = "获取验证码";
+    $scope.paraclass = "but_null";
+    $scope.paraevent = false;
+      var second = 60,
+        timePromise = undefined;
+    $scope.sendphonecode = function () {
+      timePromise = $interval(function(){
+        if(second<=0){
+          $interval.cancel(timePromise);
+          timePromise = undefined;
+
+          second = 60;
+          $scope.paracont = "重发验证码";
+          $scope.paraclass = "but_null";
+          $scope.paraevent = true;
+        }else{
+          $scope.paracont = second + "秒后可重发";
+          $scope.paraclass = "not but_null";
+          second--;
+
+        }
+      },1000,1000);
+    }
+
+
+    $scope.nextste = function () {
+      $state.go("newpass")
     }
   })
   .controller('selSchCtrl', function ($scope, $state, LocalStorage) {
@@ -61,12 +83,27 @@ angular.module('controllers', [])
       $state.go("register")
     }
   })
-
+  .controller('newpassCtrl', function ($scope,$ionicPopup,$timeout, $state) {
+    $scope.login = function () {
+      var alertPopup = $ionicPopup.alert({
+        title: '消息提示!',
+        template: '修改成功！',
+        okText: '返回'
+      });
+      $timeout(function () {
+        alertPopup.close(); //由于某种原因3秒后关闭弹出
+      }, 3000);
+      $state.go("login")
+    }
+  })
   .controller('loginCtrl', function ($scope, $state) {
     $scope.login = function () {
       $state.go("tab.activity")
     }
     $scope.register = function () {
       $state.go("register")
+    }
+    $scope.findin = function () {
+      $state.go("findin")
     }
   })

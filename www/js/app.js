@@ -206,6 +206,16 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         url: '/register',
         templateUrl: 'templates/register.html'
       })
+      .state('findin', {
+        url: '/findin',
+        templateUrl: 'templates/account/for-password.html',
+        controller: 'findCtrl'
+      })
+      .state('newpass', {
+        url: '/newpass',
+        templateUrl: 'templates/account/new-password.html',
+        controller: 'newpassCtrl'
+      })
     .state('selsch', {
       url: '/register/step1',
       templateUrl: 'templates/sel-school.html',

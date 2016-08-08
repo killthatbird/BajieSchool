@@ -784,3 +784,6 @@
 .alpha_list{
   padding-right: 22px;
 }
+.flist input::-webkit-input-placeholder {
+  padding-left: 16px;
+}
