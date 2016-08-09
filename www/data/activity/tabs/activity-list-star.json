@@ -1,0 +1,41 @@
+{
+  "status": 0,
+  "category": "明星",
+  "flag": 0,
+  "pagesize": 15,
+  "pagenum": 1,
+  "activitylist": [
+    {
+      "title": "周杰伦",
+      "content": "活捉一只傲娇小公举！！！",
+      "imgSrc": "img/activity/tabs/明星/1.jpg",
+      "timestamp": "1分钟前",
+      "follownum": 23,
+      "commentnum": 100
+    },
+    {
+      "title": "田馥甄",
+      "content": "气质女神Hebe！！",
+      "imgSrc": "img/activity/tabs/明星/2.jpg",
+      "timestamp": "1小时前",
+      "follownum": 56,
+      "commentnum": 108
+    },
+    {
+      "title": "大爱霉霉",
+      "content": "霉霉又要发新歌了，期待ing！！！",
+      "imgSrc": "img/activity/tabs/明星/3.jpg",
+      "timestamp": "2小时前",
+      "follownum": 595,
+      "commentnum": 795
+    },
+    {
+      "title": "JJLin 3D环绕音乐",
+      "content": "不为谁而作的歌，好听！！",
+      "imgSrc": "img/activity/tabs/明星/4.jpg",
+      "timestamp": "2小时前",
+      "follownum": 595,
+      "commentnum": 795
+    }
+  ]
+}

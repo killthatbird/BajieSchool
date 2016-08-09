@@ -13,6 +13,7 @@ angular.module('ActCtrl', [])
       }
     });
 
+    //默认加载“推荐”的activitylist
     $http.get('../data/activity/activity-list.json').then(function (response) {
       if (response.data.status == 0) {
         $scope.activitylist = response.data.activitylist;
@@ -20,9 +21,61 @@ angular.module('ActCtrl', [])
     });
 
 
-    $scope.currentTab = '推荐'
+    var currentTab = '推荐'
     $scope.onClickTab = function (tab) {
-      $scope.currentTab = tab.title;
+      currentTab = tab.title;
+      //切换TAB时请求该TAB对应的数据
+
+      switch (currentTab) {
+        case "推荐": {
+          $http.get('../data/activity/activity-list.json').then(function (response) {
+            if (response.data.status == 0) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+          ;
+        case "体育": {
+          $http.get('../data/activity/tabs/activity-list-sports.json').then(function (response) {
+            if (response.data.status == 0 && response.data.category == tab.title) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+
+        case "旅游": {
+          $http.get('../data/activity/tabs/activity-list-trip.json').then(function (response) {
+            if (response.data.status == 0 && response.data.category == tab.title) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+
+        case "明星": {
+          $http.get('../data/activity/tabs/activity-list-star.json').then(function (response) {
+            if (response.data.status == 0 && response.data.category == tab.title) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+
+        case "电影": {
+          $http.get('../data/activity/tabs/activity-list-movie.json').then(function (response) {
+            if (response.data.status == 0 && response.data.category == tab.title) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+
+        case "恋爱": {
+          $http.get('../data/activity/tabs/activity-list-love.json').then(function (response) {
+            if (response.data.status == 0 && response.data.category == tab.title) {
+              $scope.activitylist = response.data.activitylist;
+            }
+          });
+        }
+
+      }
     }
     $scope.isActivetab = function (tabUrl) {
       return tabUrl == $scope.currentTab;
@@ -32,6 +85,8 @@ angular.module('ActCtrl', [])
       $scope.searchContent = '';
     }
   })
+
+
   /*活动详情*/
   .controller('actdetialCtrl', function ($scope) {
     $scope.showComment = false;
