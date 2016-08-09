@@ -2,7 +2,7 @@
   <h1 class="title" style="color: #6ebddb">欢迎加入八戒上学</h1>
 </div>
 <ion-view>
-  <ion-content class="has-header" ng-controller="registerCtrl">
+  <ion-content class="has-header" ng-controller="registerCtrl" overflow-scroll="true" style="overflow: hidden">
     <form>
       <div ng-show="curstep">
         <ul class="aui-list aui-form-list">
@@ -22,7 +22,7 @@
                 学院
               </div>
               <div class="aui-list-item-input">
-                <input type="text" placeholder="...">
+                <input type="text"/>
               </div>
             </div>
           </li>
@@ -32,7 +32,7 @@
                 入学年份
               </div>
               <div class="aui-list-item-input">
-                <input type="date" placeholder="...">
+                <input type="date"/>
               </div>
             </div>
           </li>
@@ -48,10 +48,10 @@
           </li>
         </ul>
         <div class="item" style="border:none;">
-        <button ng-click="curstep=false" style="border-radius: initial;"
-                class="button button-block button-positive" type="button">下一步
-        </button>
-      </div>
+          <button ng-click="curstep=false" style="border-radius: initial;"
+                  class="button button-block button-positive" type="button">下一步
+          </button>
+        </div>
       </div>
       <div ng-hide="curstep">
         <ul class="aui-list aui-form-list">
@@ -61,7 +61,7 @@
                 用户名
               </div>
               <div class="aui-list-item-input">
-                <input type="text" placeholder="...">
+                <input type="text"/>
               </div>
             </div>
           </li>
@@ -71,30 +71,33 @@
                 密码
               </div>
               <div class="aui-list-item-input">
-                <input type="password" placeholder="********">
+                <input type="password"/>
               </div>
             </div>
           </li>
           <li class="aui-list-item">
             <div class="aui-list-item-inner">
               <div class="aui-list-item-input" style="padding-bottom: 10px">
-                <p style="line-height: 0.6rem;padding-bottom: 2px;text-align: center"><input style="width: 0.6rem;height: 0.6rem;" class="aui-radio" type="radio" checked>&nbsp<small>同意注册协议</small></p>
+                <p style="line-height: 0.6rem;padding-bottom: 2px;text-align: center"><input
+                  style="width: 0.6rem;height: 0.6rem;" class="aui-radio" type="radio" checked>&nbsp
+                  <small>同意注册协议</small>
+                </p>
               </div>
             </div>
           </li>
-         <!-- <li class="aui-list-item" style="border-bottom: none">
-            <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
-              <div ng-click="login()" class="aui-btn aui-btn-info aui-margin-r-5">注册</div>
-              <div ng-click="curstep=true" class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
-            </div>
-          </li>-->
+          <!-- <li class="aui-list-item" style="border-bottom: none">
+             <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+               <div ng-click="login()" class="aui-btn aui-btn-info aui-margin-r-5">注册</div>
+               <div ng-click="curstep=true" class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+             </div>
+           </li>-->
         </ul>
         <div class="item" style="border:none;padding-top: 0px">
           <button ng-click="login()"
                   class="button button-block button-positive" type="button">注册
           </button>
           <button ng-click="curstep=true"
-                  class="button button-block button-stable" type="button">取消
+                  class="button button-block button-stable" type="button" style="background-color: #dadada">取消
           </button>
         </div>
       </div>
