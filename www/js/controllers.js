@@ -27,34 +27,45 @@ angular.module('controllers', [])
   })
 
   .controller('findCtrl', function ($scope, $state, $interval) {
-    $scope.paracont = "获取验证码";
-    $scope.paraclass = "but_null";
-    $scope.paraevent = false;
-    var second = 60,
-      timePromise = undefined;
-    $scope.sendphonecode = function () {
-      timePromise = $interval(function () {
-        if (second <= 0) {
-          $interval.cancel(timePromise);
-          timePromise = undefined;
+      $scope.paracont = "获取验证码";
+      $scope.paraclass = "but_null";
+      $scope.paraevent = false;
+      // $scope.disabled=false;
+      var second = 60,
+        timePromise = undefined;
+      var flag = true;
+      $scope.sendphonecode = function () {
 
-          second = 60;
-          $scope.paracont = "重发验证码";
-          $scope.paraclass = "but_null";
-          $scope.paraevent = true;
-        } else {
-          $scope.paracont = second + "秒后可重发";
-          $scope.paraclass = "not but_null";
-          second--;
+        if (flag == true) {
+          timePromise = $interval(function () {
+              if (second <= 0) {
+                $interval.cancel(timePromise);
+                timePromise = undefined;
+                second = 60;
+                $scope.paracont = "重发验证码";
+                $scope.paraclass = "but_null";
+                $scope.paraevent = true;
+              } else {
+                // $scope.disabled=true;
+                $scope.paracont = second + "秒后可重发";
+                $scope.paraclass = "not but_null";
+                second--;
 
+              }
+              flag = false;
+            }
+            ,
+            1000
+          );
         }
-      }, 1000, 1000);
-    }
+      }
 
-    $scope.nextste = function () {
-      $state.go("newpass")
+      $scope.nextste = function () {
+        $state.go("newpass")
+      }
     }
-  })
+  )
+
   .controller('selSchCtrl', function ($scope, $state, LocalStorage, $http) {
     $http.get('../data/schoollist.json').then(function (response) {
       if (response.data.status == 0) {
