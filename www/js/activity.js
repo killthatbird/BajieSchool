@@ -21,12 +21,13 @@ angular.module('ActCtrl', [])
     });
 
 
-    var currentTab = '推荐'
+    $scope.currentTab = '推荐';
+    // var currentTab = '推荐'
     $scope.onClickTab = function (tab) {
-      currentTab = tab.title;
+      $scope.currentTab = tab.title;
       //切换TAB时请求该TAB对应的数据
 
-      switch (currentTab) {
+      switch ($scope.currentTab) {
         case "推荐": {
           $http.get('../data/activity/activity-list.json').then(function (response) {
             if (response.data.status == 0) {
@@ -98,13 +99,24 @@ angular.module('ActCtrl', [])
       $scope.showcom = true;
     }
   })
-  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate) {
+  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http) {
     $scope.slideIndex = 0;
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
     };
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
+    };
+
+    $scope.doRefresh = function () {
+      $http.get('/')
+        .success(function (newItems) {
+          $scope.items = newItems;
+        })
+        .finally(function () {
+          // Stop the ion-refresher from spinning
+          $scope.$broadcast('scroll.refreshComplete');
+        });
     };
   })
   /*发起活动*/

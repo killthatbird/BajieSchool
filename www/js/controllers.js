@@ -50,7 +50,7 @@ angular.module('controllers', [])
                 $scope.paracont = second + "秒后可重发";
                 $scope.paraclass = "not but_null";
                 second--;
-
+                flag = true;
               }
               flag = false;
             }
@@ -82,6 +82,7 @@ angular.module('controllers', [])
       $state.go("register")
     }
   })
+
   .controller('newpassCtrl', function ($scope, $ionicPopup, $timeout, $state) {
     $scope.userdata = {};
     $scope.login = function () {
