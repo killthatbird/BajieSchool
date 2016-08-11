@@ -1,6 +1,7 @@
 {
   "status": 0,
-  "size": 2,
+  "pagenum": 1,
+  "pagesize": 2,
   "ntflist": [
     {
       "type": 0,

@@ -1,6 +1,7 @@
 {
   "status": 0,
-  "size": 3,
+  "pagenum": 1,
+  "pagesize": 3,
   "aglist": [
     {
       "title": "早读",
