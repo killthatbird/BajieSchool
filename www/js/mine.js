@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/20.
  */
 angular.module('MyCtrl', [])
-  .controller('MineCtrl', function ($scope, $state) {
+  .controller('MineCtrl', function ($scope, $state, LocalStorage, $http) {
 
     var myChart = echarts.init(document.getElementById('main'));
     myChart.showLoading();
@@ -35,9 +35,38 @@ angular.module('MyCtrl', [])
       });
     });
 
+  /*  $scope.blocks = {
+      "status": 0,
+      "result": [
+        {
+          "name": "points",
+          "size": 520
+        }, {
+          "name": "agenda",
+          "size": 3
+        }, {
+          "name": "notification",
+          "size": 2
+        }, {
+          "name": "collection",
+          "size": 1
+        }
+      ]
+    }*/
+
+    $http.get("../data/mine/main.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.blocks = response.data;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
     $scope.viewinfo = function () {
       $state.go("pinfo")
     }
+
     $scope.myplan = function (A) {
       $state.go("myplan", {barTitle: A})
     }

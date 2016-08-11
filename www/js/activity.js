@@ -35,7 +35,7 @@ angular.module('ActCtrl', [])
             }
           });
         }
-          ;
+
         case "体育": {
           $http.get('../data/activity/tabs/activity-list-sports.json').then(function (response) {
             if (response.data.status == 0 && response.data.category == tab.title) {
