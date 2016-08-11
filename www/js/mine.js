@@ -1,8 +1,17 @@
 /**
  * Created by Administrator on 2016/7/20.
  */
-angular.module('MyCtrl', [])
-  .controller('MineCtrl', function ($scope, $state, LocalStorage, $http) {
+angular.module('MyCtrl', []).run(function ($rootScope, $http) {
+  $http.get("../data/mine/main.json")
+    .then(function (response) {
+      if (response.data.status == 0) {
+        $rootScope.badge = response.data.result[2].size;
+      } else {
+        console.error('网络连接失败...');
+      }
+    });
+})
+  .controller('MineCtrl', function ($scope, $state, $http) {
 
     var myChart = echarts.init(document.getElementById('main'));
     myChart.showLoading();
@@ -35,25 +44,6 @@ angular.module('MyCtrl', [])
       });
     });
 
-  /*  $scope.blocks = {
-      "status": 0,
-      "result": [
-        {
-          "name": "points",
-          "size": 520
-        }, {
-          "name": "agenda",
-          "size": 3
-        }, {
-          "name": "notification",
-          "size": 2
-        }, {
-          "name": "collection",
-          "size": 1
-        }
-      ]
-    }*/
-
     $http.get("../data/mine/main.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -73,7 +63,7 @@ angular.module('MyCtrl', [])
   })
 
   .controller('myplanCtrl', function ($scope, $stateParams, $state) {
-    $scope.title = $stateParams.barTitle
+    $scope.title = $stateParams.barTitle;
     $scope.newplan = function () {
       $state.go("newplan")
     }
