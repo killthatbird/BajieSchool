@@ -1,15 +1,16 @@
 {
-  "name": "collection",
-  "cltdetail": {
-    "size": 1,
-    "cltlist": [
-      {
-        "type": 0,
-        "content": {
-
-
-        }
+  "status": 0,
+  "size": 1,
+  "cltlist": [
+    {
+      "tag": "机器学习|编程|Cousera",
+      "content": {
+        "title": "考研英语75分学习方法",
+        "timestamp": "2小时前",
+        "content": "如何在短时间内拿下考研英语",
+        "likenum": 75,
+        "commentnum": 150
       }
-    ]
-  }
+    }
+  ]
 }
