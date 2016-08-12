@@ -481,6 +481,7 @@
 
 /*
 我的活动*/
+.y-card .item-thumbnail-left img{box-shadow:1px 1px 1px 1px #eee;}
 .act-warp .q-card .item p {
   font-weight: normal
 }
@@ -768,6 +769,14 @@
 .stu-all{position: relative}
 .stu-all .stu-i{position: absolute;top:15%;right:16%;color:#9E9E9E}
 .y-spcol-right{position: relative;right:30px}
+.aui-list-item-user{color:#686677;height: 20px;line-height: 20px;display: flex;font-size: 14px;font-weight: bold}
+.aui-list-item-user img{width:20px}
+.aui-content{display: -webkit-box;-webkit-line-clamp: 3;font-size:14px;-webkit-box-orient: vertical;overflow: hidden;margin-top: 5px}
+.stu-ans{width:100%;height:80px;background: #6EBDDB;padding: 5px 20px}
+.df-stu-user{background: #fff;width:90%;margin:0 auto;position: relative;bottom:40px;height: 60px;box-shadow: 1px 2px 1px #ccc;padding: 10px;border-radius: 2px}
+.df-stu-user-qu{background: #fff;width:90%;margin:0 auto;height: 60px;margin:5%;box-shadow: 1px 1px 1px 2px #ccc;padding: 10px;border-radius: 2px}
+.df-stu-user .aui-list-item-media{width: 35px;margin-right: 8px;}
+.aui-content-padded p{color:#212121 !important;}
 /*
 注册*/
 .alpha_sidebar{

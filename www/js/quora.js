@@ -3,7 +3,17 @@
  */
 angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $http) {
+    $scope.showComment=false
+    $scope.showMore=false
     $scope.slideIndex = 0;
+    $scope.viewmore = false;
+    $scope.goqu = function (A) {
+      $scope.quobj=A
+      $scope.viewmore = true
+    }
+    $scope.goqulist = function () {
+      $scope.viewmore = false
+    };
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;

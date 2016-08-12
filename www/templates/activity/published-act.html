@@ -13,11 +13,11 @@
 <div style="background: #ebebeb;font-family: 'Microsoft Yahei'">
   <div class="list card" style="margin:0px; box-shadow: initial">
     <div class="item item-body" style="padding:0px">
-      <img class="full-image" style="height: 170px" src="img/icon/11.png">
+      <img class="full-image" style="height: 170px" src="img/activity/ad/3.jpg">
       <i class="ion-ios-arrow-thin-left" ng-click="gopulist()" g
          style="position: absolute;top:0px;left:10px;color: #fff;font-size: 1.5rem;"></i>
       <div class="item" style="border: initial;padding: 5px 16px;">
-        <h2 style="margin:0px;font-family: 'Microsoft Yahei'">骑行活动</h2>
+        <h2 style="margin:0px;font-family: 'Microsoft Yahei'">骑行活动{{actobj.title}}</h2>
         <span class="y-lasttime-right" style="top: 3px;right: 16px;">2小时前</span>
         <p style="margin:0px;">
           <small>已关注30人/已参加15人</small>
@@ -57,6 +57,7 @@
       <span class="input-label pu-span">主要内容</span>
     </label>
     <div class="df-act-content">
+      {{actobj}}
       <p>活动主题：低碳生活、大学生骑自行车</p>
       <p>活动对象：热爱自行车运动的大学生人群</p>
       <p>活动目的：提倡低碳生活，享受美好生活，提升大学生提倡公益形象 </p>

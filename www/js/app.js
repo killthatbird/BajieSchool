@@ -81,6 +81,9 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
       .state('actdetial', {
         url: '/activity/actdetial',
         templateUrl: 'templates/activity/act-detial.html',
+        params: {
+          actobj:null
+        },
         controller: 'actdetialCtrl'
       })
       .state('published', {
@@ -121,6 +124,24 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
           hdata: null
         },
         controller: 'stutypeCtrl'
+      })
+      .state('studetial', {
+        url: '/study/detial',
+        templateUrl: 'templates/study/stu-detial.html',
+        params: {
+          hdata: null
+        },
+        controller: 'studetialCtrl'
+      })
+      .state('comlist', {
+        url: '/study/comlist',
+        templateUrl: 'templates/study/com-list.html',
+        controller: 'comlistCtrl'
+      })
+      .state('anslist', {
+        url: '/study/anslist',
+        templateUrl: 'templates/study/ans-list.html',
+        controller: 'anslistCtrl'
       })
       .state('tab.quora', {
         url: '/quora',

@@ -3,8 +3,8 @@
  */
 angular.module('ActCtrl', [])
   .controller('ActivityCtrl', function ($scope, $state, $http) {
-    $scope.actdetial = function () {
-      $state.go("actdetial")
+    $scope.actdetial = function (A) {
+      $state.go("actdetial", {actobj: A})
     }
 
     $http.get('../data/activity/tabs.json').then(function (response) {
@@ -89,7 +89,11 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope) {
+  .controller('actdetialCtrl', function ($scope,$stateParams) {
+    if($stateParams.actobj!=null){
+      $scope.actobj = $stateParams.actobj;
+      console.log($scope.actobj)
+    }
     $scope.showComment = false;
     $scope.showcom = false;
     $scope.seecom = function () {
@@ -172,15 +176,15 @@ angular.module('ActCtrl', [])
 
   })
   /*已发布的活动*/
-  .controller('puactCtrl', function ($scope, $http) {
+  .controller('puactCtrl', function ($scope, $http,$state) {
     $scope.viewmore = false;
-    $scope.gopuact = function () {
+    $scope.gopuact = function (A) {
+      $scope.actobj=A
       $scope.viewmore = true
     }
     $scope.gopulist = function () {
       $scope.viewmore = false
     };
-
     $http.get("../data/activity/activity-published.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -193,8 +197,14 @@ angular.module('ActCtrl', [])
   })
 
   /*已参加的活动*/
-  .controller('attactCtrl', function ($scope, $http) {
-
+  .controller('attactCtrl', function ($scope, $http,$state) {
+    $scope.gopuact = function (A) {
+      $scope.actobj=A
+      $scope.viewmore = true
+    }
+    $scope.gopulist = function () {
+      $scope.viewmore = false
+    };
     $http.get("../data/activity/activity-join.json")
       .then(function (response) {
         if (response.data.status == 0) {

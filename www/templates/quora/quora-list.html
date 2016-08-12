@@ -1,13 +1,121 @@
-<ion-view>
-  <ion-content>
-    <ul>
-      <li>hello</li>
-      <li>world</li>
-      <li>sun</li>
-      <li>wind</li>
-      <li>cloud</li>
-      <li>rain</li>
-    </ul>
-  </ion-content>
+<div style="background: #ebebeb;font-family: 'Microsoft Yahei'">
+  <div class="list card a-warp" style="margin:0px; box-shadow: initial">
+    <div class="item item-body" style="padding:0px">
+      <img class="full-image" style="height: 170px" src="img/activity/ad/3.jpg">
+      <i class="ion-ios-arrow-thin-left" ng-click="goqulist()"
+         style="position: absolute;top:0px;left:10px;color: #fff;font-size: 1.5rem;"></i>
+      <div class="item" style="border: initial;padding: 5px 16px;">
+        <h2 style="margin:0px;font-family: 'Microsoft Yahei'">骑行活动{{actobj.title}}</h2>
+        <span class="y-lasttime-right" style="top: 3px;right: 16px;">2小时前</span>
+        <p style="margin:0px;">
+          <small>已关注30人/已参加15人</small>
+        </p>
+        <div class="aui-card-list-footer df-act-fs">
+          <div><i class="aui-iconfont aui-icon-like"></i>
+            <small>赞 666</small>
+          </div>
+          <div ng-click="showComment=true;showMore=true" ng-class="{'df-color':showComment}"><i class="aui-iconfont aui-icon-comment"></i>
+            <small>评论 888</small>
+          </div>
+          <div><i class="aui-iconfont aui-icon-share"></i>
+            <small>分享 888</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--评论开始-->
+    <div class="aui-card-list-content" ng-show="showComment">
+      <ul class="aui-list aui-media-list">
+        <li class="aui-list-item aui-list-item-middle">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media">
+              <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
+            </div>
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-text">
+                <div class="aui-list-item-title aui-font-size-14">AUI</div>
+                <div class="aui-list-item-right">08:00</div>
+              </div>
+              <div class="aui-list-item-text">
+                www.auicss.com
+              </div>
+            </div>
+            <div class="aui-list-item-text aui-a-like" ng-click="count = count + 1" ng-init="count=34">
+              <i class="ion-android-favorite-outline" ng-class="{'df-color':count>34}"></i>&nbsp;{{count}}
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media">
+              <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+            </div>
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-text">
+                <div class="aui-list-item-title aui-font-size-14">流浪男</div>
+                <div class="aui-list-item-right">1小时前</div>
+              </div>
+              <div class="aui-list-item-text">
+                www.auicss.com
+              </div>
+            </div>
+            <div class="aui-list-item-text aui-a-like">
+              <i class="ion-android-favorite-outline"></i>&nbsp;3
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle" ng-hide="showMore">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media">
+              <img src="img/ionic.png" class="aui-img-round aui-list-img-sm">
+            </div>
+            <div class="aui-list-item-inner">
+              XXX
+            </div>
+            <div class="aui-list-item-text aui-a-like">
+              <i class="ion-android-favorite-outline"></i>&nbsp;8
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="aui-card-list-footer aui-text-center" ng-show="showMore" ng-click="showMore=false">
+      查看更多
+    </div>
+    <!--评论结束-->
+  </div>
 
-</ion-view>
+  <div class="list pu-list" style="margin-top:10px">
+    <label class="item item-input">
+      <img class="list-left-img" src="img/icon/mine/4.png">
+      <span class="input-label pu-span">时间</span>
+      <span class="input-label">2016-06-25至2016-06-30</span>
+    </label>
+    <label class="item item-input">
+      <img class="list-left-img" src="img/icon/mine/5.png">
+      <span class="input-label pu-span">地点</span>
+      <span class="input-label">湖北工业大学</span>
+    </label>
+    <label class="item item-input">
+      <img class="list-left-img" src="img/icon/mine/6.png">
+      <span class="input-label pu-span">报名人数</span>
+      <span class="input-label">20人</span>
+    </label>
+    <label class="item item-input" style="border-bottom: none">
+      <img class="list-left-img" src="img/icon/mine/7.png">
+      <span class="input-label pu-span">主要内容</span>
+    </label>
+    <div class="df-act-content">
+      {{quobj}}
+      <p>活动主题：低碳生活、大学生骑自行车</p>
+      <p>活动对象：热爱自行车运动的大学生人群</p>
+      <p>活动目的：提倡低碳生活，享受美好生活，提升大学生提倡公益形象 </p>
+      <p>
+        随着社会推行“低碳、节能、环保”的生活方式，倡导“健康、与自然为友”的可持续发展模式，
+        广大社会群体作为构建和谐社会的中坚力量，负有强烈的社会责任感和使命感，理应承载着社会的光荣使命。
+        现在人们出行普遍依靠动力机动车辆，生活水平的提高同时也带来了城市生活方式不甚健康，身体素质与以往相比每况愈下，
+        为了鼓励健康环保、回归低碳的生活方式，特举办“汤逊湖，2016年自行车环城骑行活动”
+      </p>
+    </div>
+  </div>
+</div>

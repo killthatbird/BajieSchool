@@ -8,6 +8,8 @@ angular.module('StudyCtrl', [])
     $scope.myheight = $scope.valueh + 'px';
     $scope.sth = $scope.valueh * 0.7 + 'px';
     $scope.remove = false;
+    $scope.showComment = false;
+    $scope.showMore = false;
     $scope.stype = [{
       id: 1,
       title: '考研',
@@ -46,7 +48,9 @@ angular.module('StudyCtrl', [])
           console.error('网络连接失败...');
         }
       });
-
+    $scope.studetial = function () {
+      $state.go("studetial")
+    }
     $scope.gostype = function () {
       $state.go("stutype")
     }
@@ -75,6 +79,24 @@ angular.module('StudyCtrl', [])
     $scope.delete = function (idx) {
       console.log(idx)
       $scope.stype.splice(idx, 1);
+    }
+  })
+
+  .controller('studetialCtrl', function ($scope, $state) {
+    $scope.comlist = function () {
+      $state.go("comlist")
+    }
+    $scope.anslist = function () {
+      $state.go("anslist")
+    }
+  })
+  .controller('comlistCtrl', function ($scope, $state) {
+    $scope.showcom=false
+  })
+  .controller('anslistCtrl', function ($scope, $state) {
+    $scope.choose=true
+    $scope.attention = function () {
+      $scope.choose = !$scope.choose
     }
   })
   .controller('stutypeCtrl', function ($scope, $state, LocalStorage) {

@@ -44,7 +44,7 @@
             </ion-slide>
           </ion-slide-box>
           <div class="y-list">
-            <div ng-repeat="activity in activitylist" class="card y-card">
+            <div ng-repeat="activity in activitylist" class="card y-card"  ng-click="actdetial('{{activity}}')">
               <a class="item item-thumbnail-left">
                 <img src="{{activity.imgSrc}}" alt="{{activity.title}}">
                 <h2>{{activity.title}}</h2>
@@ -72,9 +72,9 @@
           </ion-refresher>
           <div class="row" style="padding: 0px">
             <ul class="slide-tab">
-              <li ng-class="slideIndex == 0 ? 'current':''"><a ng-click="activeSlide(0)">发起活动</a></li>
-              <li ng-class="slideIndex == 1 ? 'current':''"><a ng-click="activeSlide(1)">已发布的活动</a></li>
-              <li ng-class="slideIndex == 2 ? 'current':''"><a ng-click="activeSlide(2)">已参加的活动</a></li>
+              <li  ng-click="activeSlide(0)" ng-class="slideIndex == 0 ? 'current':''"><a>发起活动</a></li>
+              <li  ng-click="activeSlide(1)" ng-class="slideIndex == 1 ? 'current':''"><a>已发布的活动</a></li>
+              <li  ng-click="activeSlide(2)" ng-class="slideIndex == 2 ? 'current':''"><a>已参加的活动</a></li>
             </ul>
           </div>
           <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
@@ -132,7 +132,7 @@
             <ion-slide ng-controller="puactCtrl">
 
               <div class="y-list" ng-hide="viewmore">
-                <div ng-repeat="publishedactivity in publishedactivitylist" class="card y-card">
+                <div ng-repeat="publishedactivity in publishedactivitylist" class="card y-card" ng-click="gopuact('{{publishedactivity}}')">
                   <a class="item item-thumbnail-left">
                     <img src="{{publishedactivity.imgSrc}}" alt="{{publishedactivity.title}}">
                     <h2>{{publishedactivity.title}}</h2>
@@ -148,12 +148,11 @@
               <div ng-show="viewmore" ng-include="'templates/activity/published-act.html'"></div>
             </ion-slide>
 
-
             <ion-slide ng-controller="attactCtrl">
 
-              <div class="y-list">
+              <div class="y-list"  ng-hide="viewmore">
                 <div class="act-warp">
-                  <div ng-repeat="joinactivity in joinactivitylist" class="card y-card">
+                  <div ng-repeat="joinactivity in joinactivitylist" class="card y-card"  ng-click="gopuact('{{joinactivity}}')">
                     <a class="item item-thumbnail-left">
                       <img src="{{joinactivity.imgSrc}}" alt="{{joinactivity.title}}">
                       <h2>{{joinactivity.title}}</h2>
@@ -169,6 +168,7 @@
                   </div>
                 </div>
               </div>
+              <div ng-show="viewmore" ng-include="'templates/activity/published-act.html'"></div>
             </ion-slide>
           </ion-slide-box>
         </ion-content>

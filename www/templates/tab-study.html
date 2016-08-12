@@ -26,7 +26,7 @@
 
     <div class="y-list">
 
-      <div class="card y-card" ng-click="actdetial()" ng-repeat="study in studylist">
+      <div class="card y-card a-warp" ng-click="studetial()" ng-repeat="study in studylist">
         <a class="item">
           <h2>{{study.title}}<span style="color:deepskyblue">{{currentTab}}</span></h2>
           <span class="y-lasttime-right">{{study.timestamp}}</span>
@@ -34,10 +34,70 @@
           <div class="y-front-size">
             <div style="position: absolute;right:16px;bottom: 8px">
               <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>{{study.likenum}}</span>
-              <span class="y-p-col-right"><i class="aui-iconfont aui-icon-comment"></i>{{study.commentnum}}</span>
+              <span  ng-click="showComment=true;showMore=true" ng-class="{'df-color':showComment}" class="y-p-col-right"><i class="aui-iconfont aui-icon-comment"></i>{{study.commentnum}}</span>
             </div>
           </div>
         </a>
+        <!--评论开始-->
+        <div class="aui-card-list-content" ng-show="showComment">
+          <ul class="aui-list aui-media-list">
+            <li class="aui-list-item aui-list-item-middle">
+              <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                  <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
+                </div>
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-text">
+                    <div class="aui-list-item-title aui-font-size-14">AUI</div>
+                    <div class="aui-list-item-right">08:00</div>
+                  </div>
+                  <div class="aui-list-item-text">
+                    www.auicss.com
+                  </div>
+                </div>
+                <div class="aui-list-item-text aui-a-like" ng-click="count = count + 1" ng-init="count=34">
+                  <i class="ion-android-favorite-outline" ng-class="{'df-color':count>34}"></i>&nbsp;{{count}}
+                </div>
+              </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+              <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                  <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+                </div>
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-text">
+                    <div class="aui-list-item-title aui-font-size-14">流浪男</div>
+                    <div class="aui-list-item-right">1小时前</div>
+                  </div>
+                  <div class="aui-list-item-text">
+                    www.auicss.com
+                  </div>
+                </div>
+                <div class="aui-list-item-text aui-a-like">
+                  <i class="ion-android-favorite-outline"></i>&nbsp;3
+                </div>
+              </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle" ng-hide="showMore">
+              <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                  <img src="img/ionic.png" class="aui-img-round aui-list-img-sm">
+                </div>
+                <div class="aui-list-item-inner">
+                  XXX
+                </div>
+                <div class="aui-list-item-text aui-a-like">
+                  <i class="ion-android-favorite-outline"></i>&nbsp;8
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="aui-card-list-footer aui-text-center" ng-show="showMore" ng-click="showMore=false">
+          查看更多
+        </div>
+        <!--评论结束-->
       </div>
 
     </div>
