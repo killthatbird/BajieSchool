@@ -68,67 +68,52 @@
     </div>
     <div ng-show="showComment">
       <!--评论开始-->
-      <div class="aui-card-list-content df-act-comment">
+      <div class="aui-card-list-content df-act-comment" ng-repeat="activitycomment in activitycommentlist">
         <ul class="aui-list aui-media-list">
           <li class="aui-list-item aui-list-item-middle df-act-coms">
             <div class="aui-media-list-item-inner">
               <div class="aui-list-item-media">
-                <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
+                <img src="{{activitycomment.avatar}}" class="aui-img-round aui-list-img-sm">
               </div>
               <div class="aui-list-item-inner">
                 <div class="aui-list-item-text">
-                  <div class="aui-list-item-title aui-font-size-14">AUI</div>
-                  <div class="aui-list-item-right">8-2 08:00</div>
+                  <div class="aui-list-item-title aui-font-size-14">{{activitycomment.user}}</div>
+                  <div class="aui-list-item-right">{{activitycomment.timestamp}}</div>
                 </div>
                 <div class="aui-list-item-text">
-                  我要参加！我要参加！
+                  {{activitycomment.content}}
                 </div>
                 <div class="aui-card-list-footer df-act-fs aui-list-item-ricon">
                   <div><i class="aui-iconfont aui-icon-like"></i>
-                    <small> 3</small>
+                    <small> {{activitycomment.likenum}}</small>
                     &nbsp;&nbsp;
                   </div>
                   <div ng-click="seecom1()" ng-class="{'df-color':showcom}"><i
                     class="aui-iconfont aui-icon-comment"></i>
-                    <small> 3</small>
+                    <small> {{activitycomment.commentnum}}</small>
                   </div>
                 </div>
               </div>
             </div>
           </li>
           <ul ng-show="showcom">
-            <li class="aui-list-item aui-list-item-middle df-act-rep">
+            <li class="aui-list-item aui-list-item-middle df-act-rep" ng-repeat="act_c_c in act_c_c_list">
               <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-media">
-                  <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+                  <img src="{{act_c_c.avatar}}" class="aui-img-round aui-list-img-sm">
                 </div>
                 <div class="aui-list-item-inner">
                   <div class="aui-list-item-text">
-                    <div class="aui-list-item-title aui-font-size-14">流浪男</div>
-                    <div class="aui-list-item-right">8-2 08:00</div>
+                    <div class="aui-list-item-title aui-font-size-14">{{act_c_c.user}}</div>
+                    <div class="aui-list-item-right">{{act_c_c.timestamp}}</div>
                   </div>
                   <div class="aui-list-item-text aui-font-size-12">
-                    评论内容评论内容！评论内容评论内容！评论内容评论内容！评论内容评论内容！
+                    {{act_c_c.content}}
                   </div>
                 </div>
               </div>
             </li>
-            <li class="aui-list-item aui-list-item-middle df-act-rep">
-              <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-media">
-                  <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
-                </div>
-                <div class="aui-list-item-inner">
-                  <div class="aui-list-item-text">
-                    <div class="aui-list-item-title aui-font-size-14">流浪男</div>
-                    <div class="aui-list-item-right">8-2 08:00</div>
-                  </div>
-                  <div class="aui-list-item-text aui-font-size-12">
-                    评论内容评论内容！评论内容评论内容！评论内容评论内容！评论内容评论内容！
-                  </div>
-                </div>
-              </div>
-            </li>
+
           </ul>
         </ul>
       </div>
@@ -136,72 +121,7 @@
          查看更多
        </div>-->
       <!--评论结束-->
-      <!--评论开始-->
-      <div class="aui-card-list-content df-act-comment">
-        <ul class="aui-list aui-media-list">
-          <li class="aui-list-item aui-list-item-middle df-act-coms">
-            <div class="aui-media-list-item-inner">
-              <div class="aui-list-item-media">
-                <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
-              </div>
-              <div class="aui-list-item-inner">
-                <div class="aui-list-item-text">
-                  <div class="aui-list-item-title aui-font-size-14">AUI</div>
-                  <div class="aui-list-item-right">8-2 08:00</div>
-                </div>
-                <div class="aui-list-item-text">
-                  我要参加！我要参加！
-                </div>
-                <div class="aui-card-list-footer df-act-fs aui-list-item-ricon">
-                  <div><i class="aui-iconfont aui-icon-like"></i>
-                    <small> 3</small>
-                    &nbsp;&nbsp;
-                  </div>
-                  <div ng-click="seecom1()" ng-class="{'df-color':showcom}"><i
-                    class="aui-iconfont aui-icon-comment"></i>
-                    <small> 3</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <ul ng-show="showcom">
-            <li class="aui-list-item aui-list-item-middle df-act-rep">
-              <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-media">
-                  <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
-                </div>
-                <div class="aui-list-item-inner">
-                  <div class="aui-list-item-text">
-                    <div class="aui-list-item-title aui-font-size-14">流浪男</div>
-                    <div class="aui-list-item-right">8-2 08:00</div>
-                  </div>
-                  <div class="aui-list-item-text aui-font-size-12">
-                    评论内容评论内容！评论内容评论内容！评论内容评论内容！评论内容评论内容！
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle df-act-rep">
-              <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-media">
-                  <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
-                </div>
-                <div class="aui-list-item-inner">
-                  <div class="aui-list-item-text">
-                    <div class="aui-list-item-title aui-font-size-14">流浪男</div>
-                    <div class="aui-list-item-right">8-2 08:00</div>
-                  </div>
-                  <div class="aui-list-item-text aui-font-size-12">
-                    评论内容评论内容！评论内容评论内容！评论内容评论内容！评论内容评论内容！
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </ul>
-      </div>
-      <!--评论end-->
+
     </div>
   </ion-content>
 </ion-view>

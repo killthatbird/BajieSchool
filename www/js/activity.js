@@ -107,6 +107,19 @@ angular.module('ActCtrl', [])
         $scope.activitydetail = response.data.detail;
       }
     });
+
+    $http.get('../data/activity/activity-comment.json').then(function (response) {
+      if (response.data.status == 0) {
+        $scope.activitycommentlist = response.data.commentlist;
+      }
+    });
+
+    $http.get('../data/activity/activity-comment-comment.json').then(function (response) {
+      if (response.data.status == 0) {
+        $scope.act_c_c_list = response.data.comment_comment_list;
+      }
+    });
+
   })
 
   .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http) {
