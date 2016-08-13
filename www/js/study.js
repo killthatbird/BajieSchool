@@ -92,9 +92,58 @@ angular.module('StudyCtrl', [])
   })
   .controller('comlistCtrl', function ($scope, $state) {
     $scope.showcom=false
+    $scope.send_content='';
+    $scope.comlist =[{
+      id: 1,
+      heaimg:'img/ben.png',
+      nickname:'AUI',
+      content: '广角换长焦？',
+      time:'8-2 08:00',
+      agreenum: '35'
+    }, {
+      id: 2,
+      heaimg:'img/me.png',
+      nickname:'绿化撒哈拉',
+      content: '广角换长焦？',
+      time:'8-9 21:00',
+      agreenum: '23'
+    },
+      {
+        id: 3,
+        heaimg:'img/adam.jpg',
+        nickname:'AUI',
+        content: '广角换长焦？',
+        time:'8-9 08:00',
+        agreenum: '350'
+      }, {
+        id: 4,
+        heaimg:'img/ionic.png',
+        nickname:'绿化撒哈拉',
+        content: '广角换长焦？',
+        time:'8-9 21:00',
+        agreenum: '23'
+      }];
+    $scope.send=function () {
+      if($scope.send_content!=''){
+        $scope.comlist.push({
+          id: $scope.comlist.length + 1,
+          heaimg:'img/ionic.png',
+          nickname:'Tony Soup',
+          content: $scope.send_content,
+          time: '7-9 17:00',
+          agreenum:0
+        });
+        $scope.send_content=''
+      }
+
+    }
+
   })
   .controller('anslistCtrl', function ($scope, $state) {
     $scope.choose=true
+    $scope.gocom = function () {
+      $state.go("comlist")
+    }
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }

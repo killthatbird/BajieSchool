@@ -7,45 +7,25 @@
   <h1 class="title">评论</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'">
+  <ion-content style="background: #fff;font-family: 'Microsoft Yahei'">
       <div class="aui-card-list-content df-act-comment">
         <ul class="aui-list aui-media-list">
-          <li class="aui-list-item aui-list-item-middle df-act-coms">
+          <li ng-repeat="com in comlist" class="aui-list-item aui-list-item-middle df-act-coms">
             <div class="aui-media-list-item-inner">
               <div class="aui-list-item-media">
-                <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+                <img src="{{com.heaimg}}" class="aui-img-round aui-list-img-sm">
               </div>
               <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
                 <div class="aui-list-item-text">
-                  <div class="aui-list-item-title aui-font-size-14">AUI</div>
+                  <div class="aui-list-item-title aui-font-size-14">{{com.nickname}}</div>
                 </div>
                 <div class="aui-list-item-text">
-                  广角换长焦？
+                  {{com.content}}
                 </div>
                 <p class="y-front-size">
-                   <span class="y-p-col">8-2 08:00</span>
+                   <span class="y-p-col">{{com.time}}</span>
                   <span class="y-p-col-right"><i
-                    class="aui-iconfont aui-icon-laud"></i>35</span>
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="aui-list-item aui-list-item-middle df-act-coms">
-            <div class="aui-media-list-item-inner">
-              <div class="aui-list-item-media">
-                <img src="img/me.png" class="aui-img-round aui-list-img-sm">
-              </div>
-              <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
-                <div class="aui-list-item-text">
-                  <div class="aui-list-item-title aui-font-size-14">绿化撒哈拉</div>
-                </div>
-                <div class="aui-list-item-text">
-                  写的真好！
-                </div>
-                <p class="y-front-size">
-                  <span class="y-p-col">8-2 08:00</span>
-                  <span class="y-p-col-right"><i
-                    class="aui-iconfont aui-icon-laud"></i>35</span>
+                    class="aui-iconfont aui-icon-laud"></i>{{com.agreenum}}</span>
                 </p>
               </div>
             </div>
@@ -53,4 +33,15 @@
         </ul>
       </div>
   </ion-content>
+  <ion-footer-bar  class="bar-light" resize-foot-bar style="background-image:none;box-shadow: 0 0 1px #eee;">
+    <label class="item item-input rj-footer-input">
+      <textarea msd-elastic ng-model="send_content" style="min-height: initial" placeholder="添加评论" required></textarea>
+    </label>
+    <div class="rj-footer-btn-wrap" ng-click="send()">
+      <div class="buttons">
+        <button style="color:#6EBDDB"class="button button-icon icon ion-android-send rj-footer-btn-left">
+        </button>
+      </div>
+    </div>
+  </ion-footer-bar>
 </ion-view>
