@@ -83,15 +83,10 @@ angular.module('StudyCtrl', [])
   })
 
   .controller('studetialCtrl', function ($scope, $state) {
-    $scope.comlist = function () {
-      $state.go("comlist")
+    $scope.choose=true
+    $scope.attention = function () {
+      $scope.choose = !$scope.choose
     }
-    $scope.anslist = function () {
-      $state.go("anslist")
-    }
-  })
-  .controller('comlistCtrl', function ($scope, $state) {
-    $scope.showcom=false
     $scope.send_content='';
     $scope.comlist =[{
       id: 1,
@@ -135,17 +130,9 @@ angular.module('StudyCtrl', [])
         });
         $scope.send_content=''
       }
-
     }
-
-  })
-  .controller('anslistCtrl', function ($scope, $state) {
-    $scope.choose=true
-    $scope.gocom = function () {
-      $state.go("comlist")
-    }
-    $scope.attention = function () {
-      $scope.choose = !$scope.choose
+    $scope.replay = function (A) {
+      $scope.send_content='回复@'+A
     }
   })
   .controller('stutypeCtrl', function ($scope, $state, LocalStorage) {

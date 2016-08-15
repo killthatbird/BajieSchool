@@ -2,18 +2,13 @@
  * Created by Administrator on 2016/8/1.
  */
 angular.module('quoraCtrl', [])
-  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $http) {
-    $scope.showComment=false
-    $scope.showMore=false
+  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $state, $http) {
+    $scope.showComment = false
+    $scope.showMore = false
     $scope.slideIndex = 0;
-    $scope.viewmore = false;
     $scope.goqu = function (A) {
-      $scope.quobj=A
-      $scope.viewmore = true
+      $state.go("qudetial")
     }
-    $scope.goqulist = function () {
-      $scope.viewmore = false
-    };
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
@@ -42,6 +37,75 @@ angular.module('quoraCtrl', [])
         }
       });
 
+  })
+
+  .controller('qudetialCtrl', function ($scope, $state) {
+    $scope.comlist = function () {
+      $state.go("comlist")
+    }
+    $scope.anslist = function () {
+      $state.go("anslist")
+    }
+  })
+
+  .controller('comlistCtrl', function ($scope, $state) {
+    $scope.showcom = false
+    $scope.send_content = '';
+    $scope.comlist = [{
+      id: 1,
+      heaimg: 'img/ben.png',
+      nickname: 'AUI',
+      content: '广角换长焦？',
+      time: '8-2 08:00',
+      agreenum: '35'
+    }, {
+      id: 2,
+      heaimg: 'img/me.png',
+      nickname: '绿化撒哈拉',
+      content: '广角换长焦？',
+      time: '8-9 21:00',
+      agreenum: '23'
+    },
+      {
+        id: 3,
+        heaimg: 'img/adam.jpg',
+        nickname: 'AUI',
+        content: '广角换长焦？',
+        time: '8-9 08:00',
+        agreenum: '350'
+      }, {
+        id: 4,
+        heaimg: 'img/ionic.png',
+        nickname: '绿化撒哈拉',
+        content: '广角换长焦？',
+        time: '8-9 21:00',
+        agreenum: '23'
+      }];
+    $scope.send = function () {
+      if ($scope.send_content != '') {
+        $scope.comlist.push({
+          id: $scope.comlist.length + 1,
+          heaimg: 'img/ionic.png',
+          nickname: 'Tony Soup',
+          content: $scope.send_content,
+          time: '7-9 17:00',
+          agreenum: 0
+        });
+        $scope.send_content = ''
+      }
+    }
+    $scope.replay = function (A) {
+      $scope.send_content='回复@'+A
+    }
+  })
+  .controller('anslistCtrl', function ($scope, $state) {
+    $scope.choose = true
+    $scope.gocom = function () {
+      $state.go("comlist")
+    }
+    $scope.attention = function () {
+      $scope.choose = !$scope.choose
+    }
   })
   /*  我的问题*/
   .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {

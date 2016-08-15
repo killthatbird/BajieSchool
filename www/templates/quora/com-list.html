@@ -1,0 +1,48 @@
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+    </button>
+  </div>
+  <h1 class="title">评论</h1>
+</ion-header-bar>
+<ion-view>
+  <ion-content style="background: #fff;font-family: 'Microsoft Yahei'">
+    <div class="aui-card-list-content df-act-comment">
+      <ul class="aui-list aui-media-list">
+        <li ng-repeat="com in comlist" class="aui-list-item aui-list-item-middle df-act-coms">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media">
+              <img src="{{com.heaimg}}" class="aui-img-round aui-list-img-sm">
+            </div>
+            <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
+              <div class="aui-list-item-text">
+                <div class="aui-list-item-title aui-font-size-14">{{com.nickname}}</div>
+              </div>
+              <div class="aui-list-item-text">
+                {{com.content}}
+              </div>
+              <p class="y-front-size">
+                <span class="y-p-col">{{com.time}}</span>
+                <span ng-click="replay('{{com.nickname}}')" class="y-p-col-right" style="padding-left: 10px"><i
+                  class="aui-iconfont aui-icon-comment"></i></span>
+                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{com.agreenum}}</span>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar-light" resize-foot-bar style="background-image:none;box-shadow: 0 0 1px #eee;">
+    <label class="item item-input rj-footer-input">
+      <textarea msd-elastic ng-model="send_content" style="min-height: initial" placeholder="添加评论" required></textarea>
+    </label>
+    <div class="rj-footer-btn-wrap" ng-click="send()">
+      <div class="buttons">
+        <button style="color:#6EBDDB" class="button button-icon icon ion-android-send rj-footer-btn-left">
+        </button>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

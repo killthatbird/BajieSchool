@@ -133,16 +133,6 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         },
         controller: 'studetialCtrl'
       })
-      .state('comlist', {
-        url: '/study/comlist',
-        templateUrl: 'templates/study/com-list.html',
-        controller: 'comlistCtrl'
-      })
-      .state('anslist', {
-        url: '/study/anslist',
-        templateUrl: 'templates/study/ans-list.html',
-        controller: 'anslistCtrl'
-      })
       .state('tab.quora', {
         url: '/quora',
         views: {
@@ -175,6 +165,21 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         url: '/quora/mine',
         templateUrl: 'templates/quora/quora-mine.html',
         controller: 'qmineCtrl'
+      })
+      .state('qudetial', {
+        url: '/quora/detial',
+        templateUrl: 'templates/quora/qu-detial.html',
+        controller: 'qudetialCtrl'
+      })
+      .state('comlist', {
+        url: '/quora/comlist',
+        templateUrl: 'templates/quora/com-list.html',
+        controller: 'comlistCtrl'
+      })
+      .state('anslist', {
+        url: '/quora/anslist',
+        templateUrl: 'templates/quora/ans-list.html',
+        controller: 'anslistCtrl'
       })
       /*      .state('nque', {
        url: '/quora/new',

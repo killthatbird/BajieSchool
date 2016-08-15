@@ -23,10 +23,8 @@
         </div>
       </div>
     </section>
-
     <div class="y-list">
-
-      <div class="card y-card a-warp" ng-click="studetial()" ng-repeat="study in studylist">
+      <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial()" >
         <a class="item">
           <h2>{{study.title}}<span style="color:deepskyblue">{{currentTab}}</span></h2>
           <span class="y-lasttime-right">{{study.timestamp}}</span>
@@ -99,7 +97,6 @@
         </div>
         <!--评论结束-->
       </div>
-
     </div>
   </ion-content>
 </ion-view>

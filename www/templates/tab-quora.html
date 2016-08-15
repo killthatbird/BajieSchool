@@ -13,7 +13,7 @@
     <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
       <ion-slide ng-controller="QuoraCtrl" >
         <div class="y-list"  ng-hide="viewmore">
-          <div class="a-warp" ng-repeat="allquora in allquoralist" ng-click="goqu('{{allquora}}')">
+          <div class="a-warp" ng-repeat="allquora in allquoralist" ng-click="goqu(allquora)">
             <a class="item item-thumbnail-left">
               <img src="{{allquora.imgSrc}}" alt="{{allquora.title}}">
               <h2>{{allquora.title}}</h2>
