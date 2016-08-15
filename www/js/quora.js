@@ -23,7 +23,9 @@ angular.module('quoraCtrl', [])
         console.log("slide 3");
       }
     };
-
+$scope.doRefresh = function (A) {
+  console.log("LIIDE===="+A)
+}
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
     };
