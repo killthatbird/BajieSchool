@@ -12,38 +12,38 @@
   <ion-content class="has-header ionic-pseudo" style="background: #eee">
     <form class="list list-pinfo" ng-submit="queryDetil()">
       <a class="item item-icon-left" style="padding:21px 16px 21px 54px">
-        <img class="l_img" style="top:18px" src="img/icon/pinfo/01.png">头像
-        <img class="r_img" src="img/max.png">
+        <img class="l_img" style="top:18px" ng-src="img/icon/pinfo/01.png">头像
+        <img class="r_img" src="{{pinfo.avatar}}">
       </a>
       <a class="item item-icon-left df-divider">
         <img class="l_img" src="img/icon/pinfo/02.png">
         昵称
         <span class="item-note">
-            Grammy
+            {{pinfo.nickname}}
           </span>
       </a>
       <a class="item item-icon-left">
         <img class="l_img" src="img/icon/pinfo/03.png">性别
         <span class="item-note">
-            女
+            {{pinfo.sex}}
           </span>
       </a>
       <a class="item item-icon-left">
         <img class="l_img" src="img/icon/pinfo/04.png">签名
         <span class="item-note">
-           文字文字文字文字文字文字文字
+           {{pinfo.motto}}
           </span>
       </a>
       <a class="item item-icon-left df-divider">
         <img class="l_img" src="img/icon/pinfo/05.png">学校
         <span class="item-note">
-           湖北工业大学
+           {{pinfo.university}}
       </span>
       </a>
       <a class="item item-icon-left">
         <img class="l_img" src="img/icon/pinfo/06.png">学号
         <span class="item-note">
-          201234527485526
+          {{pinfo.student_id}}
       </span>
       </a>
     </form>

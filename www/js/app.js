@@ -214,7 +214,8 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
       })
       .state('pinfo', {
         url: '/mine/pinfo',
-        templateUrl: 'templates/mine/pinfo.html'
+        templateUrl: 'templates/mine/pinfo.html',
+        controller: 'pInfoCtrl'
       })
 
       .state('about', {

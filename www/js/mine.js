@@ -111,4 +111,15 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       /*$scope.sets.splice($scope.sets.indexOf(idx),1);*/
     }
   })
+
+  .controller('pInfoCtrl', function ($scope, $http) {
+    $http.get("../data/mine/p-info.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.pinfo = response.data.pinfo;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+  })
 ;

@@ -131,10 +131,12 @@ angular.module('ActCtrl', [])
       $ionicSlideBoxDelegate.slide(index);
     };
 
-    $scope.doRefresh = function () {
-      $http.get('/')
-        .success(function (newItems) {
-          $scope.items = newItems;
+    $scope.doRefreshAct = function () {
+      $http.get('../data/activity/activity-list.json')
+        .then(function (response) {
+          if (response.data.status == 0) {
+            $scope.activitylist = response.data.activitylist;
+          }
         })
         .finally(function () {
           // Stop the ion-refresher from spinning
@@ -142,6 +144,7 @@ angular.module('ActCtrl', [])
         });
     };
   })
+
   /*发起活动*/
   .controller('newactCtrl', function ($scope, $ionicActionSheet, $http) {
 
