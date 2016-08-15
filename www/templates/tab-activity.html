@@ -46,7 +46,7 @@
           <div class="y-list">
             <div ng-repeat="activity in activitylist" class="card y-card"  ng-click="actdetial(activity)">
               <a class="item item-thumbnail-left">
-                <img src="{{activity.imgSrc}}" alt="{{activity.title}}">
+                <img ng-src="{{activity.imgSrc}}" alt="{{activity.title}}">
                 <h2>{{activity.title}}</h2>
                 <span class="y-lasttime-right">{{activity.timestamp}}</span>
                 <p>{{activity.content}}</p>
@@ -134,7 +134,7 @@
               <div class="y-list" ng-hide="viewmore">
                 <div ng-repeat="publishedactivity in publishedactivitylist" class="card y-card" ng-click="gopuact('{{publishedactivity}}')">
                   <a class="item item-thumbnail-left">
-                    <img src="{{publishedactivity.imgSrc}}" alt="{{publishedactivity.title}}">
+                    <img ng-src="{{publishedactivity.imgSrc}}" alt="{{publishedactivity.title}}">
                     <h2>{{publishedactivity.title}}</h2>
                     <span class="y-lasttime-right">{{publishedactivity.timestamp}}</span>
                     <p class="y-front-size">{{publishedactivity.content}}</p>
@@ -154,7 +154,7 @@
                 <div class="act-warp">
                   <div ng-repeat="joinactivity in joinactivitylist" class="card y-card"  ng-click="gopuact('{{joinactivity}}')">
                     <a class="item item-thumbnail-left">
-                      <img src="{{joinactivity.imgSrc}}" alt="{{joinactivity.title}}">
+                      <img ng-src="{{joinactivity.imgSrc}}" alt="{{joinactivity.title}}">
                       <h2>{{joinactivity.title}}</h2>
                       <span class="y-lasttime-right">{{joinactivity.timestamp}}</span>
                       <p class="y-front-size">{{joinactivity.content}}</p>

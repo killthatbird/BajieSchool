@@ -2,7 +2,7 @@
   <h1 class="title">有问有答</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content style="background: #ebebeb">
+  <ion-content style="overflow: hidden; background: #ebebeb" overflow-scroll="true">
     <div class="row" style="padding: 0px">
       <ul class="slide-tab">
         <li ng-class="slideIndex == 0 ? 'current':''"><a ng-click="activeSlide(0)">全部问题</a></li>
@@ -11,11 +11,17 @@
       </ul>
     </div>
     <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
-      <ion-slide ng-controller="QuoraCtrl" >
-        <div class="y-list"  ng-hide="viewmore">
+      <ion-slide ng-controller="QuoraCtrl">
+        <ion-content>
+          <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!"
+                         refreshing-icon="ion-loading-b">
+          </ion-refresher>
+        </ion-content>
+
+        <div class="y-list" ng-hide="viewmore">
           <div class="a-warp" ng-repeat="allquora in allquoralist" ng-click="goqu(allquora)">
             <a class="item item-thumbnail-left">
-              <img src="{{allquora.imgSrc}}" alt="{{allquora.title}}">
+              <img ng-src="{{allquora.imgSrc}}" alt="{{allquora.title}}">
               <h2>{{allquora.title}}</h2>
               <span class="y-lasttime-right">{{allquora.timestamp}}</span>
               <p style="white-space: initial;">{{allquora.content}}</p>
@@ -46,7 +52,7 @@
 
             <div ng-repeat="myquora in myquoralist" class="card y-card">
               <div class="item item-thumbnail-left">
-                <img src="{{myquora.imgSrc}}" alt="{{myquora.title}}">
+                <img ng-src="{{myquora.imgSrc}}" alt="{{myquora.title}}">
                 <h2>{{myquora.title}}</h2>
                 <span class="y-lasttime-right">{{myquora.timestamp}}</span>
                 <p>{{myquora.content}}</p>
@@ -64,7 +70,7 @@
                 <li class="aui-list-item aui-list-item-middle">
                   <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media">
-                      <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
+                      <img ng-src="img/perry.png" class="aui-img-round aui-list-img-sm">
                     </div>
                     <div class="aui-list-item-inner">
                       <div class="aui-list-item-text">
@@ -83,7 +89,7 @@
                 <li class="aui-list-item aui-list-item-middle">
                   <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media">
-                      <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+                      <img ng-src="img/ben.png" class="aui-img-round aui-list-img-sm">
                     </div>
                     <div class="aui-list-item-inner">
                       Lucy
