@@ -14,17 +14,19 @@
 <ion-view>
   <ion-content class="has-header">
     <label class="item item-input newplan">
-      <input type="text" name="name" ng-model="pormData.name" placeholder="事件名称">
+      <img class="list-left-img" src="img/icon/plan/3.png">
+      <span class="input-label">事件</span>
+      <input type="text" name="name" ng-model="pormData.name">
     </label>
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/3.png">
       <span class="input-label">时间</span>
-      <input type="date" name="name" ng-model="pormData.name" value="湖北工业大学">
+      <input type="date" name="name" ng-model="pormData.date">
     </label>
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/4.png">
       <span class="input-label">备注</span>
-      <input type="text" name="name" ng-model="pormData.name">
+      <input type="text" name="name" ng-model="pormData.remark">
     </label>
     <label class="item item-input newplan" ng-click="add()">
       <i class="icon ion-ios-plus-outline" ng-class="{'df_grey':disabled}" class=""
@@ -35,29 +37,10 @@
       <img class="list-left-img" src="img/icon/plan/5.png">
       <span class="input-label">提醒</span>
       <select name="name" ng-model="set.time" style="width:65%">
-        <option value="" selected="selected">--请选择--</option>
-        <option value="0">0分钟</option>
-        <option value="1">1分钟</option>
-        <option value="2">5分钟</option>
-        <option value="3">10分钟</option>
-        <option value="4">15分钟</option>
-        <option value="5">20分钟</option>
-        <option value="6">25分钟</option>
-        <option value="7">30分钟</option>
-        <option value="8">45分钟</option>
-        <option value="9">1小时</option>
-        <option value="10">2小时</option>
-        <option value="11">3小时</option>
-        <option value="12">12小时</option>
-        <option value="13">2小时</option>
-        <option value="14">3小时</option>
-        <option value="15">12小时</option>
-        <option value="16">24小时</option>
-        <option value="17">2天</option>
-        <option value="18">1周</option>
+        <option ng-repeat="reminder in reminders" value="{{reminder.value}}">{{reminder.option}}</option>
       </select>
       <div ng-click="del($index)">
-      <i class="icon ion-ios-minus" style="font-size: 29px;margin-left: 10px;color: #ef473a;"></i>
+        <i class="icon ion-ios-minus" style="font-size: 29px;margin-left: 10px;color: #ef473a;"></i>
       </div>
     </div>
   </ion-content>

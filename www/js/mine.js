@@ -62,20 +62,40 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('myplanCtrl', function ($scope, $stateParams, $state) {
+  .controller('myplanCtrl', function ($scope, $stateParams, $state, $http) {
     $scope.title = $stateParams.barTitle;
     $scope.newplan = function () {
       $state.go("newplan")
     }
+
+    $http.get("../data/mine/mine-agenda.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.agendalist = response.data.aglist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
   })
 
-  .controller('newplanCtrl', function ($scope, $state) {
+  .controller('newplanCtrl', function ($scope, $state, $http) {
+    $http.get("../data/mine/reminder.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.reminders = response.data.reminder;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
     $scope.sets = [];
     $scope.disabled = false;
     $scope.add = function () {
       if ($scope.sets.length < 5) {
         $scope.disabled = false;
-        var obj = {time: "7"};
+        var obj = {};
+
         $scope.sets.push(obj);
       } else {
         $scope.disabled = true;
