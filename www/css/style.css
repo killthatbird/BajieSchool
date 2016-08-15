@@ -783,6 +783,8 @@
   border:none;
   color: #444; }
 .df-footer .title button{margin-top: 5px;}
+.aui-ans{position: relative;bottom:30px;}
+.aui-ans li p{float: right;padding: 0 16px 16px;margin-bottom: 15px}
 /*
 注册*/
 .alpha_sidebar{
