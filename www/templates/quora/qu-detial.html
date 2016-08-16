@@ -4,35 +4,36 @@
             class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
     </button>
   </div>
-  <h1 class="title">共个回答</h1>
+  <h1 class="title">共{{totalanswer}}个回答</h1>
 </ion-header-bar>
 <ion-view>
   <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'">
     <div class="aui-card-list">
       <div class="aui-card-list-header" style="border-bottom: 1px solid #ddd;font-size: 18px;">
-        从摄影构图与视觉上来看，有哪些能培养良好摄影感的方法？
+        {{question.title}}
       </div>
       <div class="aui-card-list-footer">
-        <div><i class="aui-iconfont aui-icon-laud"></i>&nbsp;537</div>
-        <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;11</div>
-        <div><i class="aui-iconfont aui-icon-star"></i>&nbsp;14179</div>
+        <div><i class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.likenum}}</div>
+        <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.commentnum}}</div>
+        <div><i class="aui-iconfont aui-icon-star"></i>&nbsp;关注</div>
       </div>
     </div>
 
-    <div style="margin:0px 0px 8px; box-shadow: initial;background: #fff" ng-click="anslist()">
+    <div style="margin:0px 0px 8px; box-shadow: initial;background: #fff" ng-click="anslist()"
+         ng-repeat="answer in answerlist">
       <div style="border: initial;padding:16px;">
         <div class="aui-list-item-user">
-          <img src="img/perry.png" class="aui-img-round aui-list-img-sm">&nbsp;
-          木西AlexanDENG
+          <img ng-src="{{answer.avatar}}" class="aui-img-round aui-list-img-sm">&nbsp;
+          {{answer.nickname}}
         </div>
         <div class="aui-content">
-          想说5点，简化画面。符合现在小清新/艺术气息/扫街/ins热门的一种审美。趴在地上。因为大家都是站着拍的，你趴下来就不一样，不一样多少就是亮点。前景后景。定焦头要么定前要么定后，前后景物距有差，那叫啥，景深？不要心疼快门。对着一个想拍的目标一定要多角度不心疼快门疯狂的拍，后期整理专治选择困难症。不要怕被别人当傻逼，有些角度必须要用一种傻逼的姿态去拍，没事，你心理也可以鄙视他们不懂艺术，你可以告诉别人你是新锐。
+          {{answer.content}}
         </div>
         <div class="aui-card-list-footer df-act-fs">
           <p style="margin:0px;">
-            <small>4.5k&nbsp;赞同&nbsp;·&nbsp;<a style="color:#757575" ng-click="comlist()">129&nbsp;评论</a>&nbsp;·&nbsp;
+            <small>{{answer.likenum}}&nbsp;赞同&nbsp;·&nbsp;<a style="color:#757575" ng-click="comlist()">{{answer.commentnum}}&nbsp;评论</a>&nbsp;·&nbsp;
             </small>
-            <small>2小时前</small>
+            <small>{{answer.timestamp}}</small>
           </p>
         </div>
       </div>

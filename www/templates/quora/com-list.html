@@ -10,23 +10,23 @@
   <ion-content style="background: #fff;font-family: 'Microsoft Yahei'">
     <div class="aui-card-list-content df-act-comment">
       <ul class="aui-list aui-media-list">
-        <li ng-repeat="com in comlist" class="aui-list-item aui-list-item-middle df-act-coms">
+        <li ng-repeat="answer in answerlist" class="aui-list-item aui-list-item-middle df-act-coms">
           <div class="aui-media-list-item-inner">
             <div class="aui-list-item-media">
-              <img ng-src="{{com.heaimg}}" class="aui-img-round aui-list-img-sm">
+              <img ng-src="{{answer.avatar}}" class="aui-img-round aui-list-img-sm">
             </div>
             <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
               <div class="aui-list-item-text">
-                <div class="aui-list-item-title aui-font-size-14">{{com.nickname}}</div>
+                <div class="aui-list-item-title aui-font-size-14">{{answer.nickname}}</div>
               </div>
               <div class="aui-list-item-text">
-                {{com.content}}
+                {{answer.content}}
               </div>
               <p class="y-front-size">
-                <span class="y-p-col">{{com.time}}</span>
-                <span ng-click="replay('{{com.nickname}}')" class="y-p-col-right" style="padding-left: 10px"><i
+                <span class="y-p-col">{{answer.timestamp}}</span>
+                <span ng-click="replay('{{answer.nickname}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
-                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{com.agreenum}}</span>
+                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{answer.likenum}}</span>
               </p>
             </div>
           </div>
