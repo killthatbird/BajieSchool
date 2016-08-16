@@ -82,42 +82,56 @@ angular.module('StudyCtrl', [])
     }
   })
 
-  .controller('studetialCtrl', function ($scope, $state) {
+  .controller('studetialCtrl', function ($scope, $state, $http) {
     $scope.choose = true
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }
     $scope.send_content = '';
-    $scope.comlist = [{
-      id: 1,
-      heaimg: 'img/ben.png',
-      nickname: 'AUI',
-      content: '总的来说，还是要多做题，多总结，单词量也是必需的！！',
-      time: '2016-8-2 08:00',
-      agreenum: '35'
-    }, {
-      id: 2,
-      heaimg: 'img/me.png',
-      nickname: 'Jenny',
-      content: '背单词？',
-      time: '2016-8-9 21:00',
-      agreenum: '23'
-    },
-      {
-        id: 3,
-        heaimg: 'img/adam.jpg',
-        nickname: 'Cindy',
-        content: '历年真题吃三遍，70分以上没得跑了！',
-        time: '2016-8-9 08:00',
-        agreenum: '350'
-      }, {
-        id: 4,
-        heaimg: 'img/ionic.png',
-        nickname: 'Will',
-        content: '同为英语渣，一起来学习！[笑cry][笑cry][笑cry]',
-        time: '8-9 21:00',
-        agreenum: '23'
-      }];
+
+    $http.get("../data/study/study-detail.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.comlist = response.data.comment.list;
+          $scope.user = response.data.user;
+          $scope.posting = response.data.posting;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
+
+    /*$scope.comlist = [{
+     id: 1,
+     heaimg: 'img/ben.png',
+     nickname: 'AUI',
+     content: '总的来说，还是要多做题，多总结，单词量也是必需的！！',
+     time: '2016-8-2 08:00',
+     agreenum: '35'
+     }, {
+     id: 2,
+     heaimg: 'img/me.png',
+     nickname: 'Jenny',
+     content: '背单词？',
+     time: '2016-8-9 21:00',
+     agreenum: '23'
+     },
+     {
+     id: 3,
+     heaimg: 'img/adam.jpg',
+     nickname: 'Cindy',
+     content: '历年真题吃三遍，70分以上没得跑了！',
+     time: '2016-8-9 08:00',
+     agreenum: '350'
+     }, {
+     id: 4,
+     heaimg: 'img/ionic.png',
+     nickname: 'Will',
+     content: '同为英语渣，一起来学习！[笑cry][笑cry][笑cry]',
+     time: '8-9 21:00',
+     agreenum: '23'
+     }];*/
+
     $scope.send = function () {
       if ($scope.send_content != '') {
         $scope.comlist.push({

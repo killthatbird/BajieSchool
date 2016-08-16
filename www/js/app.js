@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         url: '/activity/actdetial',
         templateUrl: 'templates/activity/act-detial.html',
         params: {
-          actobj:null
+          actobj: null
         },
         controller: 'actdetialCtrl'
       })
@@ -176,16 +176,15 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         templateUrl: 'templates/quora/com-list.html',
         controller: 'comlistCtrl'
       })
-      .state('anslist', {
-        url: '/quora/anslist',
-        templateUrl: 'templates/quora/ans-list.html',
-        controller: 'anslistCtrl'
+      .state('ansdetail', {
+        url: '/quora/ansdetail',
+        templateUrl: 'templates/quora/ans-detail.html',
+        controller: 'ansdetailCtrl',
+        params: {
+          answer: null,
+          question: null
+        }
       })
-      /*      .state('nque', {
-       url: '/quora/new',
-       templateUrl: 'templates/quora/new-que.html',
-       controller: 'nqueCtrl'
-       })*/
       .state('tab.mine', {
         url: '/mine',
         views: {
@@ -243,11 +242,11 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         templateUrl: 'templates/account/new-password.html',
         controller: 'newpassCtrl'
       })
-    .state('selsch', {
-      url: '/register/step1',
-      templateUrl: 'templates/sel-school.html',
-      controller: 'selSchCtrl'
-    });
+      .state('selsch', {
+        url: '/register/step1',
+        templateUrl: 'templates/sel-school.html',
+        controller: 'selSchCtrl'
+      });
     /*   $urlRouterProvider.otherwise('/login');*/
     // $urlRouterProvider.otherwise('/tab/activity');
     $urlRouterProvider.otherwise('/tour');

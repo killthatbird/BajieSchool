@@ -1,0 +1,55 @@
+<ion-header-bar align-title="left" class="bar-positive"
+                style="background-image:linear-gradient(0deg, #59ADC9, #6EBDDB 50%, transparent 50%)">
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+    </button>
+  </div>
+  <h1 class="title">回答</h1>
+</ion-header-bar>
+<ion-view>
+  <ion-content style="font-family: 'Microsoft Yahei'">
+    <div class="aui-card-list-content df-act-comment">
+      <div class="stu-ans">
+        <h2 style="color:#fff;">{{question.title}}</h2>
+      </div>
+      <li class="aui-list-item aui-list-item-middle df-stu-user">
+        <div class="aui-media-list-item-inner">
+          <div class="aui-list-item-media">
+            <img ng-src="{{answer.avatar}}" class="aui-img-round aui-list-img-sm">
+          </div>
+          <div class="aui-list-item-inner">
+            <div class="aui-list-item-text">
+              <div class="aui-list-item-title" style="font-size: 0.6rem">{{answer.nickname}}</div>
+            </div>
+            <div class="aui-list-item-text" style="font-size: 0.6rem">
+              {{answer.motto}}
+            </div>
+          </div>
+          <button ng-show="choose" ng-click="attention()"
+                  class="button  button-small y-lasttime-right icon-left ion-ios-plus-outline button-balanced"
+                  style="padding: 0px 14px;right: 14px;top: 14px;">关注
+          </button>
+          <button ng-hide="choose" ng-click="attention()" class="button  button-small y-lasttime-right icon-left"
+                  style="padding: 0px 14px;right: 14px;top: 14px;background: gainsboro;color:grey">已关注
+          </button>
+        </div>
+    </div>
+    </li>
+    <section class="aui-content-padded aui-ans">
+      <p>{{answer.content}}</p>
+      <li>
+        <p>编辑于 {{answer.timestamp}}</p>
+      </li>
+    </section>
+    </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer df-footer">
+    <button class="button icon  aui-iconfont aui-icon-laud">赞</button>
+    <div class="title">
+      <button class="button icon  aui-iconfont aui-icon-star">收藏</button>
+    </div>
+    <button ng-click="gocom()" class="button icon  aui-iconfont aui-icon-note">{{answer.likenum}}</button>
+  </div>
+</ion-view>

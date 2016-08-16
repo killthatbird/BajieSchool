@@ -51,13 +51,12 @@ angular.module('quoraCtrl', [])
           $scope.answerlist = response.data.answer.list;
           $scope.totalanswer = response.data.answer.totalanswer;
           $scope.question = response.data.question;
-          console.log('I love you');
         } else {
           console.error('网络连接失败...');
         }
       });
-    $scope.anslist = function () {
-      $state.go("anslist")
+    $scope.ansdetail = function (answerobj, questionobj) {
+      $state.go("ansdetail", {answer: answerobj, question: questionobj});
     }
   })
 
@@ -90,8 +89,10 @@ angular.module('quoraCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('anslistCtrl', function ($scope, $state) {
+  .controller('ansdetailCtrl', function ($scope, $state, $stateParams) {
     $scope.choose = true
+    $scope.answer = $stateParams.answer;
+    $scope.question = $stateParams.question;
     $scope.gocom = function () {
       $state.go("comlist")
     }
