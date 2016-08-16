@@ -4,7 +4,6 @@
 angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $state, $http) {
     $scope.showComment = false
-    $scope.showMore = false
     $scope.slideIndex = 0;
     $scope.goqu = function (A) {
       $state.go("qudetial")
@@ -12,7 +11,6 @@ angular.module('quoraCtrl', [])
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
-      console.log("slide Change");
       if ($scope.slideIndex == 0) {
         console.log("slide 1");
       }
@@ -41,13 +39,25 @@ angular.module('quoraCtrl', [])
 
   })
 
-  .controller('qudetialCtrl', function ($scope, $state) {
+  .controller('qudetialCtrl', function ($scope, $state,$http) {
     $scope.answerlist = function () {
       $state.go("comlist")
     }
     $scope.anslist = function () {
       $state.go("anslist")
     }
+    $http.get("../data/quora/quora-answerlist-detail.json")
+      .then(function (response) {
+        console.log('get method is in');
+        if (response.data.status == 0) {
+          $scope.answerlist = response.data.answer.list;
+          $scope.totalanswer = response.data.answer.totalanswer;
+          $scope.question = response.data.question;
+          console.log('I love you');
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
   })
 
   .controller('comlistCtrl', function ($scope, $state, $http) {
