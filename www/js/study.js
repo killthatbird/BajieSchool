@@ -156,7 +156,7 @@ angular.module('StudyCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('stutypeCtrl', function ($scope, $state, LocalStorage) {
+  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout) {
     $scope.tjTab = '推荐';
     $scope.isActivetab = function (A) {
       console.log(A == $scope.tjTab)
@@ -187,10 +187,21 @@ angular.module('StudyCtrl', [])
       $scope.stype.splice(idx, 1);
     }
     $scope.addtype = function (A) {
-      $scope.stype.push({
-        title:A,
-        id: $scope.stype.length + 1
-      });
+      if($scope.stype.length>=8){
+        var alertPopup = $ionicPopup.alert({
+          title: '提示',
+          template: '不能超过8个~',
+          okText: '返回'
+        });
+        $timeout(function () {
+          alertPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
+      }else{
+        $scope.stype.push({
+          title:A,
+          id: $scope.stype.length + 1
+        });
+      }
      /* LocalStorage.set("stutype", A)
       $state.go("tab.study", {}, {reload: true})*/
     }
