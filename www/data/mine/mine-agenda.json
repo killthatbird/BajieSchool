@@ -5,9 +5,8 @@
   "aglist": [
     {
       "title": "早读",
-      "content": "早上起来读英语",
+      "remark": "早上起来读英语",
       "date": "2016-08-12 07:00",
-      "remark": "一定要做的事！",
       "reminder": {
         "name": "提前5分钟",
         "time": "2016-08-12 06:55"
@@ -15,9 +14,8 @@
     },
     {
       "title": "游泳",
-      "content": "多锻炼，健康",
+      "remark": "多锻炼，健康",
       "date": "2016-08-13 13:00",
-      "remark": "争取每天做到!！",
       "reminder": {
         "name": "提前10分钟",
         "time": "2016-08-12 06:50"
@@ -25,9 +23,8 @@
     },
     {
       "title": "编程",
-      "content": "学习scikit learn",
+      "remark": "学习scikit learn",
       "date": "2016-08-14 19:30",
-      "remark": "常常练习！！",
       "reminder": {
         "name": "提前3分钟",
         "time": "2016-08-12 06:57"
