@@ -4,6 +4,7 @@
 angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $state, $http) {
     $scope.showComment = false
+    $scope.showMore = false
     $scope.slideIndex = 0;
     $scope.goqu = function (A) {
       $state.go("qudetial")
@@ -11,6 +12,7 @@ angular.module('quoraCtrl', [])
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
+      console.log("slide Change");
       if ($scope.slideIndex == 0) {
         console.log("slide 1");
       }
@@ -39,68 +41,32 @@ angular.module('quoraCtrl', [])
 
   })
 
-  .controller('qudetialCtrl', function ($scope, $state,$http) {
+  .controller('qudetialCtrl', function ($scope, $state, $http) {
     $scope.answerlist = function () {
-      $state.go("comlist")
-    }
-    $scope.anslist = function () {
-      $state.go("anslist")
+      $state.go("comlist");
     }
     $http.get("../data/quora/quora-answerlist-detail.json")
       .then(function (response) {
-        console.log('get method is in');
         if (response.data.status == 0) {
           $scope.answerlist = response.data.answer.list;
           $scope.totalanswer = response.data.answer.totalanswer;
           $scope.question = response.data.question;
-          console.log('I love you');
         } else {
           console.error('网络连接失败...');
         }
       });
+    $scope.ansdetail = function (answerobj, questionobj) {
+      $state.go("ansdetail", {answer: answerobj, question: questionobj});
+    }
   })
 
   .controller('comlistCtrl', function ($scope, $state, $http) {
     $scope.showcom = false
     $scope.send_content = '';
-    /*$scope.comlist = [{
-     id: 1,
-     heaimg: 'img/ben.png',
-     nickname: 'AUI',
-     content: '广角换长焦？',
-     time: '8-2 08:00',
-     agreenum: '35'
-     }, {
-     id: 2,
-     heaimg: 'img/me.png',
-     nickname: '绿化撒哈拉',
-     content: '广角换长焦？',
-     time: '8-9 21:00',
-     agreenum: '23'
-     },
-     {
-     id: 3,
-     heaimg: 'img/adam.jpg',
-     nickname: 'AUI',
-     content: '广角换长焦？',
-     time: '8-9 08:00',
-     agreenum: '350'
-     }, {
-     id: 4,
-     heaimg: 'img/ionic.png',
-     nickname: '绿化撒哈拉',
-     content: '广角换长焦？',
-     time: '8-9 21:00',
-     agreenum: '23'
-     }];*/
-    $http.get("../data/quora/quora-answerlist-detail.json")
+    $http.get("../data/quora/comment.json")
       .then(function (response) {
-        console.log('get method is in');
         if (response.data.status == 0) {
-          $scope.answerlist = response.data.answer.list;
-          $scope.totalanswer = response.data.answer.totalanswer;
-          $scope.question = response.data.question;
-          console.log('I love you');
+          $scope.commentlist = response.data.commentlist;
         } else {
           console.error('网络连接失败...');
         }
@@ -123,8 +89,10 @@ angular.module('quoraCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('anslistCtrl', function ($scope, $state) {
+  .controller('ansdetailCtrl', function ($scope, $state, $stateParams) {
     $scope.choose = true
+    $scope.answer = $stateParams.answer;
+    $scope.question = $stateParams.question;
     $scope.gocom = function () {
       $state.go("comlist")
     }

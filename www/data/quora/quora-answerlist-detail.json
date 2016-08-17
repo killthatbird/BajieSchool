@@ -1,6 +1,7 @@
 {
   "status": 0,
   "question": {
+    "qid": "q10010",
     "title": "从摄影构图与视觉上来看，有哪些能培养良好摄影感的方法？",
     "likenum": 520,
     "commentnum": 15
@@ -11,24 +12,30 @@
     "totalanswer": 3,
     "list": [
       {
+        "aid": "a10001",
         "nickname": "Alexa",
         "avatar": "img/perry.png",
+        "motto": "这个家伙很懒，什么也没留下~",
         "content": "想说5点，简化画面。符合现在小清新/艺术气息/扫街/ins热门的一种审美。趴在地上。因为大家都是站着拍的，你趴下来就不一样，不一样多少就是亮点。前景后景。定焦头要么定前要么定后，前后景物距有差，那叫啥，景深？不要心疼快门。对着一个想拍的目标一定要多角度不心疼快门疯狂的拍，后期整理专治选择困难症。不要怕被别人当傻逼，有些角度必须要用一种傻逼的姿态去拍，没事，你心理也可以鄙视他们不懂艺术，你可以告诉别人你是新锐。",
         "likenum": 520,
         "commentnum": 134,
         "timestamp": "2小时前"
       },
       {
+        "aid": "a10002",
         "nickname": "Jeff",
-        "avatar": "img/perry.png",
+        "avatar": "img/ben.png",
+        "motto": "好好学习天天向上",
         "content": "《纽约摄影教材》好好学习吧，骚年！",
         "likenum": 365,
         "commentnum": 154,
         "timestamp": "3小时前"
       },
       {
+        "aid": "a10003",
         "nickname": "LucasX",
-        "avatar": "img/perry.png",
+        "avatar": "img/mike.png",
+        "motto": "To make it",
         "content": "多看大师的作品，培养美感最重要！",
         "likenum": 528,
         "commentnum": 265,
