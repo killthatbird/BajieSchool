@@ -761,11 +761,13 @@
   font-size: 300%;
   background-color: rgba(0, 0, 0, 0.5); }
 /*学习*/
-.df-stu-type .aui-col-xs-3{color:#fff;}
-.stu-warp{width:70%;white-space:normal;font-size:0.8rem;margin:auto;border-radius: 50%;color:#fff}
-.stu-type-border{color:#000 !important;border:2px solid #8bc0df}
-.mlenstyle{padding: 0.8rem;line-height:initial !important;font-size:0.7rem !important}
-.mlestyle{padding: 0.7rem;line-height:initial !important;font-size:0.7rem !important}
+.tjfc{color:red !important;}
+.df-tab{min-width:100%;white-space: nowrap}
+.df-tab span{width:20%;display: inline-block; text-align: center;}
+.stu-row .aui-col-xs-3{height:2.2rem}
+.stu-row h2{padding: 10px 0.6rem}
+.df-tab-active{font-size:0.9rem;font-weight: bold}
+.stu-warp{width:80%;font-size:0.7rem;padding:5px 0;margin:auto;text-align:center;background: #fff;font-weight:bold;font-family: "Microsoft Yahei";color:#000}
 .stu-all{position: relative}
 .stu-all .stu-i{position: absolute;top:15%;right:16%;color:#9E9E9E}
 .y-spcol-right{position: relative;right:30px}

@@ -111,6 +111,7 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         views: {
           'tab-study': {
             templateUrl: 'templates/tab-study.html',
+            controller: 'StudysCtrl',
             params: {
               tname: null
             }

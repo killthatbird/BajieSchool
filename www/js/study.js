@@ -3,14 +3,21 @@
  */
 angular.module('StudyCtrl', [])
   .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http) {
-    $scope.valueh = $(".aui-col-xs-3")[0].offsetWidth;
-    LocalStorage.set("stuh", $scope.valueh)
-    $scope.myheight = $scope.valueh + 'px';
-    $scope.sth = $scope.valueh * 0.7 + 'px';
+    $scope.currentTab = '推荐';
+    $scope.onClickTab = function (tab) {
+      $scope.currentTab = tab.title;
+    }
+    $scope.isActivetab = function (A) {
+      return A == $scope.currentTab;
+    }
     $scope.remove = false;
     $scope.showComment = false;
     $scope.showMore = false;
-    $scope.stype = [{
+    $scope.stype = [
+      {
+        id: 8,
+        title: '推荐'
+      }, {
       id: 1,
       title: '考研',
       bg: '#e4842e'
@@ -150,10 +157,16 @@ angular.module('StudyCtrl', [])
     }
   })
   .controller('stutypeCtrl', function ($scope, $state, LocalStorage) {
-    $scope.valueh = LocalStorage.get("stuh")
-    $scope.myheight = $scope.valueh + 'px';
-    $scope.sth = $scope.valueh * 0.7 + 'px';
-    $scope.stype = [{
+    $scope.tjTab = '推荐';
+    $scope.isActivetab = function (A) {
+      console.log(A == $scope.tjTab)
+      return A == $scope.tjTab;
+    }
+    $scope.stype = [
+      {
+        title: '推荐'
+      },
+      {
       title: '考研'
     }, {
       title: '英语'
@@ -170,8 +183,15 @@ angular.module('StudyCtrl', [])
     }, {
       title: '政治学'
     }];
+    $scope.removetype = function (idx) {
+      $scope.stype.splice(idx, 1);
+    }
     $scope.addtype = function (A) {
-      LocalStorage.set("stutype", A)
-      $state.go("tab.study", {}, {reload: true})
+      $scope.stype.push({
+        title:A,
+        id: $scope.stype.length + 1
+      });
+     /* LocalStorage.set("stutype", A)
+      $state.go("tab.study", {}, {reload: true})*/
     }
   })

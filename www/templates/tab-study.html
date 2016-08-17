@@ -1,28 +1,15 @@
-<ion-header-bar class="bar-positive">
-  <h1 class="title">学习天地</h1>
+<ion-header-bar class="bar-positive" style="line-height: 34px;">
+  <ion-scroll  direction="x" class="df-tab">
+    <span  ng-repeat="t in stype" ng-class="{'df-tab-active':isActivetab('{{t.title}}')}"
+           ng-click="onClickTab(t)">{{t.title}}</span>
+    <span  ng-click="gostype()" ><i class="ion-plus" style="font-size: 20px;"></i></span>
+  </ion-scroll>
 </ion-header-bar>
 <ion-view>
-  <ion-content cache-view="false" ng-controller="StudysCtrl" class="has-header">
+  <ion-content cache-view="false" class="has-header">
     <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!"
                    refreshing-icon="ion-loading-b">
     </ion-refresher>
-    <section class="aui-grid">
-      <div class="aui-row" style="margin: 0 2%;">
-        <div class="aui-col-xs-3 stu-all" on-hold="remove=true" ng-style="{height:myheight}" ng-repeat="t in stype">
-          <div class="stu-warp" ng-style="{'background-color': t.bg,height:sth,'line-height':sth}"
-               ng-class="{'mlenstyle':t.title.length>=4}">
-            {{t.title}}
-          </div>
-          <i ng-click="delete($index)" ng-show="remove" class="ion-close-circled stu-i"></i>
-        </div>
-        <div class="aui-col-xs-3" ng-click="gostype()" ng-style="{height:myheight}">
-          <div class="stu-warp" ng-style="{height:sth,'line-height':sth}"
-               style="background: #8c8c8c;font-size: 1.1rem;font-weight: bold;">
-            <i class="aui-iconfont aui-icon-plus"></i>
-          </div>
-        </div>
-      </div>
-    </section>
     <div class="y-list">
       <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial()" >
         <a class="item">

@@ -7,34 +7,22 @@
   <h1 class="title">学习分类</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content class="has-header">
-    <section class="aui-grid">
-      <div class="aui-row" style="margin: 0 3%;">
-        <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-style="{height:myheight}" ng-repeat="t in stype">
-          <div class="stu-warp stu-type-border" ng-style="{height:sth,'line-height':sth}"
-               ng-class="{'mlestyle':t.title.length>=4}">
-            {{t.title}}
-          </div>
-        </div>
-        <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-style="{height:myheight}" ng-repeat="t in stype">
-          <div class="stu-warp stu-type-border" ng-style="{height:sth,'line-height':sth}"
-               ng-class="{'mlestyle':t.title.length>=4}">
-            {{t.title}}
-          </div>
-        </div>
-        <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-style="{height:myheight}" ng-repeat="t in stype">
-          <div class="stu-warp stu-type-border" ng-style="{height:sth,'line-height':sth}"
-               ng-class="{'mlestyle':t.title.length>=4}">
-            {{t.title}}
-          </div>
-        </div>
-        <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-style="{height:myheight}" ng-repeat="t in stype">
-          <div class="stu-warp stu-type-border" ng-style="{height:sth,'line-height':sth}"
-               ng-class="{'mlestyle':t.title.length>=4}">
-            {{t.title}}
-          </div>
+  <ion-content class="has-header" style="background: #f3f5f4;">
+    <div class="aui-row stu-row" style="margin:3%;">
+      <h2>XXXXX1</h2>
+      <div class="aui-col-xs-3" ng-click="removetype(($index))"  ng-repeat="t in stype">
+        <div class="stu-warp" ng-class="{'tjfc':isActivetab('{{t.title}}')}" >
+          {{t.title}}
         </div>
       </div>
-    </section>
+    </div>
+    <div class="aui-row stu-row" style="margin:3%;">
+      <h2>XXXXX1</h2>
+      <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-repeat="t in stype">
+        <div class="stu-warp stu-type-border">
+          {{t.title}}
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
