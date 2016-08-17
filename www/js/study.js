@@ -6,6 +6,16 @@ angular.module('StudyCtrl', [])
     $scope.currentTab = '推荐';
     $scope.onClickTab = function (tab) {
       $scope.currentTab = tab.title;
+
+      $http.get("../data/study/tabs/study-list-cet.json")
+        .then(function (response) {
+          if (response.data.status == 0 && response.data.category == tab.title) {
+            $scope.studylist = response.data.studylist;
+          } else {
+            console.error('网络连接失败...');
+          }
+        });
+
     }
     $scope.isActivetab = function (A) {
       return A == $scope.currentTab;
@@ -13,39 +23,15 @@ angular.module('StudyCtrl', [])
     $scope.remove = false;
     $scope.showComment = false;
     $scope.showMore = false;
-    $scope.stype = [
-      {
-        id: 8,
-        title: '推荐'
-      }, {
-      id: 1,
-      title: '考研',
-      bg: '#e4842e'
-    }, {
-      id: 2,
-      title: '英语',
-      bg: '#e5b31c'
-    }, {
-      id: 3,
-      title: '出国',
-      bg: '#67bc95'
-    }, {
-      id: 4,
-      title: '公务员',
-      bg: '#bad3b5'
-    }, {
-      id: 5,
-      title: '计算机',
-      bg: '#935996'
-    }, {
-      id: 6,
-      title: '四六级',
-      bg: '#8dc759'
-    }, {
-      id: 7,
-      title: '考前预习',
-      bg: '#e26b8b'
-    }];
+
+    $http.get("../data/study/study-type.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.stype = response.data.typelist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
 
     $http.get("../data/study/study.json")
       .then(function (response) {
@@ -55,6 +41,8 @@ angular.module('StudyCtrl', [])
           console.error('网络连接失败...');
         }
       });
+
+
     $scope.studetial = function () {
       $state.go("studetial")
     }
@@ -107,38 +95,6 @@ angular.module('StudyCtrl', [])
         }
       });
 
-
-    /*$scope.comlist = [{
-     id: 1,
-     heaimg: 'img/ben.png',
-     nickname: 'AUI',
-     content: '总的来说，还是要多做题，多总结，单词量也是必需的！！',
-     time: '2016-8-2 08:00',
-     agreenum: '35'
-     }, {
-     id: 2,
-     heaimg: 'img/me.png',
-     nickname: 'Jenny',
-     content: '背单词？',
-     time: '2016-8-9 21:00',
-     agreenum: '23'
-     },
-     {
-     id: 3,
-     heaimg: 'img/adam.jpg',
-     nickname: 'Cindy',
-     content: '历年真题吃三遍，70分以上没得跑了！',
-     time: '2016-8-9 08:00',
-     agreenum: '350'
-     }, {
-     id: 4,
-     heaimg: 'img/ionic.png',
-     nickname: 'Will',
-     content: '同为英语渣，一起来学习！[笑cry][笑cry][笑cry]',
-     time: '8-9 21:00',
-     agreenum: '23'
-     }];*/
-
     $scope.send = function () {
       if ($scope.send_content != '') {
         $scope.comlist.push({
@@ -167,27 +123,27 @@ angular.module('StudyCtrl', [])
         title: '推荐'
       },
       {
-      title: '考研'
-    }, {
-      title: '英语'
-    }, {
-      title: '出国'
-    }, {
-      title: '公务员'
-    }, {
-      title: '计算机'
-    }, {
-      title: '四六级'
-    }, {
-      title: '考前预习'
-    }, {
-      title: '政治学'
-    }];
+        title: '考研'
+      }, {
+        title: '英语'
+      }, {
+        title: '出国'
+      }, {
+        title: '公务员'
+      }, {
+        title: '计算机'
+      }, {
+        title: '四六级'
+      }, {
+        title: '考前预习'
+      }, {
+        title: '政治学'
+      }];
     $scope.removetype = function (idx) {
       $scope.stype.splice(idx, 1);
     }
     $scope.addtype = function (A) {
-      if($scope.stype.length>=8){
+      if ($scope.stype.length >= 8) {
         var alertPopup = $ionicPopup.alert({
           title: '提示',
           template: '不能超过8个~',
@@ -196,13 +152,13 @@ angular.module('StudyCtrl', [])
         $timeout(function () {
           alertPopup.close(); //由于某种原因3秒后关闭弹出
         }, 3000);
-      }else{
+      } else {
         $scope.stype.push({
-          title:A,
+          title: A,
           id: $scope.stype.length + 1
         });
       }
-     /* LocalStorage.set("stutype", A)
-      $state.go("tab.study", {}, {reload: true})*/
+      /* LocalStorage.set("stutype", A)
+       $state.go("tab.study", {}, {reload: true})*/
     }
   })
