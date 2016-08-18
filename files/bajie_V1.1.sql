@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-18 15:11:43
+Date: 2016-08-18 16:33:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,6 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `act_id` varchar(12) NOT NULL,
+  `act_type` varchar(2) DEFAULT NULL,
   `act_title` varchar(100) NOT NULL,
   `act_content` varchar(255) DEFAULT NULL,
   `act_img` varchar(100) DEFAULT NULL,
@@ -34,16 +35,6 @@ CREATE TABLE `activity` (
   `reserve1` varchar(255) DEFAULT NULL,
   `reserve2` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`act_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for activity-class
--- ----------------------------
-DROP TABLE IF EXISTS `activity-class`;
-CREATE TABLE `activity-class` (
-  `act_cls_id` varchar(12) NOT NULL,
-  `act_cls_title` varchar(20) NOT NULL,
-  PRIMARY KEY (`act_cls_id`,`act_cls_title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -70,6 +61,16 @@ CREATE TABLE `activity-comment-comment` (
   `a_c_c_content` varchar(255) DEFAULT NULL COMMENT '评论内容',
   `a_c_c_time` datetime DEFAULT NULL COMMENT '评论时间',
   PRIMARY KEY (`a_c_c_id`,`act_com_id`,`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for activity-type
+-- ----------------------------
+DROP TABLE IF EXISTS `activity-type`;
+CREATE TABLE `activity-type` (
+  `act_type_id` varchar(2) NOT NULL,
+  `act_type_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`act_type_id`,`act_type_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -179,6 +180,7 @@ CREATE TABLE `setting` (
 DROP TABLE IF EXISTS `study`;
 CREATE TABLE `study` (
   `std_id` varchar(12) NOT NULL,
+  `type_id` varchar(2) DEFAULT NULL,
   `std_title` varchar(100) DEFAULT NULL,
   `std_content` varchar(255) DEFAULT NULL,
   `std_like` int(5) DEFAULT NULL,
@@ -198,6 +200,16 @@ CREATE TABLE `study-reply` (
   `std_re_time` datetime DEFAULT NULL COMMENT '回复时间',
   `std_re_like` int(5) DEFAULT NULL COMMENT '赞同数',
   PRIMARY KEY (`std_id`,`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for study-type
+-- ----------------------------
+DROP TABLE IF EXISTS `study-type`;
+CREATE TABLE `study-type` (
+  `type_id` varchar(12) NOT NULL,
+  `type_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`type_id`,`type_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
