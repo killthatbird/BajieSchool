@@ -66,7 +66,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
     /*收藏*/
     $scope.collect = function () {
-      $state.go("mylike")
+      $state.go("mycollection")
     }
   })
 
@@ -86,30 +86,40 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       });
 
   })
-  .controller('mynoticeCtrl', function ($scope, $state, $interval) {
+  .controller('mynoticeCtrl', function ($scope, $state, $interval, $http) {
     $scope.remove = false;
     var second = 5,
       timePromise = undefined;
     $scope.showdel = function () {
       timePromise = $interval(function () {
-        if (second <=0) {
-          $interval.cancel(timePromise);
-          timePromise = undefined;
-          second = 5;
-          $scope.remove = false;
-        } else {
-          $scope.remove = true;
-          second--;
-        }
-      } ,
-   1000
-   );
+          if (second <= 0) {
+            $interval.cancel(timePromise);
+            timePromise = undefined;
+            second = 5;
+            $scope.remove = false;
+          } else {
+            $scope.remove = true;
+            second--;
+          }
+        },
+        1000
+      );
     }
+
+    $http.get("../data/mine/mine-notification.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.ntflist = response.data.ntflist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
     $scope.deletebtn = function (idx) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('mylikeCtrl', function ($scope, $state) {
+  .controller('mycollectionCtrl', function ($scope, $state, $http) {
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
@@ -123,12 +133,22 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
         $state.go("qudetial")
       }
     }
+
+    $http.get("../data/mine/mine-collection.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.cltlist = response.data.cltlist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
     $scope.remove = false;
     var second = 5,
       timePromise = undefined;
     $scope.showdel = function () {
       timePromise = $interval(function () {
-          if (second <=0) {
+          if (second <= 0) {
             $interval.cancel(timePromise);
             timePromise = undefined;
             second = 5;
@@ -137,7 +157,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
             $scope.remove = true;
             second--;
           }
-        } ,
+        },
         1000
       );
     }

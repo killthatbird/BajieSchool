@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-17 21:08:54
+Date: 2016-08-18 15:11:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,6 +99,16 @@ CREATE TABLE `answer` (
   `ans_comment` int(5) DEFAULT NULL COMMENT '评论',
   `ans_time` datetime DEFAULT NULL COMMENT '回答时间',
   PRIMARY KEY (`ans_id`,`que_id`,`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for collection
+-- ----------------------------
+DROP TABLE IF EXISTS `collection`;
+CREATE TABLE `collection` (
+  `username` varchar(16) DEFAULT NULL COMMENT '用户名',
+  `type` varchar(20) DEFAULT NULL COMMENT '收藏对象类型',
+  `id` varchar(12) DEFAULT NULL COMMENT '收藏对象ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -245,4 +255,14 @@ CREATE TABLE `user-study` (
   `std_id` varchar(12) NOT NULL,
   `flag` char(1) DEFAULT NULL,
   PRIMARY KEY (`username`,`std_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for visitor
+-- ----------------------------
+DROP TABLE IF EXISTS `visitor`;
+CREATE TABLE `visitor` (
+  `username` varchar(16) NOT NULL COMMENT '访客用户名',
+  `date` datetime NOT NULL COMMENT '访问时间',
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

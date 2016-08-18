@@ -203,10 +203,10 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         },
         controller: 'myplanCtrl'
       })
-      .state('mylike', {
-        url: '/mine/mylike',
-        templateUrl: 'templates/mine/my_like.html',
-        controller: 'mylikeCtrl'
+      .state('mycollection', {
+        url: '/mine/mycollection',
+        templateUrl: 'templates/mine/my_collection.html',
+        controller: 'mycollectionCtrl'
       })
       .state('mynotice', {
         url: '/mine/mynotice',

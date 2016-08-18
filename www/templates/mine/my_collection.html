@@ -12,7 +12,7 @@
       <div class="aui-searchbar-input aui-border-radius" tapmode ng-click="doSearch()">
         <i class="aui-iconfont aui-icon-search"></i>
         <form action="javascript:search();">
-          <input id="search" type="search" placeholder="&nbsp;&nbsp;&nbsp;请输入搜索内容..." style="text-indent: 1em"
+          <input id="search" type="search" placeholder="" style="text-indent: 1em"
                  ng-model="searchContent" value="searchContent">
         </form>
       </div>
@@ -20,20 +20,22 @@
            ng-hide="!searchContent || searchContent === ''">取消
       </div>
     </div>
-    <div class="card col-card"on-hold="showdel()">
+
+    <div class="card col-card" on-hold="showdel()" ng-repeat="clt in cltlist | filter:searchContent">
       <div class="item item-divider">
         <h2>
-          <label  ng-hide="remove"  class="bc-hd">活动</label>
-          <label ng-show="remove"  ng-click="deletebtn()" class="bc-sc">删除</label>
-         <!-- <label class="bc-hd" ng-if="l.type=='活动'">{{l.type}}</label>
-          <label class="bc-xx" ng-if="l.type=='学习'">{{l.type}}</label>
-          <label class="bc-wd" ng-if="l.type=='问答'">{{l.type}}</label>-->
-          周杰伦演唱会<span class="col-time">2016-8-18</span></h2>
+          <label ng-hide="remove" class="bc-hd">{{clt.type}}</label>
+          <label ng-show="remove" ng-click="deletebtn()" class="bc-sc">删除</label>
+          <!--&lt;!&ndash; <label class="bc-hd" ng-if="l.type=='活动'">{{l.type}}</label>-->
+           <!--<label class="bc-xx" ng-if="l.type=='学习'">{{l.type}}</label>-->
+           <!--<label class="bc-wd" ng-if="l.type=='问答'">{{l.type}}</label>&ndash;&gt;-->
+          {{clt.title}}<span class="col-time">{{clt.timestamp}}</span></h2>
       </div>
-      <div class="item item-text-wrap"  ng-click="godetial('活动')">
-        基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。
+      <div class="item item-text-wrap" ng-click="godetial('活动')">
+        {{clt.content}}
       </div>
     </div>
+
   </ion-content>
 
 </ion-view>
