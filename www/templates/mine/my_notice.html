@@ -9,15 +9,16 @@
 </ion-header-bar>
 <ion-view>
   <ion-content class="has-header">
-    <div class="card col-card"  ng-click="godetial('活动')">
+    <div class="card col-card" on-hold="showdel()">
       <div class="item item-divider">
-        <h2 style="padding-right: 0px"><label class="bc-hd">活动</label>
+        <h2 style="padding-right: 0px"><label ng-hide="remove" class="bc-hd">活动</label>
+          <label ng-show="remove" class="bc-sc">删除</label>
           <!-- <label class="bc-hd" ng-if="l.type=='活动'">{{l.type}}</label>
        <label class="bc-xx" ng-if="l.type=='学习'">{{l.type}}</label>
        <label class="bc-wd" ng-if="l.type=='问答'">{{l.type}}</label>-->
           周杰伦演唱会</h2>
       </div>
-      <div class="item item-text-wrap">
+      <div class="item item-text-wrap"  ng-click="godetial('活动')">
         基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。基本卡片，包含了文本信息。
       </div>
     </div>

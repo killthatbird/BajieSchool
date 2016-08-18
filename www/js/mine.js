@@ -86,7 +86,29 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       });
 
   })
-  .controller('mynoticeCtrl', function ($scope, $state) {})
+  .controller('mynoticeCtrl', function ($scope, $state, $interval) {
+    $scope.remove = false;
+    var second = 5,
+      timePromise = undefined;
+    $scope.showdel = function () {
+      timePromise = $interval(function () {
+        if (second <=0) {
+          $interval.cancel(timePromise);
+          timePromise = undefined;
+          second = 5;
+          $scope.remove = false;
+        } else {
+          $scope.remove = true;
+          second--;
+        }
+      } ,
+   1000
+   );
+    }
+    $scope.deletebtn = function (idx) {
+      $scope.sets.splice(idx, 1);
+    }
+  })
   .controller('mylikeCtrl', function ($scope, $state) {
     $scope.searchContent = '';
     $scope.reset = function ($event) {
@@ -100,6 +122,27 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       } else if (A == "问答") {
         $state.go("qudetial")
       }
+    }
+    $scope.remove = false;
+    var second = 5,
+      timePromise = undefined;
+    $scope.showdel = function () {
+      timePromise = $interval(function () {
+          if (second <=0) {
+            $interval.cancel(timePromise);
+            timePromise = undefined;
+            second = 5;
+            $scope.remove = false;
+          } else {
+            $scope.remove = true;
+            second--;
+          }
+        } ,
+        1000
+      );
+    }
+    $scope.deletebtn = function (idx) {
+      $scope.sets.splice(idx, 1);
     }
   })
   .controller('newplanCtrl', function ($scope, $state, $http) {
