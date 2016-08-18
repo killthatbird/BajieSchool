@@ -70,14 +70,14 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         templateUrl: 'templates/tab-activity.html'
       })
 
-      .state('activity.list', {
+/*      .state('activity.list', {
         url: '/list',
         views: {
           'activity-list': {
             templateUrl: 'templates/activity/activity-list.html'
           }
         }
-      })
+      })*/
       .state('actdetial', {
         url: '/activity/actdetial',
         templateUrl: 'templates/activity/act-detial.html',

@@ -130,6 +130,7 @@
                 </p>
               </form>
             </ion-slide>
+
             <ion-slide ng-controller="puactCtrl">
 
               <div class="y-list" ng-hide="viewmore">
@@ -141,7 +142,7 @@
                     <span class="y-lasttime-right">{{publishedactivity.timestamp}}</span>
                     <p class="y-front-size">{{publishedactivity.content}}</p>
                     <p class="y-front-size">
-                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{publishedactivity.follownum}}</span>
+                      <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{publishedactivity.likenum}}</span>
                       <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{publishedactivity.commentnum}}</span>
                     </p>
                   </a>
@@ -163,7 +164,7 @@
                       <p class="y-front-size">{{joinactivity.content}}</p>
                       <p class="y-front-size">
                         <span class="y-p-col"><i
-                          class="ion-ios-heart-outline"></i>{{joinactivity.follownum}}</span>
+                          class="ion-ios-heart-outline"></i>{{joinactivity.likenum}}</span>
                         <span class="y-p-col-right"><i
                           class="ion-chatbubble-working"></i>{{joinactivity.commentnum}}</span>
                       </p>

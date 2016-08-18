@@ -1,24 +1,11 @@
-<!--<ion-header-bar class="bar-positive">
-  <div class="buttons">
-    <button ng-click="$rootScope.$ionicGoBack()" class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
-    </button>
-  </div>
-  <h1 class="title">已发布的活动</h1>
-  <div class="buttons">
-    <button ng-click="mqlist()" class="button no-animation button-icon icon ion-android-share-alt">
-    </button>
-  </div>
-</ion-header-bar>
-<ion-view>-->
 <div style="background: #ebebeb;font-family: 'Microsoft Yahei'">
   <div class="list card" style="margin:0px; box-shadow: initial">
     <div class="item item-body" style="padding:0px">
       <img class="full-image" style="height: 170px" src="img/activity/ad/3.jpg">
-      <i class="ion-ios-arrow-thin-left" ng-click="gopulist()" g
-         style="position: absolute;top:0px;left:10px;color: #fff;font-size: 1.5rem;"></i>
+      <i class="ion-ios-arrow-thin-left" ng-click="gopulist()" style="position: absolute;top:0px;left:10px;color: #fff;font-size: 1.5rem;"></i>
       <div class="item" style="border: initial;padding: 5px 16px;">
-        <h2 style="margin:0px;font-family: 'Microsoft Yahei'">骑行活动{{actobj.title}}</h2>
-        <span class="y-lasttime-right" style="top: 3px;right: 16px;">2小时前</span>
+        <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.title}}</h2>
+        <span class="y-lasttime-right" style="top: 3px;right: 16px;">{{actobj.timestamp}}</span>
         <p style="margin:0px;">
           <small>已关注30人/已参加15人</small>
         </p>
@@ -30,7 +17,7 @@
             <small>评论 888</small>
           </div>
           <div><i class="aui-iconfont aui-icon-share"></i>
-            <small>分享 888</small>
+            <small>分享</small>
           </div>
         </div>
       </div>
@@ -40,33 +27,24 @@
     <label class="item item-input">
       <img class="list-left-img" src="img/icon/mine/4.png">
       <span class="input-label pu-span">时间</span>
-      <span class="input-label">2016-06-25至2016-06-30</span>
+      <span class="input-label">{{actobj.timestamp}}</span>
     </label>
     <label class="item item-input">
       <img class="list-left-img" src="img/icon/mine/5.png">
       <span class="input-label pu-span">地点</span>
-      <span class="input-label">湖北工业大学</span>
+      <span class="input-label">{{actobj.place}}</span>
     </label>
     <label class="item item-input">
       <img class="list-left-img" src="img/icon/mine/6.png">
       <span class="input-label pu-span">报名人数</span>
-      <span class="input-label">20人</span>
+      <span class="input-label">{{actobj.joinnum}}人</span>
     </label>
     <label class="item item-input" style="border-bottom: none">
       <img class="list-left-img" src="img/icon/mine/7.png">
       <span class="input-label pu-span">主要内容</span>
     </label>
     <div class="df-act-content">
-      {{actobj}}
-      <p>活动主题：低碳生活、大学生骑自行车</p>
-      <p>活动对象：热爱自行车运动的大学生人群</p>
-      <p>活动目的：提倡低碳生活，享受美好生活，提升大学生提倡公益形象 </p>
-      <p>
-        随着社会推行“低碳、节能、环保”的生活方式，倡导“健康、与自然为友”的可持续发展模式，
-        广大社会群体作为构建和谐社会的中坚力量，负有强烈的社会责任感和使命感，理应承载着社会的光荣使命。
-        现在人们出行普遍依靠动力机动车辆，生活水平的提高同时也带来了城市生活方式不甚健康，身体素质与以往相比每况愈下，
-        为了鼓励健康环保、回归低碳的生活方式，特举办“汤逊湖，2016年自行车环城骑行活动”
-      </p>
+      <p>{{actobj.content}}</p>
     </div>
   </div>
 </div>
