@@ -811,3 +811,10 @@
 .flist input{min-height: initial !important;margin:5px 16px !important;border-radius:6px !important;border: 1px solid #ccc !important;}
 .flist .item-input div{margin-right: 16px}
 .error{color:red;padding: 8px 16px}
+/************************/
+.bc-hd{background:#3cb3d6}
+.bc-xx{background:#95d258}
+.bc-wd{background:#fda209}
+.bc-hd,.bc-xx,.bc-wd{color:#fff;padding: 10px 15px;border-radius:1px;box-shadow:0 1px 3px rgba(0, 0, 0, 0.3);line-height:25px ;margin-right:20px}
+.col-time{position: absolute;right: 0px;top:2px}
+.col-card .item-divider h2{position: relative;height:25px;padding-right: 85px}

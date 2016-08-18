@@ -60,6 +60,14 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     $scope.myplan = function (A) {
       $state.go("myplan", {barTitle: A})
     }
+    /*通知*/
+    $scope.mynotice = function () {
+      $state.go("mynotice")
+    }
+    /*收藏*/
+    $scope.collect = function () {
+      $state.go("mylike")
+    }
   })
 
   .controller('myplanCtrl', function ($scope, $stateParams, $state, $http) {
@@ -78,7 +86,22 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       });
 
   })
-
+  .controller('mynoticeCtrl', function ($scope, $state) {})
+  .controller('mylikeCtrl', function ($scope, $state) {
+    $scope.searchContent = '';
+    $scope.reset = function ($event) {
+      $scope.searchContent = '';
+    }
+    $scope.godetial = function (A) {
+      if (A == "活动") {
+        $state.go("actdetial")
+      } else if (A == "学习") {
+        $state.go("studetial")
+      } else if (A == "问答") {
+        $state.go("qudetial")
+      }
+    }
+  })
   .controller('newplanCtrl', function ($scope, $state, $http) {
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
