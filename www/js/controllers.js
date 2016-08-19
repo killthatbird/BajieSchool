@@ -1,5 +1,25 @@
 angular.module('controllers', [])
-  .controller('Allconfig', function ($scope, $state) {
+  .controller('Allconfig', function ($scope, $state,$rootScope,$ionicModal) {
+    $scope.addsshow =false;
+    $scope.adds=function () {
+      $ionicModal.fromTemplateUrl('modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
+    }
+    $scope.hide = function () {
+      $scope.modal.hide();
+    }
+   /* $scope.adds=function () {
+      $scope.addsshow = true;
+    }*/
+    $scope.newact = function () {
+      $scope.modal.hide();
+      $state.go("newact")
+    }
     if (localStorage.times == 0) {
       $state.go("tour");
     } else {

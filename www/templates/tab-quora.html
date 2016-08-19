@@ -1,5 +1,8 @@
 <ion-header-bar class="bar-positive">
   <h1 class="title">有问有答</h1>
+  <div class="buttons" ng-click="openModal()">
+    <a class="button no-animation button-icon icon ion-ios-plus-outline"></a>
+  </div>
 </ion-header-bar>
 <ion-subheader-bar class="bar bar-subheader">
   <ul class="slide-tab">
@@ -44,7 +47,7 @@
         <div ng-if="myquestions.length == 0" class="df-none-qu">
           <h2 style="letter-spacing: 2px">您还没问过任何问题</h2>
           <p class="df-none-p">
-          <div ng-click="add()" class="button button-positive aui-btn-block aui-btn-sm df-none-button">现在提问</div>
+          <div ng-click="modal.show()" class="button button-positive aui-btn-block aui-btn-sm df-none-button">现在提问</div>
           </p>
         </div>
 
@@ -92,3 +95,37 @@
     </ion-slide-box>
   </ion-content>
 </ion-view>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <div class="buttons">
+        <button  ng-click="modal.hide()"
+                class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+        </button>
+      </div>
+      <h1 class="title">新增问题</h1>
+      <button class="button button-clear button-primary" ng-submit="">发表</button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <label class="item item-input" >
+          <span class="input-label">标题：</span>
+          <input type="text" name="actnum" placeholder="..." ng-model="formData.actnum">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">标签：</span>
+          <input type="text" name="actnum" placeholder="..." ng-model="formData.actnum">
+        </label>
+      </div>
+    <div class="padding df-none-textarea model-list">
+    <textarea placeholder="&nbsp;&nbsp;请输入内容..."></textarea>
+      <div class="buttons buttons-left">
+        <div ng-repeat="item in items" class="imgone">
+          <img ng-src="{{item.url}}"  alt=""/>
+        </div>
+        <img src="img/quora/add.jpg" data-ng-click="choosePicMenuf()" />
+      </div>
+    </div>
+      </ion-content>
+  </ion-modal-view>
+</script>

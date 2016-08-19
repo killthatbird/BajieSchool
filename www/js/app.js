@@ -5,23 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic',/*'ngCordova'*/'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl','AddCtrl','ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
-  .run(function ($ionicPlatform, $http, messageService, dateService) {
+  .run(function ($ionicPlatform, $http) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      var url = "";
+     /* var url = "";
       if (ionic.Platform.isAndroid()) {
         url = "/android_asset/www/";
-      }
-      $http.get(url + "data/json/messages.json").then(function (response) {
-        // localStorageService.update("messages", response.data.messages);
-        messageService.init(response.data.messages);
-      });
-      $http.get(url + "data/json/friends.json").then(function (response) {
-        // console.log(response.data.results);
-      });
+      }*/
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -88,20 +81,6 @@ angular.module('starter', ['ionic',/*'ngCordova'*/'controllers', 'directives', '
         url: '/activity/newact',
         templateUrl: 'templates/activity/new-act.html'
       })
-      .state('tab.chats', {
-        url: '/chats',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
-            controller: 'ChatsCtrl'
-          }
-        }
-      })
-      .state('messageDetail', {
-        url: '/messageDetail/:messageId',
-        templateUrl: "templates/message/message-detail.html",
-        controller: "messageDetailCtrl"
-      })
       .state('tab.study', {
         url: '/study',
         cache: false,
@@ -143,7 +122,11 @@ angular.module('starter', ['ionic',/*'ngCordova'*/'controllers', 'directives', '
           }
         }
       })
-
+      /*.state('tab.adds', {
+        url: '/tab/adds',
+        templateUrl: 'templates/tab-adds.html',
+        controller: 'tabaddCtrl'
+      })*/
       .state('quora', {
         url: '/quora',
         abstract: true,

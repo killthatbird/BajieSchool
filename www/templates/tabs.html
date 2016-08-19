@@ -11,16 +11,18 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-activity"></ion-nav-view>
   </ion-tab>
 
-  <!-- Chats Tab -->
-  <ion-tab title="交友" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
-  </ion-tab>
-
   <!-- Study Tab -->
   <ion-tab title="学习" icon-off="ion-ios-bookmarks-outline" icon-on="ion-ios-bookmarks" href="#/tab/study">
     <ion-nav-view name="tab-study"></ion-nav-view>
   </ion-tab>
 
+  <!-- Add Tab -->
+  <ion-tab>
+    <!--<ion-nav-view name="tab-adds"></ion-nav-view>-->
+  </ion-tab>
+  <a class="tab-adds" ng-click="adds()"  style="position: absolute;left:40%;width:20%" >
+    <i class="icon ion-ios-plus"></i>
+  </a>
   <!-- Quora Tab -->
   <ion-tab title="问答" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" href="#/tab/quora">
     <ion-nav-view name="tab-quora"></ion-nav-view>
@@ -34,3 +36,4 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
 </ion-tabs>
+

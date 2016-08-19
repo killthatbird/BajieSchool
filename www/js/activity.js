@@ -3,11 +3,7 @@
  */
 angular.module('ActCtrl', [])
   .controller('ActallCtrl', function ($scope, $ionicTabsDelegate) {
-    console.log($ionicTabsDelegate.$getByHandle('my-handle'))
-    $ionicTabsDelegate.$getByHandle('my-handle').select(1);
-    /* $scope.newbtn=true*/
   })
-
   .controller('ActivityCtrl', function ($scope, $state, $http) {
     $scope.actdetial = function (A) {
       $state.go("actdetial", {actobj: A});

@@ -2,10 +2,48 @@
  * Created by Administrator on 2016/8/1.
  */
 angular.module('quoraCtrl', [])
-  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $state, $http) {
+  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate,$ionicModal,$ionicActionSheet, $state, $http) {
     $scope.showComment = false
     $scope.showMore = false
     $scope.slideIndex = 0;
+    $scope.choosePicMenuf = function () {
+      $ionicActionSheet.show({
+        buttons: [{
+          text: '拍照'
+        }, {
+          text: '从相册选择'
+        }],
+        cancelText: '取消',
+        cancel: function () {
+        },
+        buttonClicked: function (index) {
+          if (index == 0) {
+            var options = {
+              destinationType: Camera.DestinationType.DATA_URL,
+              sourceType: Camera.PictureSourceType.CAMERA,
+            };
+
+          } else if (index == 1) {
+            var options = {
+              destinationType: Camera.DestinationType.DATA_URL,
+              sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            };
+          }
+         /* $cordovaCamera.getPicture(options).then(　　　　　　　　　 //返回一个imageURI，记录了照片的路径
+            function (imageURI) {
+              imgitems.push({
+                url: "data:image/jpeg;base64," + imageURI
+              });
+              $scope.items = imgitems;
+              tobackimg = tobackimg + imageURI + ',';
+            },
+            function (err) {
+
+            });*/
+          return true;
+        }
+      });
+    }
     $scope.goqu = function (A) {
       $state.go("qudetial")
     }
@@ -29,7 +67,15 @@ angular.module('quoraCtrl', [])
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
     };
-
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
     $http.get("../data/quora/quora.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -124,44 +170,6 @@ angular.module('quoraCtrl', [])
     }
     $scope.resect = function () {
       $scope.reset = false
-    }
-    $scope.choosePicMenuf = function () {
-      $ionicActionSheet.show({
-        buttons: [{
-          text: '拍照'
-        }, {
-          text: '从相册选择'
-        }],
-        cancelText: '取消',
-        cancel: function () {
-        },
-        buttonClicked: function (index) {
-          if (index == 0) {
-            var options = {
-              destinationType: Camera.DestinationType.DATA_URL,
-              sourceType: Camera.PictureSourceType.CAMERA,
-            };
-
-          } else if (index == 1) {
-            var options = {
-              destinationType: Camera.DestinationType.DATA_URL,
-              sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            };
-          }
-          $cordovaCamera.getPicture(options).then(　　　　　　　　　 //返回一个imageURI，记录了照片的路径
-            function (imageURI) {
-              imgitems.push({
-                url: "data:image/jpeg;base64," + imageURI
-              });
-              $scope.items = imgitems;
-              tobackimg = tobackimg + imageURI + ',';
-            },
-            function (err) {
-
-            });
-          return true;
-        }
-      });
     }
   })
 

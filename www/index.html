@@ -14,7 +14,7 @@
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
-  <!--<script src="lib/ngCordova/dist/ng-cordova.js"></script>-->
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
   <script src="lib/ionic/js/angular/angular-animate.js"></script>
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
@@ -26,14 +26,57 @@
   <script src="js/study.js"></script>
   <script src="js/mine.js"></script>
   <script src="js/quora.js"></script>
-  <script src="js/chats.js"></script>
+  <script src="js/add.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="templates/tour/tour.js"></script>
   <script src="js/echarts.js"></script>
 </head>
 <body ng-app="starter" ng-controller="Allconfig" style="font-family: 'Microsoft YaHei UI Light'">
-<ion-nav-view></ion-nav-view>
+<ion-nav-view>
+  <!--<div class="aui-grid floatbtn" ng-show="addsshow">-->
+    <!--<div class="row aui-text-center">-->
+      <!--<div class="aui-col-xs-4" ui-sref="newact()">-->
+        <!--<i class="aui-iconfont ion-ios-football-outline"></i>-->
+        <!--<p>活动</p>-->
+      <!--</div>-->
+      <!--<div class="aui-col-xs-4">-->
+        <!--<i class="aui-iconfont ion-ios-bookmarks-outline"></i>-->
+        <!--<p>学习</p>-->
+      <!--</div>-->
+      <!--<div class="aui-col-xs-4">-->
+        <!--<i class="aui-iconfont ion-ios-compose-outline"></i>-->
+        <!--<p>问答</p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<i class="ion-arrow-down-b" style="position: absolute;bottom: -20px;left:48%;color:rgba(0,0,0,0.4);font-size: 20px"></i>-->
+  <!--</div>-->
+  <script id="modal.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-content class="floatbtn">
+        <div class="aui-grid" style="">
+          <div class="row aui-text-center">
+            <div class="aui-col-xs-4" ng-click="newact()">
+              <i class="aui-iconfont ion-ios-football-outline"></i>
+              <p>活动</p>
+            </div>
+            <div class="aui-col-xs-4">
+              <i class="aui-iconfont ion-ios-bookmarks-outline"></i>
+              <p>学习</p>
+            </div>
+            <div class="aui-col-xs-4">
+              <i class="aui-iconfont ion-ios-compose-outline"></i>
+              <p>问答</p>
+            </div>
+            </div>
+          </div>
+      </ion-content>
+      <ion-footer-bar class="bar-light" ng-click="hide()" style="background-image:none;box-shadow: 0 0 1px #eee;">
+        <label  class="title" style="line-height: 44px"><i class="ion-android-close" style="color:red;font-size: 30px"></i></label>
+      </ion-footer-bar>
+    </ion-modal-view>
+  </script>
+</ion-nav-view>
 
 </body>
 </html>
