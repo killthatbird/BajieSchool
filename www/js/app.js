@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic',/*'ngCordova'*/'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform, $http, messageService, dateService) {
     $ionicPlatform.ready(function () {
@@ -157,12 +157,6 @@ angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'ser
       .state('quora.list', {
         url: '/quora/list',
         templateUrl: 'templates/quora/quora-list.html'
-      })
-
-      .state('qmine', {
-        url: '/quora/mine',
-        templateUrl: 'templates/quora/quora-mine.html',
-        controller: 'qmineCtrl'
       })
       .state('qudetial', {
         url: '/quora/detial',

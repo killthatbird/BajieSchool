@@ -40,15 +40,118 @@
       </ion-slide>
 
       <ion-slide ng-controller="qmineCtrl">
-        <div ng-hide="addqu" class="df-none-qu">
+        <div ng-if="myquestion == 0" class="df-none-qu">
           <h2 style="letter-spacing: 2px">您还没问过任何问题</h2>
           <p class="df-none-p">
           <div ng-click="add()" class="button button-positive aui-btn-block aui-btn-sm df-none-button">现在提问</div>
           </p>
         </div>
-        <div ng-show="addqu" ng-include="quurl">
+        <div ng-if="myquestion > 0">
+          <div class="y-list">
+
+            <div class="q-card a-warp">
+              <a class="item item-thumbnail-left">
+                <img src="img/max.png">
+                <p>tab2 关于高校男球你们是怎么看待的</p>
+                <span class="y-lasttime-right">2小时前</span>
+                <div class="aui-card-list-footer df-aui-padding">
+                  <div ng-click="showComment=true" ng-class="{'df-color':showComment}"><i
+                    class="aui-iconfont aui-icon-note"></i> 666
+                  </div>
+                  <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
+                  <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
+                </div>
+              </a>
+              <!--评论开始-->
+              <div class="aui-card-list-content" ng-show="showComment">
+                <ul class="aui-list aui-media-list">
+                  <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                        <img src="img/perry.png" class="aui-img-round aui-list-img-sm">
+                      </div>
+                      <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                          <div class="aui-list-item-title aui-font-size-14">AUI</div>
+                          <div class="aui-list-item-right">08:00</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                          www.auicss.com
+                        </div>
+                      </div>
+                      <div class="aui-list-item-text aui-a-like" ng-click="count = count + 1" ng-init="count=0">
+                        <i class="ion-android-favorite-outline" ng-class="{'df-color':count>0}"></i>&nbsp;{{count}}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                        <img src="img/ben.png" class="aui-img-round aui-list-img-sm">
+                      </div>
+                      <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                          <div class="aui-list-item-title aui-font-size-14">流浪男</div>
+                          <div class="aui-list-item-right">1小时前</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                          www.auicss.com
+                        </div>
+                      </div>
+                      <div class="aui-list-item-text aui-a-like">
+                        <i class="ion-android-favorite-outline"></i>&nbsp;3
+                      </div>
+                    </div>
+                  </li>
+                  <li class="aui-list-item aui-list-item-middle" ng-show="showMore">
+                    <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                        <img src="img/ionic.png" class="aui-img-round aui-list-img-sm">
+                      </div>
+                      <div class="aui-list-item-inner">
+                        XXX
+                      </div>
+                      <div class="aui-list-item-text aui-a-like">
+                        <i class="ion-android-favorite-outline"></i>&nbsp;8
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="aui-card-list-footer aui-text-center" ng-show="showComment" ng-click="showMore=true">
+                查看更多
+              </div>
+              <!--评论结束-->
+            </div>
+          </div>
+          <div class="q-card  a-warp">
+            <a class="item item-thumbnail-left">
+              <img src="img/ionic.png">
+              <p>如何规划自己的大学生涯</p>
+              <span class="y-lasttime-right">2小时前</span>
+              <div class="aui-card-list-footer df-aui-padding">
+                <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
+                <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
+                <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
+              </div>
+            </a>
+          </div>
+          <div class="card q-card a-warp">
+            <a class="item item-thumbnail-left">
+              <img src="img/adam.jpg">
+              <p>如何入门机器学习？</p>
+              <span class="y-lasttime-right">2小时前</span>
+              <div class="aui-card-list-footer df-aui-padding">
+                <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
+                <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
+                <div><i class="aui-iconfont aui-icon-star"></i> 888</div>
+              </div>
+            </a>
+          </div>
         </div>
       </ion-slide>
+
+
       <ion-slide ng-controller="amineCtrl">
         <div class="y-list">
 
@@ -111,8 +214,6 @@
                         查看更多
           </div>-->
           <!--评论结束-->
-        </div>
-
         </div>
       </ion-slide>
     </ion-slide-box>

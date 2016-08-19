@@ -102,6 +102,7 @@ angular.module('quoraCtrl', [])
   })
   /*  我的问题*/
   .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {
+    $scope.myquestion = 2;
     $scope.addqu = false;
     $scope.add = function () {
       $scope.addqu = true

@@ -50,24 +50,16 @@ angular.module('StudyCtrl', [])
       $state.go("stutype")
     }
 
-    $scope.doRefresh = function () {
-      var colorList = ["#e064b7", "#5ab770", "#ff7d23", "#ff0000", "#569ce3",
-        "#ff768c", "#83ba1f", "#56c5ff", "#d2b48c", "#EE5F5B"];
-      $scope.tname = LocalStorage.get("stutype")
+    $scope.doRefreshStudy = function () {
       $timeout(function () {
-        if ($scope.tname != null && $scope.tname != "undefined") {
-          var colorIndex = Math.floor(Math.random() * colorList.length);
-          var color = colorList[colorIndex];
-          /*  for(var i=0;i<lineList.length;i++){
-           var bgColor = getColorByRandom(colorList);
-           }*/
-          /*colorList.splice(colorIndex,1);*/
-          $scope.stype.push({
-            title: $scope.tname,
-            bg: color,
-            id: $scope.stype.length + 1
+        $http.get("../data/study/study-refresh.json")
+          .then(function (response) {
+            if (response.data.status == 0 && response.data.category == "推荐") {
+              $scope.studylist = response.data.studylist;
+            } else {
+              console.error('网络连接失败...');
+            }
           });
-        }
         $scope.$broadcast('scroll.refreshComplete');
       }, 100);
     }

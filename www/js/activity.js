@@ -5,8 +5,9 @@ angular.module('ActCtrl', [])
   .controller('ActallCtrl', function ($scope, $ionicTabsDelegate) {
     console.log($ionicTabsDelegate.$getByHandle('my-handle'))
     $ionicTabsDelegate.$getByHandle('my-handle').select(1);
-   /* $scope.newbtn=true*/
+    /* $scope.newbtn=true*/
   })
+
   .controller('ActivityCtrl', function ($scope, $state, $http) {
     $scope.actdetial = function (A) {
       $state.go("actdetial", {actobj: A});
@@ -23,6 +24,20 @@ angular.module('ActCtrl', [])
         $scope.activitylist = response.data.activitylist;
       }
     });
+
+    $scope.doRefreshAct = function () {
+      $timeout(function () {
+        $http.get("../data/activity/activity-list-refresh.json")
+          .then(function (response) {
+            if (response.data.status == 0) {
+              $scope.activitylist = response.data.activitylist;
+            } else {
+              console.error('网络连接失败...');
+            }
+          });
+        $scope.$broadcast('scroll.refreshComplete');
+      }, 100);
+    };
 
 
     $scope.currentTab = '推荐';
@@ -126,7 +141,7 @@ angular.module('ActCtrl', [])
 
   })
 
-  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http) {
+  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http, $timeout) {
     $scope.slideIndex = 0;
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
@@ -135,18 +150,6 @@ angular.module('ActCtrl', [])
       $ionicSlideBoxDelegate.slide(index);
     };
 
-    $scope.doRefreshAct = function () {
-      $http.get('../data/activity/activity-list.json')
-        .then(function (response) {
-          if (response.data.status == 0) {
-            $scope.activitylist = response.data.activitylist;
-          }
-        })
-        .finally(function () {
-          // Stop the ion-refresher from spinning
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-    };
   })
 
   /*发起活动*/
