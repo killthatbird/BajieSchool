@@ -485,7 +485,7 @@
 .act-warp .q-card .item p {
   font-weight: normal
 }
-
+.slide-liw li{width:50% !important;}
 .act-timeout {
   position: absolute;
   right: 35px;

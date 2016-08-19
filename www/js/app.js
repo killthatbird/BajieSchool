@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'MessageCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform, $http, messageService, dateService) {
     $ionicPlatform.ready(function () {
@@ -60,7 +60,8 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         url: '/activity',
         views: {
           'tab-activity': {
-            templateUrl: 'templates/tab-activity.html'
+            templateUrl: 'templates/tab-activity.html',
+            controller: 'ActallCtrl'
           }
         }
       })
@@ -82,6 +83,10 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         url: '/activity/published',
         templateUrl: 'templates/activity/published-act.html',
         controller: 'puactCtrl'
+      })
+      .state('newact', {
+        url: '/activity/newact',
+        templateUrl: 'templates/activity/new-act.html'
       })
       .state('tab.chats', {
         url: '/chats',
@@ -200,11 +205,7 @@ angular.module('starter', ['ionic', 'controllers', 'directives', 'services', 'St
         templateUrl: 'templates/mine/my_collection.html',
         controller: 'mycollectionCtrl'
       })
-      .state('mynotice', {
-        url: '/mine/mynotice',
-        templateUrl: 'templates/mine/my_notice.html',
-        controller: 'mynoticeCtrl'
-      })
+
       .state('newplan', {
         url: '/mine/newplan',
         templateUrl: 'templates/mine/new_plan.html',

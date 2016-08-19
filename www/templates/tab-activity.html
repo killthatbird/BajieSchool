@@ -3,7 +3,7 @@
   <ion-tab title="活动列表" class="tab-left">
     <ion-nav-view name="activity-list">
       <ion-view>
-        <ion-content ng-controller="ActivityCtrl">
+        <ion-content ng-controller="ActivityCtrl"  delegate-handle="tab1">
           <ion-refresher
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefreshAct()">
@@ -66,73 +66,19 @@
   <ion-tab title="我的活动" class="tab-right">
     <ion-nav-view name="activity-mine">
       <ion-view>
-        <ion-content style="background: #ebebeb" ng-controller="myActCtrl">
+        <ion-content style="background: #ebebeb" ng-controller="myActCtrl"   delegate-handle="tab2">
           <ion-refresher
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefresh()">
           </ion-refresher>
           <div class="row" style="padding: 0px">
-            <ul class="slide-tab">
-              <li ng-click="activeSlide(0)" ng-class="slideIndex == 0 ? 'current':''"><a>发起活动</a></li>
-              <li ng-click="activeSlide(1)" ng-class="slideIndex == 1 ? 'current':''"><a>已发布的活动</a></li>
-              <li ng-click="activeSlide(2)" ng-class="slideIndex == 2 ? 'current':''"><a>已参加的活动</a></li>
+            <ul class="slide-tab slide-liw">
+              <li ng-click="activeSlide(0)" ng-class="slideIndex == 0 ? 'current':''"><a>已发布的活动</a></li>
+              <li ng-click="activeSlide(1)" ng-class="slideIndex == 1 ? 'current':''"><a>已参加的活动</a></li>
             </ul>
           </div>
           <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
-            <ion-slide ng-controller="newactCtrl">
-              <form class="list" class="aui-input-group">
-                <input type="hidden" name="id" ng-model="formData.id">
-                <div class="list" style="position: relative;">
-                  <label class="item item-input">
-                    <span class="input-label">主题：</span>
-                    <input type="text" name="actnum" placeholder="填写活动主题" ng-model="formData.actnum">
-                  </label>
-                  <label class="item item-input">
-                    <span class="input-label">类别：</span>
-                    <select style="width: 70%;" type="text" placeholder="选择活动类别" name="acttitle"
-                            ng-model="formData.acttitle" ng-options="class for class in classes">
-                    </select>
-                  </label>
-                  <label class="item item-input">
-                    <span class="input-label">时间</span>
-                    <input id="ddate" class="form-control" type="date" name="acttime" placeholder="选择活动时间"
-                           style="border:none;" ng-model="formData.acttime1">
-                  </label>
-                  <label class="item item-input">
-                    <span class="input-label">地点：</span>
-                    <input type="text" name="actplace" placeholder="填写活动地点" ng-model="formData.actplace">
-                  </label>
-                  <label class="item item-input" ng-click="choosePicMenuf()">
-                    <span class="input-label">照片：</span>
-                    <input type="text" name="actuploadPhoto" placeholder="上传照片" ng-model="formData.actuploadPhoto">
-                  </label>
-                  <!--<label class="item item-input">
-                    <span class="input-label">报名人数：</span>
-                    <input type="number" name="actpeople" placeholder="报名人数" ng-model="formData.actpeople">
-                  </label>
-                  <label class="item item-input">
-                    <span class="input-label">设置权限：</span>
-                    <input type="text" name="actauthority" placeholder="设置权限" ng-model="formData.actauthority">
-                  </label>-->
-                  <label class="item item-input">
-                    <span class="input-label">主要内容：</span>
-                    <textarea name="actcontent" placeholder="填写主要内容" ng-model="formData.actcontent">
-                    </textarea>
-                  </label>
-                </div>
-                <p style="text-align:center;padding-top:20px;">
-                  <button type="reset" class="button button-grey" type="reset"
-                          style="margin-right:30px;font-size:18px;width: 85px;">重&nbsp;&nbsp;置
-                  </button>
-                  <button ng-click="save()" class="button button-positive" type="submit"
-                          style="font-size:18px;width: 85px;">保&nbsp;&nbsp;存
-                  </button>
-                </p>
-              </form>
-            </ion-slide>
-
             <ion-slide ng-controller="puactCtrl">
-
               <div class="y-list" ng-hide="viewmore">
                 <div ng-repeat="publishedactivity in publishedactivitylist" class="card y-card"
                      ng-click="gopuact('{{publishedactivity}}')">
@@ -180,3 +126,7 @@
     </ion-nav-view>
   </ion-tab>
 </ion-tabs>
+<div class="buttons" style="position: absolute;right:5px;z-index: 999;"  ui-sref="newact" >
+  <button class="button no-animation button-icon icon ion-ios-plus-outline" style="color:#fff">
+  </button>
+</div>

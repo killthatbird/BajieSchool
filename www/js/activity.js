@@ -2,11 +2,15 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('ActCtrl', [])
+  .controller('ActallCtrl', function ($scope, $ionicTabsDelegate) {
+    console.log($ionicTabsDelegate.$getByHandle('my-handle'))
+    $ionicTabsDelegate.$getByHandle('my-handle').select(1);
+   /* $scope.newbtn=true*/
+  })
   .controller('ActivityCtrl', function ($scope, $state, $http) {
     $scope.actdetial = function (A) {
       $state.go("actdetial", {actobj: A});
     }
-
     $http.get('../data/activity/tabs.json').then(function (response) {
       if (response.data.status == 0) {
         $scope.tabs = response.data.tabs;
