@@ -102,7 +102,17 @@ angular.module('quoraCtrl', [])
   })
   /*  我的问题*/
   .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {
-    $scope.myquestion = 2;
+
+    $http.get("../data/quora/question-mine.json")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.myquestions = response.data.questionlist;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
+    // $scope.myquestion = 2;
     $scope.addqu = false;
     $scope.add = function () {
       $scope.addqu = true

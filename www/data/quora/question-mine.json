@@ -1,0 +1,32 @@
+{
+  "status": 0,
+  "size": 30,
+  "pagenum": 1,
+  "pagesize": 3,
+  "questionlist": [
+    {
+      "imgSrc": "img/whu.png",
+      "title": "武汉大学周围有哪些好吃的？",
+      "timestamp": "2小时前",
+      "content": "吃货。。。",
+      "follownum": 365,
+      "commentnum": 298
+    },
+    {
+      "imgSrc": "img/military-training.jpg",
+      "title": "军训那些事",
+      "timestamp": "3小时前",
+      "content": "太阳大，天气酷暑难耐，如何避免中暑？好好学习，天天向上！好好学习，天天向上！",
+      "follownum": 56,
+      "commentnum": 40
+    },
+    {
+      "imgSrc": "img/shelock.jpeg",
+      "title": "如何学好高等数学",
+      "timestamp": "4小时前",
+      "content": "作为基础学科，如何学好高等数学不挂科？好好学习，天天向上！好好学习，天天向上！",
+      "follownum": 556,
+      "commentnum": 120
+    }
+  ]
+}
