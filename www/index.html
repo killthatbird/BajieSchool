@@ -56,16 +56,22 @@
       <ion-content class="floatbtn">
         <div class="aui-grid" style="">
           <div class="row aui-text-center">
-            <div class="aui-col-xs-4" ng-click="newact()">
+            <div class="aui-col-xs-4" ng-click="addstate('newact')">
+              <div class="btn-bc-hd rj-contacts-pic">
               <i class="aui-iconfont ion-ios-football-outline"></i>
+              </div>
               <p>活动</p>
             </div>
-            <div class="aui-col-xs-4">
+            <div class="aui-col-xs-4" ng-click="addstate('newstu')">
+              <div class="btn-bc-xx rj-contacts-pic">
               <i class="aui-iconfont ion-ios-bookmarks-outline"></i>
+              </div>
               <p>学习</p>
             </div>
-            <div class="aui-col-xs-4">
-              <i class="aui-iconfont ion-ios-compose-outline"></i>
+            <div class="aui-col-xs-4"  ng-click="addstate('newque')">
+              <div class="btn-bc-wd rj-contacts-pic">
+              <i class="aui-iconfont ion-help"></i>
+              </div>
               <p>问答</p>
             </div>
             </div>

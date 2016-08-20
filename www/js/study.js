@@ -68,7 +68,9 @@ angular.module('StudyCtrl', [])
       $scope.stype.splice(idx, 1);
     }
   })
+  .controller('newstuCtrl', function ($scope, $state, $http) {
 
+  })
   .controller('studetialCtrl', function ($scope, $state, $http) {
     $scope.choose = true
     $scope.attention = function () {

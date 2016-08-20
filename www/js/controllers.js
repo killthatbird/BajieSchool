@@ -13,13 +13,11 @@ angular.module('controllers', [])
     $scope.hide = function () {
       $scope.modal.hide();
     }
-   /* $scope.adds=function () {
-      $scope.addsshow = true;
-    }*/
-    $scope.newact = function () {
+    $scope.addstate = function (A) {
       $scope.modal.hide();
-      $state.go("newact")
+      $state.go(A)
     }
+
     if (localStorage.times == 0) {
       $state.go("tour");
     } else {

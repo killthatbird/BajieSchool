@@ -110,6 +110,11 @@ angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'ser
         },
         controller: 'studetialCtrl'
       })
+      .state('newstu', {
+        url: '/study/newstu',
+        templateUrl: 'templates/study/new-stu.html',
+        controller: 'newstuCtrl'
+      })
       .state('tab.quora', {
         url: '/quora',
         views: {
@@ -140,6 +145,11 @@ angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'ser
       .state('quora.list', {
         url: '/quora/list',
         templateUrl: 'templates/quora/quora-list.html'
+      })
+      .state('newque', {
+        url: '/quora/newque',
+        templateUrl: 'templates/quora/new-que.html',
+        controller: 'QuoraCtrl'
       })
       .state('qudetial', {
         url: '/quora/detial',

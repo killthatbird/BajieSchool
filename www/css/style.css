@@ -815,18 +815,21 @@
 .flist .item-input div{margin-right: 16px}
 .error{color:red;padding: 8px 16px}
 /************************/
-.bc-hd{background:#3cb3d6}
-.bc-xx{background:#95d258}
-.bc-wd{background:#fda209}
+.bc-hd,.btn-bc-hd{background:#3cb3d6}
+.bc-xx,.btn-bc-xx{background:#95d258}
+.bc-wd,.btn-bc-wd{background:#fda209}
+.btn-bc-hd,.btn-bc-xx,.btn-bc-wd{color:#fff;width:2.2rem;margin:0 auto;text-align: center;height:2.2rem;border-radius: 50%}
 .bc-sc{background:red}
 .bc-hd,.bc-xx,.bc-wd,.bc-sc{color:#fff;padding: 10px 15px;border-radius:1px;box-shadow:0 1px 3px rgba(0, 0, 0, 0.3);line-height:25px ;margin-right:20px}
 .col-time{position: absolute;right: 0px;top:2px}
 .col-card .item-divider h2{position: relative;height:25px;padding-right: 85px}
 /*tabs*/
 .tab-adds{z-index: 999;text-align: center;line-height: 44px}
-.tab-adds i{font-size: 44px !important;height: 44px !important}
-.floatbtn .scroll{position: absolute;bottom: 120px}
-.floatbtn .aui-col-xs-4 i{font-size: 2rem}
+.tab-adds i{font-size: 40px !important;height: 40px !important}
+.floatbtn .scroll{position: absolute;bottom: 120px;background: #f5f5f5;}
+.floatbtn .aui-col-xs-4 i{font-size: 1.5rem;line-height:2.2rem}
+.floatbtn .aui-col-xs-4 p{font-size: 0.7rem;padding: 2px}
+.floatbtn .aui-grid,.floatbtn{background: #f5f5f5;}
 /*.floatbtn{position: absolute;bottom:60px;background-color:rgba(0,0,0,0.4) !important;z-index:999;}
 .floatbtn .aui-col-xs-4 i{font-size: 2rem;color:#fff}
 .floatbtn .aui-col-xs-4 p{color:#fff;}*/

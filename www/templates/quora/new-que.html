@@ -1,34 +1,32 @@
-<!--<ion-header-bar class="bar-positive">
+<ion-header-bar class="bar bar-header bar-positive">
   <div class="buttons">
     <button ng-click="$ionicGoBack()"
             class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
     </button>
   </div>
-  <h1 class="title">我的问题</h1>
-  <div class="buttons">
-    <button ng-click="mqlist()" class="button no-animation button-icon icon">保存
-    </button>
-  </div>
+  <h1 class="title">新增问题</h1>
+  <button class="button button-clear button-primary" ng-submit="">保存</button>
 </ion-header-bar>
 <ion-view>
-  <ion-content style="background: #ebebeb">-->
-<div class="padding df-none-textarea">
-  <div style="padding:5px 10px;">
-    <textarea placeholder="&nbsp;&nbsp;请输入内容..."
-              style="width:100%;min-height:200px;display:block;text-indent:2px;"></textarea>
-  </div>
-  <div class="buttons buttons-left" style="width:100%;display: block;background-color: #fff;padding-bottom:10px;">
-    <div ng-repeat="item in items" style="display:inline-block;">
-      <img ng-src="{{item.url}}" style="width:50px;height:50px;margin-left:20px; " alt=""/>
+  <ion-content>
+      <div class="list">
+        <label class="item item-input" >
+          <span class="input-label">标题：</span>
+          <input type="text" name="actnum" placeholder="..." ng-model="formData.actnum">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">标签：</span>
+          <input type="text" name="actnum" placeholder="..." ng-model="formData.actnum">
+        </label>
+      </div>
+    <div class="padding df-none-textarea model-list">
+    <textarea placeholder="&nbsp;&nbsp;请输入内容..."></textarea>
+      <div class="buttons buttons-left">
+        <div ng-repeat="item in items" class="imgone">
+          <img ng-src="{{item.url}}"  alt=""/>
+        </div>
+        <img src="img/quora/add.jpg" data-ng-click="choosePicMenuf()" />
+      </div>
     </div>
-    <img src="img/quora/add.jpg" style="width:50px;height:50px;margin-left:20px; " ng-click="choosePicMenuf()" alt=""/>
-  </div>
-</div>
-<p style="text-align:center;padding-top:60px;">
-  <button ng-click="resect()" class="button button-grey" type="reset"
-          style="margin-right:30px;font-size:18px;width: 85px;">取&nbsp;&nbsp;消
-  </button>
-  <button ng-click="mqlist()" class="button button-positive" type="submit" style="font-size:18px;width: 85px;">保&nbsp;&nbsp;存</button>
-</p>
-<!--    </ion-content>
-  </ion-view>-->
+      </ion-content>
+  </ion-view>
