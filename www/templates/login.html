@@ -10,11 +10,11 @@
                  ng-model="formData.username" required>
           <i ng-if="userForm.username.$valid" class="icon ion-android-done placeholder-icon"></i>
         </div>
-        <div class="help-block error" ng-if="userForm.username.$error.required&&userForm.username.$touched">
+        <div class="help-block error" ng-if="userForm.username.$error.required && userForm.username.$touched">
           <p ng-message="required" style="color:red">这里没有填东西呢 T_T</p>
         </div>
         <div class="item item-input" style="border:none">
-          <input type="password" name="username" ng-minlength="11" ng-maxlength="11" placeholder="请输入密码"
+          <input type="password" name="password" ng-minlength="8" ng-maxlength="20" placeholder="请输入密码"
                  ng-model="formData.password" required>
           <i ng-if="userForm.username.$valid" class="icon ion-android-done placeholder-icon"></i>
         </div>

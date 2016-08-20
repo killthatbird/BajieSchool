@@ -1,11 +1,11 @@
 angular.module('controllers', [])
-  .controller('Allconfig', function ($scope, $state,$rootScope,$ionicModal) {
-    $scope.addsshow =false;
-    $scope.adds=function () {
+  .controller('Allconfig', function ($scope, $state, $rootScope, $ionicModal) {
+    $scope.addsshow = false;
+    $scope.adds = function () {
       $ionicModal.fromTemplateUrl('modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
-      }).then(function(modal) {
+      }).then(function (modal) {
         $scope.modal = modal;
         $scope.modal.show();
       });
@@ -23,24 +23,24 @@ angular.module('controllers', [])
     } else {
       $state.go("tab.activity");
     }
- /*   var options = {
-      message: 'share this', // not supported on some apps (Facebook, Instagram)
-      subject: 'the subject', // fi. for email
-      files: ['', ''], // an array of filenames either locally or remotely
-      url: 'https://www.website.com/foo/#bar?a=b',
-      chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
-    }
+    /*   var options = {
+     message: 'share this', // not supported on some apps (Facebook, Instagram)
+     subject: 'the subject', // fi. for email
+     files: ['', ''], // an array of filenames either locally or remotely
+     url: 'https://www.website.com/foo/#bar?a=b',
+     chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+     }
 
-    var onSuccess = function(result) {
-      console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-      console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-    }
+     var onSuccess = function(result) {
+     console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+     console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+     }
 
-    var onError = function(msg) {
-      console.log("Sharing failed with message: " + msg);
-    }
+     var onError = function(msg) {
+     console.log("Sharing failed with message: " + msg);
+     }
 
-    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
+     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
   })
 
   .controller('ChatsCtrl', function ($scope, Chats) {
@@ -136,10 +136,21 @@ angular.module('controllers', [])
         $state.go("login")
       }
     }
-
   })
-  .controller('loginCtrl', function ($scope, $state) {
+
+  .controller('loginCtrl', function ($scope, $state, $http) {
     $scope.login = function () {
+
+      $http({
+        method: 'GET',
+        url: 'http://localhost:8080/api/testusers',
+        data: {}
+      }).then(function successCallback(response) {
+        console.log('请求成功！');
+      }, function errorCallback(response) {
+        console.error("登录失败！");
+      });
+
       $state.go("tab.activity");
     }
     $scope.register = function () {
@@ -151,4 +162,4 @@ angular.module('controllers', [])
     $scope.visit = function () {
       $state.go("tab.activity");
     }
-  })
+  });

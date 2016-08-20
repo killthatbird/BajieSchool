@@ -36,18 +36,24 @@
                 入学年份
               </div>
               <div class="aui-list-item-input">
-                <input type="date"/>
+                <select>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                </select>
               </div>
             </div>
+
           </li>
           <li class="aui-list-item">
-            <div class="aui-list-item-inner">
+            <div class="aui-list-item-inner" align="center">
               <div class="aui-list-item-input">
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="junior" value="0">
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" value="0">
                   专科</label>
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="undergraduate" checked
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" checked
                                                           value="1">本科</label>
-                <label><input class="aui-radio" type="radio" name="postgraduate" value="2"> 研究生</label>
+                <label><input class="aui-radio" type="radio" name="level" value="2"> 研究生</label>
               </div>
             </div>
           </li>
@@ -76,7 +82,7 @@
                 密码
               </div>
               <div class="aui-list-item-input">
-                <input type="password"/>
+                <input type="password" minlength="8" maxlength="20"/>
               </div>
             </div>
           </li>
@@ -84,7 +90,7 @@
             <div class="aui-list-item-inner">
               <div class="aui-list-item-input" style="padding-bottom: 10px">
                 <p style="line-height: 0.6rem;padding-bottom: 2px;text-align: center"><input
-                  style="width: 0.6rem;height: 0.6rem;" class="aui-radio" type="radio" checked>&nbsp
+                  style="width: 0.6rem;height: 0.6rem;" class="aui-radio" type="checkbox" checked>&nbsp
                   <small>同意注册协议</small>
                 </p>
               </div>
