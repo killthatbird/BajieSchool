@@ -1,4 +1,8 @@
 <div class="bar bar-header" style="background-image:none">
+  <button ng-click="$ionicGoBack()"
+          class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back"
+          style="color: grey">
+  </button>
   <h1 class="title" style="color: #6ebddb">欢迎加入八戒上学</h1>
 </div>
 <ion-view>
@@ -39,10 +43,11 @@
           <li class="aui-list-item">
             <div class="aui-list-item-inner">
               <div class="aui-list-item-input">
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="demo1"> 专科</label>
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="demo1" checked>
-                  本科</label>
-                <label><input class="aui-radio" type="radio" name="demo1"> 研究生</label>
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="junior" value="0">
+                  专科</label>
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="undergraduate" checked
+                                                          value="1">本科</label>
+                <label><input class="aui-radio" type="radio" name="postgraduate" value="2"> 研究生</label>
               </div>
             </div>
           </li>

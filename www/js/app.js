@@ -5,16 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl','AddCtrl','ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
+angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'AddCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
   .run(function ($ionicPlatform, $http) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-     /* var url = "";
-      if (ionic.Platform.isAndroid()) {
-        url = "/android_asset/www/";
-      }*/
+      /* var url = "";
+       if (ionic.Platform.isAndroid()) {
+       url = "/android_asset/www/";
+       }*/
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -128,10 +128,10 @@ angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'ser
         }
       })
       /*.state('tab.adds', {
-        url: '/tab/adds',
-        templateUrl: 'templates/tab-adds.html',
-        controller: 'tabaddCtrl'
-      })*/
+       url: '/tab/adds',
+       templateUrl: 'templates/tab-adds.html',
+       controller: 'tabaddCtrl'
+       })*/
       .state('quora', {
         url: '/quora',
         abstract: true,
@@ -243,8 +243,7 @@ angular.module('starter', ['ionic','ngCordova','controllers', 'directives', 'ser
         url: '/register/step1',
         templateUrl: 'templates/sel-school.html',
         controller: 'selSchCtrl'
-      })
-      .s;
+      });
     /*   $urlRouterProvider.otherwise('/login');*/
     // $urlRouterProvider.otherwise('/tab/activity');
     $urlRouterProvider.otherwise('/tour');

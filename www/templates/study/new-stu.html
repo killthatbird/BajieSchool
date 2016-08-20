@@ -5,14 +5,15 @@
     </button>
   </div>
   <h1 class="title"></h1>
-  <button class="button button-clear button-primary" ng-submit="">保存</button>
+  <!--<button class="button button-clear button-primary" ng-submit="">发布</button>-->
+  <a class="button button-icon icon ion-ios-paperplane-outline">发布</a>
 </ion-header-bar>
 <ion-view>
   <ion-content>
     <div class="list">
       <label class="item item-input">
         <span class="input-label">标题：</span>
-        <input type="text" name="actnum" placeholder="..." ng-model="formData.actnum">
+        <input type="text" name="actnum" ng-model="formData.actnum" required>
       </label>
       <label class="item item-input">
         <span class="input-label">类别：</span>
@@ -23,6 +24,7 @@
           <option>出国</option>
           <option>公务员</option>
           <option>计算机</option>
+          <option>其他</option>
         </select>
       </label>
       <label class="item item-input">

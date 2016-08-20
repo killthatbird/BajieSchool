@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test sharing to Weibo</title>
+  <meta name="description" content="我用 @八戒上学 分享了一个活动“周杰伦演唱会”#八戒上学，点亮你的精彩校园#"/>
+</head>
+<body>
+
+<!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+  <ul class="-mob-share-list">
+    <li class="-mob-share-weibo"><p>新浪微博</p></li>
+    <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+    <li class="-mob-share-qzone"><p>QQ空间</p></li>
+    <li class="-mob-share-qq"><p>QQ好友</p></li>
+    <li class="-mob-share-renren"><p>人人网</p></li>
+    <li class="-mob-share-kaixin"><p>开心网</p></li>
+    <li class="-mob-share-douban"><p>豆瓣</p></li>
+    <li class="-mob-share-facebook"><p>Facebook</p></li>
+    <li class="-mob-share-twitter"><p>Twitter</p></li>
+  </ul>
+  <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=164c84cd2a18a"></script>
+<!--MOB SHARE END-->
+
+<hr/>
+<script type="text/javascript">
+  (function () {
+    var p = {
+      url: location.href,
+      showcount: '1', /*是否显示分享总数,显示：'1'，不显示：'0' */
+      desc: '', /*默认分享理由(可选)*/
+      summary: '我用@八戒上学 分享了一个活动[周杰伦演唱会]', /*分享摘要(可选)*/
+      title: '', /*分享标题(可选)*/
+      site: '八戒上学',
+      pics: '', /*分享图片的路径(可选)*/
+      style: '202',
+      width: 105,
+      height: 31
+    };
+    var s = [];
+    for (var i in p) {
+      s.push(i + '=' + encodeURIComponent(p[i] || ''));
+    }
+    document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?', s.join('&'), '" target="_blank">分享</a>'].join(''));
+  })();
+</script>
+<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+</body>
+</html>

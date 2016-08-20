@@ -140,12 +140,15 @@ angular.module('controllers', [])
   })
   .controller('loginCtrl', function ($scope, $state) {
     $scope.login = function () {
-      $state.go("tab.activity")
+      $state.go("tab.activity");
     }
     $scope.register = function () {
-      $state.go("register")
+      $state.go("register");
     }
     $scope.findin = function () {
-      $state.go("findin")
+      $state.go("findin");
+    }
+    $scope.visit = function () {
+      $state.go("tab.activity");
     }
   })
