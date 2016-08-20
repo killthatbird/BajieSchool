@@ -7,14 +7,14 @@
         <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.title}}</h2>
         <span class="y-lasttime-right" style="top: 3px;right: 16px;">{{actobj.timestamp}}</span>
         <p style="margin:0px;">
-          <small>已关注30人/已参加15人</small>
+          <small>已关注{{actobj.follownum}}人/已参加{{actobj.joinnum}}人</small>
         </p>
         <div class="aui-card-list-footer df-act-fs">
           <div><i class="aui-iconfont aui-icon-like"></i>
-            <small>赞 666</small>
+            <small>赞 {{actobj.likenum}}</small>
           </div>
           <div><i class="aui-iconfont aui-icon-comment"></i>
-            <small>评论 888</small>
+            <small>评论 {{actobj.commentnum}}</small>
           </div>
           <div><i class="aui-iconfont aui-icon-share"></i>
             <small>分享</small>

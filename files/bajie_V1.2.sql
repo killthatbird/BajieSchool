@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-18 16:33:51
+Date: 2016-08-19 18:16:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,6 +141,7 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `que_id` varchar(12) NOT NULL COMMENT '问题ID',
   `que_title` varchar(100) NOT NULL COMMENT '问题标题',
+  `que_tags` varchar(50) DEFAULT NULL COMMENT '问题标签',
   `que_content` varchar(255) DEFAULT NULL COMMENT '问题内容',
   `que_img` varchar(100) DEFAULT NULL COMMENT '图片',
   `que_like` int(5) DEFAULT NULL COMMENT '赞同数',
