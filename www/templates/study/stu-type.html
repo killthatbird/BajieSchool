@@ -7,17 +7,28 @@
   <h1 class="title">学习分类</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content class="has-header" style="background: #f3f5f4;">
+  <ion-content class="has-header">
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>关注模块</h2>
       <div class="aui-col-xs-3" ng-click="removetype(($index))" ng-repeat="t in stype">
-        <div class="stu-warp" ng-class="{'tjfc':isActivetab('{{t.title}}')}">
+        <div class="stu-warp"  ng-style="{background:'{{bgc[$index]}}'}" style="color:#fff">
           {{t.title}}
         </div>
       </div>
     </div>
+    <div style="border:1px dashed #ccc;width:100%"></div>
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>所有模块</h2>
+      <div class="aui-col-xs-3" ng-click="">
+        <div class="stu-warp stu-type-border tjfc">
+          推荐
+        </div>
+      </div>
+      <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-repeat="t in stype">
+        <div class="stu-warp stu-type-border">
+          {{t.title}}
+        </div>
+      </div>
       <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-repeat="t in stype">
         <div class="stu-warp stu-type-border">
           {{t.title}}

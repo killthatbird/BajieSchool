@@ -47,7 +47,7 @@
             <div ng-repeat="activity in activitylist | filter:searchContent" class="card y-card"
                  ng-click="actdetial(activity)">
               <a class="item item-thumbnail-left">
-                <img ng-src="{{activity.imgSrc}}" alt="{{activity.title}}">
+                <img ng-src="{{activity.imgSrc|| 'img/ben.png'}}" alt="{{activity.title}}">
                 <h2>{{activity.title}}</h2>
                 <span class="y-lasttime-right">{{activity.timestamp}}</span>
                 <p>{{activity.content}}</p>

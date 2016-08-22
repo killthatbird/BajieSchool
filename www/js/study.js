@@ -109,13 +109,11 @@ angular.module('StudyCtrl', [])
   .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout) {
     $scope.tjTab = '推荐';
     $scope.isActivetab = function (A) {
-      console.log(A == $scope.tjTab)
       return A == $scope.tjTab;
     }
+    var colorList = ["#f18b1b","#f58f85","#74c75c","#bcb1d6","#44bb97","#ebb904","#9b5895","#f59974"]
+    $scope.bgc=colorList;
     $scope.stype = [
-      {
-        title: '推荐'
-      },
       {
         title: '考研'
       }, {
