@@ -139,12 +139,16 @@ angular.module('controllers', [])
   })
 
   .controller('loginCtrl', function ($scope, $state, $http) {
+
+    $scope.user = {};
+
     $scope.login = function () {
 
+      console.log($scope.user.password);
       $http({
-        method: 'GET',
-        url: 'http://localhost:8080/api/testusers',
-        data: {}
+        method: 'POST',
+        url: 'http://localhost:8080/api/login/' + $scope.user.username,
+        data: {password: $scope.user.password}
       }).then(function successCallback(response) {
         console.log('请求成功！');
       }, function errorCallback(response) {
