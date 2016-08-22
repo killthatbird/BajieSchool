@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'AddCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl', 'ngAnimate'])
 
-  .run(function ($ionicPlatform, $http) {
+  .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -27,7 +27,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
     });
   })
 
-  .config(function ($stateProvider, $ionicConfigProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $ionicConfigProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     $ionicConfigProvider.tabs.position('bottom');
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -221,8 +222,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
 
       .state('login', {
         url: '/login',
-        templateUrl: 'templates/login.html',
-        controller: 'loginCtrl'
+        templateUrl: 'templates/login.html'
       })
 
       .state('register', {

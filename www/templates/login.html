@@ -1,26 +1,26 @@
 <ion-view>
-  <ion-content overflow-scroll="true" style="overflow: hidden">
+  <ion-content ng-controller="loginCtrl" overflow-scroll="true" style="overflow: hidden">
     <div class="loginBox">
       <div style="display: flex;">
         <img src="img/icon/2.png" style="width:40%;margin:auto"/>
       </div>
-      <form ng-submit="Login(formData)" class="login" name="userForm">
+      <form ng-submit="login()" class="login">
         <div class="item item-input" style="border:none">
-          <input type="tel" name="username" ng-minlength="11" ng-maxlength="11" placeholder="用户名|学号|手机号"
-                 ng-model="formData.username" required>
-          <i ng-if="userForm.username.$valid" class="icon ion-android-done placeholder-icon"></i>
+          <input contenteditable="true" type="text" name="username"
+                 placeholder="用户名|学号|手机号"
+                 ng-model="user.username" required>
+          <i ng-if="user.username.$valid" class="icon ion-android-done placeholder-icon"></i>
         </div>
-        <div class="help-block error" ng-if="userForm.username.$error.required && userForm.username.$touched">
+        <div class="help-block error" ng-if="user.username.$error.required && user.username.$touched">
           <p ng-message="required" style="color:red">这里没有填东西呢 T_T</p>
         </div>
         <div class="item item-input" style="border:none">
-          <input type="password" name="password" ng-minlength="8" ng-maxlength="20" placeholder="请输入密码"
-                 ng-model="formData.password" required>
-          <i ng-if="userForm.username.$valid" class="icon ion-android-done placeholder-icon"></i>
+          <input type="password" name="password" placeholder="请输入密码"
+                 ng-model="user.password" required>
+          <i ng-if="user.username.$valid" class="icon ion-android-done placeholder-icon"></i>
         </div>
-
         <div class="item item-input" style="border:none;margin-top:40px;">
-          <button ng-click="login()" style="border-radius: initial;margin-bottom: 0px"
+          <button style="border-radius: initial;margin-bottom: 0px"
                   class="button button-block button-positive" type="submit">登录
           </button>
         </div>
