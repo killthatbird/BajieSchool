@@ -161,7 +161,8 @@
 .mine-row .col-25 .content-box-pic img {
   width: 35%
 }
-
+.edit-row .item-input{padding: 6px 0 5px 50px !important;}
+.edit-row .item-input span{padding-right: 30px;}
 .mine-row .col-25 {
   margin: auto;
   display: initial;
@@ -300,10 +301,10 @@
 .df-bc-num .cendiv {
   font-size: 39px;
   font-weight: 100;
-  left: 19px;
-  top: -9px;
-  -webkit-transform: rotate(40deg);
-  -moz-transform: rotate(40deg);
+  left: 13px;
+  top: -6px;
+  -webkit-transform: rotate(33deg);
+  -moz-transform: rotate(33deg);
 }
 
 .y-date-right {

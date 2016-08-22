@@ -12,11 +12,13 @@
 
     <div class="card col-card" on-hold="showdel()" ng-repeat="ntf in ntflist">
       <div class="item item-divider">
-        <h2 style="padding-right: 0px"><label ng-hide="remove" class="bc-hd">{{ntf.type}}</label>
+        <h2 style="padding-right: 0px">
+          <div ng-hide="remove">
+            <label class="bc-hd" ng-if="ntf.type=='活动'">{{ntf.type}}</label>
+            <label class="bc-xx" ng-if="ntf.type=='学习'">{{ntf.type}}</label>
+            <label class="bc-wd" ng-if="ntf.type=='问答'">{{ntf.type}}</label>
+          </div>
           <label ng-show="remove" ng-click="deletebtn()" class="bc-sc">删除</label>
-          <!-- <label class="bc-hd" ng-if="l.type=='活动'">{{l.type}}</label>
-       <label class="bc-xx" ng-if="l.type=='学习'">{{l.type}}</label>
-       <label class="bc-wd" ng-if="l.type=='问答'">{{l.type}}</label>-->
           {{ntf.title}}</h2>
       </div>
       <div class="item item-text-wrap"  ng-click="godetial('{{ntf.type}}')">

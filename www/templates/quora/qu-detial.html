@@ -5,6 +5,11 @@
     </button>
   </div>
   <h1 class="title">共{{totalanswer}}个回答</h1>
+  <div class="buttons">
+    <button ng-click="openModal()"
+            class="button no-animation button-icon icon">回答
+    </button>
+  </div>
 </ion-header-bar>
 <ion-view>
   <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'">
@@ -38,6 +43,23 @@
         </div>
       </div>
     </div>
-
   </ion-content>
 </ion-view>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <div class="buttons">
+        <button ng-click="modal.hide()"
+                class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+        </button>
+      </div>
+      <h1 class="title">回复内容</h1>
+      <button class="button button-clear button-primary" ng-submit="">发表</button>
+    </ion-header-bar>
+    <ion-content class="has-header">
+      <div class="padding">
+          <textarea name="content" style="min-height: 400px;" placeholder="回复内容..." ng-model="formData.content"></textarea>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>

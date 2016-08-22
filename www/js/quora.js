@@ -87,10 +87,19 @@ angular.module('quoraCtrl', [])
 
   })
 
-  .controller('qudetialCtrl', function ($scope, $state, $http) {
+  .controller('qudetialCtrl', function ($scope, $state, $http,$ionicModal) {
     $scope.answerlist = function () {
       $state.go("comlist");
     }
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
     $http.get("../data/quora/quora-answerlist-detail.json")
       .then(function (response) {
         if (response.data.status == 0) {

@@ -105,7 +105,7 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope, $stateParams, $http,$ionicHistory,LocalStorage) {
+  .controller('actdetialCtrl', function ($scope, $stateParams,$state, $http,$ionicHistory,LocalStorage) {
     console.log($ionicHistory.viewHistory())
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
@@ -119,13 +119,13 @@ angular.module('ActCtrl', [])
       $scope.showcom = true;
     }
     $scope.gohBack = function () {
-      var backHistoryId = $ionicHistory.currentHistoryId();
-      var backView = $ionicHistory.viewHistory().histories[backHistoryId].stack.filter(function (v) {
-        return v.viewId === LocalStorage.get("acthViewid");
-      })[0];
-      if(v.viewId=="act1"){
+      if(LocalStorage.get("acthViewid")=="act1"){
         $state.go("tab.activity")
       }else{
+        var backHistoryId = $ionicHistory.currentHistoryId();
+        var backView = $ionicHistory.viewHistory().histories[backHistoryId].stack.filter(function (v) {
+          return v.viewId === LocalStorage.get("acthViewid");
+        })[0];
         $ionicHistory.backView(backView);
         $ionicHistory.goBack();
       }

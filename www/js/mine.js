@@ -12,7 +12,9 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     });
 })
   .controller('MineCtrl', function ($scope, $state, $http) {
-
+    $scope.setting = function () {
+      $state.go("setting")
+    }
     var myChart = echarts.init(document.getElementById('main'));
     myChart.showLoading();
 
@@ -119,7 +121,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('mycollectionCtrl', function ($scope, $state, $http,$ionicHistory,LocalStorage) {
+  .controller('mycollectionCtrl', function ($scope, $state, $http, $ionicHistory, LocalStorage) {
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
@@ -200,7 +202,14 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('pInfoCtrl', function ($scope, $http) {
+  .controller('pInfoCtrl', function ($scope, $http,$ionicActionSheet) {
+    $scope.edit=true
+    $scope.editPinfo = function () {
+      $scope.edit=false
+    }
+    $scope.save = function () {
+      $scope.edit=true
+    }
     $http.get("../data/mine/p-info.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -209,5 +218,46 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
           console.error('网络连接失败...');
         }
       });
+
+    $scope.changepic = function () {
+      $ionicActionSheet.show({
+        buttons: [{
+          text: '拍照'
+        }, {
+          text: '相册'
+        }],
+        titleText: '选择头像',
+        destructiveText: '取消',
+        destructiveButtonClicked: function () {
+          return true;
+        },
+        buttonClicked: function (index) {
+          if (index == 0) {
+            var options = {
+              destinationType: Camera.DestinationType.DATA_URL,
+              sourceType: Camera.PictureSourceType.CAMERA,
+            };
+
+          } else if (index == 1) {
+            var options = {
+              destinationType: Camera.DestinationType.DATA_URL,
+              sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            };
+          }
+          /* $cordovaCamera.getPicture(options).then(　　　　　　　　　 //返回一个imageURI，记录了照片的路径
+           function (imageURI) {
+           imgitems.push({
+           url: "data:image/jpeg;base64," + imageURI
+           });
+           $scope.items = imgitems;
+           tobackimg = tobackimg + imageURI + ',';
+           },
+           function (err) {
+
+           });*/
+          return true;
+        }
+      });
+    }
   })
 ;
