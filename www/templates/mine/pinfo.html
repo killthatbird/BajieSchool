@@ -16,11 +16,11 @@
 </ion-header-bar>
 <ion-view>
 
-  <ion-content  ng-show="edit" class="has-header ionic-pseudo" style="background: #eee">
+  <ion-content ng-show="edit" class="has-header ionic-pseudo" style="background: #eee">
     <form class="list list-pinfo">
       <a class="item item-icon-left" style="padding:21px 16px 21px 54px">
         <img class="l_img" style="top:18px" ng-src="img/icon/pinfo/01.png">头像
-        <img class="r_img" src="{{pinfo.avatar}}">
+        <img class="r_img" ng-src="{{pinfo.avatar}}">
       </a>
       <a class="item item-icon-left df-divider">
         <img class="l_img" src="img/icon/pinfo/02.png">
@@ -55,46 +55,47 @@
       </a>
     </form>
   </ion-content>
-  <ion-content  ng-hide="edit" class="has-header ionic-pseudo" style="background: #fff">
-  <form class="list list-pinfo edit-row">
-    <div class="row mine-row">
-      <div class="col-25  y_box">
-      </div>
-      <div class="col-50  y_box" ng-click="changepic()">
-        <div class="content-box-pic">
-          <img class="bc-fam" src="img/perry.png"/>
-          <p style="color: red">LucasX</p>
+  <ion-content ng-hide="edit" class="has-header ionic-pseudo" style="background: #fff">
+    <form class="list list-pinfo edit-row">
+      <div class="row mine-row">
+        <div class="col-25  y_box">
+        </div>
+        <div class="col-50  y_box" ng-click="changepic()">
+          <div class="content-box-pic">
+            <img class="bc-fam" src="img/perry.png"/>
+            <p style="color: red">LucasX</p>
+          </div>
+        </div>
+        <div class="col-25  y_box">
         </div>
       </div>
-      <div class="col-25  y_box">
-      </div>
-    </div>
-    <li class="item item-icon-left df-divider item-input">
-      <img class="l_img" src="img/icon/pinfo/02.png">
-      <span>昵称</span>
-      <input type="text" ng-model="pinfo.nickname" placeholder="...">
-    </li>
-    <li class="item item-icon-left" style="padding-left: 50px;">
-      <img class="l_img" src="img/icon/pinfo/03.png">
-      <span>性别</span>
-      <label style="margin-right: 40px;margin-left: 28px"><input class="aui-radio" type="radio" name="sex" ng-model="pinfo.sex" value="男"> 男</label>
-      <label><input class="aui-radio" type="radio"  name="sex"  ng-model="pinfo.sex"  value="女">女</label>
-    </li>
-    <li class="item item-icon-left item-input">
-      <img class="l_img" src="img/icon/pinfo/04.png">
-      <span>签名</span>
-      <input type="text" ng-model="pinfo.motto" placeholder="">
-    </li>
-    <li class="item item-icon-left item-input">
-      <img class="l_img" src="img/icon/pinfo/05.png">
-      <span>学校</span>
-      <input type="text" ng-model="pinfo.university" placeholder="">
-    </li>
-    <li class="item item-icon-left item-input">
-      <img class="l_img" src="img/icon/pinfo/06.png">
-      <span>学号</span>
-      <input type="text" ng-model="pinfo.student_id" placeholder="">
-    </li>
-  </form>
+      <li class="item item-icon-left df-divider item-input">
+        <img class="l_img" src="img/icon/pinfo/02.png">
+        <span>昵称</span>
+        <input type="text" ng-model="pinfo.nickname" placeholder="...">
+      </li>
+      <li class="item item-icon-left" style="padding-left: 50px;">
+        <img class="l_img" src="img/icon/pinfo/03.png">
+        <span>性别</span>
+        <label style="margin-right: 40px;margin-left: 28px"><input class="aui-radio" type="radio" name="sex"
+                                                                   ng-model="pinfo.sex" value="男"> 男</label>
+        <label><input class="aui-radio" type="radio" name="sex" ng-model="pinfo.sex" value="女">女</label>
+      </li>
+      <li class="item item-icon-left item-input">
+        <img class="l_img" src="img/icon/pinfo/04.png">
+        <span>签名</span>
+        <input type="text" ng-model="pinfo.motto" placeholder="">
+      </li>
+      <li class="item item-icon-left item-input">
+        <img class="l_img" src="img/icon/pinfo/05.png">
+        <span>学校</span>
+        <input type="text" ng-model="pinfo.university" placeholder="">
+      </li>
+      <li class="item item-icon-left item-input">
+        <img class="l_img" src="img/icon/pinfo/06.png">
+        <span>学号</span>
+        <input type="text" ng-model="pinfo.student_id" placeholder="">
+      </li>
+    </form>
   </ion-content>
 </ion-view>
