@@ -18,7 +18,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
@@ -28,7 +27,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
   })
 
   .config(function ($stateProvider, $ionicConfigProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
     $ionicConfigProvider.tabs.position('bottom');
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -207,7 +208,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       })
       .state('setting', {
         url: '/mine/setting',
-        templateUrl: 'templates/mine/setting.html'
+        templateUrl: 'templates/mine/setting.html',
+        controller: 'settingCtrl'
       })
       .state('pinfo', {
         url: '/mine/pinfo',

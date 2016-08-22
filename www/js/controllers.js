@@ -147,15 +147,23 @@ angular.module('controllers', [])
       console.log($scope.user.password);
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/login/' + $scope.user.username,
-        data: {password: $scope.user.password}
+        url: 'http://127.0.0.1:8080/api/login/' + $scope.user.username,
+        data: $.param($scope.user)
       }).then(function successCallback(response) {
-        console.log('请求成功！');
+        if (response.data.status == 0) {
+          localStorage.setItem("username", $scope.user.username);
+          $http.get("http://localhost:8080/api/status/" + $scope.user.username)
+            .then(function (response) {
+              console.log("用户状态修改成功!");
+            });
+
+          $state.go("tab.activity");
+        }
+
       }, function errorCallback(response) {
         console.error("登录失败！");
       });
 
-      $state.go("tab.activity");
     }
     $scope.register = function () {
       $state.go("register");

@@ -202,13 +202,13 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('pInfoCtrl', function ($scope, $http,$ionicActionSheet) {
-    $scope.edit=true
+  .controller('pInfoCtrl', function ($scope, $http, $ionicActionSheet) {
+    $scope.edit = true
     $scope.editPinfo = function () {
-      $scope.edit=false
+      $scope.edit = false
     }
     $scope.save = function () {
-      $scope.edit=true
+      $scope.edit = true
     }
     $http.get("../data/mine/p-info.json")
       .then(function (response) {
@@ -258,6 +258,18 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
           return true;
         }
       });
+    }
+  })
+
+  .controller('settingCtrl', function ($scope, $http, $state) {
+    $scope.logout = function () {
+      var username = localStorage.getItem("username");
+      $http.get("http://localhost:8080/api/status/" + username)
+        .then(function (response) {
+          console.log("用户退出成功!");
+          $state.go("login");
+        });
+
     }
   })
 ;
