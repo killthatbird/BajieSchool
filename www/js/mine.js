@@ -119,13 +119,15 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('mycollectionCtrl', function ($scope, $state, $http) {
+  .controller('mycollectionCtrl', function ($scope, $state, $http,$ionicHistory,LocalStorage) {
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
     }
     $scope.godetial = function (A) {
       if (A == "活动") {
+        var backViewId = $ionicHistory.currentView().viewId;
+        LocalStorage.set("acthViewid", backViewId);
         $state.go("actdetial")
       } else if (A == "学习") {
         $state.go("studetial")

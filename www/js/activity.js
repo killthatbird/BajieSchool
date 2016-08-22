@@ -2,10 +2,11 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('ActCtrl', [])
-  .controller('ActallCtrl', function ($scope, $ionicTabsDelegate) {
+  .controller('ActallCtrl', function ($scope, $ionicHistory,LocalStorage) {
   })
-  .controller('ActivityCtrl', function ($scope, $state, $http) {
+  .controller('ActivityCtrl', function ($scope, $state, $http,LocalStorage) {
     $scope.actdetial = function (A) {
+      LocalStorage.set("acthViewid", "act1");
       $state.go("actdetial", {actobj: A});
     }
     $http.get('../data/activity/tabs.json').then(function (response) {
@@ -104,7 +105,8 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope, $stateParams, $http) {
+  .controller('actdetialCtrl', function ($scope, $stateParams, $http,$ionicHistory,LocalStorage) {
+    console.log($ionicHistory.viewHistory())
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
     }
@@ -116,7 +118,18 @@ angular.module('ActCtrl', [])
     $scope.seecom1 = function () {
       $scope.showcom = true;
     }
-
+    $scope.gohBack = function () {
+      var backHistoryId = $ionicHistory.currentHistoryId();
+      var backView = $ionicHistory.viewHistory().histories[backHistoryId].stack.filter(function (v) {
+        return v.viewId === LocalStorage.get("acthViewid");
+      })[0];
+      if(v.viewId=="act1"){
+        $state.go("tab.activity")
+      }else{
+        $ionicHistory.backView(backView);
+        $ionicHistory.goBack();
+      }
+    }
     $http.get('../data/activity/activity-detail.json').then(function (response) {
       if (response.data.status == 0) {
         $scope.activitydetail = response.data.detail;
