@@ -103,9 +103,9 @@ angular.module('controllers', [])
   )
 
   .controller('selSchCtrl', function ($scope, $state, LocalStorage, $http) {
-    $http.get('../data/schoollist.json').then(function (response) {
+    $http.get('http://localhost:8080/api/university').then(function (response) {
       if (response.data.status == 0) {
-        $scope.schoollist = response.data.schoollist;
+        $scope.schoollist = response.data.result;
       }
     });
 
