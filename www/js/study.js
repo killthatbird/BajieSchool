@@ -108,7 +108,7 @@ angular.module('StudyCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http) {
+  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http,IP) {
     $scope.tjTab = '推荐';
     $scope.isActivetab = function (A) {
       return A == $scope.tjTab;
@@ -134,10 +134,10 @@ angular.module('StudyCtrl', [])
           console.error('网络连接失败...');
         }
       });
-
-
+    $scope.stype=[]
     $scope.removetype = function (idx) {
-      $scope.stype.splice(idx, 1);
+      $scope.stype.splice($scope.stype.indexOf(idx), 1);
+      $scope.unChosenTypes.push({typeName: idx.title,typeId: idx.id});
     }
     $scope.addtype = function (A) {
       if ($scope.stype.length >= 8) {
@@ -150,10 +150,18 @@ angular.module('StudyCtrl', [])
           alertPopup.close(); //由于某种原因3秒后关闭弹出
         }, 3000);
       } else {
-        $scope.stype.push({
-          title: A.typeName,
-          id: $scope.stype.length + 1
-        });
+       /* $http({
+        method: 'POST',
+        url: IP.info() + 'api/user_study',
+        data: $.param(A),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      }).success(function (data) {
+        console.log(data)
+      })*/
+        $scope.unChosenTypes.splice(A, 1);
+        $scope.stype.push({title: A.typeName, id: A.typeId});
       }
       /* LocalStorage.set("stutype", A)
        $state.go("tab.study", {}, {reload: true})*/
