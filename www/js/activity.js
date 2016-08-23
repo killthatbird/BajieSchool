@@ -162,16 +162,16 @@ angular.module('ActCtrl', [])
   })
 
   /*发起活动*/
-  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http) {
+  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http,IP) {
 
-    $http.get("../data/activity/activity-class.json")
+   /* $http.get("../data/activity/activity-class.json")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.classes = response.data.classes;
         } else {
           console.error('网络连接失败...');
         }
-      });
+      });*/
 
     $scope.choosePicMenuf = function () {
       $ionicActionSheet.show({
@@ -201,7 +201,7 @@ angular.module('ActCtrl', [])
               imgitems.push({
                 url: "data:image/jpeg;base64," + imageURI
               });
-              $scope.items = imgitems;
+              $scope.actImg = imgitems;
               tobackimg = tobackimg + imageURI + ',';
             },
             function (err) {
@@ -209,6 +209,19 @@ angular.module('ActCtrl', [])
             });
           return true;
         }
+      });
+    }
+
+    $scope.save=function () {
+      console.log($scope.formData)
+      $http({
+        method: 'POST',
+        url:IP.info() +  '/api/addact',
+        data: $.param($scope.formData)
+      }).then(function successCallback(response) {
+
+      }, function errorCallback(response) {
+        console.error("保存失败！");
       });
     }
 
