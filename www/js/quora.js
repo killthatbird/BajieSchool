@@ -67,12 +67,12 @@ angular.module('quoraCtrl', [])
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
     };
-    $ionicModal.fromTemplateUrl('my-modal.html', {
+    /*$ionicModal.fromTemplateUrl('my-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
       $scope.modal = modal;
-    });
+    });*/
     $scope.openModal = function() {
       $scope.modal.show();
     };
@@ -91,12 +91,12 @@ angular.module('quoraCtrl', [])
     $scope.answerlist = function () {
       $state.go("comlist");
     }
-    $ionicModal.fromTemplateUrl('my-modal.html', {
+    /*$ionicModal.fromTemplateUrl('my-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
       $scope.modal = modal;
-    });
+    });*/
     $scope.openModal = function() {
       $scope.modal.show();
     };

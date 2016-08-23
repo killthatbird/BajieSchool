@@ -18,11 +18,13 @@ angular.module('controllers', [])
       $state.go(A)
     }
 
-    if (localStorage.times == 0) {
+/*    var userInfo = localStorage.getItem('userInfo');
+    if (userInfo == null || userInfo.logintime == 0) {
       $state.go("tour");
     } else {
       $state.go("tab.activity");
-    }
+      localStorage.setItem("userInfo", {username: localStorage.getItem("username"), logintime: 1});
+    }*/
     /*   var options = {
      message: 'share this', // not supported on some apps (Facebook, Instagram)
      subject: 'the subject', // fi. for email
