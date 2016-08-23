@@ -7,10 +7,11 @@ angular.module('StudyCtrl', [])
     $scope.onClickTab = function (tab) {
       $scope.currentTab = tab.title;
 
-      $http.get("../data/study/tabs/study-list-cet.json")
+      var username = localStorage.getItem("username");
+      $http.get("http://localhost:8080/api/studytype/" + username)
         .then(function (response) {
           if (response.data.status == 0 && response.data.category == tab.title) {
-            $scope.studylist = response.data.studylist;
+            $scope.studylist = response.data.result;
           } else {
             console.error('网络连接失败...');
           }
@@ -24,10 +25,11 @@ angular.module('StudyCtrl', [])
     $scope.showComment = false;
     $scope.showMore = false;
 
-    $http.get("../data/study/study-type.json")
+    var username = localStorage.getItem("username");
+    $http.get("http://localhost:8080/api/studytype/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.stype = response.data.typelist;
+          $scope.stutypelist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }
@@ -106,31 +108,34 @@ angular.module('StudyCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout) {
+  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http) {
     $scope.tjTab = '推荐';
     $scope.isActivetab = function (A) {
       return A == $scope.tjTab;
     }
-    var colorList = ["#f18b1b","#f58f85","#74c75c","#bcb1d6","#44bb97","#ebb904","#9b5895","#f59974"]
-    $scope.bgc=colorList;
-    $scope.stype = [
-      {
-        title: '考研'
-      }, {
-        title: '英语'
-      }, {
-        title: '出国'
-      }, {
-        title: '公务员'
-      }, {
-        title: '计算机'
-      }, {
-        title: '四六级'
-      }, {
-        title: '考前预习'
-      }, {
-        title: '政治学'
-      }];
+    var colorList = ["#f18b1b", "#f58f85", "#74c75c", "#bcb1d6", "#44bb97", "#ebb904", "#9b5895", "#f59974"]
+    $scope.bgc = colorList;
+
+    var username = localStorage.getItem("username");
+    $http.get("http://localhost:8080/api/studytype/" + username)
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.stype = response.data.result;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
+    $http.get("http://localhost:8080/api/unchosentypes/" + username)
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.unChosenTypes = response.data.result;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+
+
     $scope.removetype = function (idx) {
       $scope.stype.splice(idx, 1);
     }
@@ -146,7 +151,7 @@ angular.module('StudyCtrl', [])
         }, 3000);
       } else {
         $scope.stype.push({
-          title: A,
+          title: A.typeName,
           id: $scope.stype.length + 1
         });
       }

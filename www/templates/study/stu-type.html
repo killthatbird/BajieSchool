@@ -11,8 +11,8 @@
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>关注模块</h2>
       <div class="aui-col-xs-3" ng-click="removetype(($index))" ng-repeat="t in stype">
-        <div class="stu-warp"  ng-style="{background:'{{bgc[$index]}}'}" style="color:#fff">
-          {{t.title}}
+        <div class="stu-warp" ng-style="{background:'{{bgc[$index]}}'}" style="color:#fff">
+          {{t.typeName}}
         </div>
       </div>
     </div>
@@ -24,14 +24,10 @@
           推荐
         </div>
       </div>
-      <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-repeat="t in stype">
+      <div class="aui-col-xs-3" ng-click="addtype(unChosenType)"
+           ng-repeat="unChosenType in unChosenTypes">
         <div class="stu-warp stu-type-border">
-          {{t.title}}
-        </div>
-      </div>
-      <div class="aui-col-xs-3" ng-click="addtype('{{t.title}}')" ng-repeat="t in stype">
-        <div class="stu-warp stu-type-border">
-          {{t.title}}
+          {{unChosenType.typeName}}
         </div>
       </div>
     </div>
