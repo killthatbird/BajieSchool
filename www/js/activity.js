@@ -216,10 +216,10 @@ angular.module('ActCtrl', [])
       console.log($scope.formData)
       $http({
         method: 'POST',
-        url:IP.info() +  '/api/addact',
+        url:IP.info() +  '/api/newact',
         data: $.param($scope.formData)
       }).then(function successCallback(response) {
-
+        console.error(response);
       }, function errorCallback(response) {
         console.error("保存失败！");
       });

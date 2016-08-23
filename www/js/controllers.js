@@ -179,7 +179,8 @@ angular.module('controllers', [])
       console.log($scope.user.password);
       $http({
         method: 'POST',
-        url: 'http://127.0.0.1:8080/api/login/' + $scope.user.username,
+        // url: 'http://127.0.0.1:8080/api/login/' + $scope.user.username,
+        url: 'http://localhost:8080/api/login/' + $scope.user.username,
         data: $.param($scope.user)
       }).then(function successCallback(response) {
         if (response.data.status == 0) {

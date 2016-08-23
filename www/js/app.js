@@ -211,10 +211,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         templateUrl: 'templates/mine/setting.html',
         controller: 'settingCtrl'
       })
-      .state('pinfo', {
-        url: '/mine/pinfo',
-        templateUrl: 'templates/mine/pinfo.html',
-        controller: 'pInfoCtrl'
+      .state('against', {
+        url: '/mine/against',
+        templateUrl: 'templates/mine/against.html',
+        controller: 'feedbackCtrl'
+      })
+      .state('feedback', {
+        url: '/mine/feedback',
+        templateUrl: 'templates/mine/feedback.html',
+        controller: 'feedbackCtrl'
       })
 
       .state('about', {

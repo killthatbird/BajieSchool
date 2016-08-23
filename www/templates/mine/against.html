@@ -1,0 +1,27 @@
+<ion-header-bar class="bar bar-header bar-positive">
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
+    </button>
+  </div>
+  <h1 class="title">举报信息</h1>
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()"
+            class="button no-animation button-icon icon buttons button-clear ion-ios-paperplane-outline">提交
+    </button>
+  </div>
+</ion-header-bar>
+<ion-view>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">主要内容：</span>
+        <input name="content" placeholder="填写主要内容" ng-model="formData.content">
+      </label>
+      <div class="padding">
+        <textarea name="content" style="min-height: 300px;" placeholder="描述..." ng-model="formData.content"></textarea>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

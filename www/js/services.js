@@ -18,9 +18,9 @@ angular.module('services', [])
   })
   .factory('IP', function () {
     //var ip = 'http://121.40.193.122';
-    var ip = 'http://192.168.1.192:8080';
+    var ip = 'http://127.0.0.1:8080';
     return {
-      url: function () {
+      info: function () {
         return ip
       }
     };
