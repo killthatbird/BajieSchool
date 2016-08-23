@@ -65,13 +65,13 @@
         </div>
       </div>
       <div ng-hide="curstep">
-        <ul class="aui-list aui-form-list">
+        <ul class="aui-list aui-form-list rglist">
           <li class="aui-list-item">
             <div class="aui-list-item-inner">
               <div class="aui-list-item-label">
                 用户名
               </div>
-              <div class="aui-list-item-input">
+              <div class="aui-list-item-input item-input">
                 <input type="text"/>
               </div>
             </div>
@@ -81,8 +81,32 @@
               <div class="aui-list-item-label">
                 密码
               </div>
-              <div class="aui-list-item-input">
+              <div class="aui-list-item-input item-input">
                 <input type="password" minlength="8" maxlength="20"/>
+              </div>
+            </div>
+          </li>
+          <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-label">
+                手机号
+              </div>
+              <div class="aui-list-item-input item-input">
+                <input type="text" class="aui-col-xs-8">&nbsp;
+                <div class="aui-btn aui-btn-info aui-col-xs-4"  style="margin-right: 0px;" ng-click="sendphonecode(reg_phone)" ng-class="paraclass"
+                     ng-bind="paracont">获取验证码
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-label">
+                验证码
+              </div>
+              <div class="aui-list-item-input item-input">
+                <input type="text" class="aui-col-xs-8">&nbsp;
+                <div class="aui-btn aui-btn-info aui-col-xs-4" ng-click="nextste()">验证</div>
               </div>
             </div>
           </li>

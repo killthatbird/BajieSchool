@@ -50,7 +50,7 @@ angular.module('controllers', [])
     };
   })
 
-  .controller('registerCtrl', function ($scope, $state, LocalStorage) {
+  .controller('registerCtrl', function ($scope, $state,$interval, LocalStorage) {
     $scope.formdata = {};
     $scope.formdata.name = LocalStorage.get("sc_name")
     $scope.curstep = true;
@@ -59,6 +59,38 @@ angular.module('controllers', [])
     }
     $scope.login = function () {
       $state.go("login")
+    }
+
+    $scope.paracont = "获取验证码";
+    $scope.paraclass = "but_null";
+    $scope.paraevent = false;
+    // $scope.disabled=false;
+    var second = 60,
+      timePromise = undefined;
+    var flag = true;
+    $scope.sendphonecode = function () {
+
+      if (flag == true) {
+        timePromise = $interval(function () {
+            if (second <= 0) {
+              $interval.cancel(timePromise);
+              timePromise = undefined;
+              second = 60;
+              $scope.paracont = "重发验证码";
+              $scope.paraclass = "but_null";
+              $scope.paraevent = true;
+            } else {
+              $scope.paracont = second + "秒后重发";
+              $scope.paraclass = "not but_null";
+              second--;
+              flag = true;
+            }
+            flag = false;
+          }
+          ,
+          1000
+        );
+      }
     }
   })
 

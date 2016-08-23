@@ -834,3 +834,5 @@
 /*.floatbtn{position: absolute;bottom:60px;background-color:rgba(0,0,0,0.4) !important;z-index:999;}
 .floatbtn .aui-col-xs-4 i{font-size: 2rem;color:#fff}
 .floatbtn .aui-col-xs-4 p{color:#fff;}*/
+.rglist .aui-list-item-inner .aui-list-item-label{width:25%}
+.rglist  input{min-height: initial !important;margin:initial;border-radius:6px !important;border: 1px solid #ccc !important;}
