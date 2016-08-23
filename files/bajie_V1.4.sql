@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-23 10:13:06
+Date: 2016-08-23 15:24:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,6 +41,8 @@ CREATE TABLE `activity` (
 -- Records of activity
 -- ----------------------------
 INSERT INTO `activity` VALUES ('10000', '0', '周杰伦演唱会', '8月17日，周杰伦将在武汉光谷广场举办演唱会', 'img/activity/act/周杰伦.jpg', '2016-08-16 14:49:44', '520', '2465', '249', '125', '154', '湖北武汉', null, null);
+INSERT INTO `activity` VALUES ('10001', '0', '科技展览', 'VR，无人机，无人驾驶，机器人等在武汉大学开办展会', 'img/activity/act/科技展览.jpeg', '2016-08-15 14:49:44', '52', '255', '199', '125', '174', '湖北武汉', null, null);
+INSERT INTO `activity` VALUES ('10002', '0', '数学建模大赛', '阿里巴巴天池大数据竞赛', 'img/activity/act/阿里巴巴.jpg', '2016-08-14 14:49:44', '52', '255', '1699', '125', '174', '浙江杭州', null, null);
 
 -- ----------------------------
 -- Table structure for activity_comment
@@ -81,7 +83,7 @@ CREATE TABLE `activity_comment-comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `activity_type`;
 CREATE TABLE `activity_type` (
-  `act_type_id` varchar(2) NOT NULL,
+  `act_type_id` int(2) NOT NULL,
   `act_type_name` varchar(20) NOT NULL,
   PRIMARY KEY (`act_type_id`,`act_type_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -163,7 +165,8 @@ CREATE TABLE `login_status` (
 -- ----------------------------
 -- Records of login_status
 -- ----------------------------
-INSERT INTO `login_status` VALUES ('admin', '1', '2016-08-23 09:54:55');
+INSERT INTO `login_status` VALUES ('admin', '0', '2016-08-23 13:44:10');
+INSERT INTO `login_status` VALUES ('LucasX', '0', '2016-08-24 13:44:10');
 
 -- ----------------------------
 -- Table structure for notification
@@ -283,18 +286,18 @@ CREATE TABLE `study_type` (
 -- ----------------------------
 -- Records of study_type
 -- ----------------------------
-INSERT INTO `study_type` VALUES ('500000', '推荐');
-INSERT INTO `study_type` VALUES ('500001', '考研');
-INSERT INTO `study_type` VALUES ('500002', '英语');
-INSERT INTO `study_type` VALUES ('500003', '高数');
-INSERT INTO `study_type` VALUES ('500004', '计算机二级');
-INSERT INTO `study_type` VALUES ('500005', '财会');
-INSERT INTO `study_type` VALUES ('500006', '生科');
-INSERT INTO `study_type` VALUES ('500007', '机械');
-INSERT INTO `study_type` VALUES ('500008', '土建');
-INSERT INTO `study_type` VALUES ('500009', '经管');
-INSERT INTO `study_type` VALUES ('500010', '考公');
-INSERT INTO `study_type` VALUES ('500011', '四六级');
+INSERT INTO `study_type` VALUES ('50000', '推荐');
+INSERT INTO `study_type` VALUES ('50001', '考研');
+INSERT INTO `study_type` VALUES ('50002', '英语');
+INSERT INTO `study_type` VALUES ('50003', '高数');
+INSERT INTO `study_type` VALUES ('50004', '计算机二级');
+INSERT INTO `study_type` VALUES ('50005', '财会');
+INSERT INTO `study_type` VALUES ('50006', '生科');
+INSERT INTO `study_type` VALUES ('50007', '机械');
+INSERT INTO `study_type` VALUES ('50008', '土建');
+INSERT INTO `study_type` VALUES ('50009', '经管');
+INSERT INTO `study_type` VALUES ('50010', '考公');
+INSERT INTO `study_type` VALUES ('50011', '四六级');
 
 -- ----------------------------
 -- Table structure for test_user
@@ -357,6 +360,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('admin', '1110831116', 'admin', '1', '13207145966', null, '10486', '信息管理学院', '2011', '1', '249048056', 'xulu0620', 'xldev', null, null, null, null);
+INSERT INTO `user` VALUES ('LucasX', '1234567894', '123456', '1', '13207145966', null, '10486', '经济管理学院', '2016', '1', '249048056', 'xulu0620', 'xldev', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for user_activity
@@ -372,7 +376,9 @@ CREATE TABLE `user_activity` (
 -- ----------------------------
 -- Records of user_activity
 -- ----------------------------
-INSERT INTO `user_activity` VALUES ('admin', 'ua20000', '1');
+INSERT INTO `user_activity` VALUES ('admin', '10000', '0');
+INSERT INTO `user_activity` VALUES ('admin', '10001', '0');
+INSERT INTO `user_activity` VALUES ('LucasX', '10002', '0');
 
 -- ----------------------------
 -- Table structure for user_study
@@ -407,7 +413,8 @@ INSERT INTO `user_studytype` VALUES ('admin', '50001');
 INSERT INTO `user_studytype` VALUES ('admin', '50002');
 INSERT INTO `user_studytype` VALUES ('admin', '50003');
 INSERT INTO `user_studytype` VALUES ('admin', '50004');
-INSERT INTO `user_studytype` VALUES ('admin', '50005');
+INSERT INTO `user_studytype` VALUES ('admin', '50008');
+INSERT INTO `user_studytype` VALUES ('LucasX', '50011');
 
 -- ----------------------------
 -- Table structure for visitor
@@ -422,3 +429,9 @@ CREATE TABLE `visitor` (
 -- ----------------------------
 -- Records of visitor
 -- ----------------------------
+
+-- ----------------------------
+-- View structure for user_activity_view
+-- ----------------------------
+DROP VIEW IF EXISTS `user_activity_view`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_activity_view` AS select `act`.`act_id` AS `act_id`,`act`.`act_title` AS `act_title`,`act`.`act_content` AS `act_content`,`act`.`act_img` AS `act_img`,`act`.`act_time` AS `act_time`,`act`.`act_like` AS `act_like`,`act`.`act_comment` AS `act_comment` from ((`activity` `act` join `user_activity`) join `login_status`) where ((`user_activity`.`act_id` = `act`.`act_id`) and (`user_activity`.`username` = `login_status`.`username`) and (`login_status`.`status` = 0)) ;

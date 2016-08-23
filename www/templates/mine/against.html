@@ -6,7 +6,7 @@
   </div>
   <h1 class="title">举报信息</h1>
   <div class="buttons">
-    <button ng-click="$ionicGoBack()"
+    <button ng-click="against()"
             class="button no-animation button-icon icon buttons button-clear ion-ios-paperplane-outline">提交
     </button>
   </div>
@@ -15,11 +15,13 @@
   <ion-content>
     <div class="list">
       <label class="item item-input">
-        <span class="input-label">主要内容：</span>
-        <input name="content" placeholder="填写主要内容" ng-model="formData.content">
+        <span class="input-label">被举报用户：</span>
+        <input name="against" placeholder="想举报谁?" ng-model="accusation.against" required>
       </label>
       <div class="padding">
-        <textarea name="content" style="min-height: 300px;" placeholder="描述..." ng-model="formData.content"></textarea>
+        <textarea name="content" style="min-height: 300px;" placeholder="想举报啥?"
+                  ng-model="accusation.content" required>
+        </textarea>
       </div>
     </div>
 

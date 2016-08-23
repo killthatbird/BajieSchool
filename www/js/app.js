@@ -214,7 +214,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('against', {
         url: '/mine/against',
         templateUrl: 'templates/mine/against.html',
-        controller: 'feedbackCtrl'
+        controller: 'againstCtrl'
       })
       .state('feedback', {
         url: '/mine/feedback',

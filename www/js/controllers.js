@@ -50,7 +50,7 @@ angular.module('controllers', [])
     };
   })
 
-  .controller('registerCtrl', function ($scope, $state,$interval, LocalStorage) {
+  .controller('registerCtrl', function ($scope, $state, $interval, LocalStorage) {
     $scope.formdata = {};
     $scope.formdata.name = LocalStorage.get("sc_name")
     $scope.curstep = true;
@@ -172,14 +172,13 @@ angular.module('controllers', [])
 
   .controller('loginCtrl', function ($scope, $state, $http) {
 
-    $scope.user = {};
 
+    $scope.user = {};
     $scope.login = function () {
 
       console.log($scope.user.password);
       $http({
         method: 'POST',
-        // url: 'http://127.0.0.1:8080/api/login/' + $scope.user.username,
         url: 'http://localhost:8080/api/login/' + $scope.user.username,
         data: $.param($scope.user)
       }).then(function successCallback(response) {

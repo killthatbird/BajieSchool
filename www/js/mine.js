@@ -275,6 +275,48 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
   })
 
   .controller('feedbackCtrl', function ($scope, $http, $state) {
+    $scope.feedback = {reserve1: "", reserve2: ""};
+    var username = localStorage.getItem('username');
+    $scope.submitFeedback = function () {
+
+      $scope.feedback.username = username;
+      console.log($scope.feedback.content + "\t" + $scope.feedback.qq + "\t" + $scope.feedback.wechat + "\t" + $scope.feedback.email + "\t" + $scope.feedback.username);
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8080/api/feedback',
+        data: $.param($scope.feedback)
+      }).then(function successCallback(response) {
+        console.log("反馈提交成功!");
+        $state.go('setting');
+        $scope.feedback = {};
+      }, function errorCallback(response) {
+        console.error("反馈提交失败!");
+      });
+
+
+    }
+  })
+
+  .controller('againstCtrl', function ($scope, $http, $state) {
+    $scope.accusation = {};
+    var informant = localStorage.getItem('username');
+
+    $scope.against = function () {
+      $scope.accusation.informant = informant;
+      console.log($scope.accusation.informant + "\t" + $scope.accusation.against + "\t" + $scope.accusation.content);
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8080/api/against',
+        data: $.param($scope.accusation)
+      }).then(function successCallback(response) {
+        console.log("举报提交成功!");
+        $state.go('setting');
+        $scope.accusation = {};
+      }, function errorCallback(response) {
+        console.error("举报提交失败!");
+      });
+
+    }
 
   })
 ;

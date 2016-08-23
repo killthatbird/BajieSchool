@@ -6,7 +6,7 @@
   </div>
   <h1 class="title">反馈信息</h1>
   <div class="buttons">
-    <button ng-click="$ionicGoBack()"
+    <button ng-click="submitFeedback()"
             class="button no-animation button-icon icon buttons button-clear ion-ios-paperplane-outline">提交
     </button>
   </div>
@@ -15,19 +15,26 @@
   <ion-content>
     <div class="list">
       <div class="padding">
-        <textarea name="content" style="min-height: 120px;" placeholder="主要内容..." ng-model="formData.content"></textarea>
+        <textarea name="content" style="min-height: 120px;" placeholder="我们十分重视您的意见 ^_^"
+                  ng-model="feedback.content"></textarea>
       </div>
+
+      <section class="aui-content-padded">
+        <div class="aui-content" style="text-align: center; color: #00bcd4">
+          请留一下您的任意联系方式~
+        </div>
+      </section>
       <label class="item item-input">
         <span class="input-label">QQ：</span>
-        <input name="content"  ng-model="formData.content">
+        <input name="qq" type="number" ng-model="feedback.qq">
       </label>
       <label class="item item-input">
         <span class="input-label">微信：</span>
-        <input name="content"  ng-model="formData.content">
+        <input name="wechat" ng-model="feedback.wechat">
       </label>
       <label class="item item-input">
         <span class="input-label">邮箱：</span>
-        <input name="content"  ng-model="formData.content">
+        <input name="email" type="email" ng-model="feedback.email">
       </label>
     </div>
 
