@@ -78,10 +78,11 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $state.go("newplan")
     }
 
-    $http.get("../data/mine/mine-agenda.json")
+    var username = localStorage.getItem("username");
+    $http.get("http://localhost:8080/api/agenda/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.agendalist = response.data.aglist;
+          $scope.agendalist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }

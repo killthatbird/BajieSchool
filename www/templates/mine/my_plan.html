@@ -16,12 +16,13 @@
     <ion-list class="mp_list">
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap"
                 ng-repeat="agenda in agendalist">
-        <div class="df-bc-num"><span class="ltop">{{agenda.date.split(" ")[0].split("-")[1]}}</span><span class="cendiv">&#47;</span>
-          <span class="rbot">{{agenda.date.split(" ")[0].split("-")[2]}}</span></div>
-        <h2>{{agenda.title}}<img class="df-himg" src="img/icon/plan/1.png"/></h2>
-        <span class="y-date-right">{{agenda.date}}</span>
+        <div class="df-bc-num"><span class="ltop">{{(agenda.agTime | date:'yyyy-MM-dd HH:mm').split(" ")[0].split("-")[1]}}</span><span
+          class="cendiv">&#47;</span>
+          <span class="rbot">{{(agenda.agTime | date:'yyyy-MM-dd HH:mm').split(" ")[0].split("-")[2]}}</span></div>
+        <h2>{{agenda.agTitle}}<img class="df-himg" src="img/icon/plan/1.png"/></h2>
+        <span class="y-date-right">{{(agenda.agRemind | date:'yyyy-MM-dd HH:mm')}}</span>
         <p><i class="ion-ios-alarm-outline" style="font-size: 18px;color: #e6b200;"></i></p>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        <ion-option-button class="button-assertive" ng-click="remove(agenda)">
           删除
         </ion-option-button>
       </ion-item>
