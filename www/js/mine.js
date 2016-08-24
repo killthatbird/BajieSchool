@@ -275,13 +275,14 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('settingCtrl', function ($scope, $http, $state) {
+  .controller('settingCtrl', function ($scope, $http, $state,LocalStorage) {
 
     // 触发一个按钮点击，或一些其他目标
     $scope.logout = function () {
-      var username = localStorage.getItem("username");
+      var username = LocalStorage.get("username");
       $http.get("http://localhost:8080/api/status/" + username)
         .then(function (response) {
+          LocalStorage.remove("username")
           console.log("用户退出成功!");
           $state.go("login");
         });
