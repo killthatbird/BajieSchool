@@ -73,7 +73,12 @@
                 用户名
               </div>
               <div class="aui-list-item-input item-input">
-                <input type="text"/>
+                <input ng-model="username" type="text"/>
+                <div ng-if="true">
+                  <small ng-show="!username || username === ''"
+                         style="color: red;font-size: 0.6rem;white-space: nowrap;min-width: 93px;">该用户名已存在
+                  </small>
+                </div>
               </div>
             </div>
           </li>
@@ -115,7 +120,8 @@
             <div class="aui-list-item-inner">
               <div class="aui-list-item-input" style="padding-bottom: 10px">
                 <p style="line-height: 0.6rem;padding-bottom: 2px;text-align: center">
-                  <input style="width: 0.6rem;height: 0.6rem;" class="aui-radio" type="checkbox" ng-model="agg_checked" value="0">
+                  <input style="width: 0.6rem;height: 0.6rem;" class="aui-radio" ng-change="ischecked()" type="checkbox"
+                         ng-model="agg_checked" value="0">
                   <small ng-click="agreecon()">同意注册协议</small>&nbsp;<small ng-show="msg" style="color:red">您还未同意呢</small>
                 </p>
               </div>

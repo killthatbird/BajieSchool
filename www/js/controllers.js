@@ -1,9 +1,9 @@
 angular.module('controllers', [])
-  .controller('Allconfig', function ($scope, $state, $rootScope, $ionicModal,LocalStorage) {
-    $scope.$watch('$viewContentLoaded', function() {
-      if (LocalStorage.get("username",0)==0){
+  .controller('Allconfig', function ($scope, $state, $rootScope, $ionicModal, LocalStorage) {
+    $scope.$watch('$viewContentLoaded', function () {
+      if (LocalStorage.get("username", 0) == 0) {
         $state.go("login")
-      }else {
+      } else {
         $state.go("tab.activity")
       }
     });
@@ -59,15 +59,15 @@ angular.module('controllers', [])
     };
   })
 
-  .controller('registerCtrl', function ($scope, $state, $interval,$ionicPopup,$timeout, LocalStorage) {
+  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $timeout, LocalStorage) {
     $scope.formdata = {};
     $scope.formdata.name = LocalStorage.get("sc_name")
     $scope.curstep = true;
-    $scope.msg=false
+    $scope.msg = false
     $scope.seleSch = function () {
       $state.go("selsch")
     }
-    $scope.agreecon = function() {
+    $scope.agreecon = function () {
       $scope.data = {};
       var myPopup = $ionicPopup.show({
         template: '<textarea  ng-model="data.wifi" style="min-height: 250px;padding:15px;width:100%;overflow-y: scroll"></textarea>',
@@ -75,23 +75,25 @@ angular.module('controllers', [])
         subTitle: 'Please use normal things',
         scope: $scope,
         buttons: [
-          { text: '返回',
-            onTap: function(e) {
-              $scope.agg_checked=false
+          {
+            text: '返回',
+            onTap: function (e) {
+              $scope.agg_checked = false
               return $scope.agg_checked;
-            }},
+            }
+          },
           {
             text: '<b>确定</b>',
             type: 'button-positive',
-            onTap: function(e) {
-              $scope.agg_checked=true
-              $scope.msg=false
+            onTap: function (e) {
+              $scope.agg_checked = true
+              $scope.msg = false
               return $scope.agg_checked;
             }
           }
         ]
       });
-      myPopup.then(function(res) {
+      myPopup.then(function (res) {
       });
 
     };
@@ -126,12 +128,17 @@ angular.module('controllers', [])
         );
       }
     }
-
+    $scope.ischecked = function () {
+      if ($scope.agg_checked == true) {
+        $scope.msg = false
+      }
+    }
     $scope.login = function () {
-      if($scope.agg_checked==true){
-        $scope.msg=false
-        $state.go("login")
-      }else{$scope.msg=true}
+      if ($scope.agg_checked == true) {
+        /* $state.go("login")*/
+      } else {
+        $scope.msg = true
+      }
     }
   })
 
@@ -201,7 +208,7 @@ angular.module('controllers', [])
     }
   })
 
-  .controller('newpassCtrl', function ($scope, $ionicPopup, $timeout, $state,$ionicLoading) {
+  .controller('newpassCtrl', function ($scope, $ionicPopup, $timeout, $state, $ionicLoading) {
     $scope.userdata = {};
     $scope.login = function () {
       if ($scope.userdata.$invalid) {
@@ -221,13 +228,12 @@ angular.module('controllers', [])
     }
   })
 
-  .controller('loginCtrl', function ($scope, $state, $http,$ionicLoading) {
+  .controller('loginCtrl', function ($scope, $state, $http, $ionicLoading) {
 
 
     $scope.user = {};
     $scope.login = function () {
       $ionicLoading.show({
-        template: 'Loading Contents...',
         content: 'Loading',
         animation: 'fade-in',
         showBackdrop: true,
