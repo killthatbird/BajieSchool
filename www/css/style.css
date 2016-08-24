@@ -2,7 +2,8 @@
 /*启动页*/
 .y-tour-bottom {
   position: absolute;
-  bottom: 130px
+  bottom: 130px;
+  box-shadow:0 1px 3px rgba(0, 0, 0, 0.3);
 }
 /*活动*/
 /*活动列表*/
@@ -835,4 +836,5 @@
 .floatbtn .aui-col-xs-4 i{font-size: 2rem;color:#fff}
 .floatbtn .aui-col-xs-4 p{color:#fff;}*/
 .rglist .aui-list-item-inner .aui-list-item-label{width:25%}
-.rglist  input{min-height: initial !important;margin:initial;border-radius:6px !important;border: 1px solid #ccc !important;}
+.rglist  input[type="text"],.rglist  input[type="password"]{min-height: initial !important;margin:initial;border-radius:6px !important;border: 1px solid #ccc !important;}
+.jump{color:#fff;background:rgba(0,0,0,0.3);border-radius:1px;box-shadow:0 1px 3px rgba(0, 0, 0, 0.3);font-family:'Microsoft Yahei';border-radius: 50%;height:1.8rem;width:1.8rem;letter-spacing: 1px;font-size:12px;text-align: center;line-height: 1.8rem;position: absolute;right:10px;top:10px;z-index: 1;}
