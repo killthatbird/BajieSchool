@@ -162,7 +162,7 @@ angular.module('ActCtrl', [])
   })
 
   /*发起活动*/
-  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http) {
+  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http,IP) {
 
     $http.get("http://localhost:8080/api/acttype")
       .then(function (response) {
@@ -209,6 +209,21 @@ angular.module('ActCtrl', [])
             });
           return true;
         }
+      });
+    }
+    $scope.save = function () {
+      $http({
+        method: 'POST',
+        url:IP.info()+ '/api/newact',
+        data: $.param($scope.formData)
+      }).then(function successCallback(response) {
+        console.log(response);
+        if (response.data.status == 0) {
+          console.log("保存成功!");
+        }
+
+      }, function errorCallback(response) {
+        console.error("保存失败！");
       });
     }
 

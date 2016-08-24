@@ -9,30 +9,30 @@
 <ion-view>
   <ion-content class="has-header"  ng-controller="newactCtrl">
     <form class="list" class="aui-input-group">
-      <input type="hidden" name="id" ng-model="formData.id">
+      <input type="hidden" name="actId" ng-model="formData.actId">
       <div class="list" style="position: relative;">
         <label class="item item-input">
           <span class="input-label">主题：</span>
-          <input type="text" name="actnum" placeholder="填写活动主题" ng-model="formData.actnum">
+          <input type="text" placeholder="填写活动主题" ng-model="formData.actTitle">
         </label>
         <label class="item item-input">
           <span class="input-label">类别：</span>
-          <select style="width: 70%;" type="text" placeholder="选择活动类别" name="acttitle"
-                  ng-model="formData.type" ng-options="type.actTypeName for type in types">
+          <select style="width: 70%;" type="text"
+                  ng-model="formData.actType" ng-options="type.actTypeName for type in types">
           </select>
         </label>
         <label class="item item-input">
           <span class="input-label">时间</span>
-          <input id="ddate" class="form-control" type="date" name="acttime" placeholder="选择活动时间"
-                 style="border:none;" ng-model="formData.acttime1">
+          <input id="ddate" class="form-control" type="date" placeholder="选择活动时间"
+                 style="border:none;" ng-model="formData.actTime">
         </label>
         <label class="item item-input">
           <span class="input-label">地点：</span>
-          <input type="text" name="actplace" placeholder="填写活动地点" ng-model="formData.actplace">
+          <input type="text" placeholder="填写活动地点" ng-model="formData.actPlace">
         </label>
         <label class="item item-input" ng-click="choosePicMenuf()">
           <span class="input-label">照片：</span>
-          <input type="text" name="actuploadPhoto" placeholder="上传照片" ng-model="formData.actuploadPhoto">
+          <input type="text" placeholder="上传照片" ng-model="formData.actImg">
         </label>
         <!--<label class="item item-input">
           <span class="input-label">报名人数：</span>
@@ -44,8 +44,7 @@
         </label>-->
         <label class="item item-input">
           <span class="input-label">主要内容：</span>
-          <textarea name="actcontent" placeholder="填写主要内容" ng-model="formData.actcontent">
-                    </textarea>
+          <textarea placeholder="填写主要内容" ng-model="formData.actContent"></textarea>
         </label>
       </div>
       <p style="text-align:center;padding-top:20px;">
