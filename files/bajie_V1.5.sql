@@ -10,10 +10,29 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-23 15:24:43
+Date: 2016-08-24 09:12:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for accusation
+-- ----------------------------
+DROP TABLE IF EXISTS `accusation`;
+CREATE TABLE `accusation` (
+  `informant` varchar(16) NOT NULL,
+  `against` varchar(16) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`informant`,`against`,`content`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of accusation
+-- ----------------------------
+INSERT INTO `accusation` VALUES ('admin', 'admin', '人身攻击', '2016-08-23 18:09:05');
+INSERT INTO `accusation` VALUES ('admin', 'dasda', 'dad', '2016-08-23 18:16:20');
+INSERT INTO `accusation` VALUES ('admin', 'xxx', 'qqq', '2016-08-23 18:16:01');
 
 -- ----------------------------
 -- Table structure for activity
@@ -117,6 +136,8 @@ CREATE TABLE `agenda` (
 -- ----------------------------
 -- Records of agenda
 -- ----------------------------
+INSERT INTO `agenda` VALUES ('90000', 'LucasX', '跑步', '每天早上起来跑步', '2016-08-15 08:56:47', '2016-08-22 08:56:51');
+INSERT INTO `agenda` VALUES ('90001', 'admin', '背单词', '每天早上起来背单词', '2016-08-15 08:56:45', '2016-08-22 08:56:53');
 
 -- ----------------------------
 -- Table structure for answer
@@ -152,6 +173,29 @@ CREATE TABLE `collection` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for feedback
+-- ----------------------------
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE `feedback` (
+  `username` varchar(16) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `time` datetime NOT NULL,
+  `qq` varchar(11) DEFAULT NULL,
+  `wechat` varchar(20) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `reserve1` varchar(255) DEFAULT NULL,
+  `reserve2` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of feedback
+-- ----------------------------
+INSERT INTO `feedback` VALUES ('admin', '亲，APP太卡了呀~ T_T', '2016-08-23 17:18:12', '249048056', 'xulu0620', 'xulu0620@qq.com', '', '');
+INSERT INTO `feedback` VALUES ('admin', '亲，APP太卡了呀~ T_T', '2016-08-23 17:18:46', '249048056', 'xulu0620', '', '', '');
+INSERT INTO `feedback` VALUES ('admin', '不好看', '2016-08-23 17:20:35', '10086', '1231', '1231@qq.com', '', '');
+INSERT INTO `feedback` VALUES ('admin', '卡卡卡卡啊卡卡', '2016-08-23 17:29:55', '', '10001', null, '', '');
+
+-- ----------------------------
 -- Table structure for login_status
 -- ----------------------------
 DROP TABLE IF EXISTS `login_status`;
@@ -165,7 +209,7 @@ CREATE TABLE `login_status` (
 -- ----------------------------
 -- Records of login_status
 -- ----------------------------
-INSERT INTO `login_status` VALUES ('admin', '0', '2016-08-23 13:44:10');
+INSERT INTO `login_status` VALUES ('admin', '0', '2016-08-23 19:10:13');
 INSERT INTO `login_status` VALUES ('LucasX', '0', '2016-08-24 13:44:10');
 
 -- ----------------------------
