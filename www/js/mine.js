@@ -12,6 +12,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     });
 })
   .controller('MineCtrl', function ($scope, $state, $http) {
+
+    var username = localStorage.getItem("username");
     $scope.setting = function () {
       $state.go("setting")
     }
@@ -31,17 +33,28 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }]
     });
 
-    $.get('../data/visitor.json').done(function (data) {
+    $.get('http://localhost:8080/api/visitor/' + username).done(function (data) {
       myChart.hideLoading();
       // 填入数据
+      var result = JSON.parse(data).result;
+      var categories = [];
+      var number = [];
+      for (var i = 0; i < result.length; i++) {
+        categories[i] = result[i].date;
+        number[i] = result[i].visitor;
+      }
+
+      console.log(categories);
+      console.log(data);
+
       myChart.setOption({
         xAxis: {
-          data: data.categories
+          data: categories
         },
         series: [{
           // 根据名字对应到相应的系列
           name: '访问量',
-          data: data.data
+          data: number
         }]
       });
     });
