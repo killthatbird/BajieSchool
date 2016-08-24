@@ -1,0 +1,22 @@
+{
+  "status": 0,
+  "message": "",
+  "result": [
+    {
+      "href": "https://www.baidu.com",
+      "img": "img/activity/ad/4.jpg"
+    },
+    {
+      "href": "http://www.qq.com/",
+      "img": "img/activity/ad/3.jpg"
+    },
+    {
+      "href": "https://www.douban.com/",
+      "img": "img/activity/ad/2.jpg"
+    },
+    {
+      "href": "https://www.zhihu.com/",
+      "img": "img/activity/ad/1.jpg"
+    }
+  ]
+}
