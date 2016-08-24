@@ -45,7 +45,7 @@
               <a class="item item-thumbnail-left">
                 <img ng-src="{{activity.actImg || 'img/img-default-activity.jpg'}}" alt="{{activity.actTitle}}">
                 <h2>{{activity.actTitle}}</h2>
-                <span class="y-lasttime-right">{{activity.actTime}}</span>
+                <span class="y-lasttime-right">{{activity.actTime | date:'yyyy-MM-dd HH:mm'}}</span>
                 <p>{{activity.actContent}}</p>
                 <p class="y-front-size">
                   <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{activity.actLike}}</span>

@@ -2,7 +2,9 @@
  * Created by Administrator on 2016/8/1.
  */
 angular.module('quoraCtrl', [])
-  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate,$ionicModal,$ionicActionSheet, $state, $http) {
+  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, $state, $http) {
+
+    var username = localStorage.getItem("username");
     $scope.showComment = false
     $scope.showMore = false
     $scope.slideIndex = 0;
@@ -29,17 +31,17 @@ angular.module('quoraCtrl', [])
               sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             };
           }
-         /* $cordovaCamera.getPicture(options).then(　　　　　　　　　 //返回一个imageURI，记录了照片的路径
-            function (imageURI) {
-              imgitems.push({
-                url: "data:image/jpeg;base64," + imageURI
-              });
-              $scope.items = imgitems;
-              tobackimg = tobackimg + imageURI + ',';
-            },
-            function (err) {
+          /* $cordovaCamera.getPicture(options).then(　　　　　　　　　 //返回一个imageURI，记录了照片的路径
+           function (imageURI) {
+           imgitems.push({
+           url: "data:image/jpeg;base64," + imageURI
+           });
+           $scope.items = imgitems;
+           tobackimg = tobackimg + imageURI + ',';
+           },
+           function (err) {
 
-            });*/
+           });*/
           return true;
         }
       });
@@ -52,12 +54,36 @@ angular.module('quoraCtrl', [])
       $scope.slideIndex = index;
       console.log("slide Change");
       if ($scope.slideIndex == 0) {
+        $http.get("http://localhost:8080/api/quora/" + username)
+          .then(function (response) {
+            if (response.data.status == 0) {
+              $scope.allquoralist = response.data.result;
+            } else {
+              console.error('网络连接失败...');
+            }
+          });
         console.log("slide 1");
       }
       else if ($scope.slideIndex == 1) {
+        $http.get("http://localhost:8080/api/quora/" + username + "/0")
+          .then(function (response) {
+            if (response.data.status == 0) {
+              $scope.myquestions = response.data.result;
+            } else {
+              console.error('网络连接失败...');
+            }
+          });
         console.log("slide 2");
       }
       else if ($scope.slideIndex == 2) {
+        $http.get("http://localhost:8080/api/quora/" + username + "/1")
+          .then(function (response) {
+            if (response.data.status == 0) {
+              $scope.myanswerlist = response.data.result;
+            } else {
+              console.error('网络连接失败...');
+            }
+          });
         console.log("slide 3");
       }
     };
@@ -67,37 +93,19 @@ angular.module('quoraCtrl', [])
     $scope.activeSlide = function (index) {
       $ionicSlideBoxDelegate.slide(index);
     };
-    /*$ionicModal.fromTemplateUrl('my-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });*/
-    $scope.openModal = function() {
+
+    $scope.openModal = function () {
       $scope.modal.show();
     };
-    $http.get("../data/quora/quora.json")
-      .then(function (response) {
-        if (response.data.status == 0) {
-          $scope.allquoralist = response.data.quoralist;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
 
   })
 
-  .controller('qudetialCtrl', function ($scope, $state, $http,$ionicModal) {
+  .controller('qudetialCtrl', function ($scope, $state, $http, $ionicModal) {
     $scope.answerlist = function () {
       $state.go("comlist");
     }
-    /*$ionicModal.fromTemplateUrl('my-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });*/
-    $scope.openModal = function() {
+
+    $scope.openModal = function () {
       $scope.modal.show();
     };
     $http.get("../data/quora/quora-answerlist-detail.json")
@@ -158,16 +166,17 @@ angular.module('quoraCtrl', [])
   /*  我的问题*/
   .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {
 
-    $http.get("../data/quora/question-mine.json")
+    var username = localStorage.getItem("username");
+    $http.get("http://localhost:8080/api/quora/" + username + "/0")
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.myquestions = response.data.questionlist;
+          $scope.myquestions = response.data.result;
         } else {
           console.error('网络连接失败...');
         }
       });
 
-    // $scope.myquestion = 2;
+
     $scope.addqu = false;
     $scope.add = function () {
       $scope.addqu = true
@@ -185,13 +194,15 @@ angular.module('quoraCtrl', [])
   /*我的回答*/
   .controller('amineCtrl', function ($scope, $http) {
 
-    $http.get("../data/quora/quora.json")
+    var username = localStorage.getItem("username");
+    $http.get("http://localhost:8080/api/quora/" + username + "/1")
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.myquoralist = response.data.quoralist;
+          $scope.myanswerlist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }
       });
+
   })
 ;
