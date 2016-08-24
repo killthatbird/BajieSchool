@@ -63,11 +63,9 @@ angular.module('controllers', [])
     $scope.formdata = {};
     $scope.formdata.name = LocalStorage.get("sc_name")
     $scope.curstep = true;
+    $scope.msg=false
     $scope.seleSch = function () {
       $state.go("selsch")
-    }
-    $scope.login = function () {
-      $state.go("login")
     }
     $scope.agreecon = function() {
       $scope.data = {};
@@ -87,6 +85,7 @@ angular.module('controllers', [])
             type: 'button-positive',
             onTap: function(e) {
               $scope.agg_checked=true
+              $scope.msg=false
               return $scope.agg_checked;
             }
           }
@@ -95,9 +94,6 @@ angular.module('controllers', [])
       myPopup.then(function(res) {
       });
 
-      $timeout(function() {
-        myPopup.close(); //close the popup after 3 seconds for some reason
-      }, 3000);
     };
     $scope.paracont = "获取验证码";
     $scope.paraclass = "but_null";
@@ -129,6 +125,13 @@ angular.module('controllers', [])
           1000
         );
       }
+    }
+
+    $scope.login = function () {
+      if($scope.agg_checked==true){
+        $scope.msg=false
+        $state.go("login")
+      }else{$scope.msg=true}
     }
   })
 
