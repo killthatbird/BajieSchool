@@ -100,7 +100,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/study/type',
         templateUrl: 'templates/study/stu-type.html',
         params: {
-          hdata: null
+          stypelist: null
         },
         controller: 'stutypeCtrl'
       })

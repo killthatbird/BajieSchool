@@ -106,9 +106,14 @@ angular.module('quoraCtrl', [])
     };
 
     $scope.openModal = function () {
-      $scope.modal.show();
-    };
-
+      $ionicModal.fromTemplateUrl('my-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function (modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
+    }
   })
 
   .controller('qudetialCtrl', function ($scope, $state, $http, $ionicModal) {

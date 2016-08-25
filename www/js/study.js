@@ -48,8 +48,8 @@ angular.module('StudyCtrl', [])
     $scope.studetial = function () {
       $state.go("studetial")
     }
-    $scope.gostype = function () {
-      $state.go("stutype")
+    $scope.gostype = function (A) {
+      $state.go("stutype", {stypelist: A})
     }
 
     $scope.doRefreshStudy = function () {
@@ -108,8 +108,9 @@ angular.module('StudyCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http,IP) {
+  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http, $filter, IP, $stateParams) {
     $scope.tjTab = '推荐';
+    $scope.stype = $stateParams.stypelist
     $scope.isActivetab = function (A) {
       return A == $scope.tjTab;
     }
@@ -134,10 +135,11 @@ angular.module('StudyCtrl', [])
           console.error('网络连接失败...');
         }
       });
-    $scope.stype=[]
+    $scope.stype = [];
+
     $scope.removetype = function (idx) {
       $scope.stype.splice($scope.stype.indexOf(idx), 1);
-      $scope.unChosenTypes.push({typeName: idx.title,typeId: idx.id});
+      $scope.unChosenTypes.push({typeName: idx.typeName, typeId: idx.typeId});
     }
     $scope.addtype = function (A) {
       if ($scope.stype.length >= 8) {
@@ -150,20 +152,8 @@ angular.module('StudyCtrl', [])
           alertPopup.close(); //由于某种原因3秒后关闭弹出
         }, 3000);
       } else {
-       /* $http({
-        method: 'POST',
-        url: IP.info() + 'api/user_study',
-        data: $.param(A),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        }
-      }).success(function (data) {
-        console.log(data)
-      })*/
-        $scope.unChosenTypes.splice(A, 1);
-        $scope.stype.push({title: A.typeName, id: A.typeId});
+        $scope.unChosenTypes.splice($scope.unChosenTypes.indexOf(A), 1);
+        $scope.stype.push({typeName: A.typeName, typeId: A.typeId});
       }
-      /* LocalStorage.set("stutype", A)
-       $state.go("tab.study", {}, {reload: true})*/
     }
   })

@@ -5,14 +5,19 @@
     </button>
   </div>
   <h1 class="title">学习分类</h1>
+  <div class="buttons">
+    <button ng-click=""
+            class="button no-animation button-icon icon buttons button-clear ion-ios-checkmark-outline">
+    </button>
+  </div>
 </ion-header-bar>
 <ion-view>
   <ion-content class="has-header">
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>关注模块</h2>
-      <div class="aui-col-xs-3" ng-click="removetype(t)" ng-repeat="t in stype">
+      <div class="aui-col-xs-3" ng-click="removetype(t)" ng-repeat="t in stype  | orderBy:'typeId'">
         <div class="stu-warp" ng-style="{background:'{{bgc[$index]}}'}" style="color:#fff">
-          {{t.title}}
+          {{t.typeName}}
         </div>
       </div>
     </div>
@@ -20,7 +25,7 @@
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>其他模块</h2>
       <div class="aui-col-xs-3" ng-click="addtype(unChosenType)"
-           ng-repeat="unChosenType in unChosenTypes">
+           ng-repeat="unChosenType in unChosenTypes  | orderBy:'typeId'">
         <div class="stu-warp stu-type-border"  ng-class="{'tjfc':isActivetab('{{unChosenType.typeName}}')}">
           {{unChosenType.typeName}}
         </div>

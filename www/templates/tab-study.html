@@ -2,7 +2,7 @@
   <ion-scroll direction="x" class="df-tab">
     <span ng-repeat="stutype in stutypelist" ng-class="{'df-tab-active':isActivetab('{{t.title}}')}"
           ng-click="onClickTab(stutype)">{{stutype.typeName}}</span>
-    <span ng-click="gostype()"><i class="ion-plus" style="font-size: 20px;"></i></span>
+    <span ng-click="gostype(stutypelist)"><i class="ion-plus" style="font-size: 20px;"></i></span>
   </ion-scroll>
 </ion-header-bar>
 <ion-view>

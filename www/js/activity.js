@@ -58,7 +58,7 @@ angular.module('ActCtrl', [])
       /**
        * 根据点击TAB动态加载数据
        */
-      $http.get('http://localhost:8080/api/' + username + '/activity/' + actTypeId).then(function (response) {
+      $http.get('http://localhost:8080/api/' + username + '/activity/' + actTypeId + '/page/' + page).then(function (response) {
         if (response.data.status == 0) {
           $scope.activitylist = response.data.result;
         }
