@@ -2,16 +2,17 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('ActCtrl', [])
-  .controller('ActallCtrl', function ($scope, $ionicHistory, LocalStorage) {
+  .controller('ActallCtrl', function ($scope, $ionicHistory) {
   })
-  .controller('ActivityCtrl', function ($scope, $state, $http, LocalStorage) {
+  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading) {
 
+    // $ionicLoading.show();
     var username = localStorage.getItem("username");
     $scope.actdetial = function (A) {
       LocalStorage.set("acthViewid", "act1");
       $state.go("actdetial", {actobj: A});
     }
-    $http.get('http://localhost:8080/api/acttype/' + username).then(function (response) {
+    $http.get('http://localhost:8080/api/acttype/').then(function (response) {
       if (response.data.status == 0) {
         $scope.tabs = response.data.result;
       }
@@ -24,11 +25,18 @@ angular.module('ActCtrl', [])
       }
     });
 
-    //默认加载“推荐”的activitylist
-    $http.get('http://localhost:8080/api/activity/' + username + '/0').then(function (response) {
+    //重写加载“默认”的activitylist
+    $http({
+      method: 'POST',
+      url: 'http://localhost:8080/api/activity',
+      params: {username: username, type: 0}
+    }).then(function successCallback(response) {
+      $ionicLoading.hide();
       if (response.data.status == 0) {
         $scope.activitylist = response.data.result;
       }
+    }, function errorCallback(response) {
+      console.error("活动查询失败!");
     });
 
     $scope.doRefreshAct = function () {
@@ -47,21 +55,26 @@ angular.module('ActCtrl', [])
 
 
     $scope.currentTab = '推荐';
-    // var currentTab = '推荐'
     $scope.onClickTab = function (tab) {
       $scope.currentTab = tab.actTypeName;
       //切换TAB时请求该TAB对应的数据
 
       var actTypeId = tab.actTypeId;
-      console.log(actTypeId);
 
       /**
        * 根据点击TAB动态加载数据
        */
-      $http.get('http://localhost:8080/api/activity/' + username + '/' + actTypeId).then(function (response) {
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8080/api/activity/',
+        params: {username: username, type: actTypeId}
+      }).then(function successCallback(response) {
+        $ionicLoading.hide();
         if (response.data.status == 0) {
           $scope.activitylist = response.data.result;
         }
+      }, function errorCallback(response) {
+        console.error("活动查询失败!");
       });
 
       /*      switch ($scope.currentTab) {
