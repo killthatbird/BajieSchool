@@ -17,81 +17,21 @@
       pulling-text="松开手会有惊喜哦"
       on-refresh="doRefresh(slideIndex)">
     </ion-refresher>
-
-    <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" style="margin-top:10px">
-
-      <ion-slide ng-controller="QuoraCtrl">
-        <ion-content>
-          <ion-refresher pulling-text="松开手会有惊喜哦" on-refresh="doRefresh()" refreshing-text="Refreshing!"
-                         refreshing-icon="ion-loading-b">
-          </ion-refresher>
-        </ion-content>
-        <div class="y-list" ng-hide="viewmore">
-          <div class="a-warp" ng-repeat="allquora in allquoralist" ng-click="goqu(allquora)">
-            <a class="item item-thumbnail-left">
-              <img ng-src="{{allquora.queImg}}" alt="{{allquora.queTitle}}">
-              <h2>{{allquora.queTitle}}</h2>
-              <span class="y-lasttime-right">{{allquora.queTime}}</span>
-              <p style="white-space: initial;">{{allquora.queContent}}</p>
-              <p class="y-front-size">
-                <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{allquora.queLike}}</span>
-                <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{allquora.queComment}}</span>
-              </p>
-            </a>
-          </div>
-        </div>
-        <div ng-show="viewmore" ng-include="'templates/quora/quora-list.html'"></div>
-      </ion-slide>
-
-      <ion-slide ng-controller="qmineCtrl">
-        <div ng-if="myquestions.length == 0" class="df-none-qu">
-          <h2 style="letter-spacing: 2px">您还没问过任何问题</h2>
-          <p class="df-none-p">
-          <div ng-click="modal.show()" class="button button-positive aui-btn-block aui-btn-sm df-none-button">现在提问</div>
-          </p>
-        </div>
-
-        <div ng-if="myquestions.length > 0">
-          <div class="y-list">
-            <div class="a-warp" ng-repeat="myquestion in myquestions">
-              <a class="item item-thumbnail-left">
-                <img ng-src="{{myquestion.queImg}}" alt="{{myquestion.queTitle}}">
-                <h2>{{myquestion.queTitle}}</h2>
-                <span class="y-lasttime-right">{{myquestion.queTime}}</span>
-                <p style="white-space: initial;">{{myquestion.queContent}}</p>
-                <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{myquestion.queLike}}</span>
-                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{myquestion.queComment}}</span>
-                </p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </ion-slide>
-
-      <ion-slide ng-controller="amineCtrl">
-        <div class="y-list">
           <div class="a-warp">
-            <div ng-repeat="myanswer in myanswerlist" class="card y-card">
+            <div ng-repeat="quora in quoralist" class="card y-card">
               <div class="item item-thumbnail-left">
-                <img ng-src="{{myanswer.queImg}}" alt="{{myanswer.queTitle}}">
-                <h2>{{myanswer.queTitle}}</h2>
-                <span class="y-lasttime-right">{{myanswer.queTime | date:'yyyy-MM-dd HH:mm'}}</span>
-                <p>{{myanswer.queContent}}</p>
+                <img ng-src="{{quora.queImg}}" alt="{{quora.queTitle}}">
+                <h2>{{quora.queTitle}}</h2>
+                <span class="y-lasttime-right">{{quora.queTime | date:'yyyy-MM-dd HH:mm'}}</span>
+                <p>{{quora.queContent}}</p>
                 <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{myanswer.queLike}}</span>
+                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{quora.queLike}}</span>
                   <span class="y-p-col-right" ng-click="showComment=true" ng-class="{'df-color':showComment}"><i
-                    class="ion-chatbubble-working"></i>{{myanswer.queComment}}</span>
+                    class="ion-chatbubble-working"></i>{{quora.queComment}}</span>
                 </p>
               </div>
             </div>
           </div>
-        </div>
-
-      </ion-slide>
-
-    </ion-slide-box>
-
   </ion-content>
 </ion-view>
 <script id="my-modal.html" type="text/ng-template">

@@ -252,6 +252,7 @@ angular.module('ActCtrl', [])
   })
   /*已发布的活动*/
   .controller('puactCtrl', function ($scope, $http, $state) {
+    var username = localStorage.getItem("username");
     $scope.viewmore = false;
     $scope.gopuact = function (A) {
       $scope.actobj = A
@@ -260,10 +261,11 @@ angular.module('ActCtrl', [])
     $scope.gopulist = function () {
       $scope.viewmore = false
     };
-    $http.get("../data/activity/activity-published.json")
+
+    $http.get('http://localhost:8080/api/activity/launch/' + username + '/0')
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.publishedactivitylist = response.data.activitylist;
+          $scope.publishedactivitylist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }
@@ -273,6 +275,7 @@ angular.module('ActCtrl', [])
 
   /*已参加的活动*/
   .controller('attactCtrl', function ($scope, $http, $state) {
+    var username = localStorage.getItem("username");
     $scope.gopuact = function (A) {
       $scope.actobj = A
       $scope.viewmore = true
@@ -280,10 +283,10 @@ angular.module('ActCtrl', [])
     $scope.gopulist = function () {
       $scope.viewmore = false
     };
-    $http.get("../data/activity/activity-join.json")
+    $http.get('http://localhost:8080/api/activity/launch/' + username + '/1')
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.joinactivitylist = response.data.activitylist;
+          $scope.joinactivitylist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }

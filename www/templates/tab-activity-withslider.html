@@ -100,7 +100,7 @@
                   <div ng-repeat="joinactivity in joinactivitylist" class="card y-card"
                        ng-click="gopuact('{{joinactivity}}')">
                     <a class="item item-thumbnail-left">
-                      <img ng-src="{{joinactivity.actImg}}"
+                      <img ng-src="{{joinactivity.actImg || img/img-default-activity.jpg}}"
                            alt="{{joinactivity.actTitle}}">
                       <h2>{{joinactivity.actTitle}}</h2>
                       <span class="y-lasttime-right">{{joinactivity.actTime | date:'yyyy-MM-dd HH:mm'}}</span>
