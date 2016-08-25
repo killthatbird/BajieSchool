@@ -46,6 +46,11 @@ angular.module('quoraCtrl', [])
         }
       });
     }
+
+    $scope.answerlist = function () {
+      $state.go("comlist");
+    }
+
     $scope.goqu = function (A) {
       $state.go("qudetial")
     }
