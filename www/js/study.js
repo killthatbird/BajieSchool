@@ -5,12 +5,12 @@ angular.module('StudyCtrl', [])
   .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http) {
     $scope.currentTab = '推荐';
     $scope.onClickTab = function (tab) {
-      $scope.currentTab = tab.title;
-
+      $scope.currentTab = tab.typeName;
+      var tabIndex = tab.typeId;
       var username = localStorage.getItem("username");
-      $http.get("http://localhost:8080/api/studytype/" + username)
+      $http.get("http://localhost:8080/api/study/" + tabIndex)
         .then(function (response) {
-          if (response.data.status == 0 && response.data.category == tab.title) {
+          if (response.data.status == 0) {
             $scope.studylist = response.data.result;
           } else {
             console.error('网络连接失败...');
@@ -35,16 +35,6 @@ angular.module('StudyCtrl', [])
         }
       });
 
-    $http.get("../data/study/study.json")
-      .then(function (response) {
-        if (response.data.status == 0 && response.data.category == "推荐") {
-          $scope.studylist = response.data.studylist;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
-
-
     $scope.studetial = function () {
       $state.go("studetial")
     }
@@ -53,17 +43,8 @@ angular.module('StudyCtrl', [])
     }
 
     $scope.doRefreshStudy = function () {
-      $timeout(function () {
-        $http.get("../data/study/study-refresh.json")
-          .then(function (response) {
-            if (response.data.status == 0 && response.data.category == "推荐") {
-              $scope.studylist = response.data.studylist;
-            } else {
-              console.error('网络连接失败...');
-            }
-          });
-        $scope.$broadcast('scroll.refreshComplete');
-      }, 100);
+
+      //下拉刷新
     }
     $scope.delete = function (idx) {
       console.log(idx)

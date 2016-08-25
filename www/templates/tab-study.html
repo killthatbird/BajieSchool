@@ -1,6 +1,6 @@
 <ion-header-bar class="bar-positive" style="line-height: 34px;">
   <ion-scroll direction="x" class="df-tab">
-    <span ng-repeat="stutype in stutypelist" ng-class="{'df-tab-active':isActivetab('{{t.title}}')}"
+    <span ng-repeat="stutype in stutypelist" ng-class="{'df-tab-active':isActivetab('{{stutype.typeName}}')}"
           ng-click="onClickTab(stutype)">{{stutype.typeName}}</span>
     <span ng-click="gostype(stutypelist)"><i class="ion-plus" style="font-size: 20px;"></i></span>
   </ion-scroll>
@@ -13,14 +13,14 @@
     <div class="y-list">
       <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial()">
         <a class="item">
-          <h2>{{study.title}}<span style="color:deepskyblue"></span></h2>
-          <span class="y-lasttime-right">{{study.timestamp}}</span>
-          <p class="y-front-size" style="white-space: normal">{{study.content}}</p>
+          <h2>{{study.stdTitle}}<span style="color:deepskyblue"></span></h2>
+          <span class="y-lasttime-right">{{study.stdTime}}</span>
+          <p class="y-front-size" style="white-space: normal">{{study.stdContent}}</p>
           <div class="y-front-size">
             <div style="position: absolute;right:16px;bottom: 8px">
-              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>{{study.likenum}}</span>
+              <span class="y-spcol-right"><i class="aui-iconfont aui-icon-like"></i>{{study.stdLike}}</span>
               <span ng-click="showComment=true;showMore=true" ng-class="{'df-color':showComment}" class="y-p-col-right"><i
-                class="aui-iconfont aui-icon-comment"></i>{{study.commentnum}}</span>
+                class="aui-iconfont aui-icon-comment"></i>{{study.stdComment}}</span>
             </div>
           </div>
         </a>
