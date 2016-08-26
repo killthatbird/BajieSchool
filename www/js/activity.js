@@ -6,7 +6,7 @@ angular.module('ActCtrl', [])
   })
   .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading) {
 
-    // $ionicLoading.show();
+    $ionicLoading.show();
     var username = localStorage.getItem("username");
     $scope.actdetial = function (A) {
       LocalStorage.set("acthViewid", "act1");

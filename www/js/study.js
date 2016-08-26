@@ -2,22 +2,48 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http) {
+  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http, $ionicLoading) {
     $scope.currentTab = '推荐';
+    var username = localStorage.getItem("username");
+
+    /**
+     * 默认加载“推荐”
+     */
+    $http({
+      method: 'POST',
+      url: 'http://localhost:8080/api/study/' + 0,
+      params: {username: username}
+    }).then(function successCallback(response) {
+      $ionicLoading.hide();
+      if (response.data.status == 0) {
+        $scope.studylist = response.data.result;
+      }
+    }, function errorCallback(response) {
+      console.error("活动查询失败!");
+    });
+
     $scope.onClickTab = function (tab) {
       $scope.currentTab = tab.typeName;
       var tabIndex = tab.typeId;
-      var username = localStorage.getItem("username");
-      $http.get("http://localhost:8080/api/study/" + tabIndex)
-        .then(function (response) {
-          if (response.data.status == 0) {
-            $scope.studylist = response.data.result;
-          } else {
-            console.error('网络连接失败...');
-          }
-        });
 
+      /**
+       * 根据点击TAB动态加载数据
+       */
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8080/api/study/' + tabIndex,
+        params: {username: username}
+      }).then(function successCallback(response) {
+        $ionicLoading.hide();
+        if (response.data.status == 0) {
+          $scope.studylist = response.data.result;
+        }
+      }, function errorCallback(response) {
+        console.error("活动查询失败!");
+      });
     }
+
+
     $scope.isActivetab = function (A) {
       return A == $scope.currentTab;
     }

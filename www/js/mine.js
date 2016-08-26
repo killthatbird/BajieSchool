@@ -13,7 +13,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
 })
   .controller('MineCtrl', function ($scope, $state, $http) {
 
-    var username = localStorage.getItem("username");
+    $scope.username = localStorage.getItem("username");
     $scope.setting = function () {
       $state.go("setting")
     }
@@ -33,7 +33,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }]
     });
 
-    $.get('http://localhost:8080/api/visitor/' + username).done(function (data) {
+    $.get('http://localhost:8080/api/visitor/' + $scope.username).done(function (data) {
       myChart.hideLoading();
       // 填入数据
       var result = JSON.parse(data).result;

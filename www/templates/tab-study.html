@@ -14,7 +14,7 @@
       <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial()">
         <a class="item">
           <h2>{{study.stdTitle}}<span style="color:deepskyblue"></span></h2>
-          <span class="y-lasttime-right">{{study.stdTime}}</span>
+          <span class="y-lasttime-right">{{study.stdTime | date:'yyyy-MM-dd HH:mm'}}</span>
           <p class="y-front-size" style="white-space: normal">{{study.stdContent}}</p>
           <div class="y-front-size">
             <div style="position: absolute;right:16px;bottom: 8px">
