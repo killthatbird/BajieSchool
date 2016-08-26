@@ -45,7 +45,7 @@ angular.module('quoraCtrl', [])
           return true;
         }
       });
-    }
+    };
 
     $scope.answerlist = function () {
       $state.go("comlist");
@@ -69,7 +69,7 @@ angular.module('quoraCtrl', [])
       });
 
     $scope.activeSlide = function (index) {
-      $scope.slideIndex =index
+      $scope.slideIndex = index
       if (index == 0) {
         $http.get("http://localhost:8080/api/quora/" + username)
           .then(function (response) {
@@ -112,6 +112,28 @@ angular.module('quoraCtrl', [])
       }).then(function (modal) {
         $scope.modal = modal;
         $scope.modal.show();
+      });
+    }
+  })
+
+  .controller('askCtrl', function ($state, $scope, $http) {
+    $scope.ask = function () {
+      console.log("asking...");
+      console.log($scope.question.queTitle);
+      $http({
+        method: "POST",
+        url: "http://localhost:8080/api/quora/ask",
+        params: {
+          username: username,
+          queTitle: $scope.question.queTitle,
+          queTags: $scope.question.queTags,
+          queContent: $scope.question.queContent,
+          queImg: $scope.question.queImg
+        }
+      }).then(function successCallback(response) {
+        console.log('ask ok!');
+      }, function () {
+        console.error('ask fail...');
       });
     }
   })

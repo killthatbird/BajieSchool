@@ -85,8 +85,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
   .controller('myplanCtrl', function ($scope, $stateParams, $state, $http, $ionicLoading) {
     // $ionicLoading.show();
     $scope.title = $stateParams.barTitle;
-    $scope.newplan = function () {
-      $state.go("newplan")
+    $scope.newplan = function (A) {
+      $state.go("newplan");
     }
 
     var username = localStorage.getItem("username");
@@ -207,7 +207,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('newplanCtrl', function ($scope, $state, $http) {
+  .controller('newplanCtrl', function ($scope, $state, $http, $filter) {
+    var username = localStorage.getItem("username");
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -223,8 +224,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       if ($scope.sets.length < 5) {
         $scope.disabled = false;
         var obj = {};
-
         $scope.sets.push(obj);
+
       } else {
         $scope.disabled = true;
       }
@@ -238,6 +239,33 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
       /*$scope.sets.splice($scope.sets.indexOf(idx),1);*/
     }
+
+    $scope.save = function (A) {
+      $http({
+        method: "POST",
+        url: "http://localhost:8080/api/agenda/add",
+        /*   params: {
+         username: username,
+         agTitle: $scope.agenda.agName,
+         agDate: $filter('date')($scope.agenda.agDate, 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00'),
+         agRemark: $scope.agenda.agRemark,
+         agRemind: $scope.agenda.agRemind
+         }*/
+        params: {
+          username: username,
+          agTitle: "去看电影",
+          agDate: $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00'),
+          agRemark: "周末",
+          agRemind: $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00')
+        }
+      }).then(function successCallback(response) {
+        console.log('日程新建成功!');
+        $state.go("myplan");
+      }, function () {
+        console.error('日程新增失败!');
+      });
+    }
+
   })
 
   .controller('pInfoCtrl', function ($scope, $http, $ionicActionSheet) {

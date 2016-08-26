@@ -148,10 +148,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/quora/list',
         templateUrl: 'templates/quora/quora-list.html'
       })
+
       .state('newque', {
         url: '/quora/newque',
         templateUrl: 'templates/quora/new-que.html',
-        controller: 'QuoraCtrl'
+        controller: 'askCtrl'
       })
       .state('qudetial', {
         url: '/quora/detial',
