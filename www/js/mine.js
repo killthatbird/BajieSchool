@@ -44,9 +44,6 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
         number[i] = result[i].visitor;
       }
 
-      console.log(categories);
-      console.log(data);
-
       myChart.setOption({
         xAxis: {
           data: categories
