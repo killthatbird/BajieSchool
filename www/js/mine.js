@@ -82,7 +82,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('myplanCtrl', function ($scope, $stateParams, $state, $http) {
+  .controller('myplanCtrl', function ($scope, $stateParams, $state, $http, $ionicLoading) {
+    // $ionicLoading.show();
     $scope.title = $stateParams.barTitle;
     $scope.newplan = function () {
       $state.go("newplan")
@@ -97,6 +98,32 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
           console.error('网络连接失败...');
         }
       });
+
+    $scope.remove = function (A) {
+      $ionicLoading.show();
+      console.log(A);
+      $http({
+        method: "POST",
+        url: "http://localhost:8080/api/agenda/delete",
+        params: {agId: A.agId, username: username}
+      }).then(function successCallback(response) {
+        $ionicLoading.hide();
+        if (response.data.status == 0) {
+          console.log("日程删除成功!");
+
+          $http.get("http://localhost:8080/api/agenda/" + username)
+            .then(function (response) {
+              if (response.data.status == 0) {
+                $scope.agendalist = response.data.result;
+              } else {
+                console.error('网络连接失败...');
+              }
+            });
+        }
+      }, function errorCallback(response) {
+        console.error("日程删除失败!");
+      });
+    };
 
   })
   .controller('mynoticeCtrl', function ($scope, $state, $interval, $http) {
@@ -272,7 +299,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('settingCtrl', function ($scope, $http, $state,LocalStorage) {
+  .controller('settingCtrl', function ($scope, $http, $state, LocalStorage) {
 
     // 触发一个按钮点击，或一些其他目标
     $scope.logout = function () {

@@ -10,9 +10,9 @@
   <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'; overflow: hidden" overflow-scroll="true">
     <div class="list card" style="margin:0px 0px 10px; box-shadow: initial">
       <div class="item item-body" style="padding:0px">
-        <img class="full-image" style="height: 170px" src="{{actobj.imgSrc}}">
+        <img class="full-image" style="height: 170px" src="{{actobj.actImg}}">
         <div class="item" style="border: initial;padding: 5px 16px;">
-          <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.title}}</h2>
+          <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.actTitle}}</h2>
           <button ng-click="attend = attend + 1" ng-init="attend=15"
                   class="button  button-small y-lasttime-right icon-left ion-ios-plus-outline button-positive"
                   style="padding: 0px 14px;right: 100px;top: 7px;">参加
@@ -20,19 +20,19 @@
           <button class="button  button-small y-lasttime-right icon-left ion-ios-navigate-outline button-positive"
                   style="padding: 0px 14px;right: 18px;top: 7px;">分享
           </button>
-          <p style="margin:0px;">
-            <small>{{actobj.timestamp}}</small>
+          <p style="margin-top:10px;">
+            <small>{{actobj.actTime}}</small>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <small>已关注{{activitydetail.joinnum}}人/已参加<span
-              ng-class="{'df-color':attend>15}">{{activitydetail.joinnum}}</span>
+              ng-class="{'df-color':attend>15}">{{activitydetail.joinnum}}人</span>
             </small>
           </p>
           <div class="aui-card-list-footer df-act-fs">
             <div><i class="aui-iconfont aui-icon-like"></i>
-              <small>赞 {{actobj.likenum}}</small>
+              <small>赞 {{actobj.actLike}}</small>
             </div>
             <div ng-click="seecom()" ng-class="{'df-color':showComment}"><i class="aui-iconfont aui-icon-comment"></i>
-              <small>评论 {{actobj.commentnum}}</small>
+              <small>评论 {{actobj.actComment}}</small>
             </div>
             <!--<div><i class="aui-iconfont aui-icon-share"></i>
               <small>分享 888</small>
@@ -62,7 +62,7 @@
         <span class="input-label pu-span">主要内容</span>
       </label>
       <div class="df-act-content">
-        <p>{{actobj.content}}</p>
+        <p>{{actobj.actContent}}</p>
       </div>
     </div>
     <div ng-show="showComment">

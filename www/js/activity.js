@@ -9,7 +9,7 @@ angular.module('ActCtrl', [])
     $ionicLoading.show();
     var username = localStorage.getItem("username");
     $scope.actdetial = function (A) {
-      LocalStorage.set("acthViewid", "act1");
+      localStorage.setItem("acthViewid", "act1");
       $state.go("actdetial", {actobj: A});
     }
     $http.get('http://localhost:8080/api/acttype/').then(function (response) {

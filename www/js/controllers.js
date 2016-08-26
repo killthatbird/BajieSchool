@@ -52,13 +52,6 @@ angular.module('controllers', [])
      window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
   })
 
-  .controller('ChatsCtrl', function ($scope, Chats) {
-    $scope.chats = Chats.all();
-    $scope.remove = function (chat) {
-      Chats.remove(chat);
-    };
-  })
-
   .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $timeout, LocalStorage) {
     $scope.formdata = {};
     $scope.formdata.name = LocalStorage.get("sc_name")
