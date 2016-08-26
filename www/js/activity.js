@@ -198,11 +198,11 @@ angular.module('ActCtrl', [])
 
   /*发起活动*/
   .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP) {
-
     $http.get("http://localhost:8080/api/acttype")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.types = response.data.result;
+          console.log($scope.types)
         } else {
           console.error('网络连接失败...');
         }
@@ -249,7 +249,7 @@ angular.module('ActCtrl', [])
     $scope.save = function () {
       $http({
         method: 'POST',
-        url: IP.info() + '/api/newact',
+        url: IP.info() + '/api/addact',
         data: $.param($scope.formData)
       }).then(function successCallback(response) {
         console.log(response);

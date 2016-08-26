@@ -18,7 +18,7 @@
         <label class="item item-input">
           <span class="input-label">类别：</span>
           <select style="width: 70%;" type="text"
-                  ng-model="formData.actType" ng-options="type.actTypeName for type in types">
+                  ng-model="formData.actType" ng-options="type.actTypeId as type.actTypeName for type in types">
           </select>
         </label>
         <label class="item item-input">
@@ -32,7 +32,7 @@
         </label>
         <label class="item item-input" ng-click="choosePicMenuf()">
           <span class="input-label">照片：</span>
-          <input type="text" placeholder="上传照片" ng-model="formData.actImg">
+          <input type="text" placeholder="上传照片" style="background: #fff;" ng-model="formData.actImg" readonly>
         </label>
         <!--<label class="item item-input">
           <span class="input-label">报名人数：</span>
