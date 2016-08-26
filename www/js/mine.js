@@ -207,7 +207,29 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('newplanCtrl', function ($scope, $state, $http) {
+  .controller('newplanCtrl', function ($scope, $state, $http,$mdpDatePicker,$mdpTimePicker) {
+    $scope.currentDate = new Date();
+    this.showDatePicker = function(ev) {
+      $mdpDatePicker($scope.currentDate, {
+        targetEvent: ev
+      }).then(function(selectedDate) {
+        $scope.currentDate = selectedDate;
+      });;
+    };
+
+    this.filterDate = function(date) {
+      return moment(date).date() % 2 == 0;
+    };
+
+    this.showTimePicker = function(ev) {
+      $mdpTimePicker($scope.currentTime, {
+        targetEvent: ev
+      }).then(function(selectedDate) {
+        $scope.currentTime = selectedDate;
+      });;
+    }
+
+
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
         if (response.data.status == 0) {
