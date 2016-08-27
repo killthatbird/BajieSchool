@@ -6,7 +6,7 @@
   </div>
   <h1 class="title">新建日程</h1>
   <div class="buttons">
-    <button ng-click="newplan()" class="button no-animation button-icon icon ion-ios-checkmark-empty">
+    <button ng-click="save(agenda)" class="button no-animation button-icon icon ion-ios-checkmark-empty">
     </button>
   </div>
 </ion-header-bar>
@@ -16,12 +16,12 @@
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/3.png">
       <span class="input-label">事件</span>
-      <input type="text" name="name" ng-model="pormData.name">
+      <input type="text" name="name" ng-model="agenda.agName">
     </label>
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/3.png">
       <span class="input-label">时间</span>
-      <input type="date" name="name" ng-model="pormData.date">
+      <input type="date" name="name" ng-model="agenda.agDate">
     </label>
 
     <div class="ngdt">
@@ -37,7 +37,7 @@
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/4.png">
       <span class="input-label">备注</span>
-      <input type="text" name="name" ng-model="pormData.remark">
+      <input type="text" name="name" ng-model="agenda.agRemark">
     </label>
     <label class="item item-input newplan" ng-click="add()">
       <i class="icon ion-ios-plus-outline" ng-class="{'df_grey':disabled}" class=""
@@ -47,7 +47,7 @@
     <div class="item item-input newplan" ng-repeat="set in sets">
       <img class="list-left-img" src="img/icon/plan/5.png">
       <span class="input-label">提醒</span>
-      <select name="name" ng-model="set.time" style="width:65%">
+      <select name="name" ng-model="agenda.agRemind" style="width:65%">
         <option ng-repeat="reminder in reminders" value="{{reminder.value}}">{{reminder.option}}</option>
       </select>
       <div ng-click="del($index)">
