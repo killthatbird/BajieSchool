@@ -4,37 +4,30 @@
             class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
     </button>
   </div>
-  <h1 class="title"></h1>
-  <!--<button class="button button-clear button-primary" ng-submit="">发布</button>-->
-  <a class="button button-icon icon ion-ios-paperplane-outline">发布</a>
+  <h1 class="title">学习话题</h1>
+  <div class="buttons">
+    <button ng-click="save()"
+            class="button no-animation button-icon icon buttons button-clear ion-ios-paperplane-outline">发布
+    </button>
+  </div>
 </ion-header-bar>
 <ion-view>
   <ion-content>
     <div class="list">
+      <input type="hidden" ng-model="formData.stdId">
       <label class="item item-input">
         <span class="input-label">标题：</span>
-        <input type="text" name="actnum" ng-model="formData.actnum" required>
+        <input type="text" ng-model="formData.stdTitle" required>
       </label>
       <label class="item item-input">
         <span class="input-label">类别：</span>
-        <select>
-          <option>--请选择--</option>
-          <option>考研</option>
-          <option>英语</option>
-          <option>出国</option>
-          <option>公务员</option>
-          <option>计算机</option>
-          <option>其他</option>
+        <select ng-model="formData.typeId" ng-options="type.typeId as type.typeName for type in types">
         </select>
       </label>
       <label class="item item-input">
         <span class="input-label">主要内容：</span>
-        <textarea name="content" placeholder="填写主要内容" ng-model="formData.content"></textarea>
+        <textarea name="content" placeholder="填写主要内容" ng-model="formData.stdContent"></textarea>
       </label>
-     <!-- <div class="item df-none-textarea model-list">
-        <span class="input-label" style="position: absolute">内容：</span>
-        <textarea style="text-indent: 2em;padding: 16px"></textarea>
-      </div>-->
     </div>
 
   </ion-content>

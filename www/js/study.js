@@ -77,8 +77,33 @@ angular.module('StudyCtrl', [])
       $scope.stype.splice(idx, 1);
     }
   })
-  .controller('newstuCtrl', function ($scope, $state, $http) {
+  .controller('newstuCtrl', function ($scope, $state, $http, IP, LocalStorage) {
+    $scope.formData = {}
+    $http.get("http://localhost:8080/api/studyalltype")
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.types = response.data.result;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
+    $scope.save = function () {
+      $scope.formData.username = LocalStorage.get("username", 0)
+      console.log($scope.formData)
+      $http({
+        method: 'POST',
+        url: IP.info() + '/api/addstuqu',
+        data: $.param($scope.formData)
+      }).then(function successCallback(response) {
+        console.log(response);
+        if (response.data.status == 0) {
+          console.log("保存成功!");
+        }
 
+      }, function errorCallback(response) {
+        console.error("保存失败！");
+      });
+    }
   })
   .controller('studetialCtrl', function ($scope, $state, $http) {
     $scope.choose = true

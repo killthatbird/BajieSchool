@@ -343,13 +343,18 @@
   width: initial;
 }
 
-.newplan input, .newplan select {
+.newplan input[type=text], .newplan select {
   background: #ccc !important;
   min-height: 1.5rem !important;
   border-radius: 4px !important;
   text-indent: 2em
 }
 
+.newplan input[type=date], .newplan input[type=time] {
+  border-bottom: 1px solid #ccc;
+  min-height: 1.5rem !important;
+  text-indent: 5px
+}
 .newplan input::-webkit-input-placeholder {
   color: #444;
   text-indent: 1em

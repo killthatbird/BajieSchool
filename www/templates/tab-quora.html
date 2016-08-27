@@ -18,7 +18,7 @@
       on-refresh="doRefresh(slideIndex)">
     </ion-refresher>
           <div class="a-warp">
-            <div ng-repeat="quora in quoralist" class="card y-card">
+            <div ng-repeat="quora in quoralist" ng-click="goqu(quora)" class="card y-card">
               <div class="item item-thumbnail-left">
                 <img ng-src="{{quora.queImg}}" alt="{{quora.queTitle}}">
                 <h2>{{quora.queTitle}}</h2>
@@ -34,7 +34,7 @@
           </div>
   </ion-content>
 </ion-view>
-<script id="my-modal.html" type="text/ng-template">
+<script id="my-modal.html" ng-controller="askCtrl" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-positive">
       <div class="buttons">

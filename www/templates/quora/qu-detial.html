@@ -15,12 +15,18 @@
   <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'">
     <div class="aui-card-list">
       <div class="aui-card-list-header" style="border-bottom: 1px solid #ddd;font-size: 18px;">
-        {{question.title}}
+        {{question.queTitle}}
+      </div>
+      <div class="aui-card-list-content-padded">
+        {{question.queContent}}
       </div>
       <div class="aui-card-list-footer">
-        <div><i class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.likenum}}</div>
-        <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.commentnum}}</div>
-        <div><i class="aui-iconfont aui-icon-star"></i>&nbsp;关注</div>
+        <div><i class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.queLike}}</div>
+        <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.queComment}}</div>
+        <div ng-click="isgz()"><i ng-hide="gz" ng-model="gz" class="aui-iconfont aui-icon-star"></i><i ng-hide="!gz"
+                                                                                                       style="color:#ebc951"
+                                                                                                       class="aui-iconfont aui-icon-star"></i>&nbsp;关注
+        </div>
       </div>
     </div>
 
@@ -45,11 +51,11 @@
     </div>
   </ion-content>
 </ion-view>
-<script id="my-modal.html" type="text/ng-template">
+<script id="modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-positive">
       <div class="buttons">
-        <button ng-click="modal.hide()"
+        <button ng-click="closeModal()"
                 class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
         </button>
       </div>

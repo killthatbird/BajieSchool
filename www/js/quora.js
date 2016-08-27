@@ -55,7 +55,7 @@ angular.module('quoraCtrl', [])
     }
 
     $scope.goqu = function (A) {
-      $state.go("qudetial")
+      $state.go("qudetial", {quobj: A})
     }
 
     $scope.doRefresh = function (A) {
@@ -220,20 +220,34 @@ angular.module('quoraCtrl', [])
     }
   })
 
-  .controller('qudetialCtrl', function ($scope, $state, $http, $ionicModal) {
-    $scope.answerlist = function () {
+  .controller('qudetialCtrl', function ($scope, $state, $http, $stateParams, $ionicModal) {
+    $scope.gz = true;
+    $scope.isgz = function () {
+      $scope.gz = !$scope.gz
+    }
+    $scope.question = $stateParams.quobj
+    console.log($scope.question)
+    $scope.comlist = function () {
       $state.go("comlist");
     }
-
+    $ionicModal.fromTemplateUrl('modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.smodal = modal;
+    });
     $scope.openModal = function () {
-      $scope.modal.show();
+      $scope.smodal.show();
+    };
+    $scope.closeModal = function () {
+      $scope.smodal.hide();
     };
     $http.get("../data/quora/quora-answerlist-detail.json")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.answerlist = response.data.answer.list;
           $scope.totalanswer = response.data.answer.totalanswer;
-          $scope.question = response.data.question;
+          /*$scope.question = response.data.question;*/
         } else {
           console.error('网络连接失败...');
         }

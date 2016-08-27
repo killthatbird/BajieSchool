@@ -4,7 +4,7 @@
 angular.module('ActCtrl', [])
   .controller('ActallCtrl', function ($scope, $ionicHistory) {
   })
-  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading) {
+  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading, $timeout) {
 
     $ionicLoading.show();
     var username = localStorage.getItem("username");
@@ -197,7 +197,8 @@ angular.module('ActCtrl', [])
   })
 
   /*发起活动*/
-  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP) {
+  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP, LocalStorage) {
+    $scope.formData = {}
     $http.get("http://localhost:8080/api/acttype")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -247,6 +248,7 @@ angular.module('ActCtrl', [])
       });
     }
     $scope.save = function () {
+      $scope.formData.username = LocalStorage.get("username", 0)
       $http({
         method: 'POST',
         url: IP.info() + '/api/addact',

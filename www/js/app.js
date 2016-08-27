@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'AddCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl','mdPickers'])
+angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 'services', 'StudyCtrl', 'MyCtrl', 'AddCtrl', 'ActCtrl', 'TourCtrl', 'quoraCtrl'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -129,11 +129,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
           }
         }
       })
-      /*.state('tab.adds', {
-       url: '/tab/adds',
-       templateUrl: 'templates/tab-adds.html',
-       controller: 'tabaddCtrl'
-       })*/
       .state('quora', {
         url: '/quora',
         abstract: true,
@@ -157,6 +152,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('qudetial', {
         url: '/quora/detial',
         templateUrl: 'templates/quora/qu-detial.html',
+        params: {
+          quobj: null
+        },
         controller: 'qudetialCtrl'
       })
       .state('comlist', {

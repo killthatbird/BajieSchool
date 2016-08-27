@@ -88,7 +88,6 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     $scope.newplan = function (A) {
       $state.go("newplan");
     }
-
     var username = localStorage.getItem("username");
     $http.get("http://localhost:8080/api/agenda/" + username)
       .then(function (response) {
@@ -207,30 +206,8 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.cltlist.splice(idx, 1);
     }
   })
-  .controller('newplanCtrl', function ($scope, $state, $http,$filter,$mdpDatePicker,$mdpTimePicker) {
+  .controller('newplanCtrl', function ($scope, $state, $http, $filter) {
       var username = localStorage.getItem("username");
-    $scope.currentDate = new Date();
-    this.showDatePicker = function(ev) {
-      $mdpDatePicker($scope.currentDate, {
-        targetEvent: ev
-      }).then(function(selectedDate) {
-        $scope.currentDate = selectedDate;
-      });;
-    };
-
-    this.filterDate = function(date) {
-      return moment(date).date() % 2 == 0;
-    };
-
-    this.showTimePicker = function(ev) {
-      $mdpTimePicker($scope.currentTime, {
-        targetEvent: ev
-      }).then(function(selectedDate) {
-        $scope.currentTime = selectedDate;
-      });;
-    }
-
-
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -239,7 +216,9 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
           console.error('网络连接失败...');
         }
       });
-
+    $scope.agenda = {}
+    //日期--时间拼接
+    $scope.agenda.agDate = $scope.agenda.Date + '--' + $scope.agenda.Time
     $scope.sets = [];
     $scope.disabled = false;
     $scope.add = function () {
@@ -262,6 +241,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
 
     $scope.save = function (A) {
+      $scope.agenda.agDate = $scope.agenda.Date + '--' + $scope.agenda.Time
       $http({
         method: "POST",
         url: "http://localhost:8080/api/agenda/add",

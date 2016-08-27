@@ -10,6 +10,7 @@
 <ion-view>
   <ion-content>
     <div class="list">
+      <input type="hidden" ng-model="question.queId">
       <label class="item item-input">
         <span class="input-label">标题：</span>
         <input type="text" ng-change="bindtitle(question.queTitle)" ng-model="question.queTitle">
