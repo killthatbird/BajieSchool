@@ -116,20 +116,99 @@ angular.module('quoraCtrl', [])
     }
   })
 
-  .controller('askCtrl', function ($state, $scope, $http) {
+  .controller('askCtrl', function ($state, $scope, $http, $ionicActionSheet, LocalStorage) {
+    $scope.queTitle = "新增问题"
+    $scope.question = {}
+    $scope.imglist = [];
+    //传到后台的图片片段
+    var sImg = '';
+    $scope.bindtitle = function (a) {
+      if (a == "") {
+        $scope.queTitle = "新增问题"
+      } else {
+        $scope.queTitle = a
+      }
+    }
+
+    $scope.choosePicMenuf = function () {
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          {text: '相机'},
+          {text: '图库'}
+        ],
+        titleText: '选择照片',
+        cancelText: '取消',
+        cancel: function () {
+          return true;
+        },
+        /*=== cordova-plugin-camera=====*/
+        /* ===cordova-plugin-x-toast====*/
+        /*===cordova-plugin-file====*/
+        /*  buttonClicked: function (index) {
+         switch (index) {
+         case 0:
+         Camera.appendByCamera().then(function (imageData) {
+         fileUpload.go(imageData).then(function (result) {
+         $scope.imglist.push(imageData)
+         $scope.question.queImg = result.response;
+         sImg += '<p><img src="' + result.response + '" style="max-width: 100%"/></p>';
+         $ionicLoading.hide()
+         $cordovaToast.showShortCenter("上传成功！")
+         }, function (err) {
+         $ionicLoading.hide()
+         console.error("ERROR: " + angular.toJson(err));
+         $cordovaToast.showShortCenter("上传失败，请检查网络！")
+         }, function (progress) {
+         var downloadProgress = (progress.loaded / progress.total) * 100;
+         $ionicLoading.show({
+         template: "已经上传：" + Math.floor(downloadProgress) + "%"
+         });
+         if (downloadProgress > 99) {
+         $ionicLoading.hide();
+         }
+         })
+         });
+         break;
+         case 1:
+         Camera.appendByPhoto().then(function (imageData) {
+         /!*imageData=imageData.substring(0,imageData.indexOf('?'))
+         console.log("2:"+imageData)*!/
+         fileUpload.go(imageData).then(function (result) {
+         $scope.imglist.push(imageData)
+         $scope.question.queImg = result.response;
+         sImg += '<p><img src="' + result.response + '" style="max-width: 100%"/></p>'
+         $ionicLoading.hide()
+         $cordovaToast.showShortCenter("上传成功！")
+         }, function (err) {
+         $ionicLoading.hide()
+         console.error("ERROR: " + angular.toJson(err));
+         $cordovaToast.showShortCenter("上传失败，请检查网络！")
+         }, function (progress) {
+         var downloadProgress = (progress.loaded / progress.total) * 100;
+         $ionicLoading.show({
+         template: "已经上传：" + Math.floor(downloadProgress) + "%"
+         });
+         if (downloadProgress > 99) {
+         $ionicLoading.hide();
+         }
+         })
+         });
+         break;
+         default:
+         break;
+         }
+         return true;
+         }*/
+      });
+    }
     $scope.ask = function () {
-      console.log("asking...");
-      console.log($scope.question.queTitle);
+      $scope.question.username = LocalStorage.get("username", 0)
+      $scope.question.queImg = ""
+      console.log($scope.question)
       $http({
         method: "POST",
         url: "http://localhost:8080/api/quora/ask",
-        params: {
-          username: username,
-          queTitle: $scope.question.queTitle,
-          queTags: $scope.question.queTags,
-          queContent: $scope.question.queContent,
-          queImg: $scope.question.queImg
-        }
+        data: $.param($scope.question),
       }).then(function successCallback(response) {
         console.log('ask ok!');
       }, function () {

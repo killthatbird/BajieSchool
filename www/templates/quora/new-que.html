@@ -4,7 +4,7 @@
             class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
     </button>
   </div>
-  <h1 class="title">新增问题{{question.queTitle}}</h1>
+  <h1 class="title">{{queTitle}}</h1>
   <a class="button button-icon icon ion-ios-paperplane-outline" ng-click="ask()">发布</a>
 </ion-header-bar>
 <ion-view>
@@ -12,18 +12,18 @@
     <div class="list">
       <label class="item item-input">
         <span class="input-label">标题：</span>
-        <input type="text" name="title" ng-model="question.queTitle">
+        <input type="text" ng-change="bindtitle(question.queTitle)" ng-model="question.queTitle">
       </label>
       <label class="item item-input">
         <span class="input-label">标签：</span>
-        <input type="text" name="tags" ng-model="question.queTags" placeholder="多个标签以空格分开">
+        <input type="text" ng-model="question.queTags" placeholder="多个标签以空格分开">
       </label>
     </div>
     <div class="padding df-none-textarea model-list">
-      <textarea placeholder="&nbsp;&nbsp;请输入内容" name="content" ng-modal="question.queContent"></textarea>
+      <textarea ng-model="question.queContent" placeholder="请输入内容"></textarea>
       <div class="buttons buttons-left">
-        <div ng-repeat="item in items" class="imgone">
-          <img ng-src="{{item.url}}" alt=""/>
+        <div ng-repeat="imgUrl in imglist" class="imgone">
+          <img ng-src="{{imgUrl}}" alt=""/>
         </div>
         <img src="img/quora/add.jpg" data-ng-click="choosePicMenuf()"/>
       </div>

@@ -127,18 +127,18 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
 
   })
   .controller('mynoticeCtrl', function ($scope, $state, $interval, $http) {
-    $scope.remove = false;
+    $scope.clt = false;
     var second = 5,
       timePromise = undefined;
-    $scope.showdel = function () {
+    $scope.showdel = function (clt) {
       timePromise = $interval(function () {
           if (second <= 0) {
             $interval.cancel(timePromise);
             timePromise = undefined;
             second = 5;
-            $scope.remove = false;
+            $scope.clt = false;
           } else {
-            $scope.remove = true;
+            $scope.clt = true;
             second--;
           }
         },
@@ -159,7 +159,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.sets.splice(idx, 1);
     }
   })
-  .controller('mycollectionCtrl', function ($scope, $state, $http, $ionicHistory, LocalStorage) {
+  .controller('mycollectionCtrl', function ($scope, $state, $http, $ionicHistory, $interval, LocalStorage) {
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
@@ -204,7 +204,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       );
     }
     $scope.deletebtn = function (idx) {
-      $scope.sets.splice(idx, 1);
+      $scope.cltlist.splice(idx, 1);
     }
   })
   .controller('newplanCtrl', function ($scope, $state, $http, $filter) {

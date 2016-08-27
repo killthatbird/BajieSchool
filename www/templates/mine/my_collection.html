@@ -21,16 +21,16 @@
       </div>
     </div>
 
-    <div class="card col-card" on-hold="showdel()" ng-repeat="clt in cltlist | filter:searchContent">
+    <div class="card col-card" on-hold="showdel(clt)" ng-repeat="clt in cltlist | filter:searchContent">
       <div class="item item-divider">
         <h2>
           <div ng-hide="remove">
             <label class="bc-hd" ng-if="clt.type=='活动'">{{clt.type}}</label>
             <label class="bc-xx" ng-if="clt.type=='学习'">{{clt.type}}</label>
-            <label class="bc-wd" ng-if="clt.type=='问答'">{{clt.type}}</label>
+            <label class="bc-wd" ng-if="clt.type=='问答'">{{clt.type}}</label>{{clt.title}}
           </div>
-          <label ng-show="remove" ng-click="deletebtn()" class="bc-sc">删除</label>
-          {{clt.title}}<span class="col-time">{{clt.timestamp}}</span></h2>
+          <div ng-show="remove"><label ng-click="deletebtn()" class="bc-sc">删除</label>{{clt.title}}</div>
+          <span class="col-time">{{clt.timestamp}}</span></h2>
       </div>
       <div class="item item-text-wrap" ng-click="godetial('{{clt.type}}')">
         {{clt.content}}
