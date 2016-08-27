@@ -207,8 +207,30 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       $scope.cltlist.splice(idx, 1);
     }
   })
-  .controller('newplanCtrl', function ($scope, $state, $http, $filter) {
-    var username = localStorage.getItem("username");
+  .controller('newplanCtrl', function ($scope, $state, $http,$filter,$mdpDatePicker,$mdpTimePicker) {
+      var username = localStorage.getItem("username");
+    $scope.currentDate = new Date();
+    this.showDatePicker = function(ev) {
+      $mdpDatePicker($scope.currentDate, {
+        targetEvent: ev
+      }).then(function(selectedDate) {
+        $scope.currentDate = selectedDate;
+      });;
+    };
+
+    this.filterDate = function(date) {
+      return moment(date).date() % 2 == 0;
+    };
+
+    this.showTimePicker = function(ev) {
+      $mdpTimePicker($scope.currentTime, {
+        targetEvent: ev
+      }).then(function(selectedDate) {
+        $scope.currentTime = selectedDate;
+      });;
+    }
+
+
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -225,7 +247,6 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
         $scope.disabled = false;
         var obj = {};
         $scope.sets.push(obj);
-
       } else {
         $scope.disabled = true;
       }

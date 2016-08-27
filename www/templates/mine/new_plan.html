@@ -23,6 +23,17 @@
       <span class="input-label">时间</span>
       <input type="date" name="name" ng-model="agenda.agDate">
     </label>
+
+    <div class="ngdt">
+      <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="My date(dd/mm/yyyy)" mdp-format="DD/MM/YYYY" ng-model="currentDate">
+        <div ng-messages="demoForm.dateFormat.$error">
+          <div ng-message="required">This is required</div>
+          <div ng-message="format">Invalid format</div>
+        </div>
+      </mdp-date-picker>
+      <mdp-time-picker mdp-auto-switch="true" ng-model="currentTime"></mdp-time-picker>
+    </div>
+    <div>
     <label class="item item-input newplan">
       <img class="list-left-img" src="img/icon/plan/4.png">
       <span class="input-label">备注</span>

@@ -3,7 +3,10 @@
  */
 angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, $state, $http) {
-
+    $scope.question={}
+    $scope.qtitle=function (a) {
+  $scope.question.title=a
+}
     var username = localStorage.getItem("username");
     $scope.showComment = false
     $scope.showMore = false
