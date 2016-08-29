@@ -70,6 +70,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/activity/actdetial',
         cache: false,
         templateUrl: 'templates/activity/act-detial.html',
+        cache: false,
         params: {
           actobj: null
         },
@@ -108,6 +109,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('studetial', {
         url: '/study/detial',
         templateUrl: 'templates/study/stu-detial.html',
+        cache: false,
         params: {
           hdata: null,
           study: null

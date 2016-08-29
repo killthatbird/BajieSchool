@@ -6,16 +6,18 @@
    </ion-nav-buttons>-->
   <ion-content overflow-scroll="true" style="overflow: hidden">
     <div ui-sref="login" class="jump">跳过</div>
-    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" class="splash-img">
       <ion-slide>
         <img src="img/splash-1.jpg"/>
       </ion-slide>
       <ion-slide>
-        <img src="img/splash-2.jpeg"/>
+        <img src="img/splash-2.jpg"/>
       </ion-slide>
       <ion-slide>
         <img src="img/splash-3.jpg"/>
-        <button class="button button-full button-positive y-tour-bottom" ng-click="login()">开启校园之旅</button>
+        <button class="button button-full button-positive y-tour-bottom" ng-click="login()"
+                style="background-color: #d8bd9f">开启校园之旅
+        </button>
       </ion-slide>
     </ion-slide-box>
   </ion-content>
