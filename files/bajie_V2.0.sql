@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2016-08-26 19:52:16
+Date: 2016-08-27 11:27:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,18 +43,18 @@ CREATE TABLE `activity` (
   `act_type` int(2) DEFAULT NULL,
   `act_title` varchar(100) NOT NULL,
   `act_content` varchar(255) DEFAULT NULL,
-  `act_img` varchar(100) DEFAULT NULL COMMENT '../img/img-default-activity.jpg',
+  `act_img` varchar(100) DEFAULT '../img/img-default-activity.jpg',
   `act_time` datetime DEFAULT NULL,
-  `act_like` int(5) DEFAULT NULL,
-  `act_comment` int(5) DEFAULT NULL,
-  `act_follow` int(5) DEFAULT NULL,
-  `act_join` int(5) DEFAULT NULL,
-  `act_signup` int(5) DEFAULT NULL,
-  `act_place` varchar(255) DEFAULT NULL,
+  `act_like` int(5) DEFAULT '0',
+  `act_comment` int(5) DEFAULT '0',
+  `act_follow` int(5) DEFAULT '0',
+  `act_join` int(5) DEFAULT '0',
+  `act_signup` int(5) DEFAULT '0',
+  `act_place` varchar(255) DEFAULT '暂无',
   `reserve1` varchar(255) DEFAULT NULL,
   `reserve2` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`act_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10011 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10014 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of activity
@@ -236,8 +236,8 @@ CREATE TABLE `login_status` (
 -- ----------------------------
 -- Records of login_status
 -- ----------------------------
-INSERT INTO `login_status` VALUES ('admin', '0', '2016-08-26 11:12:07');
-INSERT INTO `login_status` VALUES ('LucasX', '1', '2016-08-26 11:11:59');
+INSERT INTO `login_status` VALUES ('admin', '1', '2016-08-27 10:35:20');
+INSERT INTO `login_status` VALUES ('LucasX', '0', '2016-08-27 10:35:25');
 
 -- ----------------------------
 -- Table structure for notification

@@ -207,7 +207,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
   .controller('newplanCtrl', function ($scope, $state, $http, $filter) {
-      var username = localStorage.getItem("username");
+    var username = localStorage.getItem("username");
     $http.get("../data/mine/reminder.json")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -241,23 +241,25 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
 
     $scope.save = function (A) {
-      $scope.agenda.agDate = $scope.agenda.Date + '--' + $scope.agenda.Time
+      $scope.agenda.agDate = $scope.agenda.date;
+      var year = $scope.agenda.agDate.getFullYear();
+      var month = $scope.agenda.agDate.getMonth();
+      var day = $scope.agenda.agDate.getDate();
+
+      var hour = $scope.agenda.time.getHours();
+      var minute = $scope.agenda.time.getMinutes();
+
+      var startDateTime = new Date(year, month, day, hour, minute);
+      var remindDateTime = new Date(year, month, day, hour, minute).setMinutes(minute - $scope.agenda.agRemind);
       $http({
         method: "POST",
         url: "http://localhost:8080/api/agenda/add",
-        /*   params: {
-         username: username,
-         agTitle: $scope.agenda.agName,
-         agDate: $filter('date')($scope.agenda.agDate, 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00'),
-         agRemark: $scope.agenda.agRemark,
-         agRemind: $scope.agenda.agRemind
-         }*/
         params: {
           username: username,
-          agTitle: "去看电影",
-          agDate: $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00'),
-          agRemark: "周末",
-          agRemind: $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00')
+          agTitle: $scope.agenda.agName,
+          agDate: $filter('date')(startDateTime, 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00'),
+          agRemark: $scope.agenda.agRemark,
+          agRemind: $filter('date')(remindDateTime, 'yyyy-MM-dd HH:mm:ss', 'UTC+08:00')
         }
       }).then(function successCallback(response) {
         console.log('日程新建成功!');

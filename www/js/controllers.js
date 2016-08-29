@@ -234,7 +234,6 @@ angular.module('controllers', [])
         showDelay: 0,
         duration: 3000
       });
-      console.log($scope.user.password);
       $http({
         method: 'POST',
         url: 'http://localhost:8080/api/login/' + $scope.user.username,
