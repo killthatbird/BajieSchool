@@ -5,7 +5,7 @@
             class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
     </button>
   </div>
-  <h1 class="title" align="middle">{{posting.title}}</h1>
+  <h1 class="title" align="middle">{{study.stdTitle}}</h1>
 </ion-header-bar>
 <ion-view>
   <ion-content style="font-family: 'Microsoft Yahei'">
@@ -20,7 +20,7 @@
           </div>
           <div class="aui-list-item-inner">
             <div class="aui-list-item-text">
-              <div class="aui-list-item-title" style="font-size: 0.6rem">{{user.nickname}}</div>
+              <div class="aui-list-item-title" style="font-size: 0.6rem">{{user.username}}</div>
             </div>
             <div class="aui-list-item-text" style="font-size: 0.6rem">
               {{user.motto}}
@@ -52,7 +52,7 @@
               </div>
               <p class="y-front-size">
                 <span class="y-p-col">{{com.timestamp}}</span>
-                <span ng-click="replay('{{com.nickname}}')" class="y-p-col-right" style="padding-left: 10px"><i
+                <span ng-click="replay('{{com.username}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
                 <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{com.likenum}}</span>
               </p>

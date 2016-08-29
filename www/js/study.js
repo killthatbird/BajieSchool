@@ -61,8 +61,8 @@ angular.module('StudyCtrl', [])
         }
       });
 
-    $scope.studetial = function () {
-      $state.go("studetial")
+    $scope.studetial = function (study) {
+      $state.go("studetial", {study: study});
     }
     $scope.gostype = function (A) {
       $state.go("stutype", {stypelist: A})
@@ -106,19 +106,20 @@ angular.module('StudyCtrl', [])
       });
     }
   })
-  .controller('studetialCtrl', function ($scope, $state, $http) {
+  .controller('studetialCtrl', function ($scope, $state, $http, $stateParams) {
     $scope.choose = true
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }
+    $scope.study = $stateParams.study;
     $scope.send_content = '';
 
     $http.get("../data/study/study-detail.json")
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.comlist = response.data.comment.list;
-          $scope.user = response.data.user;
-          $scope.posting = response.data.posting;
+          $scope.comlist = response.data.result.comment.list;
+          $scope.user = response.data.result.user;
+          // $scope.study = response.data.result.study;
         } else {
           console.error('网络连接失败...');
         }

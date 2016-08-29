@@ -108,7 +108,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/study/detial',
         templateUrl: 'templates/study/stu-detial.html',
         params: {
-          hdata: null
+          hdata: null,
+          study: null
         },
         controller: 'studetialCtrl'
       })

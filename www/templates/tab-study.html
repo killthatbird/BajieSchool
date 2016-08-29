@@ -11,7 +11,7 @@
                    refreshing-icon="ion-loading-b">
     </ion-refresher>
     <div class="y-list">
-      <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial()">
+      <div class="card y-card a-warp" ng-repeat="study in studylist" ng-click="studetial(study)">
         <a class="item">
           <h2>{{study.stdTitle}}<span style="color:deepskyblue"></span></h2>
           <span class="y-lasttime-right">{{study.stdTime | date:'yyyy-MM-dd HH:mm'}}</span>
