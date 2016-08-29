@@ -276,7 +276,7 @@ angular.module('quoraCtrl', [])
   })
 
   .controller('comlistCtrl', function ($scope, $state, $http) {
-    $scope.showcom = false
+    $scope.q_comment = false
     $scope.send_content = '';
     $http.get("../data/quora/comment.json")
       .then(function (response) {
@@ -288,19 +288,21 @@ angular.module('quoraCtrl', [])
       });
 
     $scope.send = function () {
-      if ($scope.send_content != '') {
-        $scope.answerlist.push({
-          id: $scope.answerlist.length + 1,
-          heaimg: 'img/ionic.png',
+      if ($scope.commentlist != '') {
+        $scope.commentlist.push({
+          id: $scope.commentlist.length + 1,
+          avatar: 'img/ionic.png',
           nickname: 'Tony Soup',
           content: $scope.send_content,
-          time: '7-9 17:00',
+          timestamp: '7-9 17:00',
           agreenum: 0
         });
+        $scope.q_comment = false;
         $scope.send_content = ''
       }
     }
     $scope.replay = function (A) {
+      $scope.q_comment = true;
       $scope.send_content = '回复@' + A + ':'
     }
   })

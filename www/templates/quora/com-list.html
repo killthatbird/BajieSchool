@@ -34,7 +34,8 @@
       </ul>
     </div>
   </ion-content>
-  <ion-footer-bar class="bar-light" resize-foot-bar style="background-image:none;box-shadow: 0 0 1px #eee;">
+  <ion-footer-bar class="bar-light" resize-foot-bar ng-show="q_comment"
+                  style="background-image:none;box-shadow: 0 0 1px #eee;">
     <label class="item item-input rj-footer-input">
       <textarea msd-elastic ng-model="send_content" style="min-height: initial" placeholder="添加评论" required></textarea>
     </label>

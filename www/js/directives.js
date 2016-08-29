@@ -17,3 +17,11 @@ angular.module('directives', [])
     }
     return o;
   })
+  .directive('pane', function () {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {user: '@'},
+      template: '回复<a style="border: 1px solid black;">{{user}}</a>'
+    };
+  });

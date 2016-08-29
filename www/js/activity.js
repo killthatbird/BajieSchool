@@ -4,51 +4,80 @@
 angular.module('ActCtrl', [])
   .controller('ActallCtrl', function ($scope, $ionicHistory) {
   })
-  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading, $timeout) {
-
-    $ionicLoading.show();
+  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 500,
+      duration: 10000
+    });
+    /*   $scope.myActiveSlide = 1;*/
     var username = localStorage.getItem("username");
     $scope.actdetial = function (A) {
       localStorage.setItem("acthViewid", "act1");
       $state.go("actdetial", {actobj: A});
     }
-    $http.get('http://localhost:8080/api/acttype/').then(function (response) {
-      if (response.data.status == 0) {
-        $scope.tabs = response.data.result;
-      }
-    });
-
-    //加载“banner”
-    $http.get('http://localhost:8080/api/banner').then(function (response) {
-      if (response.data.status == 0) {
-        $scope.bannerlist = response.data.result;
-      }
-    });
-
-    //重写加载“默认”的activitylist
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/activity',
+      url: 'http://localhost:8080/api/activityALL',
       params: {username: username, type: 0}
     }).then(function successCallback(response) {
       $ionicLoading.hide();
+      console.log(response)
       if (response.data.status == 0) {
-        $scope.activitylist = response.data.result;
+        $scope.activitylist = response.data.result.Activity;
+        console.log($scope.activitylist)
+        $scope.tabs = response.data.result.ActivityType;
+        $scope.bannerlist = response.data.result.Banner;
       }
     }, function errorCallback(response) {
       console.error("活动查询失败!");
     });
+    /*  $ionicSlideBoxDelegate.update();*/
+
+    /*  $http.get('http://localhost:8080/api/acttype/').then(function (response) {
+     if (response.data.status == 0) {
+     $scope.tabs = response.data.result;
+     }
+     });
+
+     //加载“banner”
+     $http.get('http://localhost:8080/api/banner').then(function (response) {
+     if (response.data.status == 0) {
+     $scope.bannerlist = response.data.result;
+     }
+     });*/
+
+    //重写加载“默认”的activitylist
+    /*   $http({
+     method: 'POST',
+     url: 'http://localhost:8080/api/activity',
+     params: {username: username, type: 0}
+     }).then(function successCallback(response) {
+     $ionicLoading.hide();
+     if (response.data.status == 0) {
+     $scope.activitylist = response.data.result;
+     }
+     }, function errorCallback(response) {
+     console.error("活动查询失败!");
+     });*/
 
     $scope.doRefreshAct = function () {
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8080/api/activity',
+        params: {username: username, type: 0}
+      }).then(function successCallback(response) {
+        $ionicLoading.hide();
+        if (response.data.status == 0) {
+          $scope.activitylist = response.data.result;
+        }
+      }, function errorCallback(response) {
+        console.error("活动查询失败!");
+      });
       $timeout(function () {
-        $http.get("../data/activity/activity-list-refresh.json")
-          .then(function (response) {
-            if (response.data.status == 0) {
-              $scope.activitylist = response.data.activitylist;
-            } else {
-              console.error('网络连接失败...');
-            }
-          });
         $scope.$broadcast('scroll.refreshComplete');
       }, 100);
     };
@@ -140,18 +169,23 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope, $stateParams, $state, $http, $ionicHistory, LocalStorage) {
-    console.log($ionicHistory.viewHistory())
+  .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, LocalStorage) {
+    $scope.a_comment = false;
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
     }
     $scope.showComment = false;
-    $scope.showcom = false;
     $scope.seecom = function () {
       $scope.showComment = true;
     }
-    $scope.seecom1 = function () {
-      $scope.showcom = true;
+    $scope.creatcom = function (A) {
+      $scope.a_comment = true;
+      $scope.send_content = $sce.trustAsHtml('回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:');
+      /* $scope.send_content = '回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:'
+       $("#asend").focus();*/
+    }
+    $scope.goTo = function (A) {
+      console.log(A)
     }
     $scope.gohBack = function () {
       if (LocalStorage.get("acthViewid") == "act1") {
@@ -182,7 +216,21 @@ angular.module('ActCtrl', [])
         $scope.act_c_c_list = response.data.comment_comment_list;
       }
     });
-
+    $scope.send = function () {
+      if ($scope.activitycommentlist != '') {
+        $scope.activitycommentlist.push({
+          id: $scope.activitycommentlist.length + 1,
+          avatar: 'img/ionic.png',
+          user: 'Tony Soup',
+          content: $scope.send_content,
+          timestamp: '7-9 17:00',
+          agreenum: 0
+        });
+        $scope.a_comment = false;
+        $scope.send_content = '';
+        $ionicScrollDelegate.scrollBottom();
+      }
+    }
   })
 
   .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http, $timeout) {
