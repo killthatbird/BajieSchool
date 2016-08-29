@@ -140,7 +140,7 @@ angular.module('StudyCtrl', [])
       $scope.send_content = '回复@' + A + ':'
     }
   })
-  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http, $filter, IP, $stateParams) {
+  .controller('stutypeCtrl', function ($scope, $ionicPopup, $timeout, $http, $filter, $ionicLoading, IP, $stateParams) {
     $scope.tjTab = '推荐';
     $scope.stype = $stateParams.stypelist
     $scope.isActivetab = function (A) {
@@ -150,6 +150,7 @@ angular.module('StudyCtrl', [])
     $scope.bgc = colorList;
 
     var username = localStorage.getItem("username");
+    $scope.username = username;
     $http.get("http://localhost:8080/api/studytype/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
@@ -188,4 +189,37 @@ angular.module('StudyCtrl', [])
         $scope.stype.push({typeName: A.typeName, typeId: A.typeId});
       }
     }
+    $scope.updateStu = function () {
+      console.log($('#updateStu').serialize())
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 500,
+        duration: 10000
+      });
+
+      $http({
+        method: 'POST',
+        url: IP.info() + '/api/updateStu',
+        data: $('#updateStu').serialize()
+      }).then(function successCallback(response) {
+        $ionicLoading.hide();
+        if (response.data.status == 0) {
+          var alertPopup = $ionicPopup.alert({
+            title: '消息提示!',
+            template: '保存成功！',
+            okText: '返回'
+          });
+          $timeout(function () {
+            alertPopup.close(); //由于某种原因3秒后关闭弹出
+          }, 3000);
+        }
+      }, function errorCallback(response) {
+        console.error(response)
+        console.error("保存失败!");
+      });
+    }
+
   })
