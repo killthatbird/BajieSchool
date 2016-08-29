@@ -7,6 +7,9 @@ angular.module('controllers', [])
         $state.go("tab.activity")
       }
     });
+    $scope.visit = function () {
+      $state.go("tab.activity");
+    }
     $scope.addsshow = false;
     $scope.adds = function () {
       $ionicModal.fromTemplateUrl('modal.html', {
@@ -260,8 +263,5 @@ angular.module('controllers', [])
     }
     $scope.findin = function () {
       $state.go("findin");
-    }
-    $scope.visit = function () {
-      $state.go("tab.activity");
     }
   });

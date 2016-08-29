@@ -29,21 +29,20 @@
             </div>
           </div>
 
-          <ion-slide-box class="df-slider" on-slide-changed="slideHasChanged($index)" auto-play="true"
-                         does-continue="true" slide-interval=0 show-pager="true" pager-click="pageClick(index)"
-                         active-slide="model.activeIndex"
-                         delegate-handle="delegateHandler">
+          <ion-slide-box ng-if="bannerlist" class="df-slider" on-slide-changed="slideHasChanged($index)"
+                         auto-play="true"
+                         does-continue="true" slide-interval=0 show-pager="true" pager-click="pageClick(index)">
             <ion-slide class="y_slider" ng-repeat="banner in bannerlist">
               <a href="{{banner.href}}"><img ng-src="{{banner.img}}"/></a>
             </ion-slide>
-
           </ion-slide-box>
 
-          <div class="y-list">
+          <div class="y-list" ng-if="activitylist">
             <div ng-repeat="activity in activitylist | filter:searchContent" class="card y-card"
                  ng-click="actdetial(activity)">
               <a class="item item-thumbnail-left">
                 <img ng-src="{{activity.actImg}}" ng-if="activity.actImg" alt="{{activity.actTitle}}">
+                <img ng-if="!activity.actImg" src="img/img-default-activity.jpg">
                 <h2>{{activity.actTitle}}</h2>
                 <span class="y-lasttime-right">{{activity.actTime | date:'yyyy-MM-dd HH:mm'}}</span>
                 <p>{{activity.actContent}}</p>
@@ -62,7 +61,7 @@
   <ion-tab title="我的活动" class="tab-right">
     <ion-nav-view name="activity-mine">
       <ion-view>
-        <ion-content style="background: #ebebeb" ng-controller="myActCtrl" delegate-handle="tab2">
+        <ion-content style="background: #ebebeb" ng-controller="myActCtrl" overflow-scroll="true">
           <ion-refresher
             pulling-text="松开手会有惊喜哦"
             on-refresh="doRefresh()">

@@ -7,7 +7,7 @@
   <h1 class="title">活动详情</h1>
 </ion-header-bar>
 <ion-view>
-  <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'; overflow: hidden" overflow-scroll="true">
+  <ion-content style="background: #ebebeb;font-family: 'Microsoft Yahei'" overflow-scroll="true">
     <div class="list card" style="margin:0px 0px 10px; box-shadow: initial">
       <div class="item item-body" style="padding:0px">
         <img class="full-image" style="height: 170px" src="{{actobj.actImg}}">
@@ -79,15 +79,16 @@
                   <div class="aui-list-item-title aui-font-size-14">{{activitycomment.user}}</div>
                   <div class="aui-list-item-right">{{activitycomment.timestamp}}</div>
                 </div>
-                <div class="aui-list-item-text">
-                  {{activitycomment.content}}
+                <div class="aui-list-item-text" ng-bind-html="activitycomment.content">
                 </div>
-                <div class="aui-card-list-footer df-act-fs aui-list-item-ricon">
+                <div class="aui-card-list-footer df-act-fs">
+                  <div></div>
+                  <div></div>
+                  <div></div>
                   <div><i class="aui-iconfont aui-icon-like"></i>
                     <small> {{activitycomment.likenum}}</small>
-                    &nbsp;&nbsp;
                   </div>
-                  <div ng-click="seecom1()" ng-class="{'df-color':showcom}"><i
+                  <div ng-click="creatcom(activitycomment.user)" ng-class="{'df-color':showcom}"><i
                     class="aui-iconfont aui-icon-comment"></i>
                     <small> {{activitycomment.commentnum}}</small>
                   </div>
@@ -95,25 +96,6 @@
               </div>
             </div>
           </li>
-          <ul ng-show="showcom">
-            <li class="aui-list-item aui-list-item-middle df-act-rep" ng-repeat="act_c_c in act_c_c_list">
-              <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-media">
-                  <img ng-src="{{act_c_c.avatar}}" class="aui-img-round aui-list-img-sm">
-                </div>
-                <div class="aui-list-item-inner">
-                  <div class="aui-list-item-text">
-                    <div class="aui-list-item-title aui-font-size-14">{{act_c_c.user}}</div>
-                    <div class="aui-list-item-right">{{act_c_c.timestamp}}</div>
-                  </div>
-                  <div class="aui-list-item-text aui-font-size-12">
-                    {{act_c_c.content}}
-                  </div>
-                </div>
-              </div>
-            </li>
-
-          </ul>
         </ul>
       </div>
       <!-- <div class="aui-card-list-footer aui-text-center">
@@ -123,4 +105,17 @@
 
     </div>
   </ion-content>
+  <ion-footer-bar class="bar-light" resize-foot-bar ng-show="a_comment"
+                  style="background-image:none;box-shadow: 0 0 1px #eee;">
+    <label class="item item-input rj-footer-input">
+      <textarea msd-elastic ng-bind-html="send_content" style="min-height: initial" placeholder="添加评论"
+                required></textarea>
+    </label>
+    <div class="rj-footer-btn-wrap" ng-click="send()">
+      <div class="buttons">
+        <button style="color:#6EBDDB" class="button button-icon icon ion-android-send rj-footer-btn-left">
+        </button>
+      </div>
+    </div>
+  </ion-footer-bar>
 </ion-view>

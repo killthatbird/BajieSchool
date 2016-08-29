@@ -6,7 +6,7 @@
   </div>
   <h1 class="title">学习分类</h1>
   <div class="buttons">
-    <button ng-click=""
+    <button ng-click="updateStu()"
             class="button no-animation button-icon icon buttons button-clear ion-ios-checkmark-outline">
     </button>
   </div>
@@ -15,11 +15,15 @@
   <ion-content class="has-header">
     <div class="aui-row stu-row" style="margin:3%;">
       <h2>关注模块</h2>
+      <form id="updateStu">
+        <input name="username" type="hidden" value="{{username}}">
       <div class="aui-col-xs-3" ng-click="removetype(t)" ng-repeat="t in stype  | orderBy:'typeId'">
+        <input name="typeId" type="hidden" value="{{t.typeId}}">
         <div class="stu-warp" ng-style="{background:'{{bgc[$index]}}'}" style="color:#fff">
           {{t.typeName}}
         </div>
       </div>
+      </form>
     </div>
     <div style="border:1px dashed #ccc;width:100%"></div>
     <div class="aui-row stu-row" style="margin:3%;">
