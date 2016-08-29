@@ -92,16 +92,17 @@ angular.module('StudyCtrl', [])
       console.log($scope.formData)
       $http({
         method: 'POST',
-        url: IP.info() + '/api/addstuqu',
+        url: IP.info() + '/api/study/addstuqu',
         data: $.param($scope.formData)
       }).then(function successCallback(response) {
         console.log(response);
         if (response.data.status == 0) {
-          console.log("保存成功!");
+          console.log("帖子发表成功!");
+          $state.go('tab.study');
         }
 
       }, function errorCallback(response) {
-        console.error("保存失败！");
+        console.error("帖子发表失败！");
       });
     }
   })

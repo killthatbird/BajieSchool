@@ -17,24 +17,24 @@
       pulling-text="松开手会有惊喜哦"
       on-refresh="doRefresh(slideIndex)">
     </ion-refresher>
-          <div class="a-warp">
-            <div ng-repeat="quora in quoralist" ng-click="goqu(quora)" class="card y-card">
-              <div class="item item-thumbnail-left">
-                <img ng-src="{{quora.queImg}}" alt="{{quora.queTitle}}">
-                <h2>{{quora.queTitle}}</h2>
-                <span class="y-lasttime-right">{{quora.queTime | date:'yyyy-MM-dd HH:mm'}}</span>
-                <p>{{quora.queContent}}</p>
-                <p class="y-front-size">
-                  <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{quora.queLike}}</span>
-                  <span class="y-p-col-right" ng-click="showComment=true" ng-class="{'df-color':showComment}"><i
-                    class="ion-chatbubble-working"></i>{{quora.queComment}}</span>
-                </p>
-              </div>
-            </div>
-          </div>
+    <div class="a-warp">
+      <div ng-repeat="quora in quoralist" ng-click="goqu(quora)" class="card y-card">
+        <div class="item item-thumbnail-left">
+          <img ng-src="{{quora.queImg}}" alt="{{quora.queTitle}}">
+          <h2>{{quora.queTitle}}</h2>
+          <span class="y-lasttime-right">{{quora.queTime | date:'yyyy-MM-dd HH:mm'}}</span>
+          <p>{{quora.queContent}}</p>
+          <p class="y-front-size">
+            <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{quora.queLike}}</span>
+            <span class="y-p-col-right" ng-click="showComment=true" ng-class="{'df-color':showComment}"><i
+              class="ion-chatbubble-working"></i>{{quora.queComment}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
-<script id="my-modal.html" ng-controller="askCtrl" type="text/ng-template">
+<script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-positive">
       <div class="buttons">
@@ -42,22 +42,22 @@
                 class="button back-button no-animation button-icon icon buttons button-clear ion-ios-arrow-back">
         </button>
       </div>
-      <h1 class="title">新增问题</h1>
-      <button class="button button-clear button-primary" ng-submit="">发表</button>
+      <h1 class="title">新增问题{{queTitle}}</h1>
+      <button class="button button-clear button-primary" ng-click="ask()">发布</button>
     </ion-header-bar>
     <ion-content>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">标题：</span>
-          <input type="text" name="actnum" ng-model="formData.actnum">
+          <input type="text" name="actnum" ng-model="question.queTitle">
         </label>
         <label class="item item-input">
           <span class="input-label">标签：</span>
-          <input type="text" name="actnum" ng-model="formData.actnum">
+          <input type="text" name="actnum" ng-model="question.queTags" placeholder="多个标签以空格隔开">
         </label>
       </div>
       <div class="padding df-none-textarea model-list">
-        <textarea placeholder="&nbsp;&nbsp;请输入内容"></textarea>
+        <textarea placeholder="&nbsp;&nbsp;请输入内容" ng-model="question.queContent"></textarea>
         <div class="buttons buttons-left">
           <div ng-repeat="item in items" class="imgone">
             <img ng-src="{{item.url}}" alt=""/>
