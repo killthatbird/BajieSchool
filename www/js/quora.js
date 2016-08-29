@@ -3,10 +3,10 @@
  */
 angular.module('quoraCtrl', [])
   .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, $state, $http) {
-    $scope.question={}
-    $scope.qtitle=function (a) {
-  $scope.question.title=a
-}
+    $scope.question = {}
+    $scope.qtitle = function (a) {
+      $scope.question.title = a
+    }
     var username = localStorage.getItem("username");
     $scope.showComment = false
     $scope.showMore = false
@@ -117,19 +117,36 @@ angular.module('quoraCtrl', [])
         $scope.modal.show();
       });
     }
+    $scope.ask = function () {
+      alert('I love you');
+      $scope.question.username = localStorage.getItem("username");
+      $scope.question.queImg = "";
+      console.log($scope.question);
+      $http({
+        method: "POST",
+        url: "http://localhost:8080/api/quora/ask",
+        data: $.param($scope.question)
+      }).then(function successCallback(response) {
+        console.log('ask ok!');
+        $scope.modal.hide();
+        $state.go('tab.quora');
+      }, function () {
+        console.error('ask fail...');
+      });
+    }
   })
 
-  .controller('askCtrl', function ($state, $scope, $http, $ionicActionSheet, LocalStorage) {
-    $scope.queTitle = "新增问题"
-    $scope.question = {}
+  .controller('askCtrl', function ($state, $scope, $http, $ionicActionSheet) {
+    $scope.queTitle = "新增问题";
+    $scope.question = {};
     $scope.imglist = [];
     //传到后台的图片片段
     var sImg = '';
     $scope.bindtitle = function (a) {
       if (a == "") {
-        $scope.queTitle = "新增问题"
+        $scope.queTitle = "新增问题";
       } else {
-        $scope.queTitle = a
+        $scope.queTitle = a;
       }
     }
 
@@ -205,15 +222,16 @@ angular.module('quoraCtrl', [])
       });
     }
     $scope.ask = function () {
-      $scope.question.username = LocalStorage.get("username", 0)
-      $scope.question.queImg = ""
-      console.log($scope.question)
+      $scope.question.username = localStorage.getItem("username");
+      $scope.question.queImg = "";
+      console.log($scope.question);
       $http({
         method: "POST",
         url: "http://localhost:8080/api/quora/ask",
-        data: $.param($scope.question),
+        data: $.param($scope.question)
       }).then(function successCallback(response) {
         console.log('ask ok!');
+        $state.go('tab.quora');
       }, function () {
         console.error('ask fail...');
       });
