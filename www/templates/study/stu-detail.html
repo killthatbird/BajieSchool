@@ -51,7 +51,7 @@
                 {{reply.stdReContent}}
               </div>
               <p class="y-front-size">
-                <span class="y-p-col">{{reply.stdReTime}}</span>
+                <span class="y-p-col">{{reply.stdReTime | date : 'yyyy-MM-dd HH:mm' : 'UTC+08:00'}}</span>
                 <span ng-click="replay('{{reply.username}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
                 <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{reply.stdReLike}}</span>
@@ -64,7 +64,7 @@
   </ion-content>
   <ion-footer-bar class="bar-light" resize-foot-bar style="background-image:none;box-shadow: 0 0 1px #eee;">
     <label class="item item-input rj-footer-input">
-      <textarea msd-elastic ng-bind-html="send_content" style="min-height: initial" placeholder="添加评论"
+      <textarea msd-elastic ng-model="stdReContent" style="min-height: initial" placeholder="添加评论"
                 required></textarea>
     </label>
     <div class="rj-footer-btn-wrap" ng-click="send()">

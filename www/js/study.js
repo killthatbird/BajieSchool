@@ -107,14 +107,14 @@ angular.module('StudyCtrl', [])
       });
     }
   })
-  .controller('studetailCtrl', function ($scope, $state, $http, $stateParams) {
+  .controller('studetailCtrl', function ($scope, $state, $http, $stateParams, userService) {
     var username = localStorage.getItem("username");
     $scope.choose = true;
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }
     $scope.study = $stateParams.study;
-    $scope.send_content = '';
+    $scope.stdReContent = '';
     console.log('Request param : ' + $scope.study.stdId);
 
     $http.get("http://localhost:8080/api/userstudy/" + $scope.study.stdId)
@@ -139,18 +139,72 @@ angular.module('StudyCtrl', [])
       }
     );
 
+    userService.load(username).then(
+      function successCallback(response) {
+        console.log('加载成功!');
+        console.log(response.data.result.avatar);
+        $scope.avatar = response.data.result.avatar;
+
+      }, function errarCallback(response) {
+        console.error('加载失败!');
+      });
+
     $scope.send = function () {
-      if ($scope.send_content != '') {
-        console.log(send_content);
-        $scope.comlist.push({
-          id: $scope.comlist.length + 1,
-          heaimg: 'img/ionic.png',
-          nickname: 'Tony Soup',
-          content: $scope.send_content,
-          time: '7-9 17:00',
-          agreenum: 0
+      if ($scope.stdReContent != '') {
+        console.log($scope.stdReContent);
+
+        $scope.replylist.push({
+          avatar: $scope.avatar,
+          username: username,
+          stdReContent: $scope.stdReContent,
+          stdReTime: new Date(),
+          stdReLike: 0
         });
-        $scope.send_content = ''
+
+        var studyReply = {
+          stdId: $scope.study.stdId,
+          username: username,
+          stdReContent: $scope.stdReContent
+        }
+
+        /**
+         * 新增回复消息
+         */
+        $http({
+          method: "POST",
+          url: "http://localhost:8080/api/addreply",
+          data: $.param(studyReply)
+        }).then(
+          function successCallback(response) {
+            console.log("新增成功!");
+          }, function errorCallback() {
+            console.error("新增失败!")
+            ''
+          }
+        );
+
+        /**
+         * 新增用户回复标识
+         */
+        var userStudy = {
+          stdId: $scope.study.stdId,
+          username: username,
+          flag: 1
+        };
+        $http({
+          method: "POST",
+          url: "http://localhost:8080/api/addus",
+          data: $.param(userStudy)
+        }).then(
+          function successCallback(response) {
+            console.log("新增成功!");
+          }, function errorCallback() {
+            console.error("新增失败!")
+            ''
+          }
+        );
+
+        $scope.stdReContent = '';
       }
     }
     $scope.replay = function (A) {

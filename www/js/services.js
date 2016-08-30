@@ -99,3 +99,17 @@ angular.module('services', [])
       }
     }
   })
+
+  .factory('userService', function ($http, IP) {
+    return {
+      load: function (username) {
+        return $http({
+          method: 'GET',
+          url: IP.info() + '/api/user/' + username,
+          params: {
+            username: username
+          }
+        })
+      }
+    }
+  });

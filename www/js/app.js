@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         controller: 'stutypeCtrl'
       })
       .state('studetail', {
-        url: '/study/detial',
+        url: '/study/detail',
         templateUrl: 'templates/study/stu-detail.html',
         cache: false,
         params: {
