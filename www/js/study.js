@@ -116,7 +116,19 @@ angular.module('StudyCtrl', [])
     $scope.study = $stateParams.study;
     $scope.stdReContent = '';
     console.log('Request param : ' + $scope.study.stdId);
-
+    /* $scope.addlike = function (A,B) {
+     $scope.dzlike = false;
+     $scope.reply.stdReLike=A+1;
+     $http({
+     method: 'POST',
+     url: IP.info() + '/api/study/updlike',
+     params: {id: B}
+     }).then(function successCallback(response) {
+     console.log("点赞成功!");
+     }, function errorCallback(response) {
+     console.error("点赞失败!");
+     });
+     }*/
     $http.get("http://localhost:8080/api/userstudy/" + $scope.study.stdId)
       .then(function (response) {
         if (response.data.status == 0) {

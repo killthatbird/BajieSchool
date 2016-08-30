@@ -179,7 +179,7 @@ angular.module('controllers', [])
     }
   )
 
-  .controller('selSchCtrl', function ($scope, $state, LocalStorage, $http, $ionicLoading) {
+  .controller('selSchCtrl', function ($scope, $state, LocalStorage, $http, IP, $ionicLoading) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -188,7 +188,7 @@ angular.module('controllers', [])
       showDelay: 0,
       duration: 3000
     });
-    $http.get('http://localhost:8080/api/university').then(function (response) {
+    $http.get(IP.info() + '/api/university').then(function (response) {
       $ionicLoading.hide();
       if (response.data.status == 0) {
         $scope.schoollist = response.data.result;
@@ -225,7 +225,7 @@ angular.module('controllers', [])
     }
   })
 
-  .controller('loginCtrl', function ($scope, $state, $http, $ionicLoading) {
+  .controller('loginCtrl', function ($scope, $state, $http, IP, $ionicLoading) {
 
 
     $scope.user = {};
@@ -240,7 +240,7 @@ angular.module('controllers', [])
       });
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/login/' + $scope.user.username,
+        url: IP.info() + '/api/login/' + $scope.user.username,
         data: $.param($scope.user)
       }).then(function successCallback(response) {
         $ionicLoading.hide();

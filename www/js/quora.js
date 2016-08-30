@@ -238,13 +238,27 @@ angular.module('quoraCtrl', [])
     }
   })
 
-  .controller('qudetialCtrl', function ($scope, $state, $http, $stateParams, $ionicModal) {
+  .controller('qudetialCtrl', function ($scope, $state, $http, $stateParams, $ionicModal, IP) {
     $scope.gz = true;
+    $scope.dzlike = true;
+    $scope.question = $stateParams.quobj
     $scope.isgz = function () {
       $scope.gz = !$scope.gz
     }
-    $scope.question = $stateParams.quobj
-    console.log($scope.question)
+    $scope.addlike = function (A, B) {
+      $scope.dzlike = false;
+      $scope.question.queLike = A + 1;
+      $http({
+        method: 'POST',
+        url: IP.info() + '/api/quora/updlike',
+        params: {id: B}
+      }).then(function successCallback(response) {
+        console.log("点赞成功!");
+      }, function errorCallback(response) {
+        console.error("点赞失败!");
+      });
+    }
+
     $scope.comlist = function () {
       $state.go("comlist");
     }

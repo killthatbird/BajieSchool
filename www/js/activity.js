@@ -4,7 +4,7 @@
 angular.module('ActCtrl', [])
   .controller('ActallCtrl', function ($scope, $ionicHistory) {
   })
-  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate) {
+  .controller('ActivityCtrl', function ($scope, $state, $http, $ionicLoading, $timeout, IP, $ionicSlideBoxDelegate) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -21,7 +21,7 @@ angular.module('ActCtrl', [])
     }
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/activityALL',
+      url: IP.info() + '/api/activityALL',
       params: {username: username, type: 0}
     }).then(function successCallback(response) {
       $ionicLoading.hide();
@@ -38,7 +38,7 @@ angular.module('ActCtrl', [])
     $scope.doRefreshAct = function () {
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/activity',
+        url: IP.info() + '/api/activity',
         params: {username: username, type: 0}
       }).then(function successCallback(response) {
         $ionicLoading.hide();
@@ -66,7 +66,7 @@ angular.module('ActCtrl', [])
        */
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/activity/',
+        url: IP.info() + '/api/activity/',
         params: {username: username, type: actTypeId}
       }).then(function successCallback(response) {
         $ionicLoading.hide();
@@ -88,19 +88,35 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, LocalStorage) {
+  .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, IP, LocalStorage) {
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
     }
+    $scope.dzlike = true;
+
+    $scope.addlike = function (A, B) {
+      $scope.dzlike = false;
+      $scope.actobj.actLike = A + 1;
+      $http({
+        method: 'POST',
+        url: IP.info() + '/api/activity/updlike',
+        params: {id: B}
+      }).then(function successCallback(response) {
+        console.log("点赞成功!");
+      }, function errorCallback(response) {
+        console.error("点赞失败!");
+      });
+    }
+
     $scope.showComment = false;
     $scope.togComment = function () {
       $scope.showComment = !$scope.showComment;
       if ($scope.showComment == true) {
         $("#aComment").show();
-        $("#acontent").css("botttom", "44px");
+        $("#acontent").style.bottom(44);
       } else {
         $("#aComment").hide();
-        $("#acontent").removeClass("has-footer")
+        $("#acontent").css("botttom", "0px ！importanrt");
       }
     }
     $scope.creatcom = function (A) {
@@ -156,7 +172,7 @@ angular.module('ActCtrl', [])
     }
   })
 
-  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicLoading, $http, $timeout, MyactService) {
+  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicLoading, $http, IP, $timeout, MyactService) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -197,11 +213,10 @@ angular.module('ActCtrl', [])
       $scope.viewmore = false
     };
   })
-
   /*发起活动*/
   .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP, LocalStorage) {
     $scope.formData = {}
-    $http.get("http://localhost:8080/api/acttype")
+    $http.get(IP.info() + "/api/acttype")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.types = response.data.result;
