@@ -33,6 +33,22 @@ angular.module('services', [])
       }
     };
   })
+  /*   我的活动*/
+  .factory('MyactService', function ($http, IP) {
+    var fData;
+    return {
+      load: function (username, type) {
+        return $http({
+          method: 'GET',
+          url: IP.info() + '/api/activity/mine',
+          params: {
+            username: username,
+            type: type
+          }
+        })
+      }
+    }
+  })
   /*拍照*/
   .factory('Camera', function ($cordovaCamera) {
     var options = {

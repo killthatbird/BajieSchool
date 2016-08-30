@@ -28,41 +28,12 @@ angular.module('ActCtrl', [])
       console.log(response)
       if (response.data.status == 0) {
         $scope.activitylist = response.data.result.Activity;
-        console.log($scope.activitylist)
         $scope.tabs = response.data.result.ActivityType;
         $scope.bannerlist = response.data.result.Banner;
       }
     }, function errorCallback(response) {
       console.error("活动查询失败!");
     });
-    /*  $ionicSlideBoxDelegate.update();*/
-
-    /*  $http.get('http://localhost:8080/api/acttype/').then(function (response) {
-     if (response.data.status == 0) {
-     $scope.tabs = response.data.result;
-     }
-     });
-
-     //加载“banner”
-     $http.get('http://localhost:8080/api/banner').then(function (response) {
-     if (response.data.status == 0) {
-     $scope.bannerlist = response.data.result;
-     }
-     });*/
-
-    //重写加载“默认”的activitylist
-    /*   $http({
-     method: 'POST',
-     url: 'http://localhost:8080/api/activity',
-     params: {username: username, type: 0}
-     }).then(function successCallback(response) {
-     $ionicLoading.hide();
-     if (response.data.status == 0) {
-     $scope.activitylist = response.data.result;
-     }
-     }, function errorCallback(response) {
-     console.error("活动查询失败!");
-     });*/
 
     $scope.doRefreshAct = function () {
       $http({
@@ -105,58 +76,6 @@ angular.module('ActCtrl', [])
       }, function errorCallback(response) {
         console.error("活动查询失败!");
       });
-
-      /*      switch ($scope.currentTab) {
-       case "推荐": {
-       $http.get('http://localhost:8080/api/' + username + '/activity/0').then(function (response) {
-       if (response.data.status == 0) {
-       $scope.activitylist = response.data.result;
-       }
-       });
-       }
-
-       case "体育": {
-       $http.get('../data/activity/tabs/activity-list-sports.json').then(function (response) {
-       if (response.data.status == 0 && response.data.category == tab.title) {
-       $scope.activitylist = response.data.activitylist;
-       }
-       });
-       }
-
-       case "旅游": {
-       $http.get('../data/activity/tabs/activity-list-trip.json').then(function (response) {
-       if (response.data.status == 0 && response.data.category == tab.title) {
-       $scope.activitylist = response.data.activitylist;
-       }
-       });
-       }
-
-       case "明星": {
-       $http.get('../data/activity/tabs/activity-list-star.json').then(function (response) {
-       if (response.data.status == 0 && response.data.category == tab.title) {
-       $scope.activitylist = response.data.activitylist;
-       }
-       });
-       }
-
-       case "电影": {
-       $http.get('../data/activity/tabs/activity-list-movie.json').then(function (response) {
-       if (response.data.status == 0 && response.data.category == tab.title) {
-       $scope.activitylist = response.data.activitylist;
-       }
-       });
-       }
-
-       case "恋爱": {
-       $http.get('../data/activity/tabs/activity-list-love.json').then(function (response) {
-       if (response.data.status == 0 && response.data.category == tab.title) {
-       $scope.activitylist = response.data.activitylist;
-       }
-       });
-       }
-       }*/
-
-
     }
     $scope.isActivetab = function (tabUrl) {
       return tabUrl == $scope.currentTab;
@@ -170,22 +89,26 @@ angular.module('ActCtrl', [])
 
   /*活动详情*/
   .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, LocalStorage) {
-    $scope.a_comment = false;
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
     }
     $scope.showComment = false;
-    $scope.seecom = function () {
-      $scope.showComment = true;
+    $scope.togComment = function () {
+      $scope.showComment = !$scope.showComment;
+      if ($scope.showComment == true) {
+        $("#aComment").show();
+        $("#acontent").css("botttom", "44px");
+      } else {
+        $("#aComment").hide();
+        $("#acontent").removeClass("has-footer")
+      }
     }
     $scope.creatcom = function (A) {
       $scope.a_comment = true;
-      $scope.send_content = $sce.trustAsHtml('回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:');
+      $scope.send_content = '回复@' + A + ':'
+      /* $scope.send_content = $sce.trustAsHtml('回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:');*/
       /* $scope.send_content = '回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:'
        $("#asend").focus();*/
-    }
-    $scope.goTo = function (A) {
-      console.log(A)
     }
     $scope.gohBack = function () {
       if (LocalStorage.get("acthViewid") == "act1") {
@@ -233,15 +156,46 @@ angular.module('ActCtrl', [])
     }
   })
 
-  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $http, $timeout) {
-    $scope.slideIndex = 0;
-    $scope.slideChanged = function (index) {
-      $scope.slideIndex = index;
-    };
+  .controller('myActCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicLoading, $http, $timeout, MyactService) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 500,
+      duration: 10000
+    });
+    var username = localStorage.getItem("username");
+    $scope.slideIndex = 0
+    MyactService.load(username, 0).then(function successCallback(response) {
+      $ionicLoading.hide();
+      console.log(response)
+      if (response.data.status == 0) {
+        $scope.myactivitylist = response.data.result;
+      }
+    }, function errorCallback(response) {
+      console.error("活动查询失败!");
+    });
     $scope.activeSlide = function (index) {
-      $ionicSlideBoxDelegate.slide(index);
+      $scope.slideIndex = index;
+      $scope.viewmore = false;
+      MyactService.load(username, index).then(function successCallback(response) {
+        $ionicLoading.hide();
+        if (response.data.status == 0) {
+          $scope.myactivitylist = response.data.result;
+          console.log($scope.myactivitylist)
+        }
+      }, function errorCallback(response) {
+        console.error("活动查询失败!");
+      });
     };
-
+    $scope.gomyact = function (A) {
+      $scope.actobj = A
+      $scope.viewmore = true
+    }
+    $scope.gomylist = function () {
+      $scope.viewmore = false
+    };
   })
 
   /*发起活动*/
@@ -313,45 +267,3 @@ angular.module('ActCtrl', [])
     }
 
   })
-  /*已发布的活动*/
-  .controller('puactCtrl', function ($scope, $http, $state) {
-    var username = localStorage.getItem("username");
-    $scope.viewmore = false;
-    $scope.gopuact = function (A) {
-      $scope.actobj = A
-      $scope.viewmore = true
-    }
-    $scope.gopulist = function () {
-      $scope.viewmore = false
-    };
-
-    $http.get('http://localhost:8080/api/activity/launch/' + username + '/0')
-      .then(function (response) {
-        if (response.data.status == 0) {
-          $scope.publishedactivitylist = response.data.result;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
-
-  })
-
-  /*已参加的活动*/
-  .controller('attactCtrl', function ($scope, $http, $state) {
-    var username = localStorage.getItem("username");
-    $scope.gopuact = function (A) {
-      $scope.actobj = A
-      $scope.viewmore = true
-    }
-    $scope.gopulist = function () {
-      $scope.viewmore = false
-    };
-    $http.get('http://localhost:8080/api/activity/launch/' + username + '/1')
-      .then(function (response) {
-        if (response.data.status == 0) {
-          $scope.joinactivitylist = response.data.result;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
-  });

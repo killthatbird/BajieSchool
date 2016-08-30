@@ -79,7 +79,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('published', {
         url: '/activity/published',
         templateUrl: 'templates/activity/published-act.html',
-        controller: 'puactCtrl'
+        cache: false
       })
       .state('newact', {
         url: '/activity/newact',
