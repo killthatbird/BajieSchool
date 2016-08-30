@@ -156,6 +156,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('qudetial', {
         url: '/quora/detial',
         templateUrl: 'templates/quora/qu-detial.html',
+        cache: false,
         params: {
           quobj: null
         },

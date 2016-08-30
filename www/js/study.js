@@ -63,6 +63,7 @@ angular.module('StudyCtrl', [])
 
     $scope.studetial = function (study) {
       $state.go("studetial", {study: study});
+      $scope.stdId = study.stdId;
     }
     $scope.gostype = function (A) {
       $state.go("stutype", {stypelist: A})
@@ -107,23 +108,27 @@ angular.module('StudyCtrl', [])
     }
   })
   .controller('studetialCtrl', function ($scope, $state, $http, $stateParams) {
-    $scope.choose = true
+    var username = localStorage.getItem("username");
+    $scope.choose = true;
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }
     $scope.study = $stateParams.study;
     $scope.send_content = '';
+    console.log('Request param : ' + $scope.study.stdId);
 
-    $http.get("../data/study/study-detail.json")
-      .then(function (response) {
-        if (response.data.status == 0) {
-          $scope.comlist = response.data.result.comment.list;
-          $scope.user = response.data.result.user;
-          // $scope.study = response.data.result.study;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
+    $http({
+      method: "POST",
+      url: "http://localhost:8080/api/study/replys/",
+      params: {stdId: $scope.study.stdId, username: username}
+    }).then(
+      function successCallback(response) {
+        console.log('学习评论加载成功!');
+        $scope.replylist = response.data.result;
+      }, function errarCallback(response) {
+        console.log('学习评论加载失败!');
+      }
+    );
 
     $scope.send = function () {
       if ($scope.send_content != '') {
