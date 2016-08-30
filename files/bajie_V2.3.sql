@@ -43,7 +43,7 @@ CREATE TABLE `activity` (
   `act_type` int(2) DEFAULT NULL,
   `act_title` varchar(100) NOT NULL,
   `act_content` varchar(255) DEFAULT NULL,
-  `act_img` varchar(100) DEFAULT '../img/img-default-activity.jpg',
+  `act_img` varchar(100) DEFAULT '../img/img-default-activity.png',
   `act_time` datetime DEFAULT NULL,
   `act_like` int(5) DEFAULT '0',
   `act_comment` int(5) DEFAULT '0',

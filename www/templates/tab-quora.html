@@ -21,7 +21,7 @@
       <div ng-repeat="quora in quoralist" ng-click="goqu(quora)" class="card y-card">
         <div class="item item-thumbnail-left">
           <img ng-src="{{quora.queImg}}" ng-if="quora.queImg">
-          <img src="img/img-default-quora.jpg" ng-if="!quora.queImg">
+          <img src="img/img-default-quora.png" ng-if="!quora.queImg">
           <h2>{{quora.queTitle}}</h2>
           <span class="y-lasttime-right">{{quora.queTime | date:'yyyy-MM-dd HH:mm'}}</span>
           <p>{{quora.queContent}}</p>

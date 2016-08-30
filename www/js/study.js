@@ -61,8 +61,8 @@ angular.module('StudyCtrl', [])
         }
       });
 
-    $scope.studetial = function (study) {
-      $state.go("studetial", {study: study});
+    $scope.studetail = function (study) {
+      $state.go("studetail", {study: study});
       $scope.stdId = study.stdId;
     }
     $scope.gostype = function (A) {
@@ -107,7 +107,7 @@ angular.module('StudyCtrl', [])
       });
     }
   })
-  .controller('studetialCtrl', function ($scope, $state, $http, $stateParams) {
+  .controller('studetailCtrl', function ($scope, $state, $http, $stateParams) {
     var username = localStorage.getItem("username");
     $scope.choose = true;
     $scope.attention = function () {
@@ -116,6 +116,15 @@ angular.module('StudyCtrl', [])
     $scope.study = $stateParams.study;
     $scope.send_content = '';
     console.log('Request param : ' + $scope.study.stdId);
+
+    $http.get("http://localhost:8080/api/userstudy/" + $scope.study.stdId)
+      .then(function (response) {
+        if (response.data.status == 0) {
+          $scope.user = response.data.result;
+        } else {
+          console.error('网络连接失败...');
+        }
+      });
 
     $http({
       method: "POST",
@@ -132,6 +141,7 @@ angular.module('StudyCtrl', [])
 
     $scope.send = function () {
       if ($scope.send_content != '') {
+        console.log(send_content);
         $scope.comlist.push({
           id: $scope.comlist.length + 1,
           heaimg: 'img/ionic.png',

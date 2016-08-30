@@ -169,7 +169,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
         LocalStorage.set("acthViewid", backViewId);
         $state.go("actdetial")
       } else if (A == "学习") {
-        $state.go("studetial")
+        $state.go("studetail")
       } else if (A == "问答") {
         $state.go("qudetial")
       }

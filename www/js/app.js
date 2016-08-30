@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('actdetial', {
         url: '/activity/actdetial',
         cache: false,
-        templateUrl: 'templates/activity/act-detial.html',
+        templateUrl: 'templates/activity/act-detail.html',
         cache: false,
         params: {
           actobj: null
@@ -106,15 +106,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         },
         controller: 'stutypeCtrl'
       })
-      .state('studetial', {
+      .state('studetail', {
         url: '/study/detial',
-        templateUrl: 'templates/study/stu-detial.html',
+        templateUrl: 'templates/study/stu-detail.html',
         cache: false,
         params: {
           hdata: null,
           study: null
         },
-        controller: 'studetialCtrl'
+        controller: 'studetailCtrl'
       })
       .state('newstu', {
         url: '/study/newstu',
@@ -155,7 +155,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       })
       .state('qudetial', {
         url: '/quora/detial',
-        templateUrl: 'templates/quora/qu-detial.html',
+        templateUrl: 'templates/quora/qu-detail.html',
         cache: false,
         params: {
           quobj: null
