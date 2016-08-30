@@ -80,7 +80,7 @@
                 <h2>{{myactivity.actTitle}}</h2>
                 <span class="y-lasttime-right">{{myactivity.actTime | date:'yyyy-MM-dd HH:mm'}}</span>
                 <p class="y-front-size">{{myactivity.actContent}}</p>
-                <p class="y-front-size">
+                <p class="y-front-size" ng-controller="ionctrl">
                   <span class="y-p-col"><i class="ion-ios-heart-outline"></i>{{myactivity.actLike}}</span>
                   <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{myactivity.actComment}}</span>
                 </p>

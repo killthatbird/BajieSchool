@@ -54,7 +54,10 @@
                 <span class="y-p-col">{{reply.stdReTime | date : 'yyyy-MM-dd HH:mm' : 'UTC+08:00'}}</span>
                 <span ng-click="replay('{{reply.username}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
-                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{reply.stdReLike}}</span>
+                <span class="y-p-col-right"> <i ng-style="slike" ng-hide="dzlike"
+                                                class="aui-iconfont aui-icon-laud"></i>
+                  <i ng-show="dzlike" ng-click="slike={'color':'#ebc951'};addlike(reply.stdReLike,reply.stdId)"
+                     class="aui-iconfont aui-icon-laud"></i>{{reply.stdReLike}}</span>
               </p>
             </div>
           </div>
