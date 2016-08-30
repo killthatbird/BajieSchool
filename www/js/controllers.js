@@ -66,9 +66,10 @@ angular.module('controllers', [])
     $scope.agreecon = function () {
       $scope.data = {};
       var myPopup = $ionicPopup.show({
-        template: '<textarea  ng-model="data.wifi" style="min-height: 250px;padding:15px;width:100%;overflow-y: scroll"></textarea>',
-        title: '注册协议',
-        subTitle: 'Please use normal things',
+        template: '<div style="min-height: 250px;padding:15px;width:100%;overflow-y: scroll"><ul><li>请勿发布任何反动、色情、侮辱性言论</li><li>我们会严格保护您的隐私</li><li>您的每一处意见都很宝贵，为了能帮助到更多的用户，因此您的所有发布信息均不能被删除</li></ul></div>',
+        // template: '<textarea style="min-height: 250px;padding:15px;width:100%;overflow-y: scroll">我们会严格保护您的隐私</textarea>',
+        title: '用户协议',
+        subTitle: '八戒上学APP用户须知',
         scope: $scope,
         buttons: [
           {
