@@ -38,23 +38,23 @@
     </div>
     <div class="aui-card-list-content df-act-comment" style="position: relative;bottom:30px">
       <ul class="aui-list aui-media-list">
-        <li ng-repeat="com in comlist" class="aui-list-item aui-list-item-middle df-act-coms">
+        <li ng-repeat="reply in replylist" class="aui-list-item aui-list-item-middle df-act-coms">
           <div class="aui-media-list-item-inner">
             <div class="aui-list-item-media">
-              <img ng-src="{{com.avatar}}" class="aui-img-round aui-list-img-sm">
+              <img ng-src="{{reply.avatar}}" class="aui-img-round aui-list-img-sm">
             </div>
             <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
               <div class="aui-list-item-text">
-                <div class="aui-list-item-title aui-font-size-14">{{com.nickname}}</div>
+                <div class="aui-list-item-title aui-font-size-14">{{reply.username}}</div>
               </div>
               <div class="aui-list-item-text">
-                {{com.content}}
+                {{reply.stdReContent}}
               </div>
               <p class="y-front-size">
-                <span class="y-p-col">{{com.timestamp}}</span>
-                <span ng-click="replay('{{com.username}}')" class="y-p-col-right" style="padding-left: 10px"><i
+                <span class="y-p-col">{{reply.stdReTime}}</span>
+                <span ng-click="replay('{{reply.username}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
-                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{com.likenum}}</span>
+                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{reply.stdReLike}}</span>
               </p>
             </div>
           </div>
