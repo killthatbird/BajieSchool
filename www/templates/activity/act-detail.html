@@ -14,10 +14,14 @@
         <img class="full-image" style="height: 170px" src="{{actobj.actImg}}">
         <div class="item" style="border: initial;padding: 5px 16px;">
           <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.actTitle}}</h2>
-          <button ng-click="attend = attend + 1" ng-init="attend=15"
+          <button  ng-show="choose"  ng-click="attend = attend + 1;attention()" ng-init="attend=15"
                   class="button  button-small y-lasttime-right icon-left ion-ios-plus-outline button-positive"
                   style="padding: 0px 14px;right: 100px;top: 7px;">参加
           </button>
+          <button ng-hide="choose" ng-click="attention()" class="button  button-small y-lasttime-right icon-left"
+                  style="padding: 0px 14px;right: 100px;top: 7px;background: gainsboro;color:grey">已参加
+          </button>
+
           <button class="button  button-small y-lasttime-right icon-left ion-ios-navigate-outline button-positive"
                   style="padding: 0px 14px;right: 18px;top: 7px;">分享
           </button>
@@ -29,9 +33,9 @@
             </small>
           </p>
           <div class="aui-card-list-footer df-act-fs">
-            <div><i ng-show="dzlike" ng-click="alike={'color':'#ebc951'};addlike(actobj.actLike,actobj.actId)"
+            <div><i ng-show="dzlike" ng-click="alike={'color':'rgb(110,189,219)'};addlike(actobj.actLike,actobj.actId)"
                     class="aui-iconfont aui-icon-like"></i>
-              <i ng-style="alike" ng-hide="dzlike" class="aui-iconfont aui-icon-like"></i>
+              <i ng-style="alike" ng-hide="dzlike" class="aui-iconfont ion-ios-heart"></i>
               <small>赞 {{actobj.actLike}}</small>
             </div>
             <div ng-click="togComment()" ng-class="{'df-color':showComment}"><i
@@ -80,21 +84,20 @@
               </div>
               <div class="aui-list-item-inner">
                 <div class="aui-list-item-text">
-                  <div class="aui-list-item-title aui-font-size-14">{{activitycomment.user}}</div>
-                  <div class="aui-list-item-right">{{activitycomment.timestamp}}</div>
+                  <div class="aui-list-item-title aui-font-size-14">{{activitycomment.username}}</div>
+                  <div class="aui-list-item-right">{{activitycomment.actComTime | date:'yyyy-MM-dd HH:mm'}}</div>
                 </div>
-                <div class="aui-list-item-text" ng-bind-html="activitycomment.content">
+                <div class="aui-list-item-text" ng-bind-html="activitycomment.actComContent">
                 </div>
                 <div class="aui-card-list-footer df-act-fs">
                   <div></div>
                   <div></div>
                   <div></div>
                   <div><i class="aui-iconfont aui-icon-like"></i>
-                    <small> {{activitycomment.likenum}}</small>
+                    <small> {{activitycomment.actComLike}}</small>
                   </div>
-                  <div ng-click="creatcom(activitycomment.user)" ng-class="{'df-color':showcom}"><i
+                  <div ng-click="creatcom(activitycomment.username)" ng-class="{'df-color':showcom}"><i
                     class="aui-iconfont aui-icon-comment"></i>
-                    <small> {{activitycomment.commentnum}}</small>
                   </div>
                 </div>
               </div>
@@ -102,7 +105,8 @@
           </li>
         </ul>
       </div>
-      <div class="aui-card-list-content df-act-comment" ng-repeat="activitycomment in activitycommentlist">
+
+      <!--<div class="aui-card-list-content df-act-comment" ng-repeat="activitycomment in activitycommentlist">
         <ul class="aui-list aui-media-list">
           <li class="aui-list-item aui-list-item-middle df-act-coms">
             <div class="aui-media-list-item-inner">
@@ -132,14 +136,16 @@
             </div>
           </li>
         </ul>
-      </div>
+      </div>-->
+
+
     </div>
   </ion-content>
 </ion-view>
 <ion-footer-bar id="aComment" class="bar-light" resize-foot-bar
                 style="background-image:none;box-shadow: 0 0 1px #eee;display: none">
   <label class="item item-input rj-footer-input">
-      <textarea msd-elastic ng-bind-html="send_content" style="min-height: initial" placeholder="添加评论"
+      <textarea msd-elastic ng-model="actComContent" style="min-height: initial" placeholder="添加评论"
                 required></textarea>
   </label>
   <div class="rj-footer-btn-wrap" ng-click="send()">

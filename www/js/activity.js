@@ -88,7 +88,23 @@ angular.module('ActCtrl', [])
 
 
   /*活动详情*/
-  .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, IP, LocalStorage) {
+  .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, IP, LocalStorage, userService) {
+    $scope.choose = true;
+    $scope.actobj = {};
+    $scope.attention = function () {
+      $scope.choose = !$scope.choose;
+    }
+    var username = localStorage.getItem("username");
+    userService.load(username).then(
+      function successCallback(response) {
+        console.log('加载成功!');
+        console.log(response.data.result.avatar);
+        $scope.avatar = response.data.result.avatar;
+
+      }, function errarCallback(response) {
+        console.error('加载失败!');
+      });
+
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
     }
@@ -113,7 +129,7 @@ angular.module('ActCtrl', [])
       $scope.showComment = !$scope.showComment;
       if ($scope.showComment == true) {
         $("#aComment").show();
-        $("#acontent").style.bottom(44);
+        $("#acontent").css("bottom", "44px");
       } else {
         $("#aComment").hide();
         $("#acontent").css("botttom", "0px ！importanrt");
@@ -121,7 +137,7 @@ angular.module('ActCtrl', [])
     }
     $scope.creatcom = function (A) {
       $scope.a_comment = true;
-      $scope.send_content = '回复@' + A + ':'
+      $scope.actComContent = '回复@' + A + ':'
       /* $scope.send_content = $sce.trustAsHtml('回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:');*/
       /* $scope.send_content = '回复<a style="color:deepskyblue" ng-click="' + "goTo(activitycomment.user)" + '">@"+A+"</a>:'
        $("#asend").focus();*/
@@ -144,31 +160,32 @@ angular.module('ActCtrl', [])
       }
     });
 
-    $http.get('../data/activity/activity-comment.json').then(function (response) {
-      if (response.data.status == 0) {
-        $scope.activitycommentlist = response.data.commentlist;
-      }
+
+    /**
+     * 加载活动用户评论
+     */
+    $http({
+      method: "POST",
+      url: 'http://localhost:8080/api/actcom',
+      params: {username: username, actId: $scope.actobj.actId}
+    }).then(function successCallback(response) {
+      console.log("活动评论加载成功!");
+      $scope.activitycommentlist = response.data.result;
+    }, function errorCallback(response) {
+      console.error("活动评论加载失败!");
     });
 
-    $http.get('../data/activity/activity-comment-comment.json').then(function (response) {
-      if (response.data.status == 0) {
-        $scope.act_c_c_list = response.data.comment_comment_list;
-      }
-    });
     $scope.send = function () {
-      if ($scope.activitycommentlist != '') {
-        $scope.activitycommentlist.push({
-          id: $scope.activitycommentlist.length + 1,
-          avatar: 'img/ionic.png',
-          user: 'Tony Soup',
-          content: $scope.send_content,
-          timestamp: '7-9 17:00',
-          agreenum: 0
-        });
-        $scope.a_comment = false;
-        $scope.send_content = '';
-        $ionicScrollDelegate.scrollBottom();
-      }
+      $scope.activitycommentlist.push({
+        avatar: $scope.avatar,
+        username: username,
+        actComContent: $scope.actComContent,
+        actComTime: new Date(),
+        actComLike: 0
+      });
+      $scope.actComContent = false;
+      $scope.actComContent = '';
+      $ionicScrollDelegate.scrollBottom();
     }
   })
 
