@@ -55,11 +55,14 @@ angular.module('controllers', [])
      window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
   })
 
-  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $timeout, LocalStorage) {
+  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $stateParams, $http, IP, $timeout, LocalStorage) {
     $scope.formdata = {};
-    $scope.formdata.name = LocalStorage.get("sc_name")
+    $scope.name = $stateParams.schname;
     $scope.curstep = true;
     $scope.msg = false
+    $scope.checkname = false
+    $scope.formdata.university = $stateParams.schid;
+    var username = localStorage.getItem("username");
     $scope.seleSch = function () {
       $state.go("selsch")
     }
@@ -132,7 +135,34 @@ angular.module('controllers', [])
     }
     $scope.login = function () {
       if ($scope.agg_checked == true) {
-        /* $state.go("login")*/
+        $http({
+          method: 'GET',
+          url: IP.info() + '/api/checkname/' + $scope.formdata.username
+        }).then(function successCallback(response) {
+          if (response.data.status == 0) {
+            $scope.checkname = false
+            /*  用户注册*/
+            $http({
+              method: 'POST',
+              url: IP.info() + '/api/adduser',
+              data: $.param($scope.formdata)
+            }).then(function successCallback(response) {
+              if (response.data.status == 0) {
+                console.log("注册成功!");
+                $state.go("login");
+              }
+
+            }, function errorCallback(response) {
+              console.error("注册失败！");
+            });
+          } else {
+            $scope.checkname = true;
+            console.log("该用户已存在")
+          }
+
+        }, function errorCallback(response) {
+
+        });
       } else {
         $scope.msg = true
       }
@@ -199,9 +229,9 @@ angular.module('controllers', [])
     $scope.reset = function () {
       $scope.searchContent = ''
     }
-    $scope.backpre = function (A) {
+    $scope.backpre = function (A, B) {
       LocalStorage.set("sc_name", A)
-      $state.go("register")
+      $state.go("register", {schname: A, schid: B})
     }
   })
 

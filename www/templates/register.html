@@ -11,13 +11,14 @@
     <form>
       <div ng-show="curstep">
         <ul class="aui-list aui-form-list">
+          <input type="hidden" ng-model="formdata.university">
           <li class="aui-list-item" ng-click="seleSch()">
             <div class="aui-list-item-inner">
               <div class="aui-list-item-label">
                 学校
               </div>
               <div class="aui-list-item-input">
-                <input type="text" ng-model="formdata.name" placeholder="点我选择学校">
+                <input type="text" ng-model="name" style="background: #fff" placeholder="点我选择学校" readonly>
               </div>
             </div>
           </li>
@@ -27,7 +28,7 @@
                 学院
               </div>
               <div class="aui-list-item-input">
-                <input type="text"/>
+                <input  ng-model="formdata.institution"  type="text"/>
               </div>
             </div>
           </li>
@@ -37,7 +38,7 @@
                 入学年份
               </div>
               <div class="aui-list-item-input">
-                <select>
+                <select ng-model="formdata.enrollYear">
                   <option value="2016">2016</option>
                   <option value="2015">2015</option>
                   <option value="2014">2014</option>
@@ -50,11 +51,9 @@
           <li class="aui-list-item">
             <div class="aui-list-item-inner" align="center">
               <div class="aui-list-item-input">
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" value="0">
-                  专科</label>
-                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" checked
-                                                          value="1">本科</label>
-                <label><input class="aui-radio" type="radio" name="level" value="2"> 研究生</label>
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" ng-model="formdata.level" value="0"> 专科</label>
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="level" ng-model="formdata.level" checked value="1"> 本科</label>
+                <label><input class="aui-radio" type="radio" name="level" ng-model="formdata.level" value="2"> 研究生</label>
               </div>
             </div>
           </li>
@@ -73,11 +72,9 @@
                 用户名
               </div>
               <div class="aui-list-item-input item-input">
-                <input ng-model="username" type="text"/>
-                <div ng-if="false">
-                  <small ng-show="!username || username === ''"
-                         style="color: red;font-size: 0.6rem;white-space: nowrap;min-width: 93px;">该用户名已存在
-                  </small>
+                <input ng-model="formdata.username" type="text"/>
+                <div ng-show="checkname">
+                  <small style="color: red;font-size: 0.6rem;white-space: nowrap;min-width: 93px;">该用户名已存在</small>
                 </div>
               </div>
             </div>
@@ -88,7 +85,18 @@
                 密码
               </div>
               <div class="aui-list-item-input item-input">
-                <input type="password" minlength="8" maxlength="20"/>
+                <input type="password" ng-model="formdata.password" minlength="8" maxlength="20"/>
+              </div>
+            </div>
+          </li>
+          <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-label">
+                性别
+              </div>
+              <div class="aui-list-item-input">
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="sex" ng-model="formdata.sex" value="0" checked> 男</label>
+                <label style="margin-right: 20px;"><input class="aui-radio" type="radio" name="sex" ng-model="formdata.sex" value="1"> 女</label>
               </div>
             </div>
           </li>
@@ -98,8 +106,8 @@
                 手机号
               </div>
               <div class="aui-list-item-input item-input">
-                <input type="text" class="aui-col-xs-8">&nbsp;
-                <div class="aui-btn aui-btn-info aui-col-xs-4"  style="margin-right: 0px;" ng-click="sendphonecode(reg_phone)" ng-class="paraclass"
+                <input type="text" class="aui-col-xs-8" ng-model="formdata.cellphone" >&nbsp;
+                <div class="aui-btn aui-btn-info aui-col-xs-4" style="margin-right: 0px;" ng-click="sendphonecode(reg_phone)" ng-class="paraclass"
                      ng-bind="paracont">获取验证码
                 </div>
               </div>

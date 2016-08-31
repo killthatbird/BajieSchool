@@ -238,6 +238,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
 
       .state('register', {
         url: '/register',
+        params: {
+          schname: null,
+          schid:null
+        },
         templateUrl: 'templates/register.html'
       })
       .state('findin', {

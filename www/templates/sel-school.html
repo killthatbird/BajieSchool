@@ -13,7 +13,7 @@
 </ion-header-bar>
 <ion-view>
   <ion-content scroll="true" class="has-header" padding="true">
-    <ion-item ng-repeat="school in schoollist | filter:searchContent " ng-click="backpre('{{school.univName}}')">
+    <ion-item ng-repeat="school in schoollist | filter:searchContent " ng-click="backpre('{{school.univName}}',school.univId)">
       {{school.univName}}
     </ion-item>
   </ion-content>
