@@ -240,7 +240,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/register',
         params: {
           schname: null,
-          schid:null
+          schid: null
         },
         templateUrl: 'templates/register.html'
       })

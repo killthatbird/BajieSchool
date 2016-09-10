@@ -295,4 +295,13 @@ angular.module('controllers', [])
     $scope.findin = function () {
       $state.go("findin");
     }
+  })
+
+  .controller('changeSettingCtrl', function ($scope) {
+    $scope.changeSettingStatus = function (A) {
+      var isUpdate = $scope.A;
+
+      console.log(isUpdate);
+    }
+
   });

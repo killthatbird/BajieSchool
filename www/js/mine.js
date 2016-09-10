@@ -125,6 +125,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     };
 
   })
+
   .controller('mynoticeCtrl', function ($scope, $state, $interval, $http) {
     $scope.clt = false;
     var second = 5,
@@ -362,8 +363,6 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }, function errorCallback(response) {
         console.error("反馈提交失败!");
       });
-
-
     }
   })
 
