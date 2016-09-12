@@ -11,6 +11,26 @@ angular.module('quoraCtrl', [])
     $scope.showComment = false
     $scope.showMore = false
     $scope.slideIndex = 0;
+    if ($stateParams.index != null) {
+      $scope.slideIndex = $stateParams.index;
+      $http.get("http://localhost:8080/api/quora/" + username + "/" + $scope.slideIndex)
+        .then(function (response) {
+          if (response.data.status == 0) {
+            $scope.quoralist = response.data.result;
+          } else {
+            console.error('网络连接失败...');
+          }
+        });
+    } else {
+      $http.get("http://localhost:8080/api/quora/" + username)
+        .then(function (response) {
+          if (response.data.status == 0) {
+            $scope.quoralist = response.data.result;
+          } else {
+            console.error('网络连接失败...');
+          }
+        });
+    }
     $scope.choosePicMenuf = function () {
       $ionicActionSheet.show({
         buttons: [{
@@ -62,14 +82,6 @@ angular.module('quoraCtrl', [])
       console.log("LIIDE====" + A)
     }
 
-    $http.get("http://localhost:8080/api/quora/" + username)
-      .then(function (response) {
-        if (response.data.status == 0) {
-          $scope.quoralist = response.data.result;
-        } else {
-          console.error('网络连接失败...');
-        }
-      });
 
     $scope.activeSlide = function (index) {
       $scope.slideIndex = index
@@ -116,6 +128,9 @@ angular.module('quoraCtrl', [])
         $scope.modal = modal;
         $scope.modal.show();
       });
+    }
+    $scope.addqu = function () {
+      $state.go("newque");
     }
     $scope.ask = function () {
       alert('I love you');
@@ -231,7 +246,7 @@ angular.module('quoraCtrl', [])
         data: $.param($scope.question)
       }).then(function successCallback(response) {
         console.log('ask ok!');
-        $state.go('tab.quora');
+        $state.go('tab.quora', {index: 1});
       }, function () {
         console.error('ask fail...');
       });

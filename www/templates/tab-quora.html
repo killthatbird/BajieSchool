@@ -33,6 +33,12 @@
         </div>
       </div>
     </div>
+    <div ng-if="quoralist.length==0&&slideIndex == 1" class="df-none-qu">
+      <h2 style="letter-spacing: 2px">您还没问过任何问题</h2>
+      <p class="df-none-p">
+      <div ng-click="addqu()" class="button button-positive aui-btn-block aui-btn-sm df-none-button">现在提问</div>
+      </p>
+    </div>
   </ion-content>
 </ion-view>
 <script id="my-modal.html" type="text/ng-template">
