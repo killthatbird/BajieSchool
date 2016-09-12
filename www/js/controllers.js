@@ -276,7 +276,7 @@ angular.module('controllers', [])
         $ionicLoading.hide();
         if (response.data.status == 0) {
           localStorage.setItem("username", $scope.user.username);
-          $http.get("http://localhost:8080/api/status/" + $scope.user.username)
+          $http.get(IP.info() + '/api/status/' + $scope.user.username)
             .then(function (response) {
               console.log("用户状态修改成功!");
             });

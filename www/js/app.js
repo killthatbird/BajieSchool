@@ -81,6 +81,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         templateUrl: 'templates/activity/published-act.html',
         cache: false
       })
+      .state('pinfo', {
+        url: '/mine/pinfo',
+        templateUrl: 'templates/mine/pinfo.html',
+        controller: 'pInfoCtrl'
+      })
       .state('newact', {
         url: '/activity/newact',
         templateUrl: 'templates/activity/new-act.html'

@@ -104,12 +104,14 @@ angular.module('ActCtrl', [])
       }, function errarCallback(response) {
         console.error('加载失败!');
       });
-
+    $scope.dzlike = true;
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
+      console.log($scope.actobj.reserve1)
+      if ($scope.actobj.reserve1 == 1) {
+        $scope.dzlike = false;
+      }
     }
-    $scope.dzlike = true;
-
     $scope.addlike = function (A, B) {
       $scope.dzlike = false;
       $scope.actobj.actLike = A + 1;
