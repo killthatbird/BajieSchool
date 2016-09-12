@@ -35,7 +35,8 @@
           <div class="aui-card-list-footer df-act-fs">
             <div><i ng-show="dzlike" ng-click="alike={'color':'rgb(110,189,219)'};addlike(actobj.actLike,actobj.actId)"
                     class="aui-iconfont aui-icon-like"></i>
-              <i ng-style="alike" ng-hide="dzlike" class="aui-iconfont ion-ios-heart"></i>
+              <i ng-style="alike" ng-class="{'lblue':actobj.reserve1=='1'}" ng-hide="dzlike"
+                 class="aui-iconfont ion-ios-heart"></i>
               <small>赞 {{actobj.actLike}}</small>
             </div>
             <div ng-click="togComment()" ng-class="{'df-color':showComment}"><i

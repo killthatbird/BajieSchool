@@ -21,9 +21,9 @@
         {{question.queContent}}
       </div>
       <div class="aui-card-list-footer">
-        <div><i ng-style="qlike" ng-hide="dzlike" class="aui-iconfont aui-icon-laud"></i><i ng-show="dzlike"
-                                                                                            ng-click="qlike={'color':'#ebc951'};addlike(question.queLike,question.queId)"
-                                                                                            class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.queLike}}
+        <div><i ng-style="qlike" ng-hide="dzlike" class="aui-iconfont aui-icon-laud"></i>
+          <i ng-show="dzlike" ng-click="qlike={'color':'#ebc951'};addlike(question.queLike,question.queId)"
+             class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.queLike}}
         </div>
         <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.queComment}}</div>
         <div ng-click="isgz()"><i ng-hide="gz" ng-model="gz" class="aui-iconfont aui-icon-star"></i>

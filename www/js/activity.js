@@ -30,6 +30,8 @@ angular.module('ActCtrl', [])
         $scope.activitylist = response.data.result.Activity;
         $scope.tabs = response.data.result.ActivityType;
         $scope.bannerlist = response.data.result.Banner;
+      } else {
+        $state.go("login")
       }
     }, function errorCallback(response) {
       console.error("活动查询失败!");
@@ -120,6 +122,7 @@ angular.module('ActCtrl', [])
         url: IP.info() + '/api/activity/updlike',
         params: {id: B}
       }).then(function successCallback(response) {
+        $scope.dzlike = false;
         console.log("点赞成功!");
       }, function errorCallback(response) {
         console.error("点赞失败!");
