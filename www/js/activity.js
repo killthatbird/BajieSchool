@@ -159,11 +159,11 @@ angular.module('ActCtrl', [])
         $ionicHistory.goBack();
       }
     }
-    $http.get('../data/activity/activity-detail.json').then(function (response) {
+/*    $http.get('../data/activity/activity-detail.json').then(function (response) {
       if (response.data.status == 0) {
         $scope.activitydetail = response.data.detail;
       }
-    });
+    });*/
 
 
     /**

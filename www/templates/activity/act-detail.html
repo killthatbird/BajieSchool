@@ -14,7 +14,7 @@
         <img class="full-image" style="height: 170px" src="{{actobj.actImg}}">
         <div class="item" style="border: initial;padding: 5px 16px;">
           <h2 style="margin:0px;font-family: 'Microsoft Yahei'">{{actobj.actTitle}}</h2>
-          <button  ng-show="choose"  ng-click="attend = attend + 1;attention()" ng-init="attend=15"
+          <button ng-show="choose" ng-click="attend = attend + 1;attention()" ng-init="attend=15"
                   class="button  button-small y-lasttime-right icon-left ion-ios-plus-outline button-positive"
                   style="padding: 0px 14px;right: 100px;top: 7px;">参加
           </button>
@@ -28,9 +28,9 @@
           <p style="margin-top:10px;">
             <small>{{actobj.actTime}}</small>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <small>已关注{{activitydetail.joinnum}}人/已参加<span
-              ng-class="{'df-color':attend>15}">{{activitydetail.joinnum}}人</span>
-            </small>
+            <!--<small>已关注{{actobj.actJoin}}人/已参加<span
+              ng-class="{'df-color':attend>15}">{{actobj.actJoin}}人</span>
+            </small>-->
           </p>
           <div class="aui-card-list-footer df-act-fs">
             <div><i ng-show="dzlike" ng-click="alike={'color':'rgb(110,189,219)'};addlike(actobj.actLike,actobj.actId)"
@@ -59,12 +59,12 @@
       <label class="item item-input">
         <img class="list-left-img" src="img/icon/mine/5.png">
         <span class="input-label pu-span">地点</span>
-        <span class="input-label">{{activitydetail.place}}</span>
+        <span class="input-label">{{actobj.actPlace}}</span>
       </label>
       <label class="item item-input">
         <img class="list-left-img" src="img/icon/mine/6.png">
-        <span class="input-label pu-span">报名人数</span>
-        <span class="input-label">{{activitydetail.signupnum}}人</span>
+        <span class="input-label pu-span">参加人数</span>
+        <span class="input-label">{{actobj.actJoin}}人</span>
       </label>
       <label class="item item-input" style="border-bottom: none">
         <img class="list-left-img" src="img/icon/mine/8.png">
