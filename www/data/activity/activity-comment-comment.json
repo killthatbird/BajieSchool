@@ -1,0 +1,15 @@
+{
+  "status": 0,
+  "comment_id": 1,
+  "pagenum": 1,
+  "pagesize": 10,
+  "comment_comment_list": [
+    {
+      "comment_comment_id": "c-c-1",
+      "user": "Jack",
+      "avatar": "img/perry.png",
+      "timestamp": "2016-08-13 12:47",
+      "content": "有华科的小伙伴吗？一起组队呀！"
+    }
+  ]
+}

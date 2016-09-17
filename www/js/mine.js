@@ -160,10 +160,12 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
   .controller('mycollectionCtrl', function ($scope, $state, $http, $ionicHistory, $interval, LocalStorage) {
+    var username = localStorage.getItem("username");
     $scope.searchContent = '';
     $scope.reset = function ($event) {
       $scope.searchContent = '';
     }
+
     $scope.godetial = function (A) {
       if (A == "活动") {
         var backViewId = $ionicHistory.currentView().viewId;
@@ -176,10 +178,10 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }
     }
 
-    $http.get("../data/mine/mine-collection.json")
+    $http.get("http://localhost:8080/api/collection/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.cltlist = response.data.cltlist;
+          $scope.cltlist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }

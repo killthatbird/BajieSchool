@@ -289,18 +289,21 @@ angular.module('quoraCtrl', [])
     $scope.closeModal = function () {
       $scope.smodal.hide();
     };
-    $http.get("../data/quora/quora-answerlist-detail.json")
+    $http.get("http://localhost:8080/api/answer/" + $scope.question.queId)
       .then(function (response) {
         if (response.data.status == 0) {
-          $scope.answerlist = response.data.answer.list;
-          $scope.totalanswer = response.data.answer.totalanswer;
-          /*$scope.question = response.data.question;*/
+          $scope.answerlist = response.data.result;
         } else {
           console.error('网络连接失败...');
         }
       });
     $scope.ansdetail = function (answerobj, questionobj) {
       $state.go("ansdetail", {answer: answerobj, question: questionobj});
+    }
+
+    $scope.newans = function () {
+      console.log($scope.ansContent);
+
     }
   })
 

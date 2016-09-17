@@ -30,8 +30,9 @@
             <label class="bc-wd" ng-if="clt.type=='问答'">{{clt.type}}</label>{{clt.title}}
           </div>
           <div ng-show="remove"><label ng-click="deletebtn()" class="bc-sc">删除</label>{{clt.title}}</div>
-          <span class="col-time">{{clt.timestamp}}</span></h2>
+          <span class="col-time">{{clt.date | date:'yyyy-MM-dd HH:mm'}}</span></h2>
       </div>
+
       <div class="item item-text-wrap" ng-click="godetial('{{clt.type}}')">
         {{clt.content}}
       </div>

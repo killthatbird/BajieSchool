@@ -1,0 +1,53 @@
+{
+  "status": 0,
+  "result": {
+    "study": {
+      "stuId": "60000",
+      "stdTitle": "考研英语如何突破75分？"
+    },
+    "user": {
+      "username": "Kevin",
+      "avatar": "img/ionic.png",
+      "motto": "这个家伙很懒，什么也没留下~"
+    },
+    "comment": {
+      "pagenum": 1,
+      "pagesize": 15,
+      "totalcomment": 3,
+      "list": [
+        {
+          "cid": "c10001",
+          "username": "Alexa",
+          "avatar": "img/ionic.png",
+          "content": "总的来说，还是要多做题，多总结，单词量也是必需的！！",
+          "likenum": 520,
+          "timestamp": "2小时前"
+        },
+        {
+          "cid": "c10002",
+          "username": "Jeff",
+          "avatar": "img/ionic.png",
+          "content": "背单词？",
+          "likenum": 365,
+          "timestamp": "3小时前"
+        },
+        {
+          "cid": "c10003",
+          "username": "LucasX",
+          "avatar": "img/ionic.png",
+          "content": "历年真题吃三遍，70分以上没得跑了！",
+          "likenum": 528,
+          "timestamp": "4小时前"
+        },
+        {
+          "cid": "c10004",
+          "username": "Will",
+          "avatar": "img/ionic.png",
+          "content": "同为英语渣，一起来学习！[笑cry][笑cry][笑cry]",
+          "likenum": 265,
+          "timestamp": "4小时前"
+        }
+      ]
+    }
+  }
+}

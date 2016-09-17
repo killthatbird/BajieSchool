@@ -1,0 +1,36 @@
+{
+  "status": 0,
+  "category": "推荐",
+  "pagesize": 15,
+  "pagenum": 1,
+  "studylist": [
+    {
+      "title": "考研英语75分学习方法",
+      "timestamp": "2小时前",
+      "content": "如何在短时间内拿下考研英语",
+      "likenum": 75,
+      "commentnum": 150
+    },
+    {
+      "title": "雅思考试高效学习法",
+      "timestamp": "3小时前",
+      "content": "雅思考试你必须在知道的那些事儿",
+      "likenum": 150,
+      "commentnum": 258
+    },
+    {
+      "title": "四六级一月内高分通过",
+      "timestamp": "5小时前",
+      "content": "一个月内教你从零基础到拿下四六级考试",
+      "likenum": 49,
+      "commentnum": 159
+    },
+    {
+      "title": "考研数学145分学习方法",
+      "timestamp": "6小时前",
+      "content": "快速提高考研数学分数",
+      "likenum": 59,
+      "commentnum": 49
+    }
+  ]
+}

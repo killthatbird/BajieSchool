@@ -1,0 +1,17 @@
+{
+  "status": 0,
+  "pagenum": 1,
+  "pagesize": 2,
+  "ntflist": [
+    {
+      "type": "学习",
+      "title": "如何入门机器学习",
+      "content": "@Lucy @Lily 赞了你在问题“如何入门机器学习”下的回答"
+    },
+    {
+      "type": "活动",
+      "title": "周杰伦演唱会",
+      "content": "@Kris 评论了您发起的活动“周杰伦演唱会”"
+    }
+  ]
+}
