@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/7/20.
  */
-angular.module('MyCtrl', []).run(function ($rootScope, $http) {
+angular.module('MyCtrl', []).run(function ($rootScope, $http, IP) {
   $http.get("../data/mine/main.json")
     .then(function (response) {
       if (response.data.status == 0) {
@@ -11,7 +11,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }
     });
 })
-  .controller('MineCtrl', function ($scope, $state, $http) {
+  .controller('MineCtrl', function ($scope, $state, $http, IP) {
 
     $scope.username = localStorage.getItem("username");
     $scope.setting = function () {
@@ -33,7 +33,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }]
     });
 
-    $.get('http://localhost:8080/api/visitor/' + $scope.username).done(function (data) {
+    $.get(IP.info() + '/api/visitor/' + $scope.username).done(function (data) {
       myChart.hideLoading();
       // 填入数据
       var result = JSON.parse(data).result;
@@ -82,14 +82,14 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('myplanCtrl', function ($scope, $stateParams, $state, $http, $ionicLoading) {
+  .controller('myplanCtrl', function ($scope, $stateParams, $state, $http, $ionicLoading, IP) {
     // $ionicLoading.show();
     $scope.title = $stateParams.barTitle;
     $scope.newplan = function (A) {
       $state.go("newplan");
     }
     var username = localStorage.getItem("username");
-    $http.get("http://localhost:8080/api/agenda/" + username)
+    $http.get(IP.info() + "/api/agenda/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.agendalist = response.data.result;
@@ -103,14 +103,14 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       console.log(A);
       $http({
         method: "POST",
-        url: "http://localhost:8080/api/agenda/delete",
+        url: IP.info() + "/api/agenda/delete",
         params: {agId: A.agId, username: username}
       }).then(function successCallback(response) {
         $ionicLoading.hide();
         if (response.data.status == 0) {
           console.log("日程删除成功!");
 
-          $http.get("http://localhost:8080/api/agenda/" + username)
+          $http.get(IP.info() + "/api/agenda/" + username)
             .then(function (response) {
               if (response.data.status == 0) {
                 $scope.agendalist = response.data.result;
@@ -178,7 +178,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       }
     }
 
-    $http.get("http://localhost:8080/api/collection/" + username)
+    $http.get(IP.info() + "/api/collection/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.cltlist = response.data.result;
@@ -256,7 +256,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       var remindDateTime = new Date(year, month, day, hour, minute).setMinutes(minute - $scope.agenda.agRemind);
       $http({
         method: "POST",
-        url: "http://localhost:8080/api/agenda/add",
+        url: IP.info() + "/api/agenda/add",
         params: {
           username: username,
           agTitle: $scope.agenda.agName,
@@ -333,12 +333,12 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('settingCtrl', function ($scope, $http, $state, LocalStorage) {
+  .controller('settingCtrl', function ($scope, $http, $state, LocalStorage, IP) {
 
     // 触发一个按钮点击，或一些其他目标
     $scope.logout = function () {
       var username = LocalStorage.get("username");
-      $http.get("http://localhost:8080/api/status/" + username)
+      $http.get(IP.info() + "/api/status/" + username)
         .then(function (response) {
           LocalStorage.remove("username")
           console.log("用户退出成功!");
@@ -347,7 +347,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('feedbackCtrl', function ($scope, $http, $state) {
+  .controller('feedbackCtrl', function ($scope, $http, $state, IP) {
     $scope.feedback = {reserve1: "", reserve2: ""};
     var username = localStorage.getItem('username');
     $scope.submitFeedback = function () {
@@ -356,7 +356,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       console.log($scope.feedback.content + "\t" + $scope.feedback.qq + "\t" + $scope.feedback.wechat + "\t" + $scope.feedback.email + "\t" + $scope.feedback.username);
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/feedback',
+        url: IP.info() + '/api/feedback',
         data: $.param($scope.feedback)
       }).then(function successCallback(response) {
         console.log("反馈提交成功!");
@@ -368,7 +368,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
     }
   })
 
-  .controller('againstCtrl', function ($scope, $http, $state) {
+  .controller('againstCtrl', function ($scope, $http, $state, IP) {
     $scope.accusation = {};
     var informant = localStorage.getItem('username');
 
@@ -377,7 +377,7 @@ angular.module('MyCtrl', []).run(function ($rootScope, $http) {
       console.log($scope.accusation.informant + "\t" + $scope.accusation.against + "\t" + $scope.accusation.content);
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/against',
+        url: IP.info() + '/api/against',
         data: $.param($scope.accusation)
       }).then(function successCallback(response) {
         console.log("举报提交成功!");

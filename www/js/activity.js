@@ -171,7 +171,7 @@ angular.module('ActCtrl', [])
      */
     $http({
       method: "POST",
-      url: 'http://localhost:8080/api/actcom',
+      url: IP.info() + '/api/actcom',
       params: {username: username, actId: $scope.actobj.actId}
     }).then(function successCallback(response) {
       console.log("活动评论加载成功!");

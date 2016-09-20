@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/25.
  */
 angular.module('StudyCtrl', [])
-  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http, $ionicLoading) {
+  .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http, $ionicLoading, IP) {
     $scope.currentTab = '推荐';
     var username = localStorage.getItem("username");
 
@@ -11,7 +11,7 @@ angular.module('StudyCtrl', [])
      */
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/study/' + 0,
+      url: IP.info() + '/api/study/' + 0,
       params: {username: username}
     }).then(function successCallback(response) {
       $ionicLoading.hide();
@@ -31,7 +31,7 @@ angular.module('StudyCtrl', [])
        */
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/study/' + tabIndex,
+        url: IP.info() + '/api/study/' + tabIndex,
         params: {username: username}
       }).then(function successCallback(response) {
         $ionicLoading.hide();
@@ -52,7 +52,7 @@ angular.module('StudyCtrl', [])
     $scope.showMore = false;
 
     var username = localStorage.getItem("username");
-    $http.get("http://localhost:8080/api/studytype/" + username)
+    $http.get(IP.info() + "/api/studytype/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.stutypelist = response.data.result;
@@ -80,7 +80,7 @@ angular.module('StudyCtrl', [])
   })
   .controller('newstuCtrl', function ($scope, $state, $http, IP, LocalStorage) {
     $scope.formData = {}
-    $http.get("http://localhost:8080/api/studyalltype")
+    $http.get(IP.info() + "/api/studyalltype")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.types = response.data.result;
@@ -107,7 +107,7 @@ angular.module('StudyCtrl', [])
       });
     }
   })
-  .controller('studetailCtrl', function ($scope, $state, $http, $stateParams, userService) {
+  .controller('studetailCtrl', function ($scope, $state, $http, $stateParams, userService, IP) {
     var username = localStorage.getItem("username");
     $scope.choose = true;
     $scope.attention = function () {
@@ -129,7 +129,7 @@ angular.module('StudyCtrl', [])
      console.error("点赞失败!");
      });
      }*/
-    $http.get("http://localhost:8080/api/userstudy/" + $scope.study.stdId)
+    $http.get(IP.info() + "/api/userstudy/" + $scope.study.stdId)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.user = response.data.result;
@@ -140,7 +140,7 @@ angular.module('StudyCtrl', [])
 
     $http({
       method: "POST",
-      url: "http://localhost:8080/api/study/replys/",
+      url: IP.info() + "/api/study/replys/",
       params: {stdId: $scope.study.stdId, username: username}
     }).then(
       function successCallback(response) {
@@ -184,7 +184,7 @@ angular.module('StudyCtrl', [])
          */
         $http({
           method: "POST",
-          url: "http://localhost:8080/api/addreply",
+          url: IP.info() + "/api/addreply",
           data: $.param(studyReply)
         }).then(
           function successCallback(response) {
@@ -205,7 +205,7 @@ angular.module('StudyCtrl', [])
         };
         $http({
           method: "POST",
-          url: "http://localhost:8080/api/addus",
+          url: IP.info() + "/api/addus",
           data: $.param(userStudy)
         }).then(
           function successCallback(response) {
@@ -234,7 +234,7 @@ angular.module('StudyCtrl', [])
 
     var username = localStorage.getItem("username");
     $scope.username = username;
-    $http.get("http://localhost:8080/api/studytype/" + username)
+    $http.get(IP.info() + "/api/studytype/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.stype = response.data.result;
@@ -243,7 +243,7 @@ angular.module('StudyCtrl', [])
         }
       });
 
-    $http.get("http://localhost:8080/api/unchosentypes/" + username)
+    $http.get(IP.info() + "/api/unchosentypes/" + username)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.unChosenTypes = response.data.result;

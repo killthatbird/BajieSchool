@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/1.
  */
 angular.module('quoraCtrl', [])
-  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, $state, $http) {
+  .controller('QuoraCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, $state, $http, IP) {
     $scope.question = {}
     $scope.qtitle = function (a) {
       $scope.question.title = a
@@ -13,7 +13,7 @@ angular.module('quoraCtrl', [])
     $scope.slideIndex = 0;
     if ($stateParams.index != null) {
       $scope.slideIndex = $stateParams.index;
-      $http.get("http://localhost:8080/api/quora/" + username + "/" + $scope.slideIndex)
+      $http.get(IP.info() + "/api/quora/" + username + "/" + $scope.slideIndex)
         .then(function (response) {
           if (response.data.status == 0) {
             $scope.quoralist = response.data.result;
@@ -22,7 +22,7 @@ angular.module('quoraCtrl', [])
           }
         });
     } else {
-      $http.get("http://localhost:8080/api/quora/" + username)
+      $http.get(IP.info() + "/api/quora/" + username)
         .then(function (response) {
           if (response.data.status == 0) {
             $scope.quoralist = response.data.result;
@@ -86,7 +86,7 @@ angular.module('quoraCtrl', [])
     $scope.activeSlide = function (index) {
       $scope.slideIndex = index
       if (index == 0) {
-        $http.get("http://localhost:8080/api/quora/" + username)
+        $http.get(IP.info() + "/api/quora/" + username)
           .then(function (response) {
             if (response.data.status == 0) {
               $scope.quoralist = response.data.result;
@@ -97,7 +97,7 @@ angular.module('quoraCtrl', [])
         console.log("slide 1");
       }
       else if (index == 1) {
-        $http.get("http://localhost:8080/api/quora/" + username + "/0")
+        $http.get(IP.info() + "/api/quora/" + username + "/0")
           .then(function (response) {
             if (response.data.status == 0) {
               $scope.quoralist = response.data.result;
@@ -108,7 +108,7 @@ angular.module('quoraCtrl', [])
         console.log("slide 2");
       }
       else if (index == 2) {
-        $http.get("http://localhost:8080/api/quora/" + username + "/1")
+        $http.get(IP.info() + "/api/quora/" + username + "/1")
           .then(function (response) {
             if (response.data.status == 0) {
               $scope.quoralist = response.data.result;
@@ -139,7 +139,7 @@ angular.module('quoraCtrl', [])
       console.log($scope.question);
       $http({
         method: "POST",
-        url: "http://localhost:8080/api/quora/ask",
+        url: IP.info() + "/api/quora/ask",
         data: $.param($scope.question)
       }).then(function successCallback(response) {
         console.log('ask ok!');
@@ -242,7 +242,7 @@ angular.module('quoraCtrl', [])
       console.log($scope.question);
       $http({
         method: "POST",
-        url: "http://localhost:8080/api/quora/ask",
+        url: IP.info() + "/api/quora/ask",
         data: $.param($scope.question)
       }).then(function successCallback(response) {
         console.log('ask ok!');
@@ -289,7 +289,7 @@ angular.module('quoraCtrl', [])
     $scope.closeModal = function () {
       $scope.smodal.hide();
     };
-    $http.get("http://localhost:8080/api/answer/" + $scope.question.queId)
+    $http.get(IP.info() + "/api/answer/" + $scope.question.queId)
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.answerlist = response.data.result;
@@ -301,8 +301,8 @@ angular.module('quoraCtrl', [])
       $state.go("ansdetail", {answer: answerobj, question: questionobj});
     }
 
-    $scope.newans = function () {
-      console.log($scope.ansContent);
+    $scope.newans = function (A) {
+      console.log(A + '----------');
 
     }
   })
@@ -353,7 +353,7 @@ angular.module('quoraCtrl', [])
   .controller('qmineCtrl', function ($scope, $ionicActionSheet, $http) {
 
     var username = localStorage.getItem("username");
-    $http.get("http://localhost:8080/api/quora/" + username + "/0")
+    $http.get(IP.info() + "/api/quora/" + username + "/0")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.myquestions = response.data.result;
@@ -378,10 +378,10 @@ angular.module('quoraCtrl', [])
   })
 
   /*我的回答*/
-  .controller('amineCtrl', function ($scope, $http) {
+  .controller('amineCtrl', function ($scope, $http, IP) {
 
     var username = localStorage.getItem("username");
-    $http.get("http://localhost:8080/api/quora/" + username + "/1")
+    $http.get(IP.info() + "/api/quora/" + username + "/1")
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.myanswerlist = response.data.result;
