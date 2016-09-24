@@ -33,8 +33,9 @@
             </small>-->
           </p>
           <div class="aui-card-list-footer df-act-fs">
-            <div><i ng-show="dzlike" ng-click="alike={'color':'rgb(110,189,219)'};addlike(actobj.actLike,actobj.actId)"
-                    class="aui-iconfont aui-icon-like"></i>
+            <div>
+              <i ng-show="dzlike" ng-click="alike={'color':'rgb(110,189,219)'};addlike(actobj.actLike,actobj.actId)"
+                 class="aui-iconfont aui-icon-like"></i>
               <i ng-style="alike" ng-class="{'lblue':actobj.reserve1=='1'}" ng-hide="dzlike"
                  class="aui-iconfont ion-ios-heart"></i>
               <small>赞 {{actobj.actLike}}</small>
@@ -94,9 +95,20 @@
                   <div></div>
                   <div></div>
                   <div></div>
-                  <div><i class="aui-iconfont aui-icon-like"></i>
-                    <small> {{activitycomment.actComLike}}</small>
+                  <!--<div>
+                    <i class="aui-iconfont aui-icon-like"></i>
+                    <small ng-click="comLike()">{{activitycomment.actComLike}}</small>
+                  </div>-->
+                  <div>
+                    <i ng-show="aclike"
+                       ng-click="alike={'color':'rgb(110,189,219)'};comLike();activitycomment.actComLike = activitycomment.actComLike + 1;"
+                       class="aui-iconfont aui-icon-like"></i>
+                    <i ng-style="alike" ng-hide="aclike"
+                       class="aui-iconfont ion-ios-heart"></i>
+                    <small>{{activitycomment.actComLike}}</small>
                   </div>
+
+
                   <div ng-click="creatcom(activitycomment.username)" ng-class="{'df-color':showcom}"><i
                     class="aui-iconfont aui-icon-comment"></i>
                   </div>
@@ -149,9 +161,10 @@
       <textarea msd-elastic ng-model="actComContent" style="min-height: initial" placeholder="添加评论"
                 required></textarea>
   </label>
-  <div class="rj-footer-btn-wrap" ng-click="send()">
+  <div class="rj-footer-btn-wrap">
     <div class="buttons">
-      <button style="color:#6EBDDB" class="button button-icon icon ion-android-send rj-footer-btn-left">
+      <button style="color:#6EBDDB" class="button button-icon icon ion-android-send rj-footer-btn-left"
+              ng-click="send(actComContent);actobj.actComment = actobj.actComment + 1">
       </button>
     </div>
   </div>

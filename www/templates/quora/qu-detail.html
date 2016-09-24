@@ -62,13 +62,15 @@
         </button>
       </div>
       <h1 class="title">回复内容</h1>
-      <button class="button button-clear button-primary" ng-click="newans(ansContent)">发表</button>
+      <button class="button button-clear button-primary" ng-click="newans()">发表</button>
     </ion-header-bar>
     <ion-content class="has-header">
       <div class="padding">
-        <textarea name="content" style="min-height: 400px;" placeholder="编写答案..."
-                  ng-model="ansContent"></textarea>
+        <textarea id="answer" name="content" style="min-height: 400px;" placeholder="编写答案..."
+                  ng-model="ansContent">
+        </textarea>
       </div>
+
     </ion-content>
   </ion-modal-view>
 </script>

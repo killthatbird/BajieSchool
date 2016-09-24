@@ -18,14 +18,14 @@ angular.module('ActCtrl', [])
     $scope.actdetial = function (A) {
       localStorage.setItem("acthViewid", "act1");
       $state.go("actdetial", {actobj: A});
-    }
+    };
+
     $http({
       method: 'POST',
       url: IP.info() + '/api/activityALL',
       params: {username: username, type: 0}
     }).then(function successCallback(response) {
       $ionicLoading.hide();
-      console.log(response)
       if (response.data.status == 0) {
         $scope.activitylist = response.data.result.Activity;
         $scope.tabs = response.data.result.ActivityType;
@@ -36,6 +36,20 @@ angular.module('ActCtrl', [])
     }, function errorCallback(response) {
       console.error("活动查询失败!");
     });
+
+    /**
+     * 查询活动是否已经点过赞
+     * @unfinished
+     */
+    /*    $http({
+     method: "GET",
+     url: IP.info() + "/api/useract/" + username + "/" + 10000
+     }).then(function successCallback(response) {
+     $scope.useract = response.data.result;
+     console.log("查询useractivity成功!");
+     }, function errorCallback(response) {
+     console.error("查询useractivity失败!");
+     });*/
 
     $scope.doRefreshAct = function () {
       $http({
@@ -92,6 +106,7 @@ angular.module('ActCtrl', [])
   /*活动详情*/
   .controller('actdetialCtrl', function ($scope, $stateParams, $sce, $state, $http, $ionicHistory, $ionicScrollDelegate, IP, LocalStorage, userService) {
     $scope.choose = true;
+    $scope.aclike = true;
     $scope.actobj = {};
     $scope.attention = function () {
       $scope.choose = !$scope.choose;
@@ -99,8 +114,6 @@ angular.module('ActCtrl', [])
     var username = localStorage.getItem("username");
     userService.load(username).then(
       function successCallback(response) {
-        console.log('加载成功!');
-        console.log(response.data.result.avatar);
         $scope.avatar = response.data.result.avatar;
 
       }, function errarCallback(response) {
@@ -109,25 +122,31 @@ angular.module('ActCtrl', [])
     $scope.dzlike = true;
     if ($stateParams.actobj != null) {
       $scope.actobj = $stateParams.actobj;
-      console.log($scope.actobj.reserve1)
       if ($scope.actobj.reserve1 == 1) {
         $scope.dzlike = false;
       }
     }
+
     $scope.addlike = function (A, B) {
+      var username = localStorage.getItem("username");
       $scope.dzlike = false;
       $scope.actobj.actLike = A + 1;
       $http({
         method: 'POST',
         url: IP.info() + '/api/activity/updlike',
-        params: {id: B}
+        params: {actId: B, username: username}
       }).then(function successCallback(response) {
         $scope.dzlike = false;
         console.log("点赞成功!");
       }, function errorCallback(response) {
         console.error("点赞失败!");
       });
-    }
+    };
+
+    $scope.comLike = function () {
+      $scope.aclike = false;
+      $http.get(IP.info() + "/api/actcom/like");
+    };
 
     $scope.showComment = false;
     $scope.togComment = function () {
@@ -159,12 +178,6 @@ angular.module('ActCtrl', [])
         $ionicHistory.goBack();
       }
     }
-/*    $http.get('../data/activity/activity-detail.json').then(function (response) {
-      if (response.data.status == 0) {
-        $scope.activitydetail = response.data.detail;
-      }
-    });*/
-
 
     /**
      * 加载活动用户评论
@@ -174,13 +187,12 @@ angular.module('ActCtrl', [])
       url: IP.info() + '/api/actcom',
       params: {username: username, actId: $scope.actobj.actId}
     }).then(function successCallback(response) {
-      console.log("活动评论加载成功!");
       $scope.activitycommentlist = response.data.result;
     }, function errorCallback(response) {
       console.error("活动评论加载失败!");
     });
 
-    $scope.send = function () {
+    $scope.send = function (A) {
       $scope.activitycommentlist.push({
         avatar: $scope.avatar,
         username: username,
@@ -191,6 +203,15 @@ angular.module('ActCtrl', [])
       $scope.actComContent = false;
       $scope.actComContent = '';
       $ionicScrollDelegate.scrollBottom();
+
+      $http({
+        method: "POST",
+        url: IP.info() + "/api/actcom/add",
+        params: {username: username, actId: $scope.actobj.actId, actComContent: A}
+      }).then(function successCallback(response) {
+      }, function errorCallback() {
+        console.error("活动评论添加失败!");
+      });
     }
   })
 
@@ -207,13 +228,13 @@ angular.module('ActCtrl', [])
     $scope.slideIndex = 0
     MyactService.load(username, 0).then(function successCallback(response) {
       $ionicLoading.hide();
-      console.log(response)
       if (response.data.status == 0) {
         $scope.myactivitylist = response.data.result;
       }
     }, function errorCallback(response) {
       console.error("活动查询失败!");
     });
+
     $scope.activeSlide = function (index) {
       $scope.slideIndex = index;
       $scope.viewmore = false;
@@ -221,7 +242,6 @@ angular.module('ActCtrl', [])
         $ionicLoading.hide();
         if (response.data.status == 0) {
           $scope.myactivitylist = response.data.result;
-          console.log($scope.myactivitylist)
         }
       }, function errorCallback(response) {
         console.error("活动查询失败!");
@@ -235,6 +255,7 @@ angular.module('ActCtrl', [])
       $scope.viewmore = false
     };
   })
+
   /*发起活动*/
   .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP, LocalStorage) {
     $scope.formData = {}
@@ -242,7 +263,6 @@ angular.module('ActCtrl', [])
       .then(function (response) {
         if (response.data.status == 0) {
           $scope.types = response.data.result;
-          console.log($scope.types)
         } else {
           console.error('网络连接失败...');
         }
@@ -293,7 +313,6 @@ angular.module('ActCtrl', [])
         url: IP.info() + '/api/addact',
         data: $.param($scope.formData)
       }).then(function successCallback(response) {
-        console.log(response);
         if (response.data.status == 0) {
           console.log("保存成功!");
         }

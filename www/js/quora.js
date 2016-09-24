@@ -301,9 +301,9 @@ angular.module('quoraCtrl', [])
       $state.go("ansdetail", {answer: answerobj, question: questionobj});
     }
 
-    $scope.newans = function (A) {
-      console.log(A + '----------');
-
+    $scope.newans = function (AA) {
+      var ans = $('#answer').val();
+      console.log(ans + '----------');
     }
   })
 

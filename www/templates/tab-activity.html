@@ -47,9 +47,13 @@
                 <span class="y-lasttime-right">{{activity.actTime | date:'yyyy-MM-dd HH:mm'}}</span>
                 <p>{{activity.actContent}}</p>
                 <p class="y-front-size">
-                  <span class="y-p-col"><i ng-if="!activity.reserve1" class="ion-ios-heart-outline"></i>
-                    <i ng-if="activity.reserve1" style="color:rgb(110,189,219)" class="ion-ios-heart"></i>{{activity.actLike}}</span>
-                  <span class="y-p-col-right"><i class="ion-chatbubble-working"></i>{{activity.actComment}}</span>
+                  <span class="y-p-col">
+                    <i ng-if="!activity.reserve1" class="ion-ios-heart-outline"></i>{{activity.actLike}}
+                    <!--<i ng-if="useract.likeFlag" style="color:rgb(110,189,219)" class="ion-ios-heart"></i>{{activity.actLike}}-->
+                  </span>
+                  <span class="y-p-col-right">
+                    <i class="ion-chatbubble-working"></i>{{activity.actComment}}
+                  </span>
                 </p>
               </a>
             </div>
