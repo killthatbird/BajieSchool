@@ -44,7 +44,7 @@ angular.module('services', [])
           url: IP.info() + '/api/activity/mine',
           params: {
             username: username,
-            type: type
+            launFlag: type
           }
         })
       }

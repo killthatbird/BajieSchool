@@ -33,7 +33,7 @@ angular.module('ActCtrl', [])
       } else {
         $state.go("login")
       }
-    }, function errorCallback(response) {
+    }, function errorCallback() {
       console.error("活动查询失败!");
     });
 
@@ -110,7 +110,17 @@ angular.module('ActCtrl', [])
     $scope.actobj = {};
     $scope.attention = function () {
       $scope.choose = !$scope.choose;
-    }
+      $http({
+        method: "POST",
+        url: IP.info() + "/api/join",
+        params: {actId: $scope.actobj.actId, username: username}
+      }).then(function successCallback(response) {
+
+      }, function errorCallback() {
+        console.error("活动参加失败！");
+      });
+    };
+
     var username = localStorage.getItem("username");
     userService.load(username).then(
       function successCallback(response) {
@@ -226,33 +236,65 @@ angular.module('ActCtrl', [])
     });
     var username = localStorage.getItem("username");
     $scope.slideIndex = 0
-    MyactService.load(username, 0).then(function successCallback(response) {
+    /**
+     * 查询我的活动--发起的活动
+     */
+    MyactService.load(username, 1).then(function successCallback(response) {
       $ionicLoading.hide();
       if (response.data.status == 0) {
         $scope.myactivitylist = response.data.result;
       }
-    }, function errorCallback(response) {
+    }, function errorCallback() {
       console.error("活动查询失败!");
     });
+
+    /*    $scope.activeSlide = function (index) {
+     $scope.slideIndex = index;
+     $scope.viewmore = false;
+     MyactService.load(username, index).then(function successCallback(response) {
+     $ionicLoading.hide();
+     if (response.data.status == 0) {
+     $scope.myactivitylist = response.data.result;
+     }
+     }, function errorCallback() {
+     console.error("活动查询失败!");
+     });
+     };*/
 
     $scope.activeSlide = function (index) {
       $scope.slideIndex = index;
       $scope.viewmore = false;
-      MyactService.load(username, index).then(function successCallback(response) {
-        $ionicLoading.hide();
-        if (response.data.status == 0) {
+      if (0 == index) {
+        MyactService.load(username, 1).then(function successCallback(response) {
+          $ionicLoading.hide();
+          if (response.data.status == 0) {
+            $scope.myactivitylist = response.data.result;
+          }
+        }, function errorCallback() {
+          console.error("活动查询失败!");
+        });
+      } else { //1 == index
+        $scope.myactivitylist = '';
+        $http({
+          method: "GET",
+          url: IP.info() + "/api/activity/join",
+          params: {username: username}
+        }).then(function successCallback(response) {
           $scope.myactivitylist = response.data.result;
-        }
-      }, function errorCallback(response) {
-        console.error("活动查询失败!");
-      });
-    };
+        }, function errorCallback() {
+          console.error("参加的活动查询失败!");
+        });
+      }
+
+    }
+
+
     $scope.gomyact = function (A) {
-      $scope.actobj = A
-      $scope.viewmore = true
+      $scope.actobj = A;
+      $scope.viewmore = true;
     }
     $scope.gomylist = function () {
-      $scope.viewmore = false
+      $scope.viewmore = false;
     };
   })
 
