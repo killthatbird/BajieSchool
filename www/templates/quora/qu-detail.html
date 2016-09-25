@@ -25,7 +25,7 @@
           <i ng-show="dzlike" ng-click="qlike={'color':'#ebc951'};addlike(question.queLike,question.queId)"
              class="aui-iconfont aui-icon-laud"></i>&nbsp;{{question.queLike}}
         </div>
-        <div ng-click="comlist()"><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.queComment}}</div>
+        <div><i class="aui-iconfont aui-icon-note"></i>&nbsp;{{question.queComment}}</div>
         <div ng-click="isgz()"><i ng-hide="gz" ng-model="gz" class="aui-iconfont aui-icon-star"></i>
           <i ng-hide="!gz" style="color:#ebc951" class="aui-iconfont aui-icon-star"></i>&nbsp;关注
         </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="aui-card-list-footer df-act-fs">
           <p style="margin:0px;">
-            <small>{{answer.ansLike}}&nbsp;赞同&nbsp;·&nbsp;<a style="color:#757575" ng-click="comlist()">{{answer.ansComment}}&nbsp;评论</a>&nbsp;·&nbsp;
+            <small>{{answer.ansLike}}&nbsp;赞同&nbsp;·&nbsp;<a style="color:#757575" ng-click="comlist(answer.ansId)">{{answer.ansComment}}&nbsp;评论</a>&nbsp;·&nbsp;
             </small>
             <small>{{answer.ansTime | date:'yyyy-MM-dd HH:mm'}}</small>
           </p>
@@ -62,7 +62,7 @@
         </button>
       </div>
       <h1 class="title">回复内容</h1>
-      <button class="button button-clear button-primary" ng-click="newans()">发表</button>
+      <button class="button button-clear button-primary" ng-click="newans(question.queId)">发表</button>
     </ion-header-bar>
     <ion-content class="has-header">
       <div class="padding">

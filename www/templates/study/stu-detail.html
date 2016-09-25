@@ -56,7 +56,7 @@
                   class="aui-iconfont aui-icon-comment"></i></span>
                 <span class="y-p-col-right"> <i ng-style="slike" ng-hide="dzlike"
                                                 class="aui-iconfont aui-icon-laud"></i>
-                  <i ng-show="dzlike" ng-click="slike={'color':'#ebc951'};addlike(reply.stdReLike,reply.stdId)"
+                  <i ng-show="dzlike" ng-click="slike={'color':'#ebc951'};addlike(reply.stdReId);reply.stdReLike = reply.stdReLike + 1;"
                      class="aui-iconfont aui-icon-laud"></i>{{reply.stdReLike}}</span>
               </p>
             </div>

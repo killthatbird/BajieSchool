@@ -170,7 +170,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
       .state('comlist', {
         url: '/quora/comlist',
         templateUrl: 'templates/quora/com-list.html',
-        controller: 'comlistCtrl'
+        controller: 'comlistCtrl',
+        params: {
+          ansId: null
+        }
       })
       .state('ansdetail', {
         url: '/quora/ansdetail',

@@ -17,16 +17,17 @@
             </div>
             <div class="aui-list-item-inner" style="border-bottom: 1px solid #ccc;">
               <div class="aui-list-item-text">
-                <div class="aui-list-item-title aui-font-size-14">{{comment.nickname}}</div>
+                <div class="aui-list-item-title aui-font-size-14">{{comment.ansCommUsername}}</div>
               </div>
               <div class="aui-list-item-text">
-                {{comment.content}}
+                {{comment.ansCommContent}}
               </div>
               <p class="y-front-size">
-                <span class="y-p-col">{{comment.timestamp}}</span>
-                <span ng-click="replay('{{comment.nickname}}')" class="y-p-col-right" style="padding-left: 10px"><i
+                <span class="y-p-col">{{comment.ansCommTime | date:'yyyy-MM-dd HH:mm'}}</span>
+                <span ng-click="replay('{{comment.ansCommUsername}}')" class="y-p-col-right" style="padding-left: 10px"><i
                   class="aui-iconfont aui-icon-comment"></i></span>
-                <span class="y-p-col-right"><i class="aui-iconfont aui-icon-laud"></i>{{comment.likenum}}</span>
+                <span class="y-p-col-right" ng-click="likeAnsComm(comment.ansCommId)"><i
+                  class="aui-iconfont aui-icon-laud"></i>{{comment.ansCommLike}}</span>
               </p>
             </div>
           </div>

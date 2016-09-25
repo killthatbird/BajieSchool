@@ -46,10 +46,10 @@
     </div>
   </ion-content>
   <div class="bar bar-footer df-footer">
-    <button class="button icon  aui-iconfont aui-icon-laud">赞{{answer.ansLike}}</button>
+    <button class="button icon  aui-iconfont aui-icon-laud" ng-click="">赞{{answer.ansLike}}</button>
     <div class="title">
       <button class="button icon  aui-iconfont aui-icon-star">收藏</button>
     </div>
-    <button ng-click="gocom()" class="button icon  aui-iconfont aui-icon-note">{{answer.ansComment}}</button>
+    <button ng-click="gocom(answer.ansId)" class="button icon  aui-iconfont aui-icon-note">{{answer.ansComment}}</button>
   </div>
 </ion-view>

@@ -5,6 +5,7 @@ angular.module('StudyCtrl', [])
   .controller('StudysCtrl', function ($scope, $state, $timeout, LocalStorage, $http, $ionicLoading, IP) {
     $scope.currentTab = '推荐';
     var username = localStorage.getItem("username");
+    $scope.formData = {};
 
     /**
      * 默认加载“推荐”
@@ -17,6 +18,7 @@ angular.module('StudyCtrl', [])
       $ionicLoading.hide();
       if (response.data.status == 0) {
         $scope.studylist = response.data.result;
+
       }
     }, function errorCallback(response) {
       console.error("活动查询失败!");
@@ -78,8 +80,9 @@ angular.module('StudyCtrl', [])
       $scope.stype.splice(idx, 1);
     }
   })
-  .controller('newstuCtrl', function ($scope, $state, $http, IP, LocalStorage) {
-    $scope.formData = {}
+  .controller('newstuCtrl', function ($scope, $state, $http, IP, LocalStorage, $ionicPopup) {
+    $scope.formData = {};
+    $scope.formData.typeId = 1;
     $http.get(IP.info() + "/api/studyalltype")
       .then(function (response) {
         if (response.data.status == 0) {
@@ -88,23 +91,41 @@ angular.module('StudyCtrl', [])
           console.error('网络连接失败...');
         }
       });
-    $scope.save = function () {
-      $scope.formData.username = LocalStorage.get("username", 0)
-      console.log($scope.formData)
-      $http({
-        method: 'POST',
-        url: IP.info() + '/api/study/addstuqu',
-        data: $.param($scope.formData)
-      }).then(function successCallback(response) {
-        console.log(response);
-        if (response.data.status == 0) {
-          console.log("帖子发表成功!");
-          $state.go('tab.study');
-        }
+    $scope.formData.stdTitle = '';
+    $scope.formData.stdContent = '';
 
-      }, function errorCallback(response) {
-        console.error("帖子发表失败！");
-      });
+    $scope.save = function () {
+
+      $scope.formData.username = LocalStorage.get("username", 0);
+      if ("" != $scope.formData.stdTitle.trim() && "" != $scope.formData.stdContent.trim()) {
+        $http({
+          method: 'POST',
+          url: IP.info() + '/api/study/addstuqu',
+          data: $.param($scope.formData)
+        }).then(function successCallback(response) {
+          console.log(response);
+          if (response.data.status == 0) {
+            console.log("帖子发表成功!");
+            $state.go('tab.study');
+          }
+          $scope.formData = {};
+          $scope.formData.typeId = 1;
+
+        }, function errorCallback(response) {
+          console.error("帖子发表失败！");
+        });
+      } else {
+        // $cordovaToast.showShortCenter("请填写帖子标题以及内容！");
+        //  alert（警告） 对话框
+        var alertPopup = $ionicPopup.alert({
+          title: '',
+          template: '请填写帖子标题以及内容！'
+        });
+        alertPopup.then(function () {
+          console.log('Thank you for not eating my delicious ice cream cone');
+        });
+      }
+
     }
   })
   .controller('studetailCtrl', function ($scope, $state, $http, $stateParams, userService, IP) {
@@ -113,22 +134,25 @@ angular.module('StudyCtrl', [])
     $scope.attention = function () {
       $scope.choose = !$scope.choose
     }
+    $scope.dzlike = true;
     $scope.study = $stateParams.study;
     $scope.stdReContent = '';
+    $scope.reply = {};
     console.log('Request param : ' + $scope.study.stdId);
-    /* $scope.addlike = function (A,B) {
-     $scope.dzlike = false;
-     $scope.reply.stdReLike=A+1;
-     $http({
-     method: 'POST',
-     url: IP.info() + '/api/study/updlike',
-     params: {id: B}
-     }).then(function successCallback(response) {
-     console.log("点赞成功!");
-     }, function errorCallback(response) {
-     console.error("点赞失败!");
-     });
-     }*/
+
+    $scope.addlike = function (B) {
+      $scope.dzlike = false;
+      $http({
+        method: 'GET',
+        url: IP.info() + '/api/stdreply/like',
+        params: {stdReId: B}
+      }).then(function successCallback(response) {
+        console.log("点赞成功!");
+      }, function errorCallback(response) {
+        console.error("点赞失败!");
+      });
+    };
+
     $http.get(IP.info() + "/api/userstudy/" + $scope.study.stdId)
       .then(function (response) {
         if (response.data.status == 0) {

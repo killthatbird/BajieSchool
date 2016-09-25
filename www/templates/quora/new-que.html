@@ -13,7 +13,7 @@
       <input type="hidden" ng-model="question.queId">
       <label class="item item-input">
         <span class="input-label">标题：</span>
-        <input type="text" ng-change="bindtitle(question.queTitle)" ng-model="question.queTitle">
+        <input type="text" ng-change="bindtitle(question.queTitle)" ng-model="question.queTitle" required>
       </label>
       <label class="item item-input">
         <span class="input-label">标签：</span>
@@ -21,7 +21,7 @@
       </label>
     </div>
     <div class="padding df-none-textarea model-list">
-      <textarea ng-model="question.queContent" placeholder="请输入内容"></textarea>
+      <textarea ng-model="question.queContent" placeholder="请输入内容" required></textarea>
       <div class="buttons buttons-left">
         <div ng-repeat="imgUrl in imglist" class="imgone">
           <img ng-src="{{imgUrl}}" alt=""/>
