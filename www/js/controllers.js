@@ -298,10 +298,8 @@ angular.module('controllers', [])
   })
 
   .controller('changeSettingCtrl', function ($scope) {
-    $scope.changeSettingStatus = function (A) {
-      var isUpdate = $scope.A;
-
-      console.log(isUpdate);
+    $scope.changeSettingStatus = function () {
+      alert('clicked!');
     }
 
   });

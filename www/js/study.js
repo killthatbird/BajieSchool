@@ -313,20 +313,28 @@ angular.module('StudyCtrl', [])
         data: $('#updateStu').serialize()
       }).then(function successCallback(response) {
         $ionicLoading.hide();
-        if (response.data.status == 0) {
-          var alertPopup = $ionicPopup.alert({
-            title: '消息提示!',
-            template: '保存成功！',
-            okText: '返回'
-          });
-          $timeout(function () {
-            alertPopup.close(); //由于某种原因3秒后关闭弹出
-          }, 3000);
-        }
+        // if (response.data.status == 0) {
+        var alertPopup = $ionicPopup.alert({
+          title: '消息提示!',
+          template: '保存成功！',
+          okText: '返回'
+        });
+        $timeout(function () {
+          alertPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
+        // }
       }, function errorCallback(response) {
-        console.error(response)
+        $ionicLoading.hide();
+        var alertPopup = $ionicPopup.alert({
+          title: '消息提示!',
+          template: '保存失败！',
+          okText: '返回'
+        });
+        $timeout(function () {
+          alertPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
         console.error("保存失败!");
       });
     }
 
-  })
+  });
