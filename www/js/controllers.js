@@ -145,6 +145,7 @@ angular.module('controllers', [])
         $scope.msg = false
       }
     }
+
     $scope.login = function () {
       if ($scope.agg_checked == true) {
         $http({
@@ -178,6 +179,19 @@ angular.module('controllers', [])
       } else {
         $scope.msg = true
       }
+    }
+
+    $scope.checkCaptcha = function (email, captcha) {
+      console.log('验证成功!');
+      $http({
+        url: IP.info() + '/api/checkCaptcha',
+        method: 'GET',
+        params: {email: email, captcha: captcha}
+      }).then(function successCallback(response) {
+        console.log('验证成功!');
+      }, function errorCallback() {
+        console.error('验证失败,请检查网络...');
+      });
     }
   })
 
@@ -216,8 +230,9 @@ angular.module('controllers', [])
       }
 
       $scope.nextste = function () {
-        $state.go("newpass")
+        $state.go("newpass");
       }
+
     }
   )
 

@@ -250,7 +250,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
           schname: null,
           schid: null
         },
-        templateUrl: 'templates/register.html'
+        templateUrl: 'templates/register.html',
       })
       .state('findin', {
         url: '/findin',
