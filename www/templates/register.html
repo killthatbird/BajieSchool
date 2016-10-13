@@ -103,11 +103,12 @@
           <li class="aui-list-item">
             <div class="aui-list-item-inner">
               <div class="aui-list-item-label">
-                手机号
+                Email
               </div>
               <div class="aui-list-item-input item-input">
-                <input type="text" class="aui-col-xs-8" ng-model="formdata.cellphone" >&nbsp;
-                <div class="aui-btn aui-btn-info aui-col-xs-4" style="margin-right: 0px;" ng-click="sendphonecode(reg_phone)" ng-class="paraclass"
+                <!--<input type="text" class="aui-col-xs-8" ng-model="formdata.cellphone" >-->
+                <input type="text" class="aui-col-xs-8" ng-model="formdata.email" >
+                <div class="aui-btn aui-btn-info aui-col-xs-4" style="margin-right: 0px;" ng-click="sendCaptcha(formdata.email)" ng-class="paraclass"
                      ng-bind="paracont">获取验证码
                 </div>
               </div>

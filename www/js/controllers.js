@@ -55,7 +55,7 @@ angular.module('controllers', [])
      window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
   })
 
-  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $stateParams, $http, IP, $timeout, LocalStorage) {
+  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $stateParams, $http, IP, $timeout, LocalStorage, IP) {
     $scope.formdata = {};
     $scope.name = $stateParams.schname;
     $scope.curstep = true;
@@ -104,9 +104,20 @@ angular.module('controllers', [])
     var second = 60,
       timePromise = undefined;
     var flag = true;
-    $scope.sendphonecode = function () {
+    $scope.sendCaptcha = function (email) {
 
       if (flag == true) {
+        $http({
+          url: IP.info() + '/api/captcha',
+          method: "GET",
+          params: {email: email}
+        }).then(function successCallback(response) {
+          console.log('验证码发送成功!');
+        }, function errorCallback(response) {
+          console.error('验证码发送失败!');
+        });
+
+
         timePromise = $interval(function () {
             if (second <= 0) {
               $interval.cancel(timePromise);
@@ -121,13 +132,14 @@ angular.module('controllers', [])
               second--;
               flag = true;
             }
-            flag = false;
+            // flag = false;
           }
           ,
           1000
         );
       }
     }
+
     $scope.ischecked = function () {
       if ($scope.agg_checked == true) {
         $scope.msg = false
@@ -177,7 +189,7 @@ angular.module('controllers', [])
       var second = 60,
         timePromise = undefined;
       var flag = true;
-      $scope.sendphonecode = function () {
+      $scope.sendCaptcha = function () {
 
         if (flag == true) {
           timePromise = $interval(function () {
