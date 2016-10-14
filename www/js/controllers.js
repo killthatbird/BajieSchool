@@ -55,7 +55,7 @@ angular.module('controllers', [])
      window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);*/
   })
 
-  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $stateParams, $http, IP, $timeout, LocalStorage, IP) {
+  .controller('registerCtrl', function ($scope, $state, $interval, $ionicPopup, $stateParams, $http, IP, $timeout) {
     $scope.formdata = {};
     $scope.name = $stateParams.schname;
     $scope.curstep = true;
@@ -146,7 +146,7 @@ angular.module('controllers', [])
       }
     }
 
-    $scope.login = function () {
+    $scope.register = function () {
       if ($scope.agg_checked == true) {
         $http({
           method: 'GET',
@@ -170,7 +170,7 @@ angular.module('controllers', [])
             });
           } else {
             $scope.checkname = true;
-            console.log("该用户已存在")
+            console.error("该用户已存在");
           }
 
         }, function errorCallback(response) {
