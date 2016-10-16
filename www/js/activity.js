@@ -299,7 +299,7 @@ angular.module('ActCtrl', [])
   })
 
   /*发起活动*/
-  .controller('newactCtrl', function ($scope, $ionicActionSheet, $http, IP, LocalStorage) {
+  .controller('newactCtrl', function ($scope, $ionicActionSheet, $state, $http, IP, LocalStorage) {
     $scope.formData = {}
     $http.get(IP.info() + "/api/acttype")
       .then(function (response) {
@@ -356,6 +356,7 @@ angular.module('ActCtrl', [])
         data: $.param($scope.formData)
       }).then(function successCallback(response) {
         if (response.data.status == 0) {
+          $state.go('tab.activity');
           console.log("保存成功!");
         }
 
