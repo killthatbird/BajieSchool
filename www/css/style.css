@@ -786,8 +786,10 @@
 .aui-content{display: -webkit-box;-webkit-line-clamp: 3;font-size:14px;-webkit-box-orient: vertical;overflow: hidden;margin-top: 5px}
 .stu-ans{width:100%;min-height:80px;height:auto;background: #6EBDDB;padding: 5px 20px}
 .stu-ans h2{margin-bottom: 42px;}
-.df-stu-user{background: #fff;width:90%;margin:0 auto;position: relative;bottom:40px;height: 60px;box-shadow: 1px 2px 1px #ccc;padding: 10px;border-radius: 2px}
+.df-stu-user{background: #fff;width:90%;margin:0px auto;position: relative;bottom:40px;height: 60px;box-shadow: 1px 2px 1px #ccc;padding: 10px;border-radius: 2px}
 .df-stu-user .aui-list-item-media{width: 35px;margin-right: 8px;}
+.df-act-user{background: #fff;width:93%;margin:10px auto;height: 60px;box-shadow: 1px 2px 1px #ccc;padding: 10px;border-radius: 2px}
+.df-act-user .aui-list-item-media img{width: 35px;margin-right: 8px;}
 .aui-content-padded p{color:#212121 !important;}
 .df-footer button{background: none;border-color: transparent;}
 .df-footer button.activated {

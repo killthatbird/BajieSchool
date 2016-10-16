@@ -1,0 +1,40 @@
+<ion-header-bar align-title="center" class="bar-positive  item-input-inset">
+  <label class="item-input-wrapper" style="background-color: rgba(0,0,0,0.25);color:#fff;height: 35px;">
+    <i class="icon ion-ios-search placeholder-icon" style="font-size: 21px;color: #fff;"></i>
+    <input type="search" placeholder="..." ng-model="searchContent">
+  </label>
+  <div class="buttons">
+    <button ng-click="$ionicGoBack()" class="button back-button no-animation buttons button-clear">
+      取消
+    </button>
+  </div>
+</ion-header-bar>
+<ion-view cache-view="false" view-title="">
+  <ion-content class="has-header" style="background: #f1e7e7">
+    <ul style="padding-top: 10px">
+      <li class="aui-list-item aui-list-item-middle df-act-user" ng-repeat="joinpeople in joinpeoplelist">
+        <div class="aui-media-list-item-inner">
+          <div class="aui-list-item-media">
+            <img ng-src="{{joinpeople.avatar}}" class="aui-img-round aui-list-img-sm">
+          </div>
+          <div class="aui-list-item-inner">
+            <div class="aui-list-item-text">
+              <div class="aui-list-item-title" style="font-size: 0.6rem">{{joinpeople.username}}</div>
+            </div>
+            <div class="aui-list-item-text" style="font-size: 0.6rem">
+              {{joinpeople.sex}}
+            </div>
+          </div>
+          <!--<button ng-show="choose" ng-click="attention()"
+                            class="button  button-small y-lasttime-right icon-left ion-ios-plus-outline button-balanced"
+                            style="padding: 0px 14px;right: 14px;top: 14px;">关注
+                    </button>
+                    <button ng-hide="choose" ng-click="attention()" class="button  button-small y-lasttime-right icon-left"
+                            style="padding: 0px 14px;right: 14px;top: 14px;background: gainsboro;color:grey">已关注
+                    </button>-->
+        </div>
+      </li>
+
+    </ul>
+  </ion-content>
+</ion-view>

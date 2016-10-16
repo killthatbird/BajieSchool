@@ -120,7 +120,9 @@ angular.module('ActCtrl', [])
         console.error("活动参加失败！");
       });
     };
-
+    $scope.findlist = function (actId) {
+      $state.go("joinpeople", {actId: actId});
+    }
     var username = localStorage.getItem("username");
     userService.load(username).then(
       function successCallback(response) {
@@ -359,10 +361,22 @@ angular.module('ActCtrl', [])
           $state.go('tab.activity');
           console.log("保存成功!");
         }
-
+        8
       }, function errorCallback(response) {
         console.error("保存失败！");
       });
     }
+
+  })
+
+  .controller('JoinPeopleCtrl', function ($http, $stateParams, IP, $scope) {
+    $http({
+      url: IP.info() + '/api/joinpeople/' + $stateParams.actId,
+      method: "GET"
+    }).then(function successCallback(response) {
+      $scope.joinpeoplelist = response.data.result;
+    }, function errorCallback(response) {
+      console.error('参加人数查询失败!');
+    });
 
   })

@@ -90,6 +90,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'controllers', 'directives', 's
         url: '/activity/newact',
         templateUrl: 'templates/activity/new-act.html'
       })
+      .state('joinpeople', {
+        url: '/joinpeople',
+        templateUrl: 'templates/join_people.html',
+        controller: 'JoinPeopleCtrl',
+        params: {
+          'actId': null
+        }
+      })
       .state('tab.study', {
         url: '/study',
         cache: false,
