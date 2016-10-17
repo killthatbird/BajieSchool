@@ -2,7 +2,7 @@
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
   <name>HelloCordova</name>
   <description>
-    An Ionic Framework and Cordova project.
+    A service provider for university students
   </description>
   <author email="xulu0620@qq.com" href="http://www.weibo.com/xldev">
     LucasX
